@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="DemuRup Media — India's boldest creative marketing & branding agency. Social media, branding, content, web, ads & more."/>
   <title>DemuRup Media — Creative Marketing & Branding Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -10,153 +11,149 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { lime: '#00cc33' }
-        }
-      }
-    }
+    tailwind.config = { theme: { extend: { colors: { lime:'#00cc33' } } } }
   </script>
 </head>
 <body>
 
+<!-- ══ Cursor ══ -->
 <div class="cursor" id="cursor"></div>
-<div class="cursor-follower" id="cursor-follower"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-<!-- ══════════ NAV ══════════ -->
-<nav>
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
-    <a href="#" class="font-display text-[2rem] tracking-tight leading-none">
-      DEMU<span style="color:var(--lime)">RUP</span>
+<!-- ══ Floating WhatsApp ══ -->
+<a href="https://wa.me/917489998238" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-float-label">Chat on WhatsApp</span>
+  <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
+    <a href="#" onclick="showPage('home')" class="font-display text-[1.9rem] tracking-tight leading-none">
+      Demu<span style="color:var(--lime)">Rup</span>
     </a>
-    <div class="hidden lg:flex items-center gap-8">
-      <a href="#services" class="underline-grow text-sm font-medium text-white/75 hover:text-white transition-colors">Services</a>
-      <a href="#industries" class="underline-grow text-sm font-medium text-white/75 hover:text-white transition-colors">Industries</a>
-      <a href="#about" class="underline-grow text-sm font-medium text-white/75 hover:text-white transition-colors">About</a>
-      <a href="#contact" class="underline-grow text-sm font-medium text-white/75 hover:text-white transition-colors">Work</a>
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#services" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Services</a>
+      <a href="#industries" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Industries</a>
+      <a href="#about" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">About</a>
+      <a href="#clients" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Clients</a>
+      <a href="#contact-section" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Contact</a>
     </div>
     <div class="hidden lg:flex items-center gap-4">
-      <span class="section-label">EST. 2024</span>
-      <a href="#contact" class="btn-lime px-5 py-2.5 rounded text-sm">Get a Proposal →</a>
+      <span class="slabel">EST. 2024</span>
+      <a href="#contact-section" class="btn-lime px-5 py-2.5 rounded text-sm">Get a Proposal →</a>
     </div>
-    <button id="hamburger" class="lg:hidden flex flex-col gap-1.5 p-2">
+    <button id="hamburger" class="lg:hidden flex flex-col gap-1.5 p-2 z-10" aria-label="Menu">
       <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h1"></span>
       <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h2"></span>
       <span class="w-4 h-0.5 bg-white transition-all duration-300" id="h3"></span>
     </button>
   </div>
-  <div id="mobile-menu" class="flex-col px-6 pb-6 gap-4 border-t border-[#1a1a1a] bg-black/95 backdrop-blur-xl">
-    <a href="#services" class="text-lg font-semibold py-2.5 border-b border-[#1a1a1a] text-white/80 mobile-link">Services</a>
-    <a href="#industries" class="text-lg font-semibold py-2.5 border-b border-[#1a1a1a] text-white/80 mobile-link">Industries</a>
-    <a href="#about" class="text-lg font-semibold py-2.5 border-b border-[#1a1a1a] text-white/80 mobile-link">About</a>
-    <a href="#contact" class="btn-lime px-5 py-3 rounded text-center font-bold mt-2">Get a Proposal →</a>
+  <div id="mobile-menu" class="flex-col px-5 pb-6 gap-3 border-t border-[#1a1a1a] bg-black/97 backdrop-blur-xl">
+    <a href="#services" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Services</a>
+    <a href="#industries" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Industries</a>
+    <a href="#about" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">About</a>
+    <a href="#clients" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Clients</a>
+    <a href="#contact-section" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Contact</a>
+    <a href="#contact-section" class="btn-lime px-5 py-3.5 rounded text-center font-bold mt-2 m-link">Get a Proposal →</a>
   </div>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- ══════════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════ -->
 <section class="hero-bg min-h-screen pt-32 pb-20 relative flex flex-col justify-center">
-  <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 80px 80px;"></div>
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
 
-  <div class="absolute top-28 right-8 lg:right-16 hidden lg:flex flex-col items-center">
-    <div class="animated-border rounded-full w-24 h-24 flex items-center justify-center">
-      <span class="font-mono-dm text-[0.58rem] text-lime text-center leading-snug">CREATIVE<br/>AGENCY<br/>2024—∞</span>
+  <div class="absolute top-28 right-6 lg:right-16 hidden lg:flex">
+    <div class="badge-border rounded-full w-[88px] h-[88px] flex items-center justify-center">
+      <span class="font-mono text-[.57rem] text-center leading-snug" style="color:var(--lime)">CREATIVE<br/>AGENCY<br/>2024—∞</span>
     </div>
   </div>
 
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 w-full">
-    <div class="flex items-center gap-3 mb-8 reveal">
-      <div class="w-2 h-2 rounded-full bg-lime"></div>
-      <span class="section-label">India's boldest growth studio</span>
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10 w-full">
+    <div class="flex items-center gap-3 mb-7 reveal">
+      <div class="w-2 h-2 rounded-full" style="background:var(--lime)"></div>
+      <span class="slabel">India's boldest growth studio</span>
     </div>
 
-    <h1 id="hero-h1" class="font-display leading-[0.92]" style="font-size: clamp(3.8rem, 11vw, 10.5rem); letter-spacing: -0.01em;">
+    <h1 id="hero-h1" class="font-display leading-[0.91]" style="font-size:clamp(3.4rem,10.5vw,10rem);letter-spacing:-.01em;">
       THE ULTIMATE<br/>
-      <span style="color:var(--lime); text-shadow: 0 0 60px rgba(0,204,51,0.35);">CREATIVE</span><br/>
+      <span style="color:var(--lime);text-shadow:0 0 55px rgba(0,204,51,.32)">CREATIVE</span><br/>
       MARKETING &<br/>
       BRANDING AGENCY
     </h1>
 
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mt-10 reveal">
-      <p class="text-white/55 text-base lg:text-lg max-w-lg leading-relaxed">
+      <p class="text-white/52 text-base lg:text-lg max-w-lg leading-relaxed">
         One team. Every digital need. DemuRup Media is your all-in-one growth partner — from brand identity to paid ads, content to web — so you never juggle vendors again.
       </p>
       <div class="flex items-center gap-4 flex-wrap">
-        <a href="#contact" class="btn-lime px-8 py-4 rounded text-base font-bold">Start Growing →</a>
-        <a href="#services" class="btn-outline px-8 py-4 rounded text-base">Explore Services</a>
+        <a href="#contact-section" class="btn-lime px-7 py-4 rounded text-base font-bold">Start Growing →</a>
+        <a href="#services" class="btn-outline px-7 py-4 rounded text-base">Explore Services</a>
       </div>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-0 mt-20 border border-[#222] reveal">
-      <div class="p-6 lg:p-8 border-r border-[#222]">
+    <!-- Stats -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 mt-20 border border-[#1e1e1e] reveal">
+      <div class="p-6 lg:p-8 border-r border-[#1e1e1e]">
         <div class="stat-num" data-count="50">0+</div>
-        <p class="text-white/45 text-sm mt-1">Brands Scaled</p>
+        <p class="text-white/42 text-sm mt-1">Brands Scaled</p>
       </div>
-      <div class="p-6 lg:p-8 lg:border-r border-[#222]">
-        <div class="stat-num">6</div>
-        <p class="text-white/45 text-sm mt-1">Core Services</p>
+      <div class="p-6 lg:p-8 lg:border-r border-[#1e1e1e]">
+        <div class="stat-num">9</div>
+        <p class="text-white/42 text-sm mt-1">Core Services</p>
       </div>
-      <div class="p-6 lg:p-8 border-t lg:border-t-0 border-r border-[#222]">
-        <div class="stat-num">4+</div>
-        <p class="text-white/45 text-sm mt-1">Industries Served</p>
+      <div class="p-6 lg:p-8 border-t lg:border-t-0 border-r border-[#1e1e1e]">
+        <div class="stat-num">10+</div>
+        <p class="text-white/42 text-sm mt-1">Industries Served</p>
       </div>
       <div class="p-6 lg:p-8 border-t lg:border-t-0">
         <div class="stat-num">100%</div>
-        <p class="text-white/45 text-sm mt-1">In-House Team</p>
+        <p class="text-white/42 text-sm mt-1">In-House Team</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ MARQUEE 1 ══════════ -->
-<div class="ticker-wrap py-3.5">
-  <div class="marquee-track items-center">
-    <span class="font-display text-[1.4rem] text-white/28 px-7">SOCIAL MEDIA MARKETING</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">BRAND STRATEGY</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">CONTENT CREATION</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">WEB DEVELOPMENT</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">DIGITAL ADVERTISING</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">INFLUENCER MARKETING</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">SEO & PERFORMANCE</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">OUTDOOR CAMPAIGNS</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <!-- duplicate -->
-    <span class="font-display text-[1.4rem] text-white/28 px-7">SOCIAL MEDIA MARKETING</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">BRAND STRATEGY</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">CONTENT CREATION</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">WEB DEVELOPMENT</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">DIGITAL ADVERTISING</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">INFLUENCER MARKETING</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">SEO & PERFORMANCE</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
-    <span class="font-display text-[1.4rem] text-white/28 px-7">OUTDOOR CAMPAIGNS</span>
-    <span style="color:var(--lime)" class="text-lg px-2">✦</span>
+<!-- ══ Marquee 1 — Services ══ -->
+<div class="mq-wrap py-3.5">
+  <div class="mq-track items-center">
+    <span class="font-display text-[1.35rem] text-white/28 px-6">SOCIAL MEDIA MARKETING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">BRAND STRATEGY</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">CONTENT CREATION</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">WEB DEVELOPMENT</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">DIGITAL ADVERTISING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">INFLUENCER MARKETING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">VIDEO PRODUCTION</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">OUTDOOR CAMPAIGNS</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">PERFORMANCE MARKETING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <!-- dupe -->
+    <span class="font-display text-[1.35rem] text-white/28 px-6">SOCIAL MEDIA MARKETING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">BRAND STRATEGY</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">CONTENT CREATION</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">WEB DEVELOPMENT</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">DIGITAL ADVERTISING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">INFLUENCER MARKETING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">VIDEO PRODUCTION</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">OUTDOOR CAMPAIGNS</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
+    <span class="font-display text-[1.35rem] text-white/28 px-6">PERFORMANCE MARKETING</span><span style="color:var(--lime)" class="text-lg px-2">✦</span>
   </div>
 </div>
 
-<!-- ══════════ ABOUT ══════════ -->
-<section id="about" class="py-28 max-w-[1400px] mx-auto px-6 lg:px-10">
+<!-- ══════════════════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════════════ -->
+<section id="about" class="py-28 max-w-[1400px] mx-auto px-5 lg:px-10">
   <div class="grid lg:grid-cols-2 gap-16 items-center">
     <div>
-      <div class="section-label mb-6 reveal">// About Us</div>
-      <h2 class="font-display leading-[0.92] reveal" style="font-size: clamp(3rem, 7vw, 6rem);">
-        ONE TEAM.<br/>
-        ZERO<br/>
-        <span style="color:var(--lime)">COMPROMISE.</span>
+      <div class="slabel mb-6 reveal">// About Us</div>
+      <h2 class="font-display leading-[0.91] reveal" style="font-size:clamp(2.8rem,6.5vw,5.8rem)">
+        ONE TEAM.<br/>ZERO<br/><span style="color:var(--lime)">COMPROMISE.</span>
       </h2>
       <p class="text-white/50 mt-8 text-base lg:text-lg leading-relaxed reveal">
         Founded in <strong class="text-white">2024</strong> by <strong style="color:var(--lime)">Shailesh Sharma</strong> and <strong style="color:var(--lime)">Harsh Newale</strong>, DemuRup Media was born from a simple frustration: why should a growing brand waste energy juggling five different agencies?
@@ -165,385 +162,847 @@
         Our mission is to provide a <strong class="text-white">unified brand voice</strong> by handling every digital touchpoint under one roof — so brands can focus on what matters most: growing.
       </p>
       <div class="flex items-center gap-4 mt-10 reveal">
-        <a href="#contact" class="btn-lime px-7 py-3.5 rounded font-bold">Work With Us</a>
-        <span class="text-white/35 text-sm font-mono-dm">Pune, India → Global</span>
+        <a href="#contact-section" class="btn-lime px-7 py-3.5 rounded font-bold">Work With Us</a>
+        <span class="text-white/32 text-sm font-mono">India → Global</span>
       </div>
     </div>
 
     <div class="grid grid-cols-2 gap-3 reveal">
-      <div class="bento-card rounded-xl p-6 col-span-2">
+      <div class="bcard rounded-xl p-6 col-span-2">
         <span class="service-tag mb-3 block">MANIFESTO</span>
-        <p class="font-display text-2xl lg:text-3xl text-white leading-tight">
-          "WE DON'T JUST BUILD BRANDS — WE BUILD MOVEMENTS."
+        <p class="font-display text-2xl lg:text-[1.7rem] text-white leading-tight">
+          "WE DON'T JUST THINK OUTSIDE THE BOX — <strong style="color:var(--lime)">WE REDESIGN IT.</strong>"
         </p>
       </div>
-      <div class="bento-card rounded-xl p-6">
+      <div class="bcard rounded-xl p-5">
         <div class="text-3xl mb-3">🚀</div>
         <div class="font-semibold text-white mb-1 text-sm">Startups</div>
-        <p class="text-white/45 text-xs">Launch fast, look premium from day one.</p>
+        <p class="text-white/42 text-xs">Launch fast, look premium from day one.</p>
       </div>
-      <div class="bento-card rounded-xl p-6">
+      <div class="bcard rounded-xl p-5">
         <div class="text-3xl mb-3">📦</div>
         <div class="font-semibold text-white mb-1 text-sm">D2C Brands</div>
-        <p class="text-white/45 text-xs">Drive sales with scroll-stopping creative.</p>
+        <p class="text-white/42 text-xs">Drive sales with scroll-stopping creative.</p>
       </div>
-      <div class="bento-card rounded-xl p-6">
+      <div class="bcard rounded-xl p-5">
         <div class="text-3xl mb-3">🏗️</div>
         <div class="font-semibold text-white mb-1 text-sm">Real Estate</div>
-        <p class="text-white/45 text-xs">Build trust and drive qualified leads.</p>
+        <p class="text-white/42 text-xs">Build trust and drive qualified leads.</p>
       </div>
-      <div class="bento-card rounded-xl p-6">
+      <div class="bcard rounded-xl p-5">
         <div class="text-3xl mb-3">💹</div>
         <div class="font-semibold text-white mb-1 text-sm">Finance</div>
-        <p class="text-white/45 text-xs">Simplify complex value propositions.</p>
+        <p class="text-white/42 text-xs">Simplify complex value propositions.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ SERVICES (BENTO) ══════════ -->
+<!-- ══════════════════════════════════════════════════════════════
+     CLIENT LOGOS
+══════════════════════════════════════════════════════════════ -->
+<section id="clients" class="py-20 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10 mb-10">
+    <div class="slabel mb-4 reveal">// Clientele</div>
+    <h2 class="font-display leading-[0.91] reveal" style="font-size:clamp(2.8rem,6.5vw,5.5rem)">
+      BRANDS THAT<br/><span style="color:var(--lime)">TRUST US.</span>
+    </h2>
+  </div>
+
+<div class="max-w-[1400px] mx-auto px-5 lg:px-10 py-10 client-logo-container">
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-10 items-center justify-items-center">
+    
+    <div class="logo-card">
+      <img src="Bmw.png" alt="BMW" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="honda.png" alt="Honda" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="ather.png" alt="Ather" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="ca-1.png" alt="C&A Infra Realty" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="Sunsilk.png" alt="Sunsilk" class="h-12 w-auto transition-all">
+    </div>
+
+        <div class="logo-card">
+      <img src="Unimation_Robotics.png" alt="Unimation Robotics" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="gamebot.png" alt="Gamebot" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="zen.png" alt="Zen Secure" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="Al.png" alt="Al NAYIHA" class="h-12 w-auto transition-all">
+    </div>
+
+    <div class="logo-card">
+      <img src="hana.png" alt="Hana" class="h-12 w-auto transition-all">
+    </div>
+
+
+    </div>
+</div>
+
+  <!-- Logo marquee row 1 -->
+  <div class="mq-wrap py-4">
+    <div class="mq-track slow items-center" style="gap:0">
+      <!-- Row 1 logos -->
+      <div class="logo-item"><span class="logo-text">BMW</span></div>
+      <div class="logo-item"><span class="logo-text">HONDA BIGWING</span></div>
+      <div class="logo-item"><span class="logo-text">ATHER</span></div>
+      <div class="logo-item"><span class="logo-text">UNIMATION ROBOTICS</span></div>
+      <div class="logo-item"><span class="logo-text">GAMEBOT</span></div>
+      <div class="logo-item"><span class="logo-text">SUNSILK</span></div>
+      <div class="logo-item"><span class="logo-text">PUNJAB RESTAURANT</span></div>
+      <div class="logo-item"><span class="logo-text">HANA</span></div>
+      <div class="logo-item"><span class="logo-text">SCHOOL OF BRANDED CONTENT</span></div>
+      <div class="logo-item"><span class="logo-text">MOMENTUM</span></div>
+      <div class="logo-item"><span class="logo-text">360 SECURITY</span></div>
+      <!-- dupe -->
+      <div class="logo-item"><span class="logo-text">BMW</span></div>
+      <div class="logo-item"><span class="logo-text">HONDA BIGWING</span></div>
+      <div class="logo-item"><span class="logo-text">ATHER</span></div>
+      <div class="logo-item"><span class="logo-text">UNIMATION ROBOTICS</span></div>
+      <div class="logo-item"><span class="logo-text">GAMEBOT</span></div>
+      <div class="logo-item"><span class="logo-text">SUNSILK</span></div>
+      <div class="logo-item"><span class="logo-text">PUNJAB RESTAURANT</span></div>
+      <div class="logo-item"><span class="logo-text">HANA</span></div>
+      <div class="logo-item"><span class="logo-text">SCHOOL OF BRANDED CONTENT</span></div>
+      <div class="logo-item"><span class="logo-text">MOMENTUM</span></div>
+      <div class="logo-item"><span class="logo-text">360 SECURITY</span></div>
+    </div>
+  </div>
+
+  <!-- Logo marquee row 2 (reverse) -->
+  <div class="mq-wrap py-4 mt-2">
+    <div class="mq-track slow rev items-center" style="gap:0">
+      <div class="logo-item"><span class="logo-text">C&A INFRA REALTY</span></div>
+      <div class="logo-item"><span class="logo-text">ZEN SECURE</span></div>
+      <div class="logo-item"><span class="logo-text">SUHANA TRAVELS</span></div>
+      <div class="logo-item"><span class="logo-text">DIET N PROTEIN</span></div>
+      <div class="logo-item"><span class="logo-text">KISHA</span></div>
+      <div class="logo-item"><span class="logo-text">SORBETE</span></div>
+      <div class="logo-item"><span class="logo-text">KEIANZA</span></div>
+      <div class="logo-item"><span class="logo-text">AL NAYIHA</span></div>
+      <div class="logo-item"><span class="logo-text">HUNGRY WOK</span></div>
+      <div class="logo-item"><span class="logo-text">SWIRLYO</span></div>
+      <div class="logo-item"><span class="logo-text">TINTOR'S</span></div>
+      <!-- dupe -->
+      <div class="logo-item"><span class="logo-text">C&A INFRA REALTY</span></div>
+      <div class="logo-item"><span class="logo-text">ZEN SECURE</span></div>
+      <div class="logo-item"><span class="logo-text">SUHANA TRAVELS</span></div>
+      <div class="logo-item"><span class="logo-text">DIET N PROTEIN</span></div>
+      <div class="logo-item"><span class="logo-text">KISHA</span></div>
+      <div class="logo-item"><span class="logo-text">SORBETE</span></div>
+      <div class="logo-item"><span class="logo-text">KEIANZA</span></div>
+      <div class="logo-item"><span class="logo-text">AL NAYIHA</span></div>
+      <div class="logo-item"><span class="logo-text">HUNGRY WOK</span></div>
+      <div class="logo-item"><span class="logo-text">SWIRLYO</span></div>
+      <div class="logo-item"><span class="logo-text">TINTOR'S</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SERVICES (BENTO)
+══════════════════════════════════════════════════════════════ -->
 <section id="services" class="py-20 border-t border-[#111]">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
     <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
       <div>
-        <div class="section-label mb-4 reveal">// Core Services</div>
-        <h2 class="font-display leading-[0.92] reveal" style="font-size: clamp(3rem, 7vw, 6rem);">
+        <div class="slabel mb-4 reveal">// Core Services</div>
+        <h2 class="font-display leading-[0.91] reveal" style="font-size:clamp(2.8rem,6.5vw,5.8rem)">
           EVERYTHING<br/>YOU <span style="color:var(--lime)">NEED.</span>
         </h2>
       </div>
-      <p class="text-white/45 max-w-xs text-sm leading-relaxed reveal">
-        Six powerful verticals. One cohesive strategy. No hand-offs, no silos, no excuses.
+      <p class="text-white/42 max-w-xs text-sm leading-relaxed reveal">
+        Nine powerful verticals. One cohesive strategy. No hand-offs, no silos, no excuses.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-
-      <!-- 01 — Large -->
-      <div class="bento-card rounded-xl p-8 lg:col-span-2 reveal">
+      <!-- 01 large -->
+      <div class="bcard rounded-xl p-8 lg:col-span-2 reveal">
         <div class="flex justify-between items-start mb-5">
-          <span class="service-tag">01 / 06</span>
+          <span class="service-tag">01 / 09</span>
           <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center">
-            <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+            <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
         </div>
         <h3 class="font-display text-4xl lg:text-5xl leading-tight mb-4">SOCIAL MEDIA MARKETING &<br/><span style="color:var(--lime)">MANAGEMENT</span></h3>
-        <p class="text-white/48 text-sm leading-relaxed max-w-lg">
-          We craft scroll-stopping content calendars, manage multi-platform consistency, and build communities that convert. From strategy to posting — fully handled.
-        </p>
+        <p class="text-white/45 text-sm leading-relaxed max-w-lg">Scroll-stopping content calendars, multi-platform consistency, and communities that convert. From strategy to posting — fully handled.</p>
         <div class="flex gap-2 mt-6 flex-wrap">
-          <span class="border border-[#282828] text-white/55 text-xs px-3 py-1 rounded-full">Instagram</span>
-          <span class="border border-[#282828] text-white/55 text-xs px-3 py-1 rounded-full">LinkedIn</span>
-          <span class="border border-[#282828] text-white/55 text-xs px-3 py-1 rounded-full">YouTube</span>
-          <span class="border border-[#282828] text-white/55 text-xs px-3 py-1 rounded-full">X / Twitter</span>
-          <span class="border border-[#282828] text-white/55 text-xs px-3 py-1 rounded-full">Facebook</span>
+          <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Instagram</span>
+          <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">LinkedIn</span>
+          <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">YouTube</span>
+          <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Facebook</span>
+          <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">X / Twitter</span>
         </div>
       </div>
 
       <!-- 02 -->
-      <div class="bento-card rounded-xl p-8 reveal">
-        <span class="service-tag mb-4 block">02 / 06</span>
+      <div class="bcard rounded-xl p-8 reveal">
+        <span class="service-tag mb-4 block">02 / 09</span>
         <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">BRANDING &<br/><span style="color:var(--lime)">STRATEGY</span></h3>
-        <p class="text-white/48 text-sm leading-relaxed">
-          Visual identity systems, brand voice guides, and market positioning that make you impossible to ignore.
-        </p>
-        <div class="mt-8 pt-5 border-t border-[#1a1a1a]">
+        <p class="text-white/45 text-sm leading-relaxed">Visual identity, brand voice guides, and market positioning that make you impossible to ignore.</p>
+        <div class="mt-7 pt-5 border-t border-[#181818]">
           <div class="flex items-center gap-2">
-            <div class="w-2.5 h-2.5 rounded-full bg-lime"></div>
-            <span class="text-white/38 text-xs font-mono-dm">Logo · Guidelines · Voice</span>
+            <div class="w-2.5 h-2.5 rounded-full" style="background:var(--lime)"></div>
+            <span class="text-white/35 text-xs font-mono">Logo · Guidelines · Voice</span>
           </div>
         </div>
       </div>
 
       <!-- 03 -->
-      <div class="bento-card rounded-xl p-8 reveal">
-        <span class="service-tag mb-4 block">03 / 06</span>
+      <div class="bcard rounded-xl p-8 reveal">
+        <span class="service-tag mb-4 block">03 / 09</span>
         <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">CONTENT<br/><span style="color:var(--lime)">CREATION</span></h3>
-        <p class="text-white/48 text-sm leading-relaxed">
-          Reels, Shorts, YouTube long-form, product photography, and branded shoots — all in-house.
-        </p>
+        <p class="text-white/45 text-sm leading-relaxed">Reels, Shorts, YouTube long-form, product photography — all in-house.</p>
         <div class="flex gap-3 mt-6">
-          <div class="flex-1 border border-[#1e1e1e] rounded-lg p-3 text-center">
-            <div class="font-display text-2xl" style="color:var(--lime)">SHORT</div>
-            <div class="text-white/30 text-xs">Reels / Shorts</div>
+          <div class="flex-1 border border-[#1c1c1c] rounded-lg p-3 text-center">
+            <div class="font-display text-xl" style="color:var(--lime)">SHORT</div>
+            <div class="text-white/30 text-xs">Reels/Shorts</div>
           </div>
-          <div class="flex-1 border border-[#1e1e1e] rounded-lg p-3 text-center">
-            <div class="font-display text-2xl" style="color:var(--lime)">LONG</div>
+          <div class="flex-1 border border-[#1c1c1c] rounded-lg p-3 text-center">
+            <div class="font-display text-xl" style="color:var(--lime)">LONG</div>
             <div class="text-white/30 text-xs">YouTube</div>
           </div>
         </div>
       </div>
 
       <!-- 04 -->
-      <div class="bento-card rounded-xl p-8 reveal" style="background: linear-gradient(135deg, #080808 0%, rgba(0,204,51,0.04) 100%);">
-        <span class="service-tag mb-4 block">04 / 06</span>
+      <div class="bcard rounded-xl p-8 reveal" style="background:linear-gradient(135deg,#080808 0%,rgba(0,204,51,.04) 100%)">
+        <span class="service-tag mb-4 block">04 / 09</span>
         <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">WEB DESIGN &<br/><span style="color:var(--lime)">DEVELOPMENT</span></h3>
-        <p class="text-white/48 text-sm leading-relaxed">
-          Websites that aren't just beautiful — they're engineered to convert. From landing pages to full e-commerce ecosystems.
-        </p>
-        <div class="mt-5 font-mono-dm text-[0.63rem]" style="color:rgba(0,204,51,0.55)">
+        <p class="text-white/45 text-sm leading-relaxed">Websites engineered to convert — from landing pages to full e-commerce ecosystems.</p>
+        <div class="mt-5 font-mono text-[.63rem]" style="color:rgba(0,204,51,.52)">
           <div>{"performance": "99/100"}</div>
           <div>{"conversion": "optimized"}</div>
         </div>
       </div>
 
-      <!-- 05 — Wide -->
-      <div class="bento-card rounded-xl p-8 lg:col-span-2 reveal">
-        <span class="service-tag mb-4 block">05 / 06</span>
+      <!-- 05 wide -->
+      <div class="bcard rounded-xl p-8 lg:col-span-2 reveal">
+        <span class="service-tag mb-4 block">05 / 09</span>
         <div class="flex flex-col lg:flex-row justify-between gap-6">
           <div class="max-w-sm">
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">DIGITAL<br/><span style="color:var(--lime)">ADVERTISING</span></h3>
-            <p class="text-white/48 text-sm leading-relaxed">
-              Meta Ads, Google Ads, and performance SEO campaigns built for maximum ROAS. Every rupee tracked, every result reported.
-            </p>
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">PERFORMANCE<br/><span style="color:var(--lime)">MARKETING</span></h3>
+            <p class="text-white/45 text-sm leading-relaxed">Meta Ads, Google Ads, and SEO campaigns built for maximum ROAS. Every rupee tracked.</p>
           </div>
-          <div class="grid grid-cols-2 gap-3 flex-shrink-0" style="width:220px">
-            <div class="border border-[#1e1e1e] rounded-lg p-3 text-center">
+          <div class="grid grid-cols-2 gap-3 flex-shrink-0" style="width:210px">
+            <div class="border border-[#1c1c1c] rounded-lg p-3 text-center">
               <div class="font-display text-xl" style="color:var(--lime)">META</div>
-              <div class="text-white/30 text-xs">Paid Social</div>
+              <div class="text-white/28 text-xs">Paid Social</div>
             </div>
-            <div class="border border-[#1e1e1e] rounded-lg p-3 text-center">
+            <div class="border border-[#1c1c1c] rounded-lg p-3 text-center">
               <div class="font-display text-xl" style="color:var(--lime)">GADS</div>
-              <div class="text-white/30 text-xs">Search + Display</div>
+              <div class="text-white/28 text-xs">Search+Display</div>
             </div>
-            <div class="border border-[#1e1e1e] rounded-lg p-3 text-center">
+            <div class="border border-[#1c1c1c] rounded-lg p-3 text-center">
               <div class="font-display text-xl" style="color:var(--lime)">SEO</div>
-              <div class="text-white/30 text-xs">Organic Growth</div>
+              <div class="text-white/28 text-xs">Organic Growth</div>
             </div>
-            <div class="border border-[#1e1e1e] rounded-lg p-3 text-center">
+            <div class="border border-[#1c1c1c] rounded-lg p-3 text-center">
               <div class="font-display text-xl" style="color:var(--lime)">CRO</div>
-              <div class="text-white/30 text-xs">Conversion Rate</div>
+              <div class="text-white/28 text-xs">Conversion Rate</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 06 -->
-      <div class="bento-card rounded-xl p-8 reveal">
-        <span class="service-tag mb-4 block">06 / 06</span>
+      <div class="bcard rounded-xl p-8 reveal">
+        <span class="service-tag mb-4 block">06 / 09</span>
         <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">INFLUENCER &<br/><span style="color:var(--lime)">OUTDOOR</span></h3>
-        <p class="text-white/48 text-sm leading-relaxed">
-          Authentic creator partnerships and impactful OOH campaigns that bridge the digital and physical worlds.
-        </p>
+        <p class="text-white/45 text-sm leading-relaxed">Authentic creator partnerships and OOH campaigns bridging digital and physical worlds.</p>
         <div class="flex items-center gap-2 mt-6">
           <div class="w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-orange-400"></div>
           <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 -ml-2"></div>
-          <div class="w-6 h-6 rounded-full bg-gradient-to-br from-lime to-green-600 -ml-2"></div>
-          <span class="text-white/38 text-xs ml-2 font-mono-dm">Creator Network</span>
+          <div class="w-6 h-6 rounded-full -ml-2" style="background:linear-gradient(135deg,var(--lime),#006619)"></div>
+          <span class="text-white/35 text-xs ml-2 font-mono">Creator Network</span>
         </div>
       </div>
 
+      <!-- 07 -->
+      <div class="bcard rounded-xl p-8 reveal">
+        <span class="service-tag mb-4 block">07 / 09</span>
+        <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">VIDEO<br/><span style="color:var(--lime)">PRODUCTION</span></h3>
+        <p class="text-white/45 text-sm leading-relaxed">Cinematic brand films, product shoots, testimonials, and event coverage — studio to field.</p>
+      </div>
+
+      <!-- 08 -->
+      <div class="bcard rounded-xl p-8 reveal">
+        <span class="service-tag mb-4 block">08 / 09</span>
+        <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">BRANDING &<br/><span style="color:var(--lime)">PACKAGING</span></h3>
+        <p class="text-white/45 text-sm leading-relaxed">End-to-end visual identity — from logo to packaging design that stands out on shelves and feeds.</p>
+      </div>
+
+      <!-- 09 wide -->
+      <div class="bcard rounded-xl p-8 reveal">
+        <span class="service-tag mb-4 block">09 / 09</span>
+        <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">PRODUCT &<br/><span style="color:var(--lime)">EVENT SHOOTS</span></h3>
+        <p class="text-white/45 text-sm leading-relaxed">High-quality photography for products, events, and brand storytelling campaigns.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ INDUSTRIES ══════════ -->
-<section id="industries" class="py-28 border-t border-[#111]">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="section-label mb-4 reveal">// Industries We Serve</div>
-    <h2 class="font-display leading-[0.92] mb-4 reveal" style="font-size: clamp(3rem, 7vw, 6rem);">
-      YOUR SECTOR.<br/>
-      OUR <span style="color:var(--lime)">EXPERTISE.</span>
-    </h2>
-    <p class="text-white/45 text-base max-w-lg mb-16 reveal">
-      We don't believe in one-size-fits-all. Every industry has its own audience psychology — we've built dedicated playbooks for each.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-      <div class="industry-pill rounded-xl p-8 reveal">
-        <div class="w-12 h-12 mb-6 rounded-lg border border-[#222] flex items-center justify-center text-2xl">🏥</div>
-        <h3 class="font-display text-3xl mb-3">HEALTHCARE</h3>
-        <p class="text-white/45 text-sm leading-relaxed">
-          Empathetic, story-led narratives that build patient trust and institutional credibility without sacrificing human connection.
-        </p>
-        <div class="mt-5 flex items-center gap-2 text-xs font-mono-dm" style="color:var(--lime)">
-          <span>→ Trust-first storytelling</span>
-        </div>
-      </div>
-
-      <div class="industry-pill rounded-xl p-8 reveal">
-        <div class="w-12 h-12 mb-6 rounded-lg border border-[#222] flex items-center justify-center text-2xl">🛍️</div>
-        <h3 class="font-display text-3xl mb-3">E-COMMERCE / D2C</h3>
-        <p class="text-white/45 text-sm leading-relaxed">
-          Inclusive marketing and bold brand representation that speaks to modern buyers and drives repeat purchase loyalty.
-        </p>
-        <div class="mt-5 flex items-center gap-2 text-xs font-mono-dm" style="color:var(--lime)">
-          <span>→ ROAS-driven creatives</span>
-        </div>
-      </div>
-
-      <div class="industry-pill rounded-xl p-8 reveal">
-        <div class="w-12 h-12 mb-6 rounded-lg border border-[#222] flex items-center justify-center text-2xl">🏗️</div>
-        <h3 class="font-display text-3xl mb-3">REAL ESTATE</h3>
-        <p class="text-white/45 text-sm leading-relaxed">
-          Tailored digital journeys that guide buyers from discovery to site visit — powered by targeted ads and cinematic content.
-        </p>
-        <div class="mt-5 flex items-center gap-2 text-xs font-mono-dm" style="color:var(--lime)">
-          <span>→ Lead gen funnels</span>
-        </div>
-      </div>
-
-      <div class="industry-pill rounded-xl p-8 reveal">
-        <div class="w-12 h-12 mb-6 rounded-lg border border-[#222] flex items-center justify-center text-2xl">💹</div>
-        <h3 class="font-display text-3xl mb-3">FINANCE & FINTECH</h3>
-        <p class="text-white/45 text-sm leading-relaxed">
-          We translate complex financial products into clear, compelling digital experiences that earn trust and drive acquisitions.
-        </p>
-        <div class="mt-5 flex items-center gap-2 text-xs font-mono-dm" style="color:var(--lime)">
-          <span>→ Compliance-aware creative</span>
-        </div>
-      </div>
-
-      <div class="industry-pill rounded-xl p-8 reveal">
-        <div class="w-12 h-12 mb-6 rounded-lg border border-[#222] flex items-center justify-center text-2xl">🚀</div>
-        <h3 class="font-display text-3xl mb-3">STARTUPS</h3>
-        <p class="text-white/45 text-sm leading-relaxed">
-          From zero to recognizable — we help early-stage companies punch above their weight with agency-grade branding.
-        </p>
-        <div class="mt-5 flex items-center gap-2 text-xs font-mono-dm" style="color:var(--lime)">
-          <span>→ Brand-market fit</span>
-        </div>
-      </div>
-
-      <div class="bento-card rounded-xl p-8 reveal flex flex-col justify-between" style="background: radial-gradient(circle at 30% 70%, rgba(0,204,51,0.07), transparent 70%);">
-        <div>
-          <div class="section-label mb-4">Don't see yours?</div>
-          <h3 class="font-display text-3xl mb-3">LET'S TALK ANYWAY.</h3>
-          <p class="text-white/45 text-sm">If you have a brand and an audience, we have a strategy.</p>
-        </div>
-        <a href="#contact" class="btn-lime mt-8 px-6 py-3 rounded text-sm font-bold text-center">Book a Free Call →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ MARQUEE 2 (reverse) ══════════ -->
-<div class="ticker-wrap py-3.5">
-  <div class="marquee-track items-center" style="animation-direction: reverse; animation-duration: 24s;">
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">STARTUPS</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">D2C BRANDS</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">REAL ESTATE</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">HEALTHCARE</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">FINANCE & FINTECH</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">E-COMMERCE</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <!-- duplicate -->
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">STARTUPS</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">D2C BRANDS</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">REAL ESTATE</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">HEALTHCARE</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">FINANCE & FINTECH</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
-    <span class="font-display text-[1.4rem] px-7" style="color:var(--lime)">E-COMMERCE</span>
-    <span class="text-white/25 text-lg px-2">◆</span>
+<!-- ══ Service Marquee (between Services & Industries) ══ -->
+<div class="mq-wrap py-4">
+  <div class="mq-track rev items-center">
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">WEBSITE DESIGN & DEVELOPMENT</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">INFLUENCER MARKETING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">SOCIAL MEDIA MANAGEMENT</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">PERFORMANCE MARKETING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">BRANDING & PACKAGING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">VIDEO PRODUCTION</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">OUTDOOR MARKETING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">CONTENT CREATION</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">BRAND STRATEGY</span><span class="text-white/22 text-lg px-2">◆</span>
+    <!-- dupe -->
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">WEBSITE DESIGN & DEVELOPMENT</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">INFLUENCER MARKETING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">SOCIAL MEDIA MANAGEMENT</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">PERFORMANCE MARKETING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">BRANDING & PACKAGING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">VIDEO PRODUCTION</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">OUTDOOR MARKETING</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">CONTENT CREATION</span><span class="text-white/22 text-lg px-2">◆</span>
+    <span class="font-display text-[1.3rem] px-6" style="color:var(--lime)">BRAND STRATEGY</span><span class="text-white/22 text-lg px-2">◆</span>
   </div>
 </div>
 
-<!-- ══════════ CTA BANNER ══════════ -->
-<section id="contact" class="py-32 border-t border-[#111]">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="border border-[#222] rounded-2xl p-12 lg:p-20 relative overflow-hidden reveal" style="background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,204,51,0.065) 0%, transparent 70%);">
-      <div class="absolute top-0 right-0 w-72 h-72 opacity-10 pointer-events-none" style="background: radial-gradient(circle, var(--lime) 0%, transparent 70%);"></div>
-      <div class="absolute bottom-0 left-0 w-56 h-56 opacity-05 pointer-events-none" style="background: radial-gradient(circle, var(--lime) 0%, transparent 70%);"></div>
+<!-- ══════════════════════════════════════════════════════════════
+     INDUSTRIES
+══════════════════════════════════════════════════════════════ -->
+<section id="industries" class="py-28 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="slabel mb-4 reveal">// Industries We Cater To</div>
+    <h2 class="font-display leading-[0.91] mb-4 reveal" style="font-size:clamp(2.8rem,6.5vw,5.8rem)">
+      YOUR SECTOR.<br/>OUR <span style="color:var(--lime)">EXPERTISE.</span>
+    </h2>
+    <p class="text-white/42 text-base max-w-lg mb-14 reveal">Every industry has its own audience psychology — we've built dedicated playbooks for each.</p>
 
-      <div class="section-label mb-6 relative z-10">// Ready to Grow?</div>
-      <h2 class="font-display leading-[0.92] mb-6 relative z-10" style="font-size: clamp(3.5rem, 9vw, 8rem);">
-        LET'S BUILD<br/>SOMETHING<br/><span style="color:var(--lime); text-shadow: 0 0 60px rgba(0,204,51,0.4)">ICONIC.</span>
-      </h2>
-      <p class="text-white/45 text-base lg:text-lg max-w-xl mb-10 relative z-10">
-        Book a free 30-minute strategy call. No pitches, no fluff — just honest conversation about what would actually move the needle for your brand.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 relative z-10">
-        <a href="mailto:hello@demurupmedia.com" class="btn-lime px-10 py-4 rounded-lg text-base font-bold text-center">
-          hello@demurupmedia.com →
-        </a>
-        <a href="#" class="btn-outline px-10 py-4 rounded-lg text-base text-center">
-          WhatsApp Us
-        </a>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      <!-- Industry cards -->
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">🚗</div>
+        <div class="font-display text-lg mb-1">AUTOMOBILE</div>
+        <p class="text-white/38 text-xs">Drive conversions with visual campaigns.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">🏗️</div>
+        <div class="font-display text-lg mb-1">CONSTRUCTION</div>
+        <p class="text-white/38 text-xs">Build credibility and generate leads.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">💡</div>
+        <div class="font-display text-lg mb-1">ED-TECH & IT</div>
+        <p class="text-white/38 text-xs">Engage learners and drive enrollments.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">🛍️</div>
+        <div class="font-display text-lg mb-1">E-COMMERCE</div>
+        <p class="text-white/38 text-xs">ROAS-driven creatives that sell.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">👗</div>
+        <div class="font-display text-lg mb-1">FASHION</div>
+        <p class="text-white/38 text-xs">Style-forward content that converts.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">💄</div>
+        <div class="font-display text-lg mb-1">BEAUTY</div>
+        <p class="text-white/38 text-xs">Glam content that builds loyal fans.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">☕</div>
+        <div class="font-display text-lg mb-1">CAFÉ & F&B</div>
+        <p class="text-white/38 text-xs">Mouthwatering content drives footfall.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">🏥</div>
+        <div class="font-display text-lg mb-1">HEALTHCARE</div>
+        <p class="text-white/38 text-xs">Trust-first, empathetic storytelling.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">✈️</div>
+        <div class="font-display text-lg mb-1">HOSPITALITY</div>
+        <p class="text-white/38 text-xs">Inspire travel with cinematic content.</p>
+      </div>
+      <div class="ind-pill rounded-xl p-5 text-center reveal">
+        <div class="text-3xl mb-3">💹</div>
+        <div class="font-display text-lg mb-1">FINANCE</div>
+        <p class="text-white/38 text-xs">Compliance-aware content that earns trust.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer class="border-t border-[#111] pt-16 pb-8">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
-      <div class="lg:col-span-2">
-        <div class="font-display text-5xl mb-4">DEMU<span style="color:var(--lime)">RUP</span></div>
-        <p class="text-white/38 text-sm leading-relaxed max-w-xs">
-          India's boldest creative marketing & branding studio. One team, every digital need, zero compromise.
+<!-- ══════════════════════════════════════════════════════════════
+     HOW WE WORK
+══════════════════════════════════════════════════════════════ -->
+<section class="py-28 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="slabel mb-4 reveal">// Process</div>
+    <h2 class="font-display leading-[0.91] mb-16 reveal" style="font-size:clamp(2.8rem,6.5vw,5.8rem)">
+      HOW WE <span style="color:var(--lime)">WORK.</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Step 1 -->
+      <div class="step-card p-8 reveal">
+        <div class="step-num">01</div>
+        <div class="w-12 h-12 rounded-lg border border-[#252525] flex items-center justify-center mb-6 relative z-10">
+          <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3 class="font-display text-3xl mb-3 relative z-10">AUDIT</h3>
+        <p class="text-white/45 text-sm leading-relaxed relative z-10">We understand your brand deeply, analyse competitors, and identify the exact gaps holding your growth back.</p>
+        <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
+          <span class="slabel">Week 1</span>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="step-card p-8 reveal">
+        <div class="step-num">02</div>
+        <div class="w-12 h-12 rounded-lg border border-[#252525] flex items-center justify-center mb-6 relative z-10">
+          <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3 class="font-display text-3xl mb-3 relative z-10">STRATEGY</h3>
+        <p class="text-white/45 text-sm leading-relaxed relative z-10">We build a clear, data-backed growth plan — channel selection, content pillars, ad budgets, and timelines — tailored to your goals.</p>
+        <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
+          <span class="slabel">Week 2</span>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step-card p-8 reveal">
+        <div class="step-num">03</div>
+        <div class="w-12 h-12 rounded-lg border border-[#252525] flex items-center justify-center mb-6 relative z-10">
+          <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3 class="font-display text-3xl mb-3 relative z-10">EXECUTION</h3>
+        <p class="text-white/45 text-sm leading-relaxed relative z-10">Our in-house team brings the strategy to life — content, design, ads, and campaigns go live with obsessive attention to detail.</p>
+        <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
+          <span class="slabel">Week 3+</span>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div class="step-card p-8 reveal" style="border-color:rgba(0,204,51,.3)">
+        <div class="step-num">04</div>
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 relative z-10" style="border:1px solid rgba(0,204,51,.3);background:rgba(0,204,51,.06)">
+          <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3 class="font-display text-3xl mb-3 relative z-10" style="color:var(--lime)">SCALE</h3>
+        <p class="text-white/45 text-sm leading-relaxed relative z-10">We optimise continuously — A/B testing, performance reports, and iterating on what works to compound your growth month over month.</p>
+        <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
+          <span class="slabel" style="color:rgba(0,204,51,.6)">Ongoing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CREDENTIALS / WORK
+══════════════════════════════════════════════════════════════ -->
+<section class="py-20 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="slabel mb-4 reveal">// Our Work</div>
+    <h2 class="font-display leading-[0.91] mb-12 reveal" style="font-size:clamp(2.8rem,6.5vw,5.8rem)">
+      SEE WHAT<br/><span style="color:var(--lime)">WE'VE BUILT.</span>
+    </h2>
+
+    <div class="cred-card p-10 lg:p-16 reveal" style="background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(0,204,51,.06) 0%,transparent 70%)">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div>
+          <div class="slabel mb-3">CREDENTIALS DECK</div>
+          <h3 class="font-display text-4xl lg:text-5xl mb-4">OUR PORTFOLIO &<br/>CASE STUDIES</h3>
+          <p class="text-white/45 text-sm leading-relaxed max-w-md">
+            Dive into 50+ brand transformations — social campaigns, brand identity systems, website builds, and performance ad results across industries.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-6">
+            <div class="border border-[#222] rounded-lg px-4 py-2 text-xs font-mono text-white/40">50+ Brands</div>
+            <div class="border border-[#222] rounded-lg px-4 py-2 text-xs font-mono text-white/40">Real Results</div>
+            <div class="border border-[#222] rounded-lg px-4 py-2 text-xs font-mono text-white/40">Case Studies</div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 flex-shrink-0">
+          <a href="DemuRup Media Credential Deck_compressed.pdf" class="btn-lime px-8 py-4 rounded-lg text-base font-bold flex items-center gap-2">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Credentials Deck
+          </a>
+          <a href="#contact-section" class="btn-outline px-8 py-4 rounded-lg text-base text-center">Request Case Study →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════════════════════ -->
+<section class="py-28 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="slabel mb-4 reveal">// Testimonials</div>
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+      <h2 class="font-display leading-[0.91] reveal" style="font-size:clamp(2.8rem,6.5vw,5.8rem)">
+        WHAT CLIENTS<br/><span style="color:var(--lime)">SAY.</span>
+      </h2>
+      <div class="flex gap-3 reveal">
+        <button onclick="prevSlide()" class="w-11 h-11 border border-[#222] rounded-lg flex items-center justify-center text-white/60 hover:border-lime hover:text-lime transition-all" aria-label="Prev">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button onclick="nextSlide()" class="w-11 h-11 border border-[#222] rounded-lg flex items-center justify-center text-white/60 hover:border-lime hover:text-lime transition-all" aria-label="Next">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="tslider reveal">
+      <div class="tslider-track" id="tslider-track">
+        <!-- Slide 1 -->
+        <div class="tslide px-1">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="tcard p-8">
+              <div class="stars mb-4">★★★★★</div>
+              <p class="text-white/68 text-sm leading-relaxed mb-6">"DemuRup Media transformed our Instagram from a ghost town to our #1 lead source. The content quality, consistency, and strategy they bring is unlike any agency we've worked with before."</p>
+              <div class="flex items-center gap-3 pt-5 border-t border-[#161616]">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-display text-lg" style="background:rgba(0,204,51,.15);color:var(--lime)">R</div>
+                <div>
+                  <div class="font-semibold text-sm">Rahul Mehta</div>
+                  <div class="text-white/38 text-xs font-mono">Founder, D2C Fashion Brand</div>
+                </div>
+              </div>
+            </div>
+            <div class="tcard p-8">
+              <div class="stars mb-4">★★★★★</div>
+              <p class="text-white/68 text-sm leading-relaxed mb-6">"Our website was built in 3 weeks and it looks better than brands 10x our size. The team understood our vision immediately and executed it flawlessly. ROAS on our ads went 3x in month one."</p>
+              <div class="flex items-center gap-3 pt-5 border-t border-[#161616]">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-display text-lg" style="background:rgba(0,204,51,.15);color:var(--lime)">P</div>
+                <div>
+                  <div class="font-semibold text-sm">Priya Sharma</div>
+                  <div class="text-white/38 text-xs font-mono">CEO, Real Estate Startup</div>
+                </div>
+              </div>
+            </div>
+            <div class="tcard p-8">
+              <div class="stars mb-4">★★★★★</div>
+              <p class="text-white/68 text-sm leading-relaxed mb-6">"Shailesh and the DemuRup team are partners, not vendors. They proactively share ideas, stay ahead of trends, and genuinely care about our growth. Best marketing decision we've made."</p>
+              <div class="flex items-center gap-3 pt-5 border-t border-[#161616]">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-display text-lg" style="background:rgba(0,204,51,.15);color:var(--lime)">A</div>
+                <div>
+                  <div class="font-semibold text-sm">Arjun Kapoor</div>
+                  <div class="text-white/38 text-xs font-mono">MD, Healthcare Clinic</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="flex gap-2 mt-8 justify-center">
+      <div class="w-6 h-1 rounded-full" style="background:var(--lime)" id="dot-0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LEAD MAGNET
+══════════════════════════════════════════════════════════════ -->
+<section class="py-20 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="lead-box p-10 lg:p-16 reveal">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div>
+          <div class="slabel mb-3">// Free Offer</div>
+          <h3 class="font-display leading-[0.92] mb-4" style="font-size:clamp(2.2rem,5vw,4rem)">
+            NOT READY<br/>YET?
+          </h3>
+          <p class="text-white/52 text-base lg:text-lg leading-relaxed max-w-md">
+            Get a <strong class="text-white">free brand audit</strong> and understand exactly what's holding your growth back — no strings attached.
+          </p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex items-center gap-2 text-white/45 text-sm"><span style="color:var(--lime)">✓</span> Brand presence analysis</li>
+            <li class="flex items-center gap-2 text-white/45 text-sm"><span style="color:var(--lime)">✓</span> Competitor gap report</li>
+            <li class="flex items-center gap-2 text-white/45 text-sm"><span style="color:var(--lime)">✓</span> Growth opportunities identified</li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-3 flex-shrink-0">
+          <a href="#contact-section" class="btn-lime px-10 py-5 rounded-lg text-base font-bold">Get Free Brand Audit →</a>
+          <p class="text-white/35 text-xs font-mono text-center">No payment. No commitment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTACT SECTION
+══════════════════════════════════════════════════════════════ -->
+<section id="contact-section" class="py-28 border-t border-[#111]">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16">
+      <!-- Left info -->
+      <div>
+        <div class="slabel mb-4 reveal">// Get In Touch</div>
+        <h2 class="font-display leading-[0.91] mb-6 reveal" style="font-size:clamp(2.8rem,6.5vw,5.5rem)">
+          LET'S BUILD<br/>SOMETHING<br/><span style="color:var(--lime)">ICONIC.</span>
+        </h2>
+        <p class="text-white/48 text-base leading-relaxed mb-8 reveal">
+          Book a free 30-minute strategy call. No pitches, no fluff — just honest conversation about what would move the needle for your brand.
         </p>
-        <div class="flex gap-3 mt-6">
-          <!-- Instagram -->
-          <a href="#" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/38 hover:border-lime hover:text-lime transition-all" style="--tw-border-opacity:1" aria-label="Instagram">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+
+        <!-- Contact details -->
+        <div class="space-y-4 reveal">
+          <a href="mailto:demurupmedia@gmail.com" class="flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,204,51,.1)">
+              <svg width="18" height="18" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="slabel mb-0.5">Email</div>
+              <div class="text-white text-sm group-hover:text-lime transition-colors">demurupmedia@gmail.com</div>
+            </div>
           </a>
-          <!-- LinkedIn -->
-          <a href="#" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/38 hover:border-lime hover:text-lime transition-all" aria-label="LinkedIn">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <!-- YouTube -->
-          <a href="#" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/38 hover:border-lime hover:text-lime transition-all" aria-label="YouTube">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-          <!-- X/Twitter -->
-          <a href="#" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/38 hover:border-lime hover:text-lime transition-all" aria-label="X">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <div class="flex gap-3">
+            <a href="https://wa.me/917489998238" target="_blank" rel="noopener" class="flex-1 flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,204,51,.1)">
+                <svg width="17" height="17" fill="#00cc33" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div>
+                <div class="slabel mb-0.5">WhatsApp</div>
+                <div class="text-white text-sm group-hover:text-lime transition-colors">+91-7489998238</div>
+              </div>
+            </a>
+            <a href="https://wa.me/919014824518" target="_blank" rel="noopener" class="flex-1 flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,204,51,.1)">
+                <svg width="17" height="17" fill="#00cc33" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <div>
+                <div class="slabel mb-0.5">WhatsApp</div>
+                <div class="text-white text-sm group-hover:text-lime transition-colors">+91-9116999639</div>
+              </div>
+            </a>
+          </div>
+          <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener" class="flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,204,51,.1)">
+              <svg width="18" height="18" fill="#00cc33" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div>
+              <div class="slabel mb-0.5">Instagram</div>
+              <div class="text-white text-sm group-hover:text-lime transition-colors">@demurup_media</div>
+            </div>
           </a>
         </div>
       </div>
 
+      <!-- Right form -->
+      <div class="reveal">
+        <div class="border border-[#1e1e1e] rounded-2xl p-8" style="background:#060606">
+          <!-- Form -->
+          <div id="contact-form-wrap">
+            <div class="slabel mb-6">// Tell us about your brand</div>
+
+            <div class="space-y-5">
+              <!-- Name -->
+              <div>
+                <label class="form-label">Your Name *</label>
+                <input type="text" id="f-name" placeholder="e.g. Shailesh Sharma" class="form-input" required/>
+              </div>
+              <!-- Brand -->
+              <div>
+                <label class="form-label">Brand / Company Name *</label>
+                <input type="text" id="f-brand" placeholder="e.g. DemuRup Media" class="form-input" required/>
+              </div>
+              <!-- Phone -->
+              <div>
+                <label class="form-label">Phone / WhatsApp Number *</label>
+                <input type="tel" id="f-phone" placeholder="+91-XXXXX XXXXX" class="form-input" required/>
+              </div>
+              <!-- Budget -->
+              <div>
+                <label class="form-label">Monthly Marketing Budget</label>
+                <select id="f-budget" class="form-input">
+                  <option value="" disabled selected>Select your range</option>
+                  <option>Under ₹25,000</option>
+                  <option>₹25,000 – ₹50,000</option>
+                  <option>₹50,000 – ₹1,00,000</option>
+                  <option>₹1,00,000 – ₹3,00,000</option>
+                  <option>₹3,00,000+</option>
+                </select>
+              </div>
+              <!-- Services needed -->
+              <div>
+                <label class="form-label mb-3 block">What do you need? (Select all that apply)</label>
+                <div class="grid grid-cols-2 gap-2" id="services-checks">
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Branding</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Website</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Content</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Paid Ads</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Social Media</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Influencer</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">Video Production</span>
+                  </div>
+                  <div class="check-item" onclick="toggleCheck(this)">
+                    <div class="check-box"><svg width="10" height="10" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24" class="check-icon" style="display:none"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <span class="text-sm">SEO</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Challenge -->
+              <div>
+                <label class="form-label">Biggest challenge right now</label>
+                <textarea id="f-challenge" placeholder="e.g. Our social media gets no engagement, leads aren't converting..." class="form-input" rows="3" style="resize:vertical"></textarea>
+              </div>
+              <!-- Timeline --->
+              <div>
+                <label class="form-label">Timeline / When do you want to start?</label>
+                <select id="f-timeline" class="form-input">
+                  <option value="" disabled selected>Select timeline</option>
+                  <option>ASAP (within a week)</option>
+                  <option>Within a month</option>
+                  <option>1–3 months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+
+              <button onclick="submitForm()" class="btn-lime w-full py-4 rounded-xl text-base font-bold mt-2">
+                Submit & Get a Free Audit →
+              </button>
+            </div>
+          </div>
+
+          <!-- Success state -->
+          <div id="form-success" class="text-center py-12">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style="background:rgba(0,204,51,.15)">
+              <svg width="32" height="32" fill="none" stroke="#00cc33" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3 class="font-display text-3xl mb-3" style="color:var(--lime)">WE'VE GOT IT!</h3>
+            <p class="text-white/55 text-sm leading-relaxed mb-6">We'll review your details and get back to you <strong class="text-white">within 24 hours.</strong> In the meantime, feel free to chat with us directly.</p>
+            <a href="https://wa.me/917489998238" target="_blank" rel="noopener" class="btn-lime px-8 py-4 rounded-xl text-sm font-bold">
+              Chat on WhatsApp →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="border-t border-[#111] pt-16 pb-8">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="font-display text-5xl mb-4">DEMU<span style="color:var(--lime)">RUP</span> <span class="text-xl text-white/30">MEDIA</span></div>
+        <p class="text-white/35 text-sm leading-relaxed max-w-sm">
+          India's boldest creative marketing & branding studio. One team, every digital need, zero compromise.
+        </p>
+        <p class="text-white/28 text-xs font-mono mt-3">Based in Maharashtra, Gujarat, Chhattisgarh & Rajasthan.</p>
+        <div class="flex gap-3 mt-6">
+          <!-- Instagram -->
+          <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="Instagram">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="LinkedIn">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <!-- <a href="#" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="YouTube">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a> -->
+          <!-- WhatsApp -->
+          <a href="https://wa.me/917489998238" target="_blank" rel="noopener" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="WhatsApp">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
       <div>
-        <div class="section-label mb-5">Services</div>
+        <div class="slabel mb-5">Services</div>
         <ul class="space-y-3">
-          <li><a href="#services" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Social Media Marketing</a></li>
-          <li><a href="#services" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Branding & Strategy</a></li>
-          <li><a href="#services" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Content Creation</a></li>
-          <li><a href="#services" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Web Development</a></li>
-          <li><a href="#services" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Digital Advertising</a></li>
-          <li><a href="#services" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Influencer Marketing</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Social Media Marketing</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Branding & Strategy</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Content Creation</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Web Development</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Performance Marketing</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Video Production</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Influencer Marketing</a></li>
         </ul>
       </div>
 
+      <!-- Company -->
       <div>
-        <div class="section-label mb-5">Company</div>
+        <div class="slabel mb-5">Company</div>
         <ul class="space-y-3">
-          <li><a href="#about" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">About Us</a></li>
-          <li><a href="#industries" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Industries</a></li>
-          <li><a href="#contact" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Get a Proposal</a></li>
-          <li><a href="mailto:hello@demurupmedia.com" class="text-white/45 hover:text-lime text-sm transition-colors underline-grow">Contact</a></li>
+          <li><a href="#about" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">About Us</a></li>
+          <li><a href="#industries" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Industries</a></li>
+          <li><a href="#clients" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Clients</a></li>
+          <li><a href="#contact-section" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Get a Proposal</a></li>
+          <li><a href="mailto:demurupmedia@gmail.com" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Contact</a></li>
         </ul>
         <div class="mt-8">
-          <div class="section-label mb-2">Based In</div>
-          <p class="text-white/35 text-sm">Pune, Maharashtra, India</p>
+          <div class="slabel mb-2">Connect</div>
+          <p class="text-white/35 text-xs"><a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener noreferrer" class="hover:text-lime transition-colors">@demurup_media</a></p>
+          <p class="text-white/35 text-xs mt-1"><a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener noreferrer" class="hover:text-lime transition-colors">Demurup Media (LinkedIn)</a></p>
         </div>
       </div>
     </div>
 
     <div class="flex flex-col lg:flex-row justify-between items-center pt-8 gap-4">
-      <p class="text-white/28 text-xs font-mono-dm">
+      <p class="text-white/25 text-xs font-mono">
         © 2026 DemuRup Media. All rights reserved. Founded by Shailesh Sharma & Harsh Newale.
       </p>
-      <div class="flex gap-6">
-        <a href="#" class="text-white/28 hover:text-white/55 text-xs font-mono-dm transition-colors">Privacy Policy</a>
-        <a href="#" class="text-white/28 hover:text-white/55 text-xs font-mono-dm transition-colors">Terms of Service</a>
-      </div>
+      <!-- <div class="flex gap-6">
+        <a href="#" class="text-white/25 hover:text-white/52 text-xs font-mono transition-colors">Privacy Policy</a>
+        <a href="#" class="text-white/25 hover:text-white/52 text-xs font-mono transition-colors">Terms of Service</a>
+      </div> -->
     </div>
   </div>
 </footer>
 
-<!-- ══════════ SCRIPTS ══════════ -->
+<!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════════ -->
 <script src="script.js"></script>
 </body>
 </html>
