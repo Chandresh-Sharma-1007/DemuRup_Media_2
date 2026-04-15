@@ -280,17 +280,25 @@
     filter: brightness(0.8); 
 }
 
+
 /* 3. Mobile Responsiveness */
 @media (max-width: 1023px) {
+    /* Hide the background image container on mobile */
     .hero-visual-container {
-        display: none !important; /* Forces image to hide on mobile */
-        margin-top: 20px; /* Adds space above hero text when image is removed */
+        display: none !important;
     }
-    
+
+    /* Reset margin so text moves down and isn't cropped */
     .hero-top-margin-fix {
-        margin-top: 10px; 
-        padding-top: 80px;
-        
+        margin-top: 0 !important; 
+        padding-top: 80px; /* Space for the logo/header */
+        text-align: left;
+    }
+
+    /* Shrink the main heading so it fits on phone screens */
+    #hero-h1 {
+        font-size: 2.8rem !important;
+        line-height: 1.1;
     }
 }
 
