@@ -1,4 +1,5 @@
- gsap.registerPlugin(ScrollTrigger);
+
+  gsap.registerPlugin(ScrollTrigger);
 
   // ── Custom cursor ──────────────────────────────────────────
   const cur = document.getElementById('cursor');
@@ -80,60 +81,25 @@
   }
 
   // ── Form submit ────────────────────────────────────────────
-function submitForm() {
-  // 1. Get values from the inputs
-  const name = document.getElementById('f-name').value.trim();
-  const brand = document.getElementById('f-brand').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const budget = document.getElementById('f-budget').value;
-  const challenge = document.getElementById('f-challenge').value;
-  const timeline = document.getElementById('f-timeline').value;
-
-  // 2. Validation (The "Shake" logic you already had)
-  if (!name || !brand || !phone) {
-    [['f-name', name], ['f-brand', brand], ['f-phone', phone]].forEach(([id, val]) => {
-      if (!val) {
-        const el = document.getElementById(id);
-        el.style.borderColor = '#ff4444';
-        el.style.animation = 'none';
-        setTimeout(() => { el.style.borderColor = ''; }, 2000);
-      }
-    });
-    return;
-  }
-
-  // 3. Collect selected checkboxes (based on your toggleCheck function)
-  const selectedServices = [];
-  document.querySelectorAll('.check-item.selected').forEach(item => {
-    selectedServices.push(item.innerText.trim());
-  });
-
-  // 4. Prepare the Google Form Data (REPLACE THE ENTRY IDs BELOW)
-  const formData = new URLSearchParams();
-  formData.append('entry.1111111111', name);       // Replace with Name ID
-  formData.append('entry.2222222222', brand);      // Replace with Brand ID
-  formData.append('entry.3333333333', phone);      // Replace with Phone ID
-  formData.append('entry.4444444444', budget);     // Replace with Budget ID
-  formData.append('entry.5555555555', selectedServices.join(', ')); // Replace with Services ID
-  formData.append('entry.6666666666', challenge);  // Replace with Challenge ID
-  formData.append('entry.7777777777', timeline);   // Replace with Timeline ID
-
-  // 5. Send to Google Form (REPLACE THE URL BELOW)
-  const googleFormUrl = "https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID_HERE/formResponse";
-
-  fetch(googleFormUrl, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: formData.toString()
-  }).then(() => {
-    // 6. Show Success UI
+  function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const brand = document.getElementById('f-brand').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    if (!name || !brand || !phone) {
+      // Shake empty fields
+      [['f-name',name],['f-brand',brand],['f-phone',phone]].forEach(([id,val]) => {
+        if (!val) {
+          const el = document.getElementById(id);
+          el.style.borderColor = '#ff4444';
+          el.style.animation = 'none';
+          setTimeout(()=>{ el.style.borderColor=''; }, 2000);
+        }
+      });
+      return;
+    }
     document.getElementById('contact-form-wrap').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
-  }).catch(err => {
-    console.error("Submission error:", err);
-  });
-}
+  }
 
   // ── Testimonial slider ─────────────────────────────────────
   let curSlide = 0;
@@ -145,6 +111,223 @@ function submitForm() {
   }
   function nextSlide() { goSlide(curSlide+1); }
   function prevSlide() { goSlide(curSlide-1); }
-
-  // Auto-advance testimonials every 6s
   setInterval(nextSlide, 6000);
+
+  // ══════════════════════════════════════════════════════════════
+  //  DEMURUP SMART POPUP — Full Logic
+  // ══════════════════════════════════════════════════════════════
+
+  (function() {
+    // ── State ──────────────────────────────────────────────────
+    const SESSION_KEY_CLOSED  = 'dr_popup_x_closed';   // X clicked: hide entire session
+    const SESSION_KEY_LATER   = 'dr_popup_later_ts';   // "Maybe later" timestamp
+
+    const overlay  = document.getElementById('dr-popup-overlay');
+    const badge    = document.getElementById('dr-reappear-badge');
+    const cntEl    = document.getElementById('dr-badge-countdown');
+    const timerCircle = document.getElementById('dr-timer-circle');
+
+    let userHasInteracted = false;
+    let laterTimer        = null;
+    let autoTimer         = null;
+    let timerCountdown    = null;
+    let ringTimer         = null;
+    let ringVal           = 75.4; // full circumference
+    let badgeInterval     = null;
+
+    // ── Track first interaction (for audio autoplay) ───────────
+    const markInteraction = () => { userHasInteracted = true; };
+    ['click','scroll','keydown','touchstart','mousemove'].forEach(ev =>
+      document.addEventListener(ev, markInteraction, { once:true, passive:true })
+    );
+
+    // ── Synthesised "pop" sound via Web Audio API ──────────────
+    function playPopSound() {
+      if (!userHasInteracted) return; // respect browser autoplay policy
+      try {
+        // ── PRIMARY: use the provided _popping_up.mp3 file ────
+        const sfx = new Audio('_popping_up.mp3');
+        sfx.volume = 0.65;
+        const playPromise = sfx.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // If .mp3 fails (file missing / policy), fall through to Web Audio
+            playWebAudioFallback();
+          });
+        }
+      } catch(e) {
+        // Silently fail and try synthesised fallback
+        playWebAudioFallback();
+      }
+    }
+
+    // ── FALLBACK: synthesised pop via Web Audio API ─────────────
+    function playWebAudioFallback() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
+
+        // Layer 1: short sine pop
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(880, ctx.currentTime);
+        osc1.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.08);
+        gain1.gain.setValueAtTime(0.18, ctx.currentTime);
+        gain1.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(ctx.currentTime);
+        osc1.stop(ctx.currentTime + 0.12);
+
+        // Layer 2: soft click transient
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(1200, ctx.currentTime);
+        osc2.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.05);
+        gain2.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain2.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(ctx.currentTime);
+        osc2.stop(ctx.currentTime + 0.05);
+      } catch(e) {
+        console.warn('[DemuRup Popup] Audio unavailable:', e.message);
+      }
+    }
+
+    // ── Confetti burst on open ─────────────────────────────────
+    function spawnConfetti() {
+      const modal = document.getElementById('dr-popup-modal');
+      const colors = ['#00cc33','#00ff44','#ffffff','#00aa29'];
+      for (let i = 0; i < 12; i++) {
+        const el = document.createElement('div');
+        el.className = 'dr-confetti';
+        el.style.cssText = `
+          left: ${20 + Math.random()*60}%;
+          top: ${10 + Math.random()*30}%;
+          background: ${colors[i%colors.length]};
+          width: ${3+Math.random()*5}px;
+          height: ${3+Math.random()*5}px;
+          animation-delay: ${Math.random()*0.3}s;
+          animation-duration: ${0.7+Math.random()*0.5}s;
+        `;
+        modal.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+    }
+
+    // ── Timer ring countdown (20s auto-close) ─────────────────
+    function startRingCountdown(seconds) {
+      const circumference = 75.4;
+      ringVal = circumference;
+      if (timerCircle) timerCircle.style.strokeDashoffset = 0;
+      clearInterval(ringTimer);
+      let elapsed = 0;
+      ringTimer = setInterval(() => {
+        elapsed++;
+        const progress = elapsed / seconds;
+        const offset = circumference * progress;
+        if (timerCircle) timerCircle.style.strokeDashoffset = offset;
+        if (elapsed >= seconds) clearInterval(ringTimer);
+      }, 1000);
+    }
+
+    // ── Show modal ─────────────────────────────────────────────
+    window.drShowModal = function() {
+      // Don't show if X was clicked this session
+      if (sessionStorage.getItem(SESSION_KEY_CLOSED)) return;
+
+      // Hide badge if visible
+      badge.style.display = 'none';
+      clearInterval(badgeInterval);
+      if (cntEl) cntEl.textContent = '30';
+
+      // Show
+      overlay.classList.add('visible');
+      document.body.style.overflow = 'hidden'; // prevent scroll behind
+
+      // Sound
+      playPopSound();
+
+      // Confetti
+      setTimeout(spawnConfetti, 150);
+
+      // Ring countdown (20s)
+      startRingCountdown(20);
+    };
+
+    // ── Hide modal (shared) ────────────────────────────────────
+    function drHide() {
+      overlay.classList.remove('visible');
+      document.body.style.overflow = '';
+      clearInterval(ringTimer);
+    }
+
+    // ── Close X: hide for entire session ──────────────────────
+    window.drCloseX = function() {
+      drHide();
+      sessionStorage.setItem(SESSION_KEY_CLOSED, '1');
+      badge.style.display = 'none';
+      clearTimeout(laterTimer);
+      clearTimeout(autoTimer);
+    };
+
+    // ── Maybe Later: hide → reshow after 30s ──────────────────
+    window.drMaybeLater = function() {
+      drHide();
+
+      // Show the countdown badge
+      let remaining = 80;
+      badge.style.display = 'block';
+      if (cntEl) cntEl.textContent = remaining;
+
+      clearInterval(badgeInterval);
+      badgeInterval = setInterval(() => {
+        remaining--;
+        if (cntEl) cntEl.textContent = remaining;
+        if (remaining <= 0) {
+          clearInterval(badgeInterval);
+          badge.style.display = 'none';
+          drShowModal();
+        }
+      }, 1000);
+    };
+
+    // ── CTA click: go to contact & close ──────────────────────
+    window.drCtaClick = function(e) {
+      e.preventDefault();
+      drHide();
+      sessionStorage.setItem(SESSION_KEY_CLOSED, '1'); // don't re-show after CTA
+      badge.style.display = 'none';
+      clearTimeout(laterTimer);
+      clearTimeout(autoTimer);
+      // Smooth scroll to contact
+      const target = document.getElementById('contact-section');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // ── Click backdrop to dismiss (acts like X) ────────────────
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) drCloseX();
+    });
+
+    // ── Keyboard ESC closes (acts like X) ─────────────────────
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('visible')) drCloseX();
+    });
+
+    // ── Check sessionStorage for "later" on reload ────────────
+    function checkLaterResume() {
+      // If X was clicked, never show again this session
+      if (sessionStorage.getItem(SESSION_KEY_CLOSED)) return;
+      // Initial trigger: 50 seconds after page load
+      autoTimer = setTimeout(drShowModal, 50000);
+    }
+
+    // ── Boot ──────────────────────────────────────────────────
+    checkLaterResume();
+
+  })(); // end IIFE
+
