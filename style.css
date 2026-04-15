@@ -1,5 +1,4 @@
 
-
     :root {
       --lime: #00cc33;
       --lime-dark: #009922;
@@ -285,10 +284,11 @@
 @media (max-width: 1023px) {
     .hero-visual-container {
         display: none !important; /* Forces image to hide on mobile */
+        margin-top: 20px; /* Adds space above hero text when image is removed */
     }
     
     .hero-top-margin-fix {
-        margin-top: 0px; 
+        margin-top: 10px; 
         padding-top: 80px;
         
     }
