@@ -283,22 +283,21 @@
 
 /* 3. Mobile Responsiveness */
 @media (max-width: 1023px) {
-    /* Hide the background image container on mobile */
     .hero-visual-container {
         display: none !important;
     }
 
-    /* Reset margin so text moves down and isn't cropped */
     .hero-top-margin-fix {
-        margin-top: 0 !important; 
-        padding-top: 80px; /* Space for the logo/header */
+        /* This is the hammer: force it down and kill the negative margin */
+        margin-top: 20px !important; 
+        padding-top: 100px !important; 
         text-align: left;
     }
 
-    /* Shrink the main heading so it fits on phone screens */
     #hero-h1 {
-        font-size: 2.8rem !important;
+        font-size: 2.6rem !important; /* Slightly smaller to ensure fit */
         line-height: 1.1;
+        margin-top: 10px;
     }
 }
 
