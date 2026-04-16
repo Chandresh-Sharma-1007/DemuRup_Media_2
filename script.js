@@ -1,5 +1,4 @@
 
-
   gsap.registerPlugin(ScrollTrigger);
 
   // ── Custom cursor ──────────────────────────────────────────
