@@ -778,3 +778,39 @@
     align-items: center;
     justify-items: center;
 }
+
+/* Blog styles */
+
+/* --- Blog Popup Styles --- */
+
+/* 1. Body Locking - Prevents scrolling the main page while popup is open */
+body.popup-open {
+    overflow: hidden;
+}
+
+/* 2. Overlay */
+#blog-popup-overlay {
+    backdrop-filter: blur(10px); /* Blurs the background main site */
+}
+
+/* 3. The 'Active' state (triggered by JS) */
+#blog-popup-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 4. Animation for the popup box itself */
+#blog-popup-overlay.active .reveal-up {
+    animation: revealUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
