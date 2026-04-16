@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="DemuRup Media — India's boldest creative marketing & branding agency. Social media, branding, content, web, ads & more."/>
+  <title>DemuRup Media — Creative Marketing & Branding Agency</title>
+  <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = { theme: { extend: { colors: { lime:'#00cc33' } } } }
+  </script>
+</head>
+<body>
+
+<!-- ══ Cursor ══ -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ══ Floating WhatsApp ══ -->
+<a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-float-label">Chat on WhatsApp</span>
+  <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SMART POPUP MODAL
+══════════════════════════════════════════════════════════════ -->
+<div id="dr-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="dr-pop-headline-el">
+
+  <div id="dr-popup-modal">
+    <!-- Countdown ring top-left -->
+    <div class="dr-timer-ring" id="dr-timer-ring" title="Auto-closes">
+      <svg width="28" height="28" viewBox="0 0 28 28">
+        <circle class="dr-timer-ring-bg" cx="14" cy="14" r="12"/>
+        <circle class="dr-timer-circle" id="dr-timer-circle" cx="14" cy="14" r="12"/>
+      </svg>
+    </div>
+
+    <!-- Close X -->
+    <button id="dr-close-btn" onclick="drCloseX()" aria-label="Close modal">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" viewBox="0 0 14 14">
+        <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
+      </svg>
+    </button>
+
+    <!-- Inner content -->
+    <div id="dr-popup-inner">
+
+      <!-- Live badge -->
+      <div class="dr-pop-badge">
+        <div class="dr-pop-badge-dot"></div>
+        <span class="dr-pop-badge-text">Now Accepting Clients</span>
+      </div>
+
+      <!-- Headline -->
+      <h2 class="dr-pop-headline" id="dr-pop-headline-el">
+        READY TO START<br/>YOUR JOURNEY<br/>WITH <em>DEMURUP?</em>
+      </h2>
+
+      <!-- Sub text -->
+      <p class="dr-pop-sub">
+        Let's redesign your brand's future together — one bold idea at a time.
+      </p>
+
+      <div class="dr-pop-divider"></div>
+
+      <!-- Primary CTA -->
+      <a id="dr-cta-btn" href="#contact-section" onclick="drCtaClick(event)">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Get In Touch
+        <span class="dr-cta-arrow">→</span>
+      </a>
+
+      <!-- Maybe later -->
+      <button id="dr-later-btn" onclick="drMaybeLater()">Maybe later</button>
+
+      <!-- Trust strip -->
+      <div class="dr-pop-trust">
+        <div class="dr-trust-item"><div class="dr-trust-dot"></div><span>50+ Brands</span></div>
+        <div class="dr-trust-item"><div class="dr-trust-dot"></div><span>EST. 2024</span></div>
+        <div class="dr-trust-item"><div class="dr-trust-dot"></div><span>India → Global</span></div>
+        <div class="dr-trust-item"><div class="dr-trust-dot"></div><span>Free Audit</span></div>
+      </div>
+
+    </div><!-- /inner -->
+  </div><!-- /modal -->
+</div><!-- /overlay -->
+
+<!-- Reappear badge shown after "Maybe later" -->
+<div id="dr-reappear-badge" onclick="drShowModal()" title="Click to reopen">
+  <span id="dr-badge-countdown">30</span>s — We'll be back ✦
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
+    <a href="#" class="flex items-center">
+  <img src="main logo.png" alt="DemuRup Media" class="h-8 lg:h-10 w-auto object-contain">
+</a>
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#services" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Services</a>
+      <a href="#industries" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Industries</a>
+      <a href="#clients" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Clients</a>
+      <a href="#contact-section" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Contact</a>
+      <a href="blog.html" class="ugrow text-sm font-medium text-white/75 hover:text-white transition-colors">Blog</a>
+    </div>
+    <div class="hidden lg:flex items-center gap-4">
+      <span class="slabel">EST. 2024</span>
+      <a href="#contact-section" class="btn-lime px-5 py-2.5 rounded text-sm">Get a Proposal →</a>
+    </div>
+    <button id="hamburger" class="lg:hidden flex flex-col gap-1.5 p-2 z-10" aria-label="Menu">
+      <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h1"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h2"></span>
+      <span class="w-4 h-0.5 bg-white transition-all duration-300" id="h3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="flex-col px-5 pb-6 gap-3 border-t border-[#1a1a1a] bg-black/97 backdrop-blur-xl">
+    <a href="#services" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Services</a>
+    <a href="#industries" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Industries</a>
+    <a href="#about" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">About</a>
+    <a href="#clients" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Clients</a>
+    <a href="#contact-section" class="text-lg font-semibold py-3 border-b border-[#111] text-white/80 m-link block">Contact</a>
+    <a href="#contact-section" class="btn-lime px-5 py-3.5 rounded text-center font-bold mt-2 m-link">Get a Proposal →</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     Card 
+══════════════════════════════════════════════════════════════ -->
+<section class="py-24 bg-[#060606]">
+        <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+            
+            <div class="mb-16">
+                <h1 class="font-display text-5xl lg:text-7xl text-white mb-4 uppercase">Our <span style="color:var(--lime)">Insights</span></h1>
+                <p class="text-white/50 max-w-xl text-lg">We don't just think outside the box—we redesign the way you see it.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="group bg-[#111] border border-[#1e1e1e] rounded-2xl overflow-hidden hover:border-[var(--lime)]/30 transition-all duration-500">
+                    <div class="h-64 overflow-hidden bg-[#222]">
+                        <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=600&auto=format&fit=crop" 
+                             alt="Branding" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-[var(--lime)] text-xs font-mono uppercase tracking-widest">Branding</span>
+                            <span class="text-white/20 text-xs">April 2026</span>
+                        </div>
+                        <h3 class="text-2xl text-white font-display mb-4 group-hover:text-[var(--lime)] transition-colors">
+                            Why Your Brand Voice Needs a Redesign in 2026
+                        </h3>
+                        <p class="text-white/50 text-sm mb-6 line-clamp-2">Discover how a unified brand voice can transform your business from local to global.</p>
+                        
+                        <div class="hidden-article-text hidden">
+                            <p><strong>This is the FIRST article about Branding.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+
+                        <button onclick="openBlogPopup(this)" class="inline-block text-white font-bold text-sm border-b border-[var(--lime)] pb-1 cursor-pointer">
+                            Read Article →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-[#111] border border-[#1e1e1e] rounded-2xl overflow-hidden hover:border-[var(--lime)]/30 transition-all duration-500">
+                    <div class="h-64 overflow-hidden bg-[#222]">
+                        <img src="https://media.istockphoto.com/id/1385970223/photo/great-idea-of-a-marketing-strategy-plan-at-a-creative-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=7KQ4ADXJVVpsW23a4kruYYkuRqCFPeXyn8_dZDt3IUo=" 
+                             alt="Strategy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-[var(--lime)] text-xs font-mono uppercase tracking-widest">Marketing</span>
+                            <span class="text-white/20 text-xs">April 2026</span>
+                        </div>
+                        <h3 class="text-2xl text-white font-display mb-4 group-hover:text-[var(--lime)] transition-colors">
+                            The One-Stop Shop Strategy for D2C Brands
+                        </h3>
+                        <p class="text-white/50 text-sm mb-6 line-clamp-2">Why juggling five different agencies is killing your growth and how to fix it.</p>
+
+                        <div class="hidden-article-text hidden">
+                            <p><strong>This is the SECOND article about D2C Strategy.</strong> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+                        </div>
+
+                        <button onclick="openBlogPopup(this)" class="inline-block text-white font-bold text-sm border-b border-[var(--lime)] pb-1 cursor-pointer">
+                            Read Article →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-[#111] border border-[#1e1e1e] rounded-2xl overflow-hidden hover:border-[var(--lime)]/30 transition-all duration-500">
+                    <div class="h-64 overflow-hidden bg-[#222]">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=600&auto=format&fit=crop" 
+                             alt="Innovation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-[var(--lime)] text-xs font-mono uppercase tracking-widest">Innovation</span>
+                            <span class="text-white/20 text-xs">April 2026</span>
+                        </div>
+                        <h3 class="text-2xl text-white font-display mb-4 group-hover:text-[var(--lime)] transition-colors">
+                            Redesigning the Funnel for Real Estate
+                        </h3>
+                        <p class="text-white/50 text-sm mb-6 line-clamp-2">How we moved the needle for Mumbai's leading residential projects.</p>
+
+                        <div class="hidden-article-text hidden">
+                            <p><strong>This is the THIRD article about Real Estate.</strong> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.</p>
+                        </div>
+
+                        <button onclick="openBlogPopup(this)" class="inline-block text-white font-bold text-sm border-b border-[var(--lime)] pb-1 cursor-pointer">
+                            Read Article →
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="blog-popup-overlay" class="fixed inset-0 bg-black/95 z-[999] opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-5 lg:p-10">
+        <div class="bg-[#111] border border-[#222] rounded-3xl max-w-5xl max-h-[90vh] overflow-y-auto relative w-full reveal-up">
+            
+            <button onclick="closeBlogPopup()" class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors text-3xl font-light">×</button>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 p-10">
+                <div class="h-[300px] lg:h-full rounded-xl overflow-hidden bg-[#222]">
+                    <img id="popup-image" src="" alt="Blog Image" class="w-full h-full object-cover">
+                </div>
+
+                <div class="space-y-6 pt-5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="popup-category" class="text-[var(--lime)] text-xs font-mono uppercase tracking-widest">Category</span>
+                        <span id="popup-date" class="text-white/20 text-xs">Date</span>
+                    </div>
+                    <h2 id="popup-title" class="font-display text-4xl text-white leading-tight">Title</h2>
+                    <div id="popup-content" class="text-white/70 leading-relaxed text-sm lg:text-base space-y-4">
+                        </div>
+                    
+                    <!-- <div class="pt-8">
+                        <a href="index.html#contact" class="inline-block bg-[var(--lime)] text-black px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform">Work With Us →</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="border-t border-[#111] pt-16 pb-8">
+  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="mb-6">
+  <img src="main logo.png" alt="DemuRup Media" class="h-10 lg:h-12 w-auto object-contain">
+</div>
+        <p class="text-white/35 text-sm leading-relaxed max-w-sm">
+          India's boldest creative marketing & branding studio. One team, every digital need, zero compromise.
+        </p>
+        <p class="text-white/28 text-xs font-mono mt-3">Based in Maharashtra, Gujarat, Chhattisgarh & Rajasthan.</p>
+        <div class="flex gap-3 mt-6">
+          <!-- Instagram -->
+          <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="Instagram">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="LinkedIn">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <!-- <a href="#" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="YouTube">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a> -->
+          <!-- WhatsApp -->
+          <a href="https://wa.me/917489998238" target="_blank" rel="noopener" class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime" aria-label="WhatsApp">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <div class="slabel mb-5">Services</div>
+        <ul class="space-y-3">
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Social Media Marketing</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Branding & Strategy</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Content Creation</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Web Development</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Performance Marketing</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Video Production</a></li>
+          <li><a href="#services" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Influencer Marketing</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div class="slabel mb-5">Company</div>
+        <ul class="space-y-3">
+          <li><a href="#about" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">About Us</a></li>
+          <li><a href="#industries" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Industries</a></li>
+          <li><a href="#clients" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Clients</a></li>
+          <li><a href="#contact-section" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Get a Proposal</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#c2a6a7afb7b0b7b2afa7a6aba382a5afa3abaeeca1adaf" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Contact</a></li>
+        </ul>
+        <div class="mt-8">
+          <div class="slabel mb-2">Connect</div>
+          <p class="text-white/35 text-xs">@demurup_media</p>
+          <p class="text-white/35 text-xs mt-1">Demurup Media (LinkedIn)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row justify-between items-center pt-8 gap-4">
+      <p class="text-white/25 text-xs font-mono">
+        © 2026 DemuRup Media. All rights reserved. Founded by Shailesh Sharma & Harsh Newale.
+      </p>
+      <div class="flex gap-6">
+        <!-- <a href="#" class="text-white/25 hover:text-white/52 text-xs font-mono transition-colors">Privacy Policy</a>
+        <a href="#" class="text-white/25 hover:text-white/52 text-xs font-mono transition-colors">Terms of Service</a> -->
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+const blogOverlay = document.getElementById('blog-popup-overlay');
+        const popupTitle = document.getElementById('popup-title');
+        const popupContent = document.getElementById('popup-content');
+        const popupImage = document.getElementById('popup-image');
+        const popupCategory = document.getElementById('popup-category');
+        const popupDate = document.getElementById('popup-date');
+
+        function openBlogPopup(button) {
+            const card = button.closest('.group');
+            if (!card) return;
+
+            // Extract Data from Card
+            const title = card.querySelector('h3').innerText;
+            const imageSrc = card.querySelector('img').src;
+            const category = card.querySelector('span:first-child').innerText;
+            const date = card.querySelector('span:last-child').innerText;
+            const hiddenText = card.querySelector('.hidden-article-text').innerHTML;
+
+            // Apply to Popup
+            popupTitle.innerText = title;
+            popupImage.src = imageSrc;
+            popupCategory.innerText = category;
+            popupDate.innerText = date;
+            popupContent.innerHTML = hiddenText;
+
+            // Show Popup
+            blogOverlay.classList.add('active');
+            blogOverlay.style.opacity = "1";
+            blogOverlay.style.pointerEvents = "auto";
+            document.body.style.overflow = "hidden"; // Prevent scroll
+        }
+
+        function closeBlogPopup() {
+            blogOverlay.classList.remove('active');
+            blogOverlay.style.opacity = "0";
+            blogOverlay.style.pointerEvents = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // Close on background click
+        blogOverlay.addEventListener('click', (e) => {
+            if (e.target === blogOverlay) closeBlogPopup();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBlogPopup();
+        });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
