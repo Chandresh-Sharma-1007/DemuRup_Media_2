@@ -136,13 +136,75 @@
 <!-- ══════════════════════════════════════════════════════════════
      Card 
 ══════════════════════════════════════════════════════════════ -->
-<section class="py-24 bg-[#060606]">
-        <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
-            
-            <div class="mb-16">
+
+    <!-- social media  -->
+
+<section class="pb-24 bg-[#060606]" style="padding-top: 10%;">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+<div class="mb-16">
                 <h1 class="font-display text-5xl lg:text-7xl text-white mb-4 uppercase">Our <span style="color:var(--lime)">Insights</span></h1>
                 <p class="text-white/50 max-w-xl text-lg">We don't just think outside the box—we redesign the way you see it.</p>
             </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- reel 1 -->
+            <div class="group bg-[#111] border border-[#1e1e1e] rounded-3xl overflow-hidden hover:border-[var(--lime)]/30 transition-all duration-500">
+                <div class="h-[550px] overflow-hidden bg-black relative">
+                    <video class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+                        <source src="reel1.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="p-8">
+                    <h5 class="text-xl text-white font-display mb-4"> Great results happen when we co-create, your involvement matters</h5>
+                    
+                    <a href="https://www.instagram.com/reel/DWPcFVOgvGe/?igsh=NG1najc3aGg2aW5y" class="inline-block text-white font-bold text-sm border-b border-[var(--lime)] pb-1 cursor-pointer">Watch Reel →</a>
+                </div>
+            </div>
+<!-- reel 2 -->
+
+            <div class="group bg-[#111] border border-[#1e1e1e] rounded-3xl overflow-hidden hover:border-[var(--lime)]/30 transition-all duration-500">
+                <div class="h-[550px] overflow-hidden bg-black relative">
+                    <video class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+                        <source src="reel2.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="p-8">
+                    <h5 class="text-xl text-white font-display mb-4"> Most brands don't fail because of bad product, They fail because of bad marketing</h5>
+                    
+                    <a href="https://www.instagram.com/reel/DV1Sl6zgopd/?igsh=OWQxMnkyb2V3Njcy" class="inline-block text-white font-bold text-sm border-b border-[var(--lime)] pb-1 cursor-pointer">Watch Reel →</a>
+                </div>
+            </div>
+
+            <!-- reel 3 -->
+
+                        <div class="group bg-[#111] border border-[#1e1e1e] rounded-3xl overflow-hidden hover:border-[var(--lime)]/30 transition-all duration-500">
+                <div class="h-[550px] overflow-hidden bg-black relative">
+                    <video class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+                        <source src="reel 3.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="p-8">
+                    <h5 class="text-xl text-white font-display mb-4"> One Stop Solution.</h5>
+                    
+                    <a href="https://www.instagram.com/reel/DUyAKiVgutR/?igsh=cmtkdXQ4c2FxcDhr" class="inline-block text-white font-bold text-sm border-b border-[var(--lime)] pb-1 cursor-pointer">Watch Reel →</a>
+                </div>
+            </div>
+
+         
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- blog -->
+<section class="py-24 bg-[#060606]">
+        <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+            
+            
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
@@ -252,6 +314,11 @@
         </div>
     </div>
 
+
+
+
+
+    
 <!-- ══════════════════════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════════════════════ -->
@@ -344,29 +411,48 @@ const blogOverlay = document.getElementById('blog-popup-overlay');
         const popupDate = document.getElementById('popup-date');
 
         function openBlogPopup(button) {
-            const card = button.closest('.group');
-            if (!card) return;
+    const card = button.closest('.group');
+    if (!card) return;
 
-            // Extract Data from Card
-            const title = card.querySelector('h3').innerText;
-            const imageSrc = card.querySelector('img').src;
-            const category = card.querySelector('span:first-child').innerText;
-            const date = card.querySelector('span:last-child').innerText;
-            const hiddenText = card.querySelector('.hidden-article-text').innerHTML;
+    // 1. Extract Basic Text Data
+    const title = card.querySelector('h3').innerText;
+    const category = card.querySelector('span:first-child').innerText;
+    const date = card.querySelector('span:last-child') ? card.querySelector('span:last-child').innerText : "Insight";
+    const hiddenText = card.querySelector('.hidden-article-text').innerHTML;
 
-            // Apply to Popup
-            popupTitle.innerText = title;
-            popupImage.src = imageSrc;
-            popupCategory.innerText = category;
-            popupDate.innerText = date;
-            popupContent.innerHTML = hiddenText;
+    // 2. Identify Media Type (Video vs Image)
+    const videoElement = card.querySelector('video');
+    const imageElement = card.querySelector('img');
+    
+    // Select the media container in your popup (the left side div)
+    const mediaContainer = document.querySelector('#blog-popup-overlay .lg\\:grid-cols-2 > div:first-child');
 
-            // Show Popup
-            blogOverlay.classList.add('active');
-            blogOverlay.style.opacity = "1";
-            blogOverlay.style.pointerEvents = "auto";
-            document.body.style.overflow = "hidden"; // Prevent scroll
-        }
+    // 3. Update Media Content based on card type
+    if (videoElement) {
+        // If it's a Reel, embed the Video
+        const videoSrc = videoElement.querySelector('source').src;
+        mediaContainer.innerHTML = `
+            <div class="flex justify-center bg-black h-full w-full rounded-xl overflow-hidden">
+                <video src="${videoSrc}" class="h-full w-auto aspect-[9/16]" controls autoplay loop></video>
+            </div>`;
+    } else if (imageElement) {
+        // If it's a Blog, embed the Image
+        mediaContainer.innerHTML = `
+            <img src="${imageElement.src}" id="popup-image" class="w-full h-full object-cover rounded-xl" alt="Blog Image">`;
+    }
+
+    // 4. Populate Popup Text
+    popupTitle.innerText = title;
+    popupCategory.innerText = category;
+    if (popupDate) popupDate.innerText = date;
+    popupContent.innerHTML = hiddenText;
+
+    // 5. Show Popup & Disable Background Scroll
+    blogOverlay.classList.add('active');
+    blogOverlay.style.opacity = "1";
+    blogOverlay.style.pointerEvents = "auto";
+    document.body.style.overflow = "hidden"; 
+}
 
         function closeBlogPopup() {
             blogOverlay.classList.remove('active');
