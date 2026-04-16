@@ -12,6 +12,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>/* --- Fix Top Heading Overlap on Mobile --- */
+@media (max-width: 768px) {
+    .mb-16 {
+        margin-bottom: 4rem; /* Adjust this value as needed */
+        padding-top: 20%;
+    }
+    #blog .mb-16 {
+        padding-top: 0; /* Remove extra padding for the blog section */
+        margin-top: 0%;
+    }
+    
+}</style>
   <script>
     tailwind.config = { theme: { extend: { colors: { lime:'#00cc33' } } } }
   </script>
@@ -139,7 +152,7 @@
 
     <!-- social media  -->
 
-<section class="pb-24 bg-[#060606]" style="padding-top: 10%;">
+<section class="pt-32 pb-24 bg-[#060606]" style="padding-top: 10%;">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
 <div class="mb-16">
                 <h1 class="font-display text-5xl lg:text-7xl text-white mb-4 uppercase">Our <span style="color:var(--lime)">Insights</span></h1>
@@ -201,7 +214,7 @@
 
 
 <!-- blog -->
-<section class="py-24 bg-[#060606]">
+<section id="blog" class="py-24 bg-[#060606]">
         <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
             
             
