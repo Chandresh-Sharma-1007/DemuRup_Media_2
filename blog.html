@@ -149,34 +149,64 @@
       <!-- Left Column: Large Bold Links -->
       <div class="dr-menu-left">
         <ul class="dr-menu-links">
-          <li class="dr-menu-item"><a href="index.html#services" class="dr-menu-link">Services</a></li>
-          <li class="dr-menu-item"><a href="index.html#industries" class="dr-menu-link">Industries</a></li>
-          <li class="dr-menu-item"><a href="index.html#clients" class="dr-menu-link">Clients</a></li>
           <li class="dr-menu-item"><a href="index.html#about" class="dr-menu-link">About</a></li>
+          <li class="dr-menu-item dr-menu-item-services">
+            <a href="index.html#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
+              Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
+            </a>
+            <!-- Mobile/Tablet Accordion Dropdown -->
+            <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
+              <ul class="dr-services-accordion-list">
+                <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+                <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+                <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+                <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+                <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+                <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
           <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
+          <li class="dr-menu-item"><a href="index.html#clients" class="dr-menu-link">Clients</a></li>
           <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
         </ul>
       </div>
 
-      <!-- Right Column: Contact details & Socials -->
-      <div class="dr-menu-right">
-        <div class="dr-menu-right-item dr-menu-contact-section">
-          <h4 class="dr-menu-sublabel">Connect</h4>
-          <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
-          <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
-        </div>
-        
-        <div class="dr-menu-right-item dr-menu-contact-section">
-          <h4 class="dr-menu-sublabel">Location</h4>
-          <p class="dr-menu-text">Pune, Maharashtra, India</p>
+      <!-- Right Column: Contact details & Socials + Services Panel -->
+      <div class="dr-menu-right" id="dr-menu-right">
+        <div class="dr-menu-right-info" id="dr-menu-right-info">
+          <div class="dr-menu-right-item dr-menu-contact-section">
+            <h4 class="dr-menu-sublabel">Connect</h4>
+            <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
+            <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
+          </div>
+          
+          <div class="dr-menu-right-item dr-menu-contact-section">
+            <h4 class="dr-menu-sublabel">Location</h4>
+            <p class="dr-menu-text">Vapi, Gujarat, India</p>
+          </div>
+
+          <div class="dr-menu-right-item dr-menu-contact-section">
+            <h4 class="dr-menu-sublabel">Socials</h4>
+            <div class="dr-menu-socials">
+              <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
+              <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
+            </div>
+          </div>
         </div>
 
-        <div class="dr-menu-right-item dr-menu-contact-section">
-          <h4 class="dr-menu-sublabel">Socials</h4>
-          <div class="dr-menu-socials">
-            <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
-            <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
-          </div>
+        <!-- Desktop Services Panel -->
+        <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
+          <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
+          <ul class="dr-services-desktop-list">
+            <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+            <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+            <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+            <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+            <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+            <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+          </ul>
         </div>
       </div>
     </div>

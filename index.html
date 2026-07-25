@@ -195,34 +195,64 @@
         <!-- Left Column: Large Bold Links -->
         <div class="dr-menu-left">
           <ul class="dr-menu-links">
-            <li class="dr-menu-item"><a href="#services" class="dr-menu-link">Services</a></li>
-            <li class="dr-menu-item"><a href="#portfolio" class="dr-menu-link">Portfolio</a></li>
-            <li class="dr-menu-item"><a href="#clients" class="dr-menu-link">Clients</a></li>
             <li class="dr-menu-item"><a href="#about" class="dr-menu-link">About</a></li>
+            <li class="dr-menu-item dr-menu-item-services">
+              <a href="#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
+                Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
+              </a>
+              <!-- Mobile/Tablet Accordion Dropdown -->
+              <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
+                <ul class="dr-services-accordion-list">
+                  <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+                  <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+                  <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+                  <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="dr-menu-item"><a href="#portfolio" class="dr-menu-link">Portfolio</a></li>
             <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
+            <li class="dr-menu-item"><a href="#clients" class="dr-menu-link">Clients</a></li>
             <li class="dr-menu-item"><a href="#contact-section" class="dr-menu-link">Contact</a></li>
           </ul>
         </div>
 
-        <!-- Right Column: Contact details & Socials -->
-        <div class="dr-menu-right">
-          <div class="dr-menu-right-item dr-menu-contact-section">
-            <h4 class="dr-menu-sublabel">Connect</h4>
-            <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
-            <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
-          </div>
-          
-          <div class="dr-menu-right-item dr-menu-contact-section">
-            <h4 class="dr-menu-sublabel">Location</h4>
-            <p class="dr-menu-text">Vapi, Gujarat, India</p>
+        <!-- Right Column: Contact details & Socials + Services Panel -->
+        <div class="dr-menu-right" id="dr-menu-right">
+          <div class="dr-menu-right-info" id="dr-menu-right-info">
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Connect</h4>
+              <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
+              <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
+            </div>
+            
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Location</h4>
+              <p class="dr-menu-text">Vapi, Gujarat, India</p>
+            </div>
+
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Socials</h4>
+              <div class="dr-menu-socials">
+                <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
+                <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
+              </div>
+            </div>
           </div>
 
-          <div class="dr-menu-right-item dr-menu-contact-section">
-            <h4 class="dr-menu-sublabel">Socials</h4>
-            <div class="dr-menu-socials">
-              <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
-              <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
-            </div>
+          <!-- Desktop Services Panel -->
+          <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
+            <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
+            <ul class="dr-services-desktop-list">
+              <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+              <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+              <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+              <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+              <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+              <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -726,7 +756,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <!-- 01 large -->
-        <div class="bcard rounded-xl p-8 lg:col-span-2 reveal">
+        <div id="services-social-media" class="bcard rounded-xl p-8 lg:col-span-2 reveal scroll-mt-24">
           <div class="flex justify-between items-start mb-5">
             <span class="service-tag">01 / 09</span>
             <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center">
@@ -756,7 +786,7 @@
         </div>
 
         <!-- 02 -->
-        <div class="bcard rounded-xl p-8 reveal">
+        <div id="services-branding" class="bcard rounded-xl p-8 reveal scroll-mt-24">
           <span class="service-tag mb-4 block">02 / 09</span>
           <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
             BRANDING &<br /><span style="color: var(--lime)">STRATEGY</span>
@@ -801,7 +831,7 @@
 
         <!-- 04 -->
 
-        <div class="bcard rounded-xl p-8 lg:col-span-2 reveal">
+        <div id="services-web-design" class="bcard rounded-xl p-8 lg:col-span-2 reveal scroll-mt-24">
           <span class="service-tag mb-4 block">04 / 09</span>
           <div class="flex flex-col lg:flex-row justify-between gap-6">
             <div class="max-w-sm">
@@ -845,7 +875,7 @@
         </div>
 
         <!-- 05 wide -->
-        <div class="bcard rounded-xl p-8 lg:col-span-2 reveal">
+        <div id="services-performance-marketing" class="bcard rounded-xl p-8 lg:col-span-2 reveal scroll-mt-24">
           <span class="service-tag mb-4 block">05 / 09</span>
           <div class="flex flex-col lg:flex-row justify-between gap-6">
             <div class="max-w-sm">
@@ -870,7 +900,7 @@
                 </div>
                 <div class="text-white/28 text-xs">Search+Display</div>
               </div>
-              <div class="border border-[#1c1c1c] rounded-lg p-3 text-center">
+              <div id="services-seo-gmb" class="border border-[#1c1c1c] rounded-lg p-3 text-center scroll-mt-24">
                 <div class="font-display text-xl" style="color: var(--lime)">
                   SEO
                 </div>
@@ -887,7 +917,7 @@
         </div>
 
         <!-- 06 -->
-        <div class="bcard rounded-xl p-8 reveal">
+        <div id="services-influencer-marketing" class="bcard rounded-xl p-8 reveal scroll-mt-24">
           <span class="service-tag mb-4 block">06 / 09</span>
           <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
             INFLUENCER &<br /><span style="color: var(--lime)">OUTDOOR</span>

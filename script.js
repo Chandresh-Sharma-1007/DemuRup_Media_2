@@ -10,6 +10,8 @@ let mx = 0,
 document.addEventListener("mousemove", (e) => {
   mx = e.clientX;
   my = e.clientY;
+  if (cur) cur.style.opacity = "1";
+  if (ring) ring.style.opacity = ".45";
   gsap.set(cur, { x: mx, y: my });
 });
 (function animRing() {
@@ -30,6 +32,89 @@ document
       gsap.to(ring, { width: 34, height: 34, duration: 0.2 });
     });
   });
+
+// ── Shared Fullscreen Navigation Menu Component ─────────────────
+const MENU_OVERLAY_HTML = `
+<div id="dr-menu-overlay" class="dr-menu-overlay" aria-hidden="true">
+  <div class="dr-menu-container">
+    <div class="dr-menu-content">
+      <!-- Left Column: Large Bold Links -->
+      <div class="dr-menu-left">
+        <ul class="dr-menu-links">
+          <li class="dr-menu-item"><a href="index.html#about" class="dr-menu-link">About</a></li>
+          <li class="dr-menu-item dr-menu-item-services">
+            <a href="index.html#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
+              Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
+            </a>
+            <!-- Mobile/Tablet Accordion Dropdown -->
+            <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
+              <ul class="dr-services-accordion-list">
+                <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+                <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+                <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+                <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+                <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+                <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
+          <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
+          <li class="dr-menu-item"><a href="index.html#clients" class="dr-menu-link">Clients</a></li>
+          <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Contact details & Socials + Services Panel -->
+      <div class="dr-menu-right" id="dr-menu-right">
+        <div class="dr-menu-right-info" id="dr-menu-right-info">
+          <div class="dr-menu-right-item dr-menu-contact-section">
+            <h4 class="dr-menu-sublabel">Connect</h4>
+            <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
+            <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
+          </div>
+          
+          <div class="dr-menu-right-item dr-menu-contact-section">
+            <h4 class="dr-menu-sublabel">Location</h4>
+            <p class="dr-menu-text">Vapi, Gujarat, India</p>
+          </div>
+
+          <div class="dr-menu-right-item dr-menu-contact-section">
+            <h4 class="dr-menu-sublabel">Socials</h4>
+            <div class="dr-menu-socials">
+              <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
+              <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Services Panel -->
+        <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
+          <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
+          <ul class="dr-services-desktop-list">
+            <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+            <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+            <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+            <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+            <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+            <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+function initMenuOverlay() {
+  const existingOverlay = document.getElementById("dr-menu-overlay");
+  if (!existingOverlay) {
+    document.body.insertAdjacentHTML("beforeend", MENU_OVERLAY_HTML);
+  } else {
+    existingOverlay.outerHTML = MENU_OVERLAY_HTML;
+  }
+}
+initMenuOverlay();
 
 // ── Hero headline ──────────────────────────────────────────
 const h1 = document.getElementById("hero-h1");
@@ -94,22 +179,97 @@ document.querySelectorAll("[data-count]").forEach((el) => {
   });
 });
 
-// ── Nav scroll ─────────────────────────────────────────────
-window.addEventListener(
-  "scroll",
-  () => {
-    document.getElementById("main-nav").style.borderBottomColor =
-      window.scrollY > 60 ? "#161616" : "#1e1e1e";
-  },
-  { passive: true },
-);
+// ── Smart Nav scroll behavior ─────────────────────────────
+(function initSmartNavScroll() {
+  const mainNav = document.getElementById("main-nav");
+  if (!mainNav) return;
+
+  let lastScrollY = window.scrollY;
+  let scrollStopTimer = null;
+  const SCROLL_THRESHOLD = 5;
+  const STOP_TIMEOUT = 400; // Auto-reveal nav after 400ms pause
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+
+      // Update border color based on scroll position
+      mainNav.style.borderBottomColor = currentScrollY > 60 ? "#161616" : "#1e1e1e";
+
+      // 1. If menu overlay is open, ALWAYS keep nav visible
+      if (document.body.classList.contains("menu-open")) {
+        mainNav.classList.remove("nav-hidden");
+        if (scrollStopTimer) clearTimeout(scrollStopTimer);
+        return;
+      }
+
+      // 2. Clear previous scroll stop timer
+      if (scrollStopTimer) clearTimeout(scrollStopTimer);
+
+      // 3. At top of page (near 0), always show nav
+      if (currentScrollY <= 60) {
+        mainNav.classList.remove("nav-hidden");
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      const deltaY = currentScrollY - lastScrollY;
+
+      // 4. Check scroll direction with threshold
+      if (Math.abs(deltaY) >= SCROLL_THRESHOLD) {
+        if (deltaY > 0) {
+          // Scrolling DOWN -> Hide nav
+          mainNav.classList.add("nav-hidden");
+        } else {
+          // Scrolling UP -> Show nav immediately
+          mainNav.classList.remove("nav-hidden");
+        }
+        lastScrollY = currentScrollY;
+      }
+
+      // 5. Set timer to automatically show nav when user stops scrolling
+      scrollStopTimer = setTimeout(() => {
+        if (!document.body.classList.contains("menu-open")) {
+          mainNav.classList.remove("nav-hidden");
+        }
+      }, STOP_TIMEOUT);
+    },
+    { passive: true }
+  );
+})();
 
 // ── Fullscreen Navigation Menu ──────────────────────────────
 const hmb = document.getElementById("hamburger");
 const menuOverlay = document.getElementById("dr-menu-overlay");
 const menuLinks = document.querySelectorAll(".dr-menu-link");
 const menuRightItems = document.querySelectorAll(".dr-menu-right-item");
+const servicesToggle = document.getElementById("dr-services-toggle");
+const servicesPanel = document.getElementById("dr-menu-services-panel");
+const servicesAccordion = document.getElementById("dr-services-accordion");
 let menuIsOpen = false;
+let servicesIsOpen = false;
+
+function toggleServicesPanel(state) {
+  if (!menuOverlay) return;
+  servicesIsOpen = typeof state === "boolean" ? state : !servicesIsOpen;
+  
+  const desktopArrow = document.querySelector(".dr-services-arrow-desktop");
+
+  if (servicesIsOpen) {
+    menuOverlay.classList.add("services-open");
+    if (desktopArrow) desktopArrow.textContent = "←";
+    if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "true");
+    if (servicesPanel) servicesPanel.setAttribute("aria-hidden", "false");
+    if (servicesAccordion) servicesAccordion.setAttribute("aria-hidden", "false");
+  } else {
+    menuOverlay.classList.remove("services-open");
+    if (desktopArrow) desktopArrow.textContent = "→";
+    if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "false");
+    if (servicesPanel) servicesPanel.setAttribute("aria-hidden", "true");
+    if (servicesAccordion) servicesAccordion.setAttribute("aria-hidden", "true");
+  }
+}
 
 function openMenu() {
   if (!menuOverlay) return;
@@ -143,6 +303,7 @@ function openMenu() {
 function closeMenu() {
   if (!menuOverlay) return;
   menuIsOpen = false;
+  toggleServicesPanel(false);
   hmb.classList.remove("open");
   document.body.classList.remove("menu-open");
 
@@ -189,13 +350,40 @@ if (hmb) {
   });
 }
 
+// Services click-to-reveal toggle listener
+if (servicesToggle) {
+  servicesToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleServicesPanel();
+  });
+}
+
+// Close services panel when clicking elsewhere inside the menu overlay
+if (menuOverlay) {
+  menuOverlay.addEventListener("click", (e) => {
+    if (!servicesIsOpen) return;
+    
+    const isInsideToggle = servicesToggle && servicesToggle.contains(e.target);
+    const isInsidePanel = servicesPanel && servicesPanel.contains(e.target);
+    const isInsideAccordion = servicesAccordion && servicesAccordion.contains(e.target);
+
+    if (!isInsideToggle && !isInsidePanel && !isInsideAccordion) {
+      toggleServicesPanel(false);
+    }
+  });
+}
+
 // Close menu when links are clicked (for smooth anchor scroll)
 document.querySelectorAll(".dr-menu-link").forEach((link) => {
   link.addEventListener("click", (e) => {
+    if (link.id === "dr-services-toggle" || link.classList.contains("dr-services-trigger")) {
+      return; // Handled by servicesToggle click handler
+    }
     closeMenu();
     
     const href = link.getAttribute("href");
-    if (href.startsWith("#") || href.includes("#")) {
+    if (href && (href.startsWith("#") || href.includes("#"))) {
       const hashIndex = href.indexOf("#");
       const targetId = href.substring(hashIndex);
       const target = document.querySelector(targetId);
@@ -204,6 +392,26 @@ document.querySelectorAll(".dr-menu-link").forEach((link) => {
         setTimeout(() => {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 450); // wait for menu fade-out delay
+      }
+    }
+  });
+});
+
+// Close menu and navigate when sub-menu service item links are clicked
+document.querySelectorAll(".dr-service-item-link").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    closeMenu();
+    
+    const href = link.getAttribute("href");
+    if (href && (href.startsWith("#") || href.includes("#"))) {
+      const hashIndex = href.indexOf("#");
+      const targetId = href.substring(hashIndex);
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 450);
       }
     }
   });
