@@ -104,33 +104,113 @@ window.addEventListener(
   { passive: true },
 );
 
-// ── Mobile menu ────────────────────────────────────────────
+// ── Fullscreen Navigation Menu ──────────────────────────────
 const hmb = document.getElementById("hamburger");
-const mob = document.getElementById("mobile-menu");
-let mOpen = false;
-hmb.addEventListener("click", () => {
-  mOpen = !mOpen;
-  mob.classList.toggle("open", mOpen);
-  document.getElementById("h1").style.cssText = mOpen
-    ? "transform:rotate(45deg) translate(4px,4px)"
-    : "";
-  document.getElementById("h2").style.opacity = mOpen ? "0" : "1";
-  document.getElementById("h3").style.cssText = mOpen
-    ? "transform:rotate(-45deg) translate(4px,-4px)"
-    : "";
+const menuOverlay = document.getElementById("dr-menu-overlay");
+const menuLinks = document.querySelectorAll(".dr-menu-link");
+const menuRightItems = document.querySelectorAll(".dr-menu-right-item");
+let menuIsOpen = false;
+
+function openMenu() {
+  if (!menuOverlay) return;
+  menuIsOpen = true;
+  hmb.classList.add("open");
+  menuOverlay.classList.add("open");
+  document.body.classList.add("menu-open");
+
+  // GSAP animations
+  gsap.killTweensOf([menuOverlay, menuLinks, menuRightItems]);
+  
+  // Fade in the overlay
+  gsap.fromTo(menuOverlay, 
+    { opacity: 0 }, 
+    { opacity: 1, duration: 0.4, ease: "power2.out" }
+  );
+
+  // Stagger links fading upward
+  gsap.fromTo(menuLinks,
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: "power3.out", delay: 0.1 }
+  );
+
+  // Stagger right column items fading upward
+  gsap.fromTo(menuRightItems,
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power3.out", delay: 0.25 }
+  );
+}
+
+function closeMenu() {
+  if (!menuOverlay) return;
+  menuIsOpen = false;
+  hmb.classList.remove("open");
+  document.body.classList.remove("menu-open");
+
+  // GSAP animations
+  gsap.killTweensOf([menuOverlay, menuLinks, menuRightItems]);
+
+  // Fade links downward/out
+  gsap.to(menuLinks, {
+    opacity: 0,
+    y: 15,
+    duration: 0.35,
+    stagger: 0.04,
+    ease: "power2.in",
+  });
+
+  // Fade right column items out
+  gsap.to(menuRightItems, {
+    opacity: 0,
+    y: 10,
+    duration: 0.3,
+    stagger: 0.03,
+    ease: "power2.in"
+  });
+
+  // Fade out the overlay
+  gsap.to(menuOverlay, {
+    opacity: 0,
+    duration: 0.4,
+    delay: 0.2,
+    ease: "power2.inOut",
+    onComplete: () => {
+      menuOverlay.classList.remove("open");
+    }
+  });
+}
+
+if (hmb) {
+  hmb.addEventListener("click", () => {
+    if (menuIsOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+}
+
+// Close menu when links are clicked (for smooth anchor scroll)
+document.querySelectorAll(".dr-menu-link").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    closeMenu();
+    
+    const href = link.getAttribute("href");
+    if (href.startsWith("#") || href.includes("#")) {
+      const hashIndex = href.indexOf("#");
+      const targetId = href.substring(hashIndex);
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 450); // wait for menu fade-out delay
+      }
+    }
+  });
 });
-document.querySelectorAll(".m-link").forEach((l) =>
-  l.addEventListener("click", () => {
-    mOpen = false;
-    mob.classList.remove("open");
-    ["h1", "h2", "h3"].forEach((id) => {
-      document.getElementById(id).style.cssText = "";
-    });
-  }),
-);
 
 // ── Smooth anchor scroll ───────────────────────────────────
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
+document.querySelectorAll('a[href^="#"]:not(.dr-menu-link)').forEach((a) => {
   a.addEventListener("click", (e) => {
     const t = document.querySelector(a.getAttribute("href"));
     if (t) {
@@ -425,3 +505,126 @@ setInterval(nextSlide, 6000);
   // ── Boot ──────────────────────────────────────────────────
   checkLaterResume();
 })(); // end IIFE
+
+// ══════════════════════════════════════════════════════════════
+//  DEMURUP INTRO SPLASH SCREEN
+// ══════════════════════════════════════════════════════════════
+
+(function() {
+  if (sessionStorage.getItem('splashPlayed')) {
+    return;
+  }
+
+  const stage = document.getElementById('dr-splash-stage');
+  const gridStage = document.getElementById('dr-splash-gridStage');
+  const pctEl = document.getElementById('dr-splash-pct');
+  const barFill = document.getElementById('dr-splash-barFill');
+  const COLS = 6, ROWS = 6;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let cells = [];
+  let timers = [];
+
+  function clearTimers(){ timers.forEach(t => clearTimeout(t)); timers = []; }
+  function after(fn, ms){ const t = setTimeout(fn, ms); timers.push(t); return t; }
+
+  function buildGrid(){
+    if (!gridStage) return;
+    gridStage.innerHTML = '';
+    gridStage.classList.remove('collapse');
+    cells = [];
+    const cx = (COLS - 1) / 2, cy = (ROWS - 1) / 2;
+    for (let r = 0; r < ROWS; r++){
+      for (let c = 0; c < COLS; c++){
+        const div = document.createElement('div');
+        div.className = 'dr-splash-cell';
+        const dist = Math.hypot(c - cx, r - cy);
+        div.dataset.dist = dist.toFixed(2);
+        gridStage.appendChild(div);
+        cells.push(div);
+      }
+    }
+  }
+
+  function fadeOutSplash() {
+    if (!stage) return;
+    stage.classList.add('dr-splash-fade-out');
+    document.body.classList.remove('dr-splash-active');
+    sessionStorage.setItem('splashPlayed', 'true');
+    // Remove element after transition completes (0.8s transition in CSS)
+    setTimeout(() => {
+      stage.remove();
+    }, 850);
+  }
+
+  function runSequence(){
+    if (!stage) return;
+    clearTimers();
+    stage.classList.remove('phase-logo', 'phase-idle');
+    buildGrid();
+
+    if (reduced){
+      after(() => stage.classList.add('phase-logo'), 50);
+      after(() => stage.classList.add('phase-idle'), 400);
+      animateCounter(600, 700);
+      after(fadeOutSplash, 600 + 700 + 1200);
+      return;
+    }
+
+    // Phase 1 — grid assembles, radial stagger
+    cells.forEach(cell => {
+      const d = parseFloat(cell.dataset.dist);
+      after(() => cell.classList.add('in'), 120 + d * 90);
+    });
+
+    const gridInEnd = 120 + 4.2 * 90 + 250; // ~ last cell + settle
+
+    // Phase 2 — redesign pulse: shuffled cells light up in a wave
+    const order = [...cells].sort((a,b) => parseFloat(a.dataset.dist) - parseFloat(b.dataset.dist));
+    order.forEach((cell, i) => {
+      const onAt = gridInEnd + i * 26;
+      after(() => cell.classList.add('pulse'), onAt);
+      after(() => cell.classList.remove('pulse'), onAt + 260);
+    });
+    const redesignEnd = gridInEnd + order.length * 26 + 400;
+
+    // Phase 3 — collapse into center
+    after(() => {
+      cells.forEach(cell => { cell.style.transformOrigin = '50% 50%'; });
+      gridStage.classList.add('collapse');
+    }, redesignEnd);
+
+    const collapseEnd = redesignEnd + 750;
+
+    // Phase 4 — logo draws
+    after(() => stage.classList.add('phase-logo'), collapseEnd);
+
+    // Phase 5 — loading readout counts up
+    animateCounter(collapseEnd + 950, 1350);
+
+    // Phase 6 — idle breathing state
+    after(() => stage.classList.add('phase-idle'), collapseEnd + 950 + 1350 + 250);
+
+    // Auto fade-out after idle phase settles (1.2s delay)
+    after(fadeOutSplash, collapseEnd + 950 + 1350 + 250 + 1200);
+  }
+
+  function animateCounter(startAt, duration){
+    after(() => {
+      const start = performance.now();
+      function tick(now){
+        const t = Math.min(1, (now - start) / duration);
+        const val = Math.round(t * 100);
+        if (pctEl) pctEl.textContent = val + '%';
+        if (barFill) barFill.style.width = val + '%';
+        if (t < 1){ requestAnimationFrame(tick); }
+      }
+      requestAnimationFrame(tick);
+    }, startAt);
+  }
+
+  // Expose runSequence for debugging/replay on demand
+  window.drSplashReplay = runSequence;
+
+  runSequence();
+})();
