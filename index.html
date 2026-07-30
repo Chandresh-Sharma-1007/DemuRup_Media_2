@@ -29,7 +29,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Bebas+Neue&family=Inter:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script>
@@ -61,11 +61,7 @@
 
       <div class="dr-splash-divider"></div>
 
-      <div class="dr-splash-readout">
-        <span class="dr-splash-label">ENTERING</span>
-        <div class="dr-splash-bar"><div class="dr-splash-bar-fill" id="dr-splash-barFill"></div></div>
-        <span class="dr-splash-pct" id="dr-splash-pct">0%</span>
-      </div>
+      
     </div>
 
     <div class="dr-splash-hint">Tap to replay</div>
@@ -195,7 +191,7 @@
         <!-- Left Column: Large Bold Links -->
         <div class="dr-menu-left">
           <ul class="dr-menu-links">
-            <li class="dr-menu-item"><a href="#about" class="dr-menu-link">About</a></li>
+            <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
             <li class="dr-menu-item dr-menu-item-services">
               <a href="#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
                 Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
@@ -212,9 +208,9 @@
                 </ul>
               </div>
             </li>
+            <li class="dr-menu-item"><a href="#clients" class="dr-menu-link">Clients</a></li>
             <li class="dr-menu-item"><a href="#portfolio" class="dr-menu-link">Portfolio</a></li>
             <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-            <li class="dr-menu-item"><a href="#clients" class="dr-menu-link">Clients</a></li>
             <li class="dr-menu-item"><a href="#contact-section" class="dr-menu-link">Contact</a></li>
           </ul>
         </div>
@@ -252,7 +248,7 @@
               <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
               <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
               <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
-            </ul>
+""            </ul>
           </div>
         </div>
       </div>
@@ -262,79 +258,101 @@
   <!-- ══════════════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════════════ -->
-  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-[#060606]">
-    <div class="absolute inset-y-0 right-0 w-full lg:w-[45%] z-0 hidden lg:block hero-visual-container">
-      <img src="BG_demurup.png" alt="DemuRup Media" class="w-full h-full object-cover object-center" />
+  <!-- ══════════════════════════════════════════════════════════════
+     HERO SECTION (Interactive Free-Roam Reel Cards & Headline Reveal)
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="hero" class="dr-hero" aria-label="DemuRup Media introduction">
 
-      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#060606] to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#060606] via-transparent to-[#060606]/20"></div>
-    </div>
+    <div class="dr-hero__rings" aria-hidden="true"></div>
 
-    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 py-10 w-full relative z-10 hero-top-margin-fix">
-      <div class="max-w-3xl">
-        <div class="flex items-center gap-3 mb-7 reveal">
-          <div class="w-2 h-2 rounded-full" style="background: var(--lime)"></div>
-          <span class="slabel">India's boldest growth studio</span>
-          <span class="slabel ml-4 pl-4 border-l border-[#333]">Est. 2024</span>
-        </div>
+    <h1 class="dr-hero__headline dr-typewriter-headline">
+      <span class="dr-typewriter__line dr-typewriter__line--static">ONE STOP SOLUTION FOR</span>
+      <span class="dr-typewriter__line dr-typewriter__line--dynamic">
+        <span class="dr-typewriter__target" id="hero-typewriter-text">Branding</span><span class="dr-typewriter__cursor" aria-hidden="true">|</span>
+      </span>
+    </h1>
 
-        <h1 id="hero-h1" class="font-display leading-[0.91]" style="
-              font-size: clamp(3.2rem, 8.5vw, 7.5rem);
-              letter-spacing: -0.01em;
-            ">
-          WE DON'T JUST THINK OUTSIDE THE BOX,<br />
-          <br />
+    <!-- Five floating reel-cover cards -->
+    <a class="dr-card dr-card--1" href="" aria-label="View reel: Brand campaign highlight">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1015/400/600" alt="Reel cover: Brand campaign highlight" loading="lazy">
+        </span>
+      </span>
+    </a>
 
-          <span style="
-                color: var(--lime);
-                text-shadow: 0 0 55px rgba(0, 204, 51, 0.32);
-              ">WE REDESIGN IT.</span><br />
-        </h1>
+    <a class="dr-card dr-card--2" href="" aria-label="View reel: Social content series">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1025/600/400" alt="Reel cover: Social content series" loading="lazy">
+        </span>
+      </span>
+    </a>
 
-        <p class="text-white/58 text-base lg:text-lg leading-relaxed mt-8 max-w-xl reveal">
-          A one-stop solution for all marketing needs
-        </p>
+    <a class="dr-card dr-card--3" href="" aria-label="View reel: Product launch film">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1069/400/600" alt="Reel cover: Product launch film" loading="lazy">
+        </span>
+      </span>
+    </a>
 
-        <div class="flex flex-wrap items-center gap-4 mt-10 reveal">
-          <a href="#contact-section" class="btn-lime px-7 py-4 rounded text-base font-bold">Start Growing →</a>
-          <a href="#services" class="btn-outline px-7 py-4 rounded text-base">Explore Services</a>
+    <a class="dr-card dr-card--4" href="" aria-label="View reel: Behind the scenes">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1062/600/400" alt="Reel cover: Behind the scenes" loading="lazy">
+        </span>
+      </span>
+    </a>
 
-          <div class="hero-badge-ring">
-            <svg class="hero-badge-svg" viewBox="0 0 100 100">
-              <path id="hero-badge-circle" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-              <text class="hero-badge-text" font-size="10.5" fill="#00cc33" font-family="DM Mono" letter-spacing="3.2"
-                text-anchor="middle">
-                <textPath href="#hero-badge-circle" startOffset="50%">
-                  CREATIVE AGENCY · EST. 2024 · INDIA →
-                </textPath>
-              </text>
-            </svg>
-            <div class="hero-badge-center">
-              <span style="color: var(--lime); font-size: 1.3rem">✦</span>
-            </div>
-          </div>
-        </div>
+    <a class="dr-card dr-card--5" href="" aria-label="View reel: Motion design showcase">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1060/400/600" alt="Reel cover: Motion design showcase" loading="lazy">
+        </span>
+      </span>
+    </a>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 mt-14 border border-[#1e1e1e] reveal">
-          <div class="p-5 lg:p-6 border-r border-[#1e1e1e]">
-            <div class="stat-num">50+</div>
-            <p class="text-white/42 text-xs mt-1">Brands Scaled</p>
-          </div>
-          <div class="p-5 lg:p-6 sm:border-r border-[#1e1e1e]">
-            <div class="stat-num">9</div>
-            <p class="text-white/42 text-xs mt-1">Core Services</p>
-          </div>
-          <div class="p-5 lg:p-6 border-t sm:border-t-0 border-r border-[#1e1e1e]">
-            <div class="stat-num">10+</div>
-            <p class="text-white/42 text-xs mt-1">Industries</p>
-          </div>
-          <div class="p-5 lg:p-6 border-t sm:border-t-0">
-            <div class="stat-num">100%</div>
-            <p class="text-white/42 text-xs mt-1">In-House</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <a class="dr-card dr-card--6" href="" aria-label="View reel: Brand strategy showcase">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1067/600/400" alt="Reel cover: Brand strategy showcase" loading="lazy">
+        </span>
+      </span>
+    </a>
+
+    <a class="dr-card dr-card--7" href="" aria-label="View reel: Creative video editing">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1074/400/600" alt="Reel cover: Creative video editing" loading="lazy">
+        </span>
+      </span>
+    </a>
+
+    <a class="dr-card dr-card--8" href="" aria-label="View reel: Social media campaign">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1080/600/400" alt="Reel cover: Social media campaign" loading="lazy">
+        </span>
+      </span>
+    </a>
+
+    <a class="dr-card dr-card--9" href="" aria-label="View reel: Digital marketing reel">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1084/400/600" alt="Reel cover: Digital marketing reel" loading="lazy">
+        </span>
+      </span>
+    </a>
+
+    <a class="dr-card dr-card--10" href="" aria-label="View reel: Performance strategy reel">
+      <span class="dr-card__motion">
+        <span class="dr-card__float">
+          <img src="https://picsum.photos/id/1068/600/400" alt="Reel cover: Performance strategy reel" loading="lazy">
+        </span>
+      </span>
+    </a>
+
   </section>
 
   <!-- ══ Marquee 1 — Services ══ -->

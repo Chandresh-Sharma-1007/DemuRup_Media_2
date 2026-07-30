@@ -20,18 +20,18 @@ document.addEventListener("mousemove", (e) => {
   gsap.set(ring, { x: rx, y: ry });
   requestAnimationFrame(animRing);
 })();
-document
-  .querySelectorAll("a,button,.check-item,.bcard,.step-card,.tcard,.ind-pill")
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      gsap.to(cur, { width: 18, height: 18, duration: 0.2 });
-      gsap.to(ring, { width: 52, height: 52, duration: 0.2 });
-    });
-    el.addEventListener("mouseleave", () => {
-      gsap.to(cur, { width: 10, height: 10, duration: 0.2 });
-      gsap.to(ring, { width: 34, height: 34, duration: 0.2 });
-    });
-  });
+document.addEventListener("mouseover", (e) => {
+  if (e.target && e.target.closest("a, button, .check-item, .bcard, .step-card, .tcard, .ind-pill, .dr-pop-maybe-later")) {
+    gsap.to(cur, { width: 18, height: 18, duration: 0.2 });
+    gsap.to(ring, { width: 52, height: 52, duration: 0.2 });
+  }
+});
+document.addEventListener("mouseout", (e) => {
+  if (e.target && e.target.closest("a, button, .check-item, .bcard, .step-card, .tcard, .ind-pill, .dr-pop-maybe-later")) {
+    gsap.to(cur, { width: 10, height: 10, duration: 0.2 });
+    gsap.to(ring, { width: 34, height: 34, duration: 0.2 });
+  }
+});
 
 // ── Shared Fullscreen Navigation Menu Component ─────────────────
 const MENU_OVERLAY_HTML = `
@@ -41,7 +41,7 @@ const MENU_OVERLAY_HTML = `
       <!-- Left Column: Large Bold Links -->
       <div class="dr-menu-left">
         <ul class="dr-menu-links">
-          <li class="dr-menu-item"><a href="index.html#about" class="dr-menu-link">About</a></li>
+          <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
           <li class="dr-menu-item dr-menu-item-services">
             <a href="index.html#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
               Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
@@ -58,9 +58,9 @@ const MENU_OVERLAY_HTML = `
               </ul>
             </div>
           </li>
+          <li class="dr-menu-item"><a href="index.html#clients" class="dr-menu-link">Clients</a></li>
           <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
           <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-          <li class="dr-menu-item"><a href="index.html#clients" class="dr-menu-link">Clients</a></li>
           <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
         </ul>
       </div>
@@ -113,28 +113,107 @@ function initMenuOverlay() {
   } else {
     existingOverlay.outerHTML = MENU_OVERLAY_HTML;
   }
+  initMenuLetterHoverAnimations();
 }
-initMenuOverlay();
 
-// ── Hero headline ──────────────────────────────────────────
-const h1 = document.getElementById("hero-h1");
-if (h1) {
-  const lines = h1.innerHTML.split("<br>");
-  h1.innerHTML = lines
-    .map(
-      (l) =>
-        `<span style="display:block;overflow:hidden"><span class="hline" style="display:block">${l}</span></span>`,
-    )
-    .join("");
-  gsap.from(".hline", {
-    yPercent: 108,
-    opacity: 0,
-    stagger: 0.11,
-    duration: 1.05,
-    ease: "power4.out",
-    delay: 0.25,
+function setupMenuLinkTypography() {
+  const links = document.querySelectorAll(".dr-menu-link");
+
+  links.forEach((link) => {
+    if (link.dataset.charSplit) return;
+    link.dataset.charSplit = "true";
+
+    // Set aria-label for accessibility if not set
+    if (!link.getAttribute("aria-label")) {
+      const cleanText = link.textContent.replace(/\s+/g, " ").trim();
+      link.setAttribute("aria-label", cleanText);
+    }
+
+    // Split text nodes into individual character spans
+    const childNodes = Array.from(link.childNodes);
+
+    childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        let text = node.textContent;
+        // Skip whitespace-only text nodes (indentation / newlines)
+        if (!text || /^\s+$/.test(text)) {
+          node.textContent = "";
+          return;
+        }
+
+        // Trim leading and trailing whitespace from the text node
+        text = text.trim();
+        if (!text) return;
+
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          const span = document.createElement("span");
+          span.className = "dr-char";
+          span.setAttribute("aria-hidden", "true");
+
+          if (char === " ") {
+            span.innerHTML = "&nbsp;";
+            span.classList.add("dr-char-space");
+          } else {
+            span.textContent = char;
+          }
+
+          fragment.appendChild(span);
+        }
+
+        link.replaceChild(fragment, node);
+      }
+    });
   });
 }
+
+function initMenuLetterHoverAnimations() {
+  setupMenuLinkTypography();
+
+  const links = document.querySelectorAll(".dr-menu-link");
+
+  links.forEach((link) => {
+    if (link.dataset.hoverAnimInit) return;
+    link.dataset.hoverAnimInit = "true";
+
+    const chars = link.querySelectorAll(".dr-char:not(.dr-char-space)");
+    if (!chars.length) return;
+
+    link.addEventListener("mouseenter", () => {
+      gsap.killTweensOf(chars);
+      gsap.to(chars, {
+        y: -7.5,
+        duration: 0.32,
+        stagger: 0.028,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    });
+
+    link.addEventListener("mouseleave", () => {
+      gsap.killTweensOf(chars);
+      gsap.timeline()
+        .to(chars, {
+          y: -9,
+          duration: 0.18,
+          stagger: 0.028,
+          ease: "power1.out"
+        })
+        .to(chars, {
+          y: 0,
+          duration: 0.32,
+          stagger: 0.028,
+          ease: "power2.inOut"
+        }, "-=0.26");
+    });
+  });
+}
+
+initMenuOverlay();
+
+
 
 // ── Scroll reveals ─────────────────────────────────────────
 gsap.utils.toArray(".reveal").forEach((el, i) => {
@@ -284,19 +363,29 @@ function openMenu() {
   // Fade in the overlay
   gsap.fromTo(menuOverlay, 
     { opacity: 0 }, 
-    { opacity: 1, duration: 0.4, ease: "power2.out" }
+    { opacity: 1, duration: 0.35, ease: "power2.out" }
   );
 
-  // Stagger links fading upward
+  // Stagger links fading upward (Fade, Y 20px -> 0, stagger 60ms)
   gsap.fromTo(menuLinks,
-    { opacity: 0, y: 30 },
-    { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: "power3.out", delay: 0.1 }
+    { opacity: 0, y: 20 },
+    { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.5, 
+      stagger: 0.06, 
+      ease: "power3.out", 
+      delay: 0.08,
+      onComplete: () => {
+        gsap.set(menuLinks, { clearProps: "transform,y" });
+      }
+    }
   );
 
-  // Stagger right column items fading upward
+  // Stagger right contact column items fading upward after menu links (delay: 0.35s)
   gsap.fromTo(menuRightItems,
     { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power3.out", delay: 0.25 }
+    { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: "power3.out", delay: 0.35 }
   );
 }
 
@@ -310,20 +399,20 @@ function closeMenu() {
   // GSAP animations
   gsap.killTweensOf([menuOverlay, menuLinks, menuRightItems]);
 
-  // Fade links downward/out
+  // Fade links out smoothly
   gsap.to(menuLinks, {
     opacity: 0,
-    y: 15,
-    duration: 0.35,
-    stagger: 0.04,
+    y: -15,
+    duration: 0.25,
+    stagger: 0.03,
     ease: "power2.in",
   });
 
-  // Fade right column items out
+  // Fade right contact column items out
   gsap.to(menuRightItems, {
     opacity: 0,
-    y: 10,
-    duration: 0.3,
+    y: -10,
+    duration: 0.2,
     stagger: 0.03,
     ease: "power2.in"
   });
@@ -331,11 +420,16 @@ function closeMenu() {
   // Fade out the overlay
   gsap.to(menuOverlay, {
     opacity: 0,
-    duration: 0.4,
-    delay: 0.2,
+    duration: 0.35,
+    delay: 0.15,
     ease: "power2.inOut",
     onComplete: () => {
       menuOverlay.classList.remove("open");
+      const chars = document.querySelectorAll(".dr-char");
+      if (chars.length) {
+        gsap.killTweensOf(chars);
+        gsap.set(chars, { clearProps: "transform,y" });
+      }
     }
   });
 }
@@ -835,4 +929,340 @@ setInterval(nextSlide, 6000);
   window.drSplashReplay = runSequence;
 
   runSequence();
+})();
+
+/* ── Interactive Hero Section Physics Engine ── */
+(function() {
+  "use strict";
+
+  var hero = document.querySelector(".dr-hero");
+  var headline = document.querySelector(".dr-hero__headline");
+  if (!hero || !headline) return;
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+  /* ---- 1. Entrance sequence ----------------------------------- */
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      hero.classList.add("is-revealed");
+    });
+  });
+
+  /* ---- 2. Free-roam DVD-logo-style physics engine --------------- */
+  var motionEls = Array.prototype.slice.call(hero.querySelectorAll(".dr-card__motion"));
+  var cardEls   = Array.prototype.slice.call(hero.querySelectorAll(".dr-card"));
+
+  var active = [];
+  cardEls.forEach(function(cardEl, i) {
+    if (getComputedStyle(cardEl).display !== "none") {
+      active.push({ card: cardEl, motion: motionEls[i] });
+    }
+  });
+  if (!active.length) return;
+
+  var speeds = [18, 24, 20, 28, 22, 25, 19, 26, 21, 23];
+  var angles = [35, 205, 120, 300, 165, 45, 140, 230, 310, 85];
+  var spinProfiles = [
+    { rot: 2.6, fr: 0.16, pr: 0.4, sc: 0.018, fs: 0.11, ps: 1.0 },
+    { rot: 2.2, fr: 0.13, pr: 1.8, sc: 0.015, fs: 0.14, ps: 0.2 },
+    { rot: 3.0, fr: 0.11, pr: 2.6, sc: 0.02,  fs: 0.09, ps: 2.1 },
+    { rot: 2.4, fr: 0.18, pr: 0.9, sc: 0.016, fs: 0.15, ps: 1.4 },
+    { rot: 2.8, fr: 0.14, pr: 3.1, sc: 0.019, fs: 0.1,  ps: 0.7 },
+    { rot: 2.5, fr: 0.15, pr: 1.2, sc: 0.017, fs: 0.12, ps: 1.8 },
+    { rot: 2.1, fr: 0.17, pr: 2.1, sc: 0.016, fs: 0.13, ps: 0.5 },
+    { rot: 2.9, fr: 0.12, pr: 0.7, sc: 0.019, fs: 0.10, ps: 2.4 },
+    { rot: 2.3, fr: 0.19, pr: 2.8, sc: 0.015, fs: 0.14, ps: 1.1 },
+    { rot: 2.7, fr: 0.13, pr: 1.5, sc: 0.018, fs: 0.11, ps: 0.9 }
+  ];
+  var depths = [0.35, 0.22, 0.4, 0.28, 0.2, 0.32, 0.25, 0.38, 0.21, 0.3];
+
+  var W = 0, H = 0;
+  var bodies = [];
+
+  function measure() {
+    var heroRect = hero.getBoundingClientRect();
+    W = heroRect.width;
+    H = heroRect.height;
+
+    bodies.forEach(function(b) {
+      var r = b.el.getBoundingClientRect();
+      b.w = r.width;
+      b.h = r.height;
+    });
+  }
+
+  function rectsOverlap(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) {
+    return ax1 < bx2 && ax2 > bx1 && ay1 < by2 && ay2 > by1;
+  }
+
+  var heroRect = hero.getBoundingClientRect();
+  W = heroRect.width || window.innerWidth;
+  H = heroRect.height || window.innerHeight;
+
+  active.forEach(function(pair, i) {
+    var r = pair.card.getBoundingClientRect();
+    var w = r.width || 80, h = r.height || 140;
+    var speed = speeds[i % speeds.length];
+    var ang = (angles[i % angles.length]) * Math.PI / 180;
+
+    var spawnX = 0, spawnY = 0;
+    for (var attempt = 0; attempt < 50; attempt++) {
+      spawnX = Math.random() * Math.max(10, W - w);
+      spawnY = Math.random() * Math.max(10, H - h);
+      
+      var overlapsExisting = false;
+      for (var k = 0; k < bodies.length; k++) {
+        var existing = bodies[k];
+        if (rectsOverlap(spawnX - 10, spawnY - 10, spawnX + w + 10, spawnY + h + 10, existing.x, existing.y, existing.x + existing.w, existing.y + existing.h)) {
+          overlapsExisting = true;
+          break;
+        }
+      }
+      if (!overlapsExisting) break;
+    }
+
+    bodies.push({
+      el: pair.card,
+      motion: pair.motion,
+      w: w, h: h,
+      x: spawnX,
+      y: spawnY,
+      vx: Math.cos(ang) * speed,
+      vy: Math.sin(ang) * speed,
+      baseVx: Math.cos(ang) * speed,
+      baseVy: Math.sin(ang) * speed,
+      baseSpeed: speed,
+      spin: spinProfiles[i % spinProfiles.length],
+      depth: depths[i % depths.length]
+    });
+  });
+
+  measure();
+  window.addEventListener("resize", measure);
+
+  /* ---- Mouse position relative to hero center (Wind / Current force) ---- */
+  var mouseInside = false;
+  var windX = 0;
+  var windY = 0;
+
+  if (!isTouch && !reduceMotion) {
+    hero.addEventListener("mouseenter", function() {
+      mouseInside = true;
+    });
+
+    hero.addEventListener("mousemove", function(e) {
+      mouseInside = true;
+
+      var heroRect = hero.getBoundingClientRect();
+      var centerX = heroRect.left + heroRect.width / 2;
+      var centerY = heroRect.top + heroRect.height / 2;
+
+      var relativeX = e.clientX - centerX;
+      var relativeY = e.clientY - centerY;
+
+      var distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY) || 1;
+      windX = relativeX / distance;
+      windY = relativeY / distance;
+    }, { passive: true });
+
+    hero.addEventListener("mouseleave", function() {
+      mouseInside = false;
+    });
+  }
+
+  function render(t) {
+    for (var i = 0; i < bodies.length; i++) {
+      var b = bodies[i];
+      var s = b.spin;
+      var rot = Math.sin(t * s.fr + s.pr) * s.rot;
+      var scale = 1 + Math.sin(t * s.fs + s.ps) * s.sc;
+
+      b.motion.style.transform =
+        "translate3d(" + b.x.toFixed(2) + "px," + b.y.toFixed(2) + "px,0) " +
+        "rotate(" + rot.toFixed(2) + "deg) scale(" + scale.toFixed(3) + ")";
+    }
+  }
+
+  if (reduceMotion) {
+    render(0);
+    return;
+  }
+
+  var lastTime = null;
+
+  var CARD_MARGIN = 10; // px of guaranteed spacing around each card
+
+  function tick(now) {
+    if (lastTime === null) lastTime = now;
+    var dt = (now - lastTime) / 1000;
+    lastTime = now;
+    if (dt > 0.05) dt = 0.05;
+
+    var i, b;
+
+    for (i = 0; i < bodies.length; i++) {
+      b = bodies[i];
+
+      if (mouseInside) {
+        // Continuous wind force applied every frame while cursor is resting inside hero section
+        var windStrength = b.baseSpeed * 2.8; // scale wind strength proportionally to card base speed
+        var targetVx = windX * windStrength;
+        var targetVy = windY * windStrength;
+
+        // Smoothly accelerate toward wind vector direction
+        b.vx += (targetVx - b.vx) * (2.5 * dt);
+        b.vy += (targetVy - b.vy) * (2.5 * dt);
+      } else {
+        // Cursor left hero section: smoothly blend back to ambient random drift over ~1s
+        b.vx += (b.baseVx - b.vx) * (1.0 * dt);
+        b.vy += (b.baseVy - b.vy) * (1.0 * dt);
+      }
+
+      // Enforce minimum speed so cards never stop or freeze
+      var curSpeed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+      var minSpeed = Math.max(12, b.baseSpeed * 0.65);
+      if (curSpeed < minSpeed) {
+        if (curSpeed < 0.001) {
+          b.vx = b.baseVx;
+          b.vy = b.baseVy;
+        } else {
+          var factor = minSpeed / curSpeed;
+          b.vx *= factor;
+          b.vy *= factor;
+        }
+      }
+
+      b.x += b.vx * dt;
+      b.y += b.vy * dt;
+    }
+
+    for (i = 0; i < bodies.length; i++) {
+      b = bodies[i];
+      if (b.x > W) {
+        b.x = -b.w + 1;
+      } else if (b.x < -b.w) {
+        b.x = W - 1;
+      }
+      if (b.y > H) {
+        b.y = -b.h + 1;
+      } else if (b.y < -b.h) {
+        b.y = H - 1;
+      }
+    }
+
+    // Separation: push cards apart if within CARD_MARGIN of each other
+    for (i = 0; i < bodies.length; i++) {
+      for (var j = i + 1; j < bodies.length; j++) {
+        var a = bodies[i], c = bodies[j];
+        var m = CARD_MARGIN;
+        var ax1 = a.x - m, ay1 = a.y - m, ax2 = a.x + a.w + m, ay2 = a.y + a.h + m;
+        var cx1 = c.x - m, cy1 = c.y - m, cx2 = c.x + c.w + m, cy2 = c.y + c.h + m;
+
+        if (rectsOverlap(ax1, ay1, ax2, ay2, cx1, cy1, cx2, cy2)) {
+          var overlapX = Math.min(ax2, cx2) - Math.max(ax1, cx1);
+          var overlapY = Math.min(ay2, cy2) - Math.max(ay1, cy1);
+
+          if (overlapX < overlapY) {
+            var pushX = overlapX * 0.5;
+            if (a.x < c.x) { a.x -= pushX; c.x += pushX; }
+            else { a.x += pushX; c.x -= pushX; }
+          } else {
+            var pushY = overlapY * 0.5;
+            if (a.y < c.y) { a.y -= pushY; c.y += pushY; }
+            else { a.y += pushY; c.y -= pushY; }
+          }
+        }
+      }
+    }
+
+    render(now / 1000);
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+
+/* ── Hero Typewriter Headline Animation ── */
+(function() {
+  "use strict";
+
+  var targetEl = document.getElementById("hero-typewriter-text");
+  if (!targetEl) return;
+
+  var services = [
+    "Branding",
+    "SEO & GMB",
+    "Influencer Marketing",
+    "Performance Marketing",
+    "Social Media Management",
+    "Web Design & Development"
+  ];
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var currentIndex = 0;
+  var charIndex = 0;
+  var isDeleting = false;
+  var activeTimer = null;
+
+  var PAUSE_AFTER_TYPED = 1800; // ~1.8s pause when full word is typed
+  var PAUSE_BEFORE_TYPE = 350;  // ~0.35s pause before typing next word
+
+  function getTypingDelay(char) {
+    if (char === ' ' || char === '&') {
+      return 110 + Math.random() * 40; // Slight pause on word boundaries
+    }
+    return 45 + Math.random() * 35; // 45-80ms per character
+  }
+
+  function getDeletingDelay() {
+    return 25 + Math.random() * 15; // 25-40ms per character
+  }
+
+  if (reduceMotion) {
+    targetEl.textContent = services[currentIndex];
+    setInterval(function() {
+      currentIndex = (currentIndex + 1) % services.length;
+      targetEl.textContent = services[currentIndex];
+    }, 3200);
+    return;
+  }
+
+  function typeLoop() {
+    if (activeTimer) {
+      clearTimeout(activeTimer);
+      activeTimer = null;
+    }
+
+    var currentText = services[currentIndex];
+
+    if (isDeleting) {
+      charIndex--;
+      targetEl.textContent = currentText.substring(0, charIndex);
+    } else {
+      charIndex++;
+      targetEl.textContent = currentText.substring(0, charIndex);
+    }
+
+    var delay = 50;
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      delay = PAUSE_AFTER_TYPED;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      currentIndex = (currentIndex + 1) % services.length;
+      delay = PAUSE_BEFORE_TYPE;
+    } else if (isDeleting) {
+      delay = getDeletingDelay();
+    } else {
+      var lastChar = currentText.charAt(charIndex - 1);
+      delay = getTypingDelay(lastChar);
+    }
+
+    activeTimer = setTimeout(typeLoop, delay);
+  }
+
+  targetEl.textContent = "";
+  activeTimer = setTimeout(typeLoop, 450);
 })();
