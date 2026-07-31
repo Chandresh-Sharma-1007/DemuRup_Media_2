@@ -9,9 +9,9 @@
   <title>DemuRup Media — Creative Marketing & Branding Agency</title>
   <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png" />
   <script>
-    (function() {
+    (function () {
       const _warn = console.warn;
-      console.warn = function(...args) {
+      console.warn = function (...args) {
         if (args[0] && typeof args[0] === 'string' && args[0].indexOf('cdn.tailwindcss.com') !== -1) return;
         _warn.apply(console, args);
       };
@@ -61,7 +61,7 @@
 
       <div class="dr-splash-divider"></div>
 
-      
+
     </div>
 
     <div class="dr-splash-hint">Tap to replay</div>
@@ -174,7 +174,7 @@
   <nav id="main-nav" class="z-[10000]">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
       <a href="#hero" class="flex items-center z-[10002]">
-        <img src="main logo.png" alt="DemuRup Media" class="h-8 lg:h-10 w-auto object-contain" />
+        <img src="main logo.png" alt="DemuRup Media" class="h-12 lg:h-14 w-auto object-contain" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
         <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h1"></span>
@@ -193,8 +193,10 @@
           <ul class="dr-menu-links">
             <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
             <li class="dr-menu-item dr-menu-item-services">
-              <a href="#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
-                Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
+              <a href="#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle"
+                aria-expanded="false">
+                Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span
+                  class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
               </a>
               <!-- Mobile/Tablet Accordion Dropdown -->
               <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
@@ -203,8 +205,10 @@
                   <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
                   <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
                   <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
-                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
-                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a>
+                  </li>
+                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -221,9 +225,10 @@
             <div class="dr-menu-right-item dr-menu-contact-section">
               <h4 class="dr-menu-sublabel">Connect</h4>
               <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
-              <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
+              <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865
+                69990</a>
             </div>
-            
+
             <div class="dr-menu-right-item dr-menu-contact-section">
               <h4 class="dr-menu-sublabel">Location</h4>
               <p class="dr-menu-text">Vapi, Gujarat, India</p>
@@ -232,8 +237,10 @@
             <div class="dr-menu-right-item dr-menu-contact-section">
               <h4 class="dr-menu-sublabel">Socials</h4>
               <div class="dr-menu-socials">
-                <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
-                <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
+                <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener"
+                  class="dr-menu-social-link">Instagram</a>
+                <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener"
+                  class="dr-menu-social-link">LinkedIn</a>
               </div>
             </div>
           </div>
@@ -248,7 +255,8 @@
               <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
               <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
               <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
-""            </ul>
+              ""
+            </ul>
           </div>
         </div>
       </div>
@@ -263,12 +271,16 @@
   ══════════════════════════════════════════════════════════════ -->
   <section id="hero" class="dr-hero" aria-label="DemuRup Media introduction">
 
+    <!-- Interactive Mouse Energy Trail Canvas (Brand Green #00cc33) -->
+    <canvas class="dr-hero-trail-canvas" id="dr-hero-trail-canvas" aria-hidden="true"></canvas>
+
     <div class="dr-hero__rings" aria-hidden="true"></div>
 
     <h1 class="dr-hero__headline dr-typewriter-headline">
-      <span class="dr-typewriter__line dr-typewriter__line--static">ONE STOP SOLUTION FOR</span>
+      <span class="dr-typewriter__line dr-typewriter__line--static">One Stop Solution For</span>
       <span class="dr-typewriter__line dr-typewriter__line--dynamic">
-        <span class="dr-typewriter__target" id="hero-typewriter-text">Branding</span><span class="dr-typewriter__cursor" aria-hidden="true">|</span>
+        <span class="dr-typewriter__target" id="hero-typewriter-text">Branding</span><span class="dr-typewriter__cursor"
+          aria-hidden="true">|</span>
       </span>
     </h1>
 
@@ -1220,9 +1232,9 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     CREDENTIALS / WORK
+     CREDENTIALS / WORK / PORTFOLIO
 ══════════════════════════════════════════════════════════════ -->
-  <section class="py-20 border-t border-[#111]">
+  <section id="portfolio" class="py-20 border-t border-[#111]">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Our Work</div> -->
       <h2 class="font-display leading-[0.91] mb-12 reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
@@ -1724,9 +1736,26 @@
   </footer>
 
   <!-- ══════════════════════════════════════════════════════════════
-     JAVASCRIPT
+     PROFESSIONAL CENTERED YOUTUBE VIDEO MODAL
 ══════════════════════════════════════════════════════════════ -->
+  <div id="dr-video-modal-overlay" class="dr-video-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="dr-video-modal-container" id="dr-video-modal-container">
+      
+      <!-- Floating Close Button (42x42px Black Glass Circle) -->
+      <button id="dr-video-modal-close" class="dr-video-modal-close" aria-label="Close modal">
+        <svg width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
 
+      <!-- 16:9 Video Player Frame -->
+      <div class="dr-video-modal-frame">
+        <iframe id="dr-video-modal-iframe" title="DemuRup Media Video Showcase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

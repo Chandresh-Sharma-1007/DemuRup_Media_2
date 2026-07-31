@@ -1014,7 +1014,7 @@ setInterval(nextSlide, 6000);
       var overlapsExisting = false;
       for (var k = 0; k < bodies.length; k++) {
         var existing = bodies[k];
-        if (rectsOverlap(spawnX - 10, spawnY - 10, spawnX + w + 10, spawnY + h + 10, existing.x, existing.y, existing.x + existing.w, existing.y + existing.h)) {
+        if (rectsOverlap(spawnX - 25, spawnY - 25, spawnX + w + 25, spawnY + h + 25, existing.x, existing.y, existing.x + existing.w, existing.y + existing.h)) {
           overlapsExisting = true;
           break;
         }
@@ -1091,7 +1091,7 @@ setInterval(nextSlide, 6000);
 
   var lastTime = null;
 
-  var CARD_MARGIN = 10; // px of guaranteed spacing around each card
+  var CARD_MARGIN = 24; // px of guaranteed spacing around each card (20px-30px gap)
 
   function tick(now) {
     if (lastTime === null) lastTime = now;
@@ -1265,4 +1265,241 @@ setInterval(nextSlide, 6000);
 
   targetEl.textContent = "";
   activeTimer = setTimeout(typeLoop, 450);
+})();
+
+/* ── Interactive Hero Canvas Ribbon (Wide Liquid Silk #00cc33) ── */
+(function() {
+  "use strict";
+
+  var hero = document.querySelector(".dr-hero");
+  var canvas = document.getElementById("dr-hero-trail-canvas");
+  if (!hero || !canvas) return;
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var isTouch = window.matchMedia("(pointer: coarse)").matches;
+  if (reduceMotion) return;
+
+  var ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  var width = 0, height = 0;
+  function resize() {
+    var rect = hero.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  var MAX_POINTS = 30; // ~200-250px max trail length
+  var history = [];
+  var targetX = width / 2;
+  var targetY = height / 2;
+  var currentX = targetX;
+  var currentY = targetY;
+  var lastAddedX = -9999;
+  var lastAddedY = -9999;
+  var lastMoveTime = 0;
+  var initialized = false;
+  var isHovered = false;
+
+  function onMouseMove(e) {
+    var rect = hero.getBoundingClientRect();
+    targetX = e.clientX - rect.left;
+    targetY = e.clientY - rect.top;
+    lastMoveTime = Date.now();
+
+    if (!initialized) {
+      currentX = targetX;
+      currentY = targetY;
+      initialized = true;
+    }
+    isHovered = true;
+  }
+
+  function onMouseEnter() { isHovered = true; }
+  function onMouseLeave() { isHovered = false; history = []; }
+
+  hero.addEventListener("mousemove", onMouseMove, { passive: true });
+  hero.addEventListener("mouseenter", onMouseEnter, { passive: true });
+  hero.addEventListener("mouseleave", onMouseLeave, { passive: true });
+
+  function renderTrail() {
+    ctx.clearRect(0, 0, width, height);
+
+    var now = Date.now();
+    // Only generate new trail points while active mouse motion is detected (within 50ms and distance >= 1.8px)
+    var isMouseMoving = isHovered && (now - lastMoveTime < 50) && (Math.hypot(targetX - currentX, targetY - currentY) >= 1.5);
+
+    if (initialized) {
+      if (isMouseMoving) {
+        // Lerp lead point toward cursor
+        currentX += (targetX - currentX) * 0.22;
+        currentY += (targetY - currentY) * 0.22;
+
+        // Add new point ONLY if cursor has moved >= 2.0px from last point
+        if (Math.hypot(currentX - lastAddedX, currentY - lastAddedY) >= 2.0 || history.length === 0) {
+          history.unshift({ x: currentX, y: currentY });
+          lastAddedX = currentX;
+          lastAddedY = currentY;
+          if (history.length > MAX_POINTS) {
+            history.pop();
+          }
+        }
+      } else {
+        // Stationary / Idle: Stop drawing new points at same position.
+        // Dissolve existing trail by popping oldest point frame by frame
+        if (history.length > 0) {
+          history.pop();
+        }
+      }
+
+      var len = history.length;
+
+      if (len >= 2) {
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+
+        // Render densely interpolated radial gradient circles along active history points only
+        for (var i = 0; i < len - 1; i++) {
+          var p1 = history[i];
+          var p2 = history[i + 1];
+
+          var t1 = i / len;
+          var t2 = (i + 1) / len;
+
+          var dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+          var steps = Math.max(2, Math.ceil(dist / 3));
+
+          for (var s = 0; s < steps; s++) {
+            var subT = s / steps;
+            var x = p1.x + (p2.x - p1.x) * subT;
+            var y = p1.y + (p2.y - p1.y) * subT;
+
+            var progress = t1 + (t2 - t1) * subT; // 0 at head, 1 at tail
+
+            // Ribbon Radius Profile: Head (~45px) -> Wide Body (~145px / 290px width) -> Tail (~4px)
+            var radius;
+            if (progress < 0.2) {
+              radius = 45 + (145 - 45) * (progress / 0.2);
+            } else {
+              radius = Math.max(4, 145 * Math.pow(1 - (progress - 0.2) / 0.8, 1.2));
+            }
+
+            // Opacity decays from head to tail, also factoring remaining history count
+            var fadeFactor = Math.min(1, len / 10);
+            var alpha = (1 - progress) * 0.22 * fadeFactor;
+
+            if (alpha <= 0.001 || radius <= 0) continue;
+
+            // Pure Brand Green #00cc33 Radial Gradient ONLY
+            var grad = ctx.createRadialGradient(x, y, 0, x, y, radius);
+            grad.addColorStop(0, "rgba(0, 204, 51, " + alpha.toFixed(3) + ")");
+            grad.addColorStop(0.5, "rgba(0, 204, 51, " + (alpha * 0.5).toFixed(3) + ")");
+            grad.addColorStop(1, "rgba(0, 204, 51, 0)");
+
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        ctx.restore();
+      }
+    }
+
+    requestAnimationFrame(renderTrail);
+  }
+
+  requestAnimationFrame(renderTrail);
+})();
+
+/* ── Professional Centered YouTube Video Modal Handler ── */
+(function() {
+  "use strict";
+
+  var overlay = document.getElementById("dr-video-modal-overlay");
+  var container = document.getElementById("dr-video-modal-container");
+  var closeBtn = document.getElementById("dr-video-modal-close");
+  var iframe = document.getElementById("dr-video-modal-iframe");
+  if (!overlay || !container || !closeBtn || !iframe) return;
+
+  var defaultVideoUrl = "https://www.youtube.com/embed/bjxTIcuzB6k?autoplay=1&rel=0";
+
+  function parseYouTubeEmbedUrl(input) {
+    if (!input) return null;
+    var match = input.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    var videoId = match ? match[1] : (input.length === 11 ? input : null);
+    return videoId ? "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0" : null;
+  }
+
+  function openModal(triggerEl) {
+    var targetUrl = defaultVideoUrl;
+
+    if (triggerEl) {
+      var customUrl = triggerEl.getAttribute("data-video-url") || triggerEl.getAttribute("data-youtube-id") || triggerEl.getAttribute("data-video-id");
+      var parsed = parseYouTubeEmbedUrl(customUrl);
+      if (parsed) targetUrl = parsed;
+    }
+
+    iframe.src = targetUrl;
+    overlay.setAttribute("aria-hidden", "false");
+    overlay.classList.add("is-active");
+    document.body.classList.add("dr-modal-open");
+  }
+
+  function closeModal() {
+    overlay.classList.remove("is-active");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("dr-modal-open");
+
+    // Clear iframe src after 0.35s transition finishes to stop video completely
+    setTimeout(function() {
+      if (!overlay.classList.contains("is-active")) {
+        iframe.src = "";
+      }
+    }, 350);
+  }
+
+  // Bind click handlers to portfolio cards and reel items
+  var triggers = document.querySelectorAll(".dr-card, .cred-card, [data-video-modal]");
+  triggers.forEach(function(el) {
+    el.addEventListener("click", function(e) {
+      var href = el.getAttribute("href");
+      if (!href || href === "" || href === "#") {
+        e.preventDefault();
+      }
+      openModal(el);
+    });
+  });
+
+  // Close button click
+  closeBtn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    closeModal();
+  });
+
+  // ESC keypress close
+  window.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && overlay.classList.contains("is-active")) {
+      closeModal();
+    }
+  });
+
+  // Overlay backdrop click (outside modal box)
+  overlay.addEventListener("click", function(e) {
+    if (e.target === overlay) {
+      closeModal();
+    }
+  });
+
+  // Prevent click inside modal container from closing
+  container.addEventListener("click", function(e) {
+    e.stopPropagation();
+  });
 })();
