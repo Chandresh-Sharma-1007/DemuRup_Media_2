@@ -58,7 +58,7 @@ const MENU_OVERLAY_HTML = `
               </ul>
             </div>
           </li>
-          <li class="dr-menu-item"><a href="index.html#clients" class="dr-menu-link">Clients</a></li>
+          <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
           <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
           <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
           <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>

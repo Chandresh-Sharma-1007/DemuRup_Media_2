@@ -1,4 +1,33 @@
+/* ── Typography System ── */
+@font-face {
+  font-family: 'The Seasons';
+  src: url('fonts/TheSeasons-Regular.woff2') format('woff2'),
+       url('fonts/TheSeasons-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('fonts/TheSeasons-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Beautiful Delight';
+  src: url('fonts/BeautifulDelight-Regular.woff2') format('woff2'),
+       url('fonts/BeautifulDelight-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --font-heading: "The Seasons", serif;
+  --font-body: "Beautiful Delight", serif;
   --lime: #00cc33;
   --lime-dark: #009922;
   --black: #000000;
@@ -6,6 +35,17 @@
   --gray: #a0a0a0;
   --border: #1e1e1e;
   --card: #080808;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav,
+button {
+  font-family: var(--font-heading);
 }
 
 *,
@@ -23,7 +63,7 @@ html {
 body {
   background: var(--black);
   color: var(--white);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   overflow-x: hidden;
   cursor: none;
   -webkit-font-smoothing: antialiased;
@@ -75,11 +115,11 @@ body {
 
 /* ── Fonts ── */
 .font-display {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-heading);
 }
 
 .font-mono {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
 }
 
 /* ── Noise grain ── */
@@ -129,7 +169,7 @@ body::after {
 
 /* ── Section label ── */
 .slabel {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: .7rem;
   letter-spacing: .22em;
   color: var(--gray);
@@ -202,7 +242,7 @@ body::after {
   background: var(--lime);
   color: #000;
   font-weight: 700;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-heading);
   border: 2px solid var(--lime);
   transition: all .25s;
   letter-spacing: .04em;
@@ -221,7 +261,7 @@ body::after {
   background: transparent;
   color: var(--white);
   font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-heading);
   border: 2px solid #2a2a2a;
   transition: all .25s;
   letter-spacing: .04em;
@@ -278,14 +318,14 @@ body::after {
 
 /* ── Stat num ── */
 .stat-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   color: var(--lime);
   line-height: 1;
 }
 
 .service-tag {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: .67rem;
   color: var(--lime);
   letter-spacing: .2em;
@@ -311,7 +351,7 @@ body::after {
 }
 
 .logo-text {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-heading);
   font-size: 1rem;
   letter-spacing: .08em;
   color: #fff;
@@ -334,7 +374,7 @@ body::after {
 }
 
 .step-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-heading);
   font-size: 5rem;
   line-height: 1;
   color: var(--lime);
@@ -371,7 +411,7 @@ body::after {
   color: #fff;
   border-radius: 8px;
   padding: 14px 16px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   font-size: .9rem;
   outline: none;
   transition: border-color .25s;
@@ -388,7 +428,7 @@ body::after {
 }
 
 .form-label {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: .7rem;
   letter-spacing: .15em;
   color: var(--gray);
@@ -513,7 +553,7 @@ select.form-input option {
   opacity: 0;
   pointer-events: none;
   transition: opacity .3s;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
 }
 
 .wa-float:hover .wa-float-label {
@@ -766,7 +806,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 
 /* Fallback text if image 404s */
 .logo-img-item .logo-fallback {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-heading);
   font-size: .95rem;
   letter-spacing: .08em;
   color: rgba(255, 255, 255, .6);
@@ -970,7 +1010,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 }
 
 .dr-pop-badge-text {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   color: #00cc33;
@@ -979,7 +1019,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 
 /* — Headline — */
 .dr-pop-headline {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 6vw, 2.75rem);
   line-height: 0.95;
   letter-spacing: -0.01em;
@@ -995,7 +1035,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 
 /* — Sub text — */
 .dr-pop-sub {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.6;
@@ -1019,7 +1059,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
   padding: 15px 24px;
   background: #00cc33;
   color: #000;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1070,7 +1110,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 #dr-later-btn {
   display: block;
   text-align: center;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   color: rgba(255, 255, 255, 0.28);
@@ -1103,7 +1143,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.28);
@@ -1179,7 +1219,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
   border: 1px solid rgba(0, 204, 51, 0.3);
   border-radius: 12px;
   padding: 10px 14px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   color: rgba(0, 204, 51, 0.7);
@@ -1545,7 +1585,7 @@ body.dr-splash-active {
   display: flex;
   align-items: center;
   gap: 14px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-body);
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--gray);
@@ -1785,7 +1825,7 @@ body.dr-splash-active {
   will-change: transform;
   transform-origin: center;
   color: #ffffff;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.1rem, 4.2vw, 3.8rem);
   font-weight: 600;
   line-height: 1.25;
@@ -1902,7 +1942,7 @@ body.dr-splash-active {
 .dr-service-item-link {
   display: inline-block;
   color: rgba(255, 255, 255, 0.85);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 500;
   text-decoration: none;
@@ -1964,7 +2004,7 @@ body.dr-splash-active {
 }
 
 .dr-menu-sublabel {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   color: rgba(255, 255, 255, 0.45);
@@ -1976,7 +2016,7 @@ body.dr-splash-active {
 .dr-menu-contact-link,
 .dr-menu-text {
   color: #ffffff;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   font-size: 1.15rem;
   font-weight: 400;
   text-decoration: none;
@@ -1996,7 +2036,7 @@ body.dr-splash-active {
 .dr-menu-social-link {
   display: inline-block;
   color: #ffffff;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-heading);
   font-size: 1.05rem;
   text-decoration: none;
   transition: color 0.25s ease, transform 0.25s ease;
@@ -2117,8 +2157,8 @@ body.menu-open {
   --dr-text-mute: #a0a0a0;
   --dr-text-faint: rgba(255, 255, 255, 0.45);
 
-  --dr-font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  --dr-font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --dr-font-display: var(--font-heading);
+  --dr-font-body: var(--font-body);
 
   --dr-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -2605,7 +2645,7 @@ body.menu-open {
   text-align: center;
   font-family: var(--dr-font-display);
   font-weight: 900;
-  text-transform: uppercase;
+  text-transform: none;
   font-size: clamp(1.5rem, 3.4vw, 3.1rem);
   line-height: 1.25;
   letter-spacing: -0.005em;
@@ -2624,6 +2664,7 @@ body.menu-open {
 .dr-typewriter__line--static {
   color: var(--dr-text);
   margin-bottom: 0.15em;
+  text-transform: none;
 }
 
 .dr-typewriter__line--dynamic {
@@ -2789,4 +2830,85 @@ body.dr-modal-open {
     width: 36px;
     height: 36px;
   }
+}
+
+/* ══════════════════════════════════════════════
+       PREMIUM CLIENTS SHOWCASE PAGE STYLES
+   ══════════════════════════════════════════════ */
+
+.client-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 2.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.client-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 204, 51, 0.08) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.client-card:hover {
+  transform: translateY(-8px);
+  border-color: #00cc33;
+  box-shadow: 0 12px 36px rgba(0, 204, 51, 0.16), 0 0 0 1px rgba(0, 204, 51, 0.3);
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+.client-card:hover::before {
+  opacity: 1;
+}
+
+.client-card-logo-wrap {
+  position: relative;
+  height: 90px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  z-index: 1;
+}
+
+.client-card-logo {
+  max-height: 68px;
+  max-width: 210px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0.9) contrast(1.1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.client-card:hover .client-card-logo {
+  transform: scale(1.08);
+  filter: brightness(1) contrast(1.2);
+}
+
+.client-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0;
+  line-height: 1.25;
+  text-align: center;
+  z-index: 1;
 }
