@@ -21,13 +21,13 @@ document.addEventListener("mousemove", (e) => {
   requestAnimationFrame(animRing);
 })();
 document.addEventListener("mouseover", (e) => {
-  if (e.target && e.target.closest("a, button, .check-item, .bcard, .step-card, .tcard, .ind-pill, .dr-pop-maybe-later")) {
+  if (e.target && e.target.closest("a, button, .check-item, .bcard, .step-card, .tcard, .ind-pill, .dr-pop-maybe-later, .client-card, [data-cursor='link'], .wwh-tab")) {
     gsap.to(cur, { width: 18, height: 18, duration: 0.2 });
     gsap.to(ring, { width: 52, height: 52, duration: 0.2 });
   }
 });
 document.addEventListener("mouseout", (e) => {
-  if (e.target && e.target.closest("a, button, .check-item, .bcard, .step-card, .tcard, .ind-pill, .dr-pop-maybe-later")) {
+  if (e.target && e.target.closest("a, button, .check-item, .bcard, .step-card, .tcard, .ind-pill, .dr-pop-maybe-later, .client-card, [data-cursor='link'], .wwh-tab")) {
     gsap.to(cur, { width: 10, height: 10, duration: 0.2 });
     gsap.to(ring, { width: 34, height: 34, duration: 0.2 });
   }
@@ -258,7 +258,7 @@ document.querySelectorAll("[data-count]").forEach((el) => {
   });
 });
 
-// ── Smart Nav scroll behavior ─────────────────────────────
+// ── Smart Nav scroll & contrast theme behavior ─────────────────────────────
 (function initSmartNavScroll() {
   const mainNav = document.getElementById("main-nav");
   if (!mainNav) return;
@@ -268,13 +268,41 @@ document.querySelectorAll("[data-count]").forEach((el) => {
   const SCROLL_THRESHOLD = 5;
   const STOP_TIMEOUT = 400; // Auto-reveal nav after 400ms pause
 
+  function updateNavTheme() {
+    if (document.body.classList.contains("menu-open")) {
+      mainNav.classList.remove("nav-theme-dark-foreground");
+      return;
+    }
+
+    const navCheckY = 40; // 40px from top of viewport (center of nav)
+    const sections = document.querySelectorAll("section[data-theme], footer[data-theme], header[data-theme], div[data-theme]");
+    let currentTheme = "dark"; // Default to dark section (Hero is dark)
+
+    for (let i = 0; i < sections.length; i++) {
+      const rect = sections[i].getBoundingClientRect();
+      if (rect.top <= navCheckY && rect.bottom > navCheckY) {
+        currentTheme = sections[i].getAttribute("data-theme") || "dark";
+        break;
+      }
+    }
+
+    if (currentTheme === "light") {
+      mainNav.classList.add("nav-theme-dark-foreground");
+    } else {
+      mainNav.classList.remove("nav-theme-dark-foreground");
+    }
+  }
+
+  // Initial update
+  updateNavTheme();
+
   window.addEventListener(
     "scroll",
     () => {
       const currentScrollY = window.scrollY;
 
-      // Update border color based on scroll position
-      mainNav.style.borderBottomColor = currentScrollY > 60 ? "#161616" : "#1e1e1e";
+      // Update theme contrast dynamically on scroll
+      updateNavTheme();
 
       // 1. If menu overlay is open, ALWAYS keep nav visible
       if (document.body.classList.contains("menu-open")) {
@@ -596,6 +624,7 @@ setInterval(nextSlide, 6000);
   const SESSION_KEY_LATER = "dr_popup_later_ts"; // "Maybe later" timestamp
 
   const overlay = document.getElementById("dr-popup-overlay");
+  if (!overlay) return;
   const badge = document.getElementById("dr-reappear-badge");
   const cntEl = document.getElementById("dr-badge-countdown");
   const timerCircle = document.getElementById("dr-timer-circle");
@@ -1503,3 +1532,302 @@ setInterval(nextSlide, 6000);
     e.stopPropagation();
   });
 })();
+
+// ══════════════════════════════════════════════════════════════
+// DEMURUP MEDIA — CREATIVE DIGITAL AGENCY SERVICE PAGES ENGINE
+// ══════════════════════════════════════════════════════════════
+function initServicePages() {
+  const isServicePage = document.body.classList.contains("srv-body");
+  if (!isServicePage) return;
+
+  // 1. Creative Hero Entrance Animation
+  const heroSection = document.querySelector(".srv-hero");
+  const heroBadge = document.querySelector(".srv-hero-badge");
+  const heroTitle = document.querySelector(".srv-hero-title");
+  const heroGraphics = document.querySelectorAll(".srv-hero-graphic");
+
+  if (typeof gsap !== "undefined") {
+    const tl = gsap.timeline({ delay: 0.1 });
+
+    if (heroBadge) {
+      tl.fromTo(
+        heroBadge,
+        { opacity: 0, y: -15, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power2.out" }
+      );
+    }
+
+    if (heroTitle) {
+      tl.fromTo(
+        heroTitle,
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+        "-=0.3"
+      );
+    }
+
+    if (heroGraphics.length) {
+      tl.fromTo(
+        heroGraphics,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: "power2.out" },
+        "-=0.6"
+      );
+    }
+  }
+
+  // 2. Hero Interactive Mouse Parallax (Subtle)
+  if (heroSection && heroGraphics.length) {
+    heroSection.addEventListener("mousemove", function (e) {
+      const rect = heroSection.getBoundingClientRect();
+      const xPos = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const yPos = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+      heroGraphics.forEach(function (el, idx) {
+        const factor = (idx + 1) * 12;
+        el.style.transform = `translate(${xPos * factor}px, ${yPos * factor}px)`;
+      });
+    });
+
+    heroSection.addEventListener("mouseleave", function () {
+      heroGraphics.forEach(function (el) {
+        el.style.transform = "translate(0px, 0px)";
+      });
+    });
+  }
+
+  // 3. ScrollTrigger Stagger Reveal for Client Logos & Intro
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const introWrap = document.querySelector(".srv-intro-wrapper");
+    if (introWrap) {
+      gsap.fromTo(
+        introWrap,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: introWrap,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }
+
+    const trustItems = document.querySelectorAll(".srv-trust-item");
+    if (trustItems.length) {
+      gsap.fromTo(
+        trustItems,
+        { opacity: 0, y: 25, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".srv-trust-section",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }
+  }
+
+  // 4. Interactive Tabs Engine
+  const tabContainers = document.querySelectorAll(".srv-interactive-grid");
+  tabContainers.forEach(function (container) {
+    const navButtons = container.querySelectorAll(".srv-tab-btn");
+    const panels = container.querySelectorAll(".srv-tab-panel");
+    if (!navButtons.length || !panels.length) return;
+
+    let isAnimating = false;
+    let currentActiveTab = "what";
+
+    function switchTab(targetKey) {
+      if (targetKey === currentActiveTab || isAnimating) return;
+      isAnimating = true;
+
+      const currentBtn = container.querySelector(`.srv-tab-btn[data-tab="${currentActiveTab}"]`);
+      const targetBtn = container.querySelector(`.srv-tab-btn[data-tab="${targetKey}"]`);
+      const currentPanel = container.querySelector(`.srv-tab-panel[data-panel="${currentActiveTab}"]`);
+      const targetPanel = container.querySelector(`.srv-tab-panel[data-panel="${targetKey}"]`);
+
+      if (!targetBtn || !targetPanel) {
+        isAnimating = false;
+        return;
+      }
+
+      // Update button states
+      navButtons.forEach(function (btn) {
+        btn.classList.remove("is-active");
+        btn.setAttribute("aria-selected", "false");
+      });
+      targetBtn.classList.add("is-active");
+      targetBtn.setAttribute("aria-selected", "true");
+
+      // Smooth panel transition (opacity 1 -> 0 / y: 0 -> 10, then opacity 0 -> 1 / y: -10 -> 0)
+      if (typeof gsap !== "undefined") {
+        gsap.to(currentPanel, {
+          opacity: 0,
+          y: 10,
+          duration: 0.16,
+          ease: "power2.in",
+          onComplete: function () {
+            currentPanel.classList.remove("is-active");
+            currentPanel.style.display = "none";
+            currentPanel.setAttribute("aria-hidden", "true");
+
+            targetPanel.style.display = "block";
+            targetPanel.classList.add("is-active");
+            targetPanel.setAttribute("aria-hidden", "false");
+
+            gsap.fromTo(
+              targetPanel,
+              { opacity: 0, y: -10 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.35,
+                ease: "power2.out",
+                onComplete: function () {
+                  currentActiveTab = targetKey;
+                  isAnimating = false;
+                }
+              }
+            );
+          }
+        });
+      } else {
+        // Fallback without GSAP
+        if (currentPanel) {
+          currentPanel.classList.remove("is-active");
+          currentPanel.style.display = "none";
+          currentPanel.setAttribute("aria-hidden", "true");
+        }
+        targetPanel.style.display = "block";
+        targetPanel.classList.add("is-active");
+        targetPanel.setAttribute("aria-hidden", "false");
+        currentActiveTab = targetKey;
+        isAnimating = false;
+      }
+    }
+
+    navButtons.forEach(function (btn) {
+      const tabKey = btn.getAttribute("data-tab");
+
+      // Desktop hover
+      btn.addEventListener("mouseenter", function () {
+        if (window.innerWidth > 768) {
+          switchTab(tabKey);
+        }
+      });
+
+      // Desktop click & Mobile/Tablet tap
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        switchTab(tabKey);
+      });
+    });
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initServicePages);
+} else {
+  initServicePages();
+}
+
+/* ============ LUXURY SCROLL-RESPONSIVE ARCHITECTURAL TRANSITION SYSTEM ============ */
+function initEditorialBlockTransitions() {
+  // Respect prefers-reduced-motion
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  // Ensure GSAP and ScrollTrigger are available
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var transitionSections = document.querySelectorAll('.editorial-block-transition');
+  if (!transitionSections.length) return;
+
+  transitionSections.forEach(function (sec, idx) {
+    // Determine the color of the preceding field to be revealed from
+    var isToWhite = sec.classList.contains('transition-to-white');
+    var isToBlack = sec.classList.contains('transition-to-black');
+    var fillColor = isToWhite ? "#000000" : (isToBlack ? "#ffffff" : "#000000");
+
+    // Remove any existing plane if re-initialized
+    var existingPlane = sec.querySelector('.editorial-architectural-plane');
+    if (existingPlane) {
+      existingPlane.remove();
+    }
+
+    // Create the precision architectural plane SVG
+    var svgNS = "http://www.w3.org/2000/svg";
+    var plane = document.createElementNS(svgNS, "svg");
+    plane.setAttribute("class", "editorial-architectural-plane");
+    plane.setAttribute("viewBox", "0 0 1000 1000");
+    plane.setAttribute("preserveAspectRatio", "none");
+    plane.setAttribute("aria-hidden", "true");
+
+    var filterId = "greenEdgeGlow_" + idx + "_" + Math.random().toString(36).substr(2, 6);
+
+    plane.innerHTML =
+      '<defs>' +
+        '<filter id="' + filterId + '" x="-40%" y="-20%" width="180%" height="140%">' +
+          '<feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00CC33" flood-opacity="0.35"/>' +
+        '</filter>' +
+      '</defs>' +
+      '<polygon points="0,0 1000,0 965,1000 0,1000" fill="' + fillColor + '" />' +
+      '<line x1="1000" y1="0" x2="965" y2="1000" stroke="#00CC33" stroke-width="2.5" vector-effect="non-scaling-stroke" filter="url(#' + filterId + ')" />';
+
+    sec.appendChild(plane);
+
+    // Initial position: if section is already above the viewport on initial load, place offscreen
+    var rect = sec.getBoundingClientRect();
+    var initialX = (rect.top < window.innerHeight * 0.25) ? 101 : 0;
+
+    // Bind scroll progress directly to the architectural reveal plane
+    gsap.fromTo(plane,
+      { xPercent: initialX },
+      {
+        xPercent: 101,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sec,
+          start: "top 95%",
+          end: "top 25%",
+          scrub: 0.5,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function () {
+    // Slight delay to ensure layout and other ScrollTriggers are ready
+    setTimeout(initEditorialBlockTransitions, 50);
+  });
+} else {
+  setTimeout(initEditorialBlockTransitions, 50);
+}
+
+
+
+
+
+

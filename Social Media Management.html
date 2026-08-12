@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Social Media Management — DemuRup Media. Scroll-stopping content calendars, multi-platform consistency, and communities that convert."/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Social Media Management — DemuRup Media</title>
+  <meta name="description"
+    content="Social Media Management at DemuRup Media — High-tempo visual creative, short-form viral video, and authoritative community growth.">
   <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png">
+
+  <!-- Font Preloads (Local DemuRup Fonts) -->
+  <link rel="preload" href="fonts/TheSeasons-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/TheSeasons-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/BeautifulDelight-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Scripts for Tailwind & GSAP -->
   <script>
-    (function() {
+    (function () {
       const _warn = console.warn;
-      console.warn = function(...args) {
+      console.warn = function (...args) {
         if (args[0] && typeof args[0] === 'string' && args[0].indexOf('cdn.tailwindcss.com') !== -1) return;
         _warn.apply(console, args);
       };
@@ -25,161 +34,1926 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="preload" href="fonts/TheSeasons-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/TheSeasons-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/BeautifulDelight-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script>
-    tailwind.config = { theme: { extend: { colors: { lime: '#00cc33' } } } }
+    tailwind.config = { theme: { extend: { colors: { lime: "#00cc33" } } } };
   </script>
+
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --green: #00cc33;
+      --green-deep: #049428;
+      --green-glow: rgba(0, 204, 51, .22);
+
+      --display: 'The Seasons', 'Times New Roman', serif;
+      --sans: 'Beautiful Delight', 'Times New Roman', serif;
+
+      --ease: cubic-bezier(.22, 1, .36, 1);
+      --ease-soft: cubic-bezier(.16, .84, .44, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+      font-family: var(--sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 6vw;
+    }
+
+    @media (min-width:1400px) {
+      .wrap {
+        padding: 0 80px;
+      }
+    }
+
+    /* ============ SECTION THEMES (STRICT TWO-COLOR SYSTEM: #FFFFFF & #000000) ============ */
+    [data-theme="light"] {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      --bg: #ffffff;
+      --fg: #000000;
+      --fg-soft: rgba(0, 0, 0, 0.68);
+      --fg-faint: rgba(0, 0, 0, 0.38);
+      --fg-ghost: rgba(0, 0, 0, 0.06);
+      --line: rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      --bg: #000000;
+      --fg: #ffffff;
+      --fg-soft: rgba(255, 255, 255, 0.72);
+      --fg-faint: rgba(255, 255, 255, 0.38);
+      --fg-ghost: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.12);
+    }
+
+    /* film-grain overlay for a tactile, printed feel */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 9980;
+      pointer-events: none;
+      opacity: .035;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--green);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--green);
+      display: inline-block;
+    }
+
+    /* reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 {
+      transition-delay: .08s;
+    }
+
+    .reveal-d2 {
+      transition-delay: .16s;
+    }
+
+    .reveal-d3 {
+      transition-delay: .24s;
+    }
+
+    .reveal-d4 {
+      transition-delay: .32s;
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+
+    /* ============ NAVBAR INTEGRATION ============ */
+    #main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+      background-color: transparent;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      transition: background-color .25s ease;
+    }
+
+    #main-nav.nav-scrolled-light {
+      background-color: rgba(255, 255, 255, 0.94) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
+
+    #main-nav.nav-scrolled-dark {
+      background-color: rgba(0, 0, 0, 0.94) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Logo Sizing & Dual Contrast Switching */
+    #main-nav .dr-nav-brand img {
+      height: 52px !important;
+      max-height: 64px !important;
+      width: auto !important;
+      object-fit: contain;
+    }
+
+    @media (min-width: 1024px) {
+      #main-nav .dr-nav-brand img {
+        height: 60px !important;
+        max-height: 72px !important;
+      }
+    }
+
+    #main-nav .dr-logo-dark {
+      display: none !important;
+    }
+
+    #main-nav .dr-logo-light {
+      display: block !important;
+    }
+
+    #main-nav.nav-dark .dr-logo-dark {
+      display: block !important;
+    }
+
+    #main-nav.nav-dark .dr-logo-light {
+      display: none !important;
+    }
+
+    body.menu-open #main-nav .dr-logo-dark {
+      display: block !important;
+    }
+
+    body.menu-open #main-nav .dr-logo-light {
+      display: none !important;
+    }
+
+    /* Hamburger Contrast Switching */
+    #hamburger span {
+      background-color: #000000 !important;
+      transition: background-color .2s ease, transform .3s ease;
+    }
+
+    #main-nav.nav-dark #hamburger span {
+      background-color: #ffffff !important;
+    }
+
+    body.menu-open #hamburger span {
+      background-color: #ffffff !important;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 140px 6vw 80px;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-glow span {
+      position: absolute;
+      width: 56vw;
+      height: 56vw;
+      max-width: 820px;
+      max-height: 820px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at center, var(--green-glow) 0%, rgba(0, 204, 51, .08) 40%, rgba(0, 204, 51, 0) 72%);
+      border-radius: 50%;
+      filter: blur(6px);
+      animation: driftGlow 16s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes driftGlow {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-46%, -54%) scale(1.12);
+      }
+    }
+
+
+    .hero-eyebrow {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 30px;
+    }
+
+    .hero-heading {
+      position: relative;
+      z-index: 1;
+      font-family: var(--display);
+      font-weight: 400;
+      line-height: .94;
+      letter-spacing: -.01em;
+      font-size: clamp(3.4rem, 11.2vw, 8.6rem);
+      color: #000000;
+    }
+
+    .hero-heading .line-mask {
+      overflow: hidden;
+      display: block;
+    }
+
+    .hero-heading .line {
+      display: block;
+      transform: translateY(105%);
+      animation: curtainUp 1.1s var(--ease-soft) forwards;
+    }
+
+    .hero-heading .line-mask:nth-child(1) .line {
+      animation-delay: .2s;
+    }
+
+    .hero-heading .amp-line .line {
+      color: var(--green);
+      font-style: italic;
+      font-size: .5em;
+      background: linear-gradient(100deg, var(--green) 20%, #7be89a 45%, var(--green) 70%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: curtainUp 1.1s var(--ease-soft) .42s forwards, shimmer 5s linear 1.6s infinite;
+    }
+
+    .hero-heading .line-mask:nth-child(3) .line {
+      animation-delay: .6s;
+    }
+
+    @keyframes curtainUp {
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: -220% auto;
+      }
+    }
+
+    .hero-scroll {
+      position: relative;
+      z-index: 1;
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.38);
+      opacity: 0;
+      animation: fadeUp .9s var(--ease) 1.3s forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hero-scroll .stem {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(rgba(0, 0, 0, 0.38), transparent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-scroll .stem::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--green);
+      animation: stemDrip 2.4s ease-in-out infinite;
+    }
+
+    @keyframes stemDrip {
+      0% {
+        top: -100%;
+      }
+
+      60% {
+        top: 100%;
+      }
+
+      100% {
+        top: 100%;
+      }
+    }
+
+    /* ============ INTRO (asymmetric, editorial — PURE #000000 BACKGROUND) ============ */
+    .intro {
+      padding: 190px 6vw;
+      background-color: #000000;
+      color: #ffffff;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .intro-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 40px;
+      position: relative;
+    }
+
+    .intro-rail {
+      position: relative;
+    }
+
+    .intro-rail .eyebrow {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      white-space: nowrap;
+    }
+
+    .intro-rail .eyebrow::before {
+      width: 1px;
+      height: 22px;
+    }
+
+    .intro-quote {
+      font-family: var(--display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      color: rgba(255, 255, 255, 0.06);
+      line-height: .6;
+      position: absolute;
+      left: -6px;
+      top: 64px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .intro-body {
+      padding-top: 6px;
+    }
+
+    .intro-text {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+      line-height: 1.42;
+      letter-spacing: 0;
+      color: #ffffff;
+      max-width: 760px;
+    }
+
+    .intro-text+.intro-text {
+      margin-top: 1.1em;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .intro-sub {
+      margin-top: 44px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    @media (max-width:720px) {
+      .intro-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-rail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .intro-rail .eyebrow {
+        writing-mode: horizontal-tb;
+        transform: none;
+      }
+
+      .intro-quote {
+        display: none;
+      }
+    }
+
+    /* ============ VIDEO SHOWCASE MARQUEE (Pure #FFFFFF Background) ============ */
+    .video-showcase-section {
+      padding: 150px 0 170px;
+      text-align: center;
+      background-color: #ffffff;
+      color: #000000;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .video-showcase-head {
+      margin-bottom: 70px;
+      padding: 0 6vw;
+    }
+
+    .video-showcase-head .eyebrow {
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .video-showcase-head h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+      letter-spacing: -.01em;
+      color: #000000;
+      margin: 0;
+    }
+
+    .video-marquee-viewport {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 24px 0 36px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+
+    .video-marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: videoMarqueeLTR 55s linear infinite;
+    }
+
+    .video-marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .video-marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding-right: 32px;
+      flex-shrink: 0;
+    }
+
+    @keyframes videoMarqueeLTR {
+      0% {
+        transform: translate3d(-50%, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    .video-card {
+      flex: 0 0 360px;
+      width: 360px;
+      min-width: 360px;
+      height: 580px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #0d0d0d;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.08);
+      transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .5s cubic-bezier(0.16, 1, 0.3, 1), border-color .4s ease;
+      cursor: pointer;
+      will-change: transform;
+      user-select: none;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--green);
+      box-shadow: 0 0 0 1px rgba(0, 204, 51, .45), 0 26px 50px -16px rgba(0, 204, 51, .35), 0 0 32px rgba(0, 204, 51, .18);
+      z-index: 5;
+    }
+
+    .video-card.is-playing {
+      border-color: var(--green);
+      box-shadow: 0 0 0 1.5px rgba(0, 204, 51, .7), 0 28px 54px -14px rgba(0, 204, 51, .45), 0 0 36px rgba(0, 204, 51, .25);
+    }
+
+    .video-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 19px;
+      background: #000000;
+    }
+
+    .showcase-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000000;
+      pointer-events: none;
+      transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .video-card:hover .showcase-video {
+      transform: scale(1.03);
+    }
+
+    /* ============ COMPANIES TRUST US — Seamless Infinite Marquee (Pure #000000 Background) ============ */
+    .trust {
+      padding: 170px 0 180px;
+      text-align: center;
+      background-color: #000000;
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .trust .eyebrow {
+      justify-content: center;
+      margin-bottom: 26px;
+      padding: 0 6vw;
+    }
+
+    .trust h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+      letter-spacing: -.01em;
+      margin-bottom: 88px;
+      color: #ffffff;
+      padding: 0 6vw;
+    }
+
+    .client-marquee-viewport {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 20px 0 30px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+
+    .client-marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: clientMarqueeLTR 40s linear infinite;
+    }
+
+    .client-marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .client-marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      padding-right: 26px;
+      flex-shrink: 0;
+    }
+
+    .client-card {
+      flex: 0 0 232px;
+      width: 232px;
+      min-width: 232px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 42px 26px 34px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      background: #000000;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+      transition: transform .5s var(--ease-soft), box-shadow .5s var(--ease), border-color .45s var(--ease);
+      will-change: transform;
+      cursor: pointer;
+    }
+
+    .client-card:hover {
+      transform: translateY(-5px) scale(1.04);
+      border-color: var(--green);
+      background: #000000;
+      box-shadow: 0 0 0 1px rgba(0, 204, 51, .45), 0 26px 46px -22px rgba(0, 204, 51, .4), 0 0 34px rgba(0, 204, 51, .28);
+      z-index: 2;
+    }
+
+    .client-card .logo-mark {
+      width: 100%;
+      height: clamp(60px, 6vw, 88px);
+      max-width: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: none;
+      opacity: 1;
+    }
+
+    .client-card .logo-mark svg {
+      width: auto;
+      height: 100%;
+      max-height: clamp(56px, 5.5vw, 82px);
+      max-width: 160px;
+    }
+
+    .client-card .logo-mark img,
+    .client-card img.client-logo {
+      width: auto;
+      height: auto;
+      max-height: clamp(56px, 5.5vw, 82px);
+      max-width: clamp(120px, 14vw, 175px);
+      object-fit: contain;
+      transition: transform .35s var(--ease-soft);
+    }
+
+    .client-card:hover .logo-mark img {
+      transform: scale(1.05);
+    }
+
+    .client-logo--light,
+    .client-card .logo-light img,
+    .client-card img.client-logo--light {
+      filter: none;
+    }
+
+    .client-card .client-name {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      color: rgba(255, 255, 255, 0.72);
+      text-align: center;
+      line-height: 1.35;
+      transition: color .4s var(--ease);
+    }
+
+    .client-card:hover .client-name {
+      color: #ffffff;
+    }
+
+    @media(max-width:640px) {
+      .client-card {
+        flex: 0 0 185px;
+        width: 185px;
+        min-width: 185px;
+        padding: 30px 18px 24px;
+        gap: 14px;
+      }
+
+      .client-marquee-group {
+        gap: 18px;
+        padding-right: 18px;
+      }
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 100px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      z-index: 3;
+      pointer-events: none;
+      transition: all .35s ease;
+    }
+
+    .video-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ffffff;
+      transition: background .35s ease, transform .35s ease;
+    }
+
+    .video-card:hover .video-badge {
+      border-color: rgba(0, 204, 51, 0.6);
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .video-card:hover .video-badge-dot {
+      background: var(--green);
+    }
+
+    .video-card.is-playing .video-badge {
+      background: rgba(0, 204, 51, 0.25);
+      border-color: var(--green);
+      color: #00ff40;
+    }
+
+    .video-card.is-playing .video-badge-dot {
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: badgePulse 1.5s infinite;
+    }
+
+    @keyframes badgePulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.3;
+        transform: scale(1.35);
+      }
+    }
+
+    .video-overlay-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 45px 22px 22px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 60%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+      text-align: left;
+    }
+
+    .video-title {
+      color: #ffffff;
+      font-family: var(--sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      display: block;
+      line-height: 1.3;
+    }
+
+    @media(max-width:1024px) {
+      .video-card {
+        flex: 0 0 310px;
+        width: 310px;
+        min-width: 310px;
+        height: 500px;
+      }
+
+      .video-marquee-group {
+        gap: 22px;
+        padding-right: 22px;
+      }
+    }
+
+    @media(max-width:640px) {
+      .video-showcase-section {
+        padding: 90px 0 110px;
+      }
+
+      .video-card {
+        flex: 0 0 78vw;
+        width: 78vw;
+        min-width: 260px;
+        height: 440px;
+        border-radius: 16px;
+      }
+
+      .video-card-inner {
+        border-radius: 15px;
+      }
+
+      .video-marquee-group {
+        gap: 16px;
+        padding-right: 16px;
+      }
+
+      .video-badge {
+        top: 14px;
+        left: 14px;
+        padding: 5px 12px;
+        font-size: 10px;
+      }
+    }
+
+    /* ============ WHAT / WHEN / HOW / HOW MUCH — PURE #FFFFFF BACKGROUND ============ */
+    .wwh {
+      padding: 170px 6vw 190px;
+      background-color: #ffffff !important;
+      background: #ffffff !important;
+      color: #000000 !important;
+      position: relative;
+      z-index: 1;
+      box-shadow: none;
+    }
+
+    .wwh-head {
+      margin-bottom: 78px;
+    }
+
+    .wwh-head .eyebrow {
+      margin-bottom: 26px;
+    }
+
+    .wwh-head h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+      letter-spacing: -.01em;
+      max-width: 640px;
+      color: #000000 !important;
+    }
+
+    .wwh-inner {
+      display: grid;
+      grid-template-columns: 34% 66%;
+      gap: 0 64px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .wwh-tabs {
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .wwh-tab {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      width: 100%;
+      text-align: left;
+      padding: 30px 0 30px 22px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wwh-tab-ghost {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--display);
+      font-size: clamp(4.4rem, 7vw, 6.4rem);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.06);
+      line-height: 1;
+      pointer-events: none;
+      transition: opacity .5s var(--ease), -webkit-text-stroke-color .5s var(--ease);
+      opacity: .7;
+    }
+
+    .wwh-tab.active .wwh-tab-ghost {
+      -webkit-text-stroke-color: rgba(0, 204, 51, .28);
+      opacity: 1;
+    }
+
+    .wwh-tab-index {
+      font-size: 12px;
+      letter-spacing: .08em;
+      color: rgba(0, 0, 0, 0.38);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      font-family: var(--sans);
+      transition: color .4s var(--ease);
+      position: relative;
+      z-index: 1;
+    }
+
+    .wwh-tab-label {
+      font-family: var(--display);
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      color: rgba(0, 0, 0, 0.68);
+      transition: color .4s var(--ease), transform .4s var(--ease);
+      position: relative;
+      z-index: 1;
+    }
+
+    .wwh-tab:hover .wwh-tab-label,
+    .wwh-tab.active .wwh-tab-label {
+      color: #000000 !important;
+      transform: translateX(4px);
+    }
+
+    .wwh-tab.active .wwh-tab-index {
+      color: var(--green) !important;
+    }
+
+    .wwh-indicator {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      transition: transform .55s var(--ease), height .55s var(--ease);
+    }
+
+    .wwh-panels {
+      display: grid;
+      padding-top: 6px;
+      width: 100%;
+      box-sizing: border-box;
+      padding-right: clamp(32px, 5vw, 90px);
+    }
+
+    .wwh-panel {
+      grid-area: 1/1;
+      align-self: start;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
+      pointer-events: none;
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      line-height: 1.72;
+      color: rgba(0, 0, 0, 0.72) !important;
+      font-weight: 400;
+      font-family: var(--sans);
+      padding-top: 22px;
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    .wwh-panel .tag {
+      display: block;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 22px;
+    }
+
+    .wwh-panel.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    @media (max-width:1024px) {
+      .wwh-panels {
+        padding-right: clamp(24px, 4vw, 50px);
+      }
+    }
+
+    @media (max-width:860px) {
+      .wwh-inner {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .wwh-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .wwh-tab {
+        width: auto;
+        flex: 1 1 45%;
+        padding: 22px 0 22px 18px;
+      }
+
+      .wwh-tab-ghost {
+        display: none;
+      }
+
+      .wwh-indicator {
+        display: none;
+      }
+
+      .wwh-panels {
+        padding-top: 34px;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+    }
+
+    section {
+      position: relative;
+    }
+  </style>
 </head>
-<body class="bg-[#060606] text-white">
 
-<!-- ══ Cursor ══ -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
+<body data-theme="light">
 
-<!-- ══ Floating WhatsApp ══ -->
-<a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
-  <span class="wa-float-label">Chat on WhatsApp</span>
-  <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+  <div class="grain"></div>
+  <!-- ══ Cursor ══ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
-<!-- ══ NAV ══ -->
-<nav id="main-nav" class="z-[10000]">
-  <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
-    <a href="index.html" class="flex items-center z-[10002]">
-      <img src="main logo.png" alt="DemuRup Media" class="h-12 lg:h-14 w-auto object-contain">
-    </a>
-    <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
-      <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h1"></span>
-      <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h2"></span>
-      <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h3"></span>
-    </button>
-  </div>
-</nav>
+  <!-- ══ Floating WhatsApp ══ -->
+  <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+    <span class="wa-float-label">Chat on WhatsApp</span>
+    <svg width="28" height="28" fill="white" viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
 
-<!-- Fullscreen Menu Overlay -->
-<div id="dr-menu-overlay" class="dr-menu-overlay" aria-hidden="true">
-  <div class="dr-menu-container">
-    <div class="dr-menu-content">
-      <!-- Left Column: Large Bold Links -->
-      <div class="dr-menu-left">
-        <ul class="dr-menu-links">
-          <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
-          <li class="dr-menu-item dr-menu-item-services">
-            <a href="index.html#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle" aria-expanded="false">
-              Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
-            </a>
-            <!-- Mobile/Tablet Accordion Dropdown -->
-            <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
-              <ul class="dr-services-accordion-list">
-                <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-                <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
-                <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
-                <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
-                <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
-                <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
-          <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-          <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
-          <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
-        </ul>
-      </div>
+  <!-- ══════════════════════════════════════════════════════════════
+   DEFAULT DEMURUP NAVBAR
+══════════════════════════════════════════════════════════════ -->
+  <nav id="main-nav" class="z-[10000] nav-light">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="flex items-center z-[10002] dr-nav-brand">
+        <img src="Demurup Final Logo.png" alt="DemuRup Media"
+          class="dr-logo-light h-14 lg:h-16 w-auto object-contain" />
+        <img src="main logo.png" alt="DemuRup Media" class="dr-logo-dark h-14 lg:h-16 w-auto object-contain" />
+      </a>
+      <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
+        <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h2"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h3"></span>
+      </button>
+    </div>
+  </nav>
 
-      <!-- Right Column: Contact details & Socials + Services Panel -->
-      <div class="dr-menu-right" id="dr-menu-right">
-        <div class="dr-menu-right-info" id="dr-menu-right-info">
-          <div class="dr-menu-right-item dr-menu-contact-section">
-            <h4 class="dr-menu-sublabel">Connect</h4>
-            <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
-            <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865 69990</a>
-          </div>
-          
-          <div class="dr-menu-right-item dr-menu-contact-section">
-            <h4 class="dr-menu-sublabel">Location</h4>
-            <p class="dr-menu-text">Vapi, Gujarat, India</p>
-          </div>
-
-          <div class="dr-menu-right-item dr-menu-contact-section">
-            <h4 class="dr-menu-sublabel">Socials</h4>
-            <div class="dr-menu-socials">
-              <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-menu-social-link">Instagram</a>
-              <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener" class="dr-menu-social-link">LinkedIn</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Desktop Services Panel -->
-        <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
-          <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
-          <ul class="dr-services-desktop-list">
-            <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-            <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
-            <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
-            <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
-            <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
-            <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+  <!-- Fullscreen Menu Overlay -->
+  <div id="dr-menu-overlay" class="dr-menu-overlay" aria-hidden="true">
+    <div class="dr-menu-container">
+      <div class="dr-menu-content">
+        <!-- Left Column: Large Bold Links -->
+        <div class="dr-menu-left">
+          <ul class="dr-menu-links">
+            <li class="dr-menu-item"><a href="index.html" class="dr-menu-link">Home</a></li>
+            <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
+            <li class="dr-menu-item dr-menu-item-services">
+              <a href="index.html#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle"
+                aria-expanded="false">
+                Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span
+                  class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
+              </a>
+              <!-- Mobile/Tablet Accordion Dropdown -->
+              <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
+                <ul class="dr-services-accordion-list">
+                  <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+                  <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+                  <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+                  <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+                  <li><a href="Social Media Management.html" class="dr-service-item-link text-lime">Social Media
+                      Management</a></li>
+                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
+            <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
+            <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
+            <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
           </ul>
         </div>
+
+        <!-- Right Column: Contact details & Socials + Services Panel -->
+        <div class="dr-menu-right" id="dr-menu-right">
+          <div class="dr-menu-right-info" id="dr-menu-right-info">
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Connect</h4>
+              <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
+              <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865
+                69990</a>
+            </div>
+
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Location</h4>
+              <p class="dr-menu-text">Vapi, Gujarat, India</p>
+            </div>
+
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Socials</h4>
+              <div class="dr-menu-socials">
+                <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener"
+                  class="dr-menu-social-link">Instagram</a>
+                <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener"
+                  class="dr-menu-social-link">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Services Panel -->
+          <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
+            <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
+            <ul class="dr-services-desktop-list">
+              <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+              <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+              <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+              <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+              <li><a href="Social Media Management.html" class="dr-service-item-link text-lime">Social Media
+                  Management</a></li>
+              <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══ HERO / SERVICE CONTENT SECTION ══ -->
-<section class="pt-36 pb-24 min-h-[75vh] flex items-center bg-[#060606]">
-  <div class="max-w-[1400px] mx-auto px-5 lg:px-10 w-full">
-    <div class="max-w-3xl">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-2.5 h-2.5 rounded-full bg-[var(--lime)]"></div>
-        <span class="slabel">Services ✦ DemuRup Media</span>
-      </div>
-      <h1 class="font-display text-5xl lg:text-7xl leading-[0.95] mb-6 uppercase">
-        Social Media <br/><span style="color:var(--lime)">Management</span>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top" data-theme="light">
+      <div class="hero-glow" id="heroGlow"><span></span></div>
+
+
+      <div class="hero-eyebrow eyebrow">DemuRup Media — Services</div>
+      <h1 class="hero-heading">
+        <span class="line-mask"><span class="line">Social Media</span></span>
+        <!-- <span class="line-mask amp-line"><span class="line">&amp;</span></span> -->
+        <span class="line-mask"><span class="line">Management</span></span>
       </h1>
-      <p class="text-white/60 text-lg lg:text-xl leading-relaxed mb-8">
-        Scroll-stopping content calendars, multi-platform consistency, and active community management. Full-service social media execution from concept to posting.
-      </p>
-      <div class="inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-[var(--lime)]/30 bg-[var(--lime)]/10 text-[var(--lime)] font-mono text-sm mb-10">
-        <span class="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse"></span>
-        Dedicated Service Page — Full Case Studies Dropping Soon
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <span class="stem"></span>
       </div>
-      <div>
-        <a href="index.html#contact-section" class="btn-lime px-8 py-4 rounded font-bold text-black inline-block">Work With Us →</a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ══ FOOTER ══ -->
-<footer class="bg-[#030303] border-t border-[#111] py-16">
-  <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
-    <div class="flex flex-col lg:flex-row justify-between items-start gap-10 pb-12 border-b border-[#111]">
-      <div>
-        <a href="index.html">
-          <img src="main logo.png" alt="DemuRup Media" class="h-10 w-auto mb-4" />
-        </a>
-        <p class="text-white/40 max-w-sm text-sm leading-relaxed">
-          India's boldest creative marketing & branding studio. Redesigning the box since 2024.
+    <!-- INTRO -->
+    <section class="intro" data-theme="light">
+      <div class="intro-inner">
+        <div class="intro-rail">
+          <div class="eyebrow reveal">Our Approach</div>
+          <div class="intro-quote reveal reveal-d1" aria-hidden="true">&ldquo;</div>
+        </div>
+        <div class="intro-body">
+          <p class="intro-text reveal reveal-d1">Social media is the living pulse of modern brand culture and customer
+            loyalty.</p>
+          <p class="intro-text reveal reveal-d2">We create high-tempo visual creative, algorithm-fluent short-form
+            video, and structured community management systems that build authoritative channel equity, ignite viral
+            engagement, and turn passive scrollers into loyal brand advocates.</p>
+          <p class="intro-sub reveal reveal-d3">Culture First. Creative Production. Algorithmic Velocity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO SHOWCASE MARQUEE -->
+    <section class="video-showcase-section" data-theme="light">
+      <div class="video-showcase-head">
+        <div class="eyebrow reveal">SOCIAL MEDIA — IN MOTION</div>
+        <h2 class="reveal reveal-d1">Ideas That Move.</h2>
+      </div>
+
+      <div class="video-marquee-viewport reveal reveal-d2">
+        <div class="video-marquee-track" id="videoMarqueeTrack">
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/CP.mp4" preload="metadata" muted playsinline loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Commercial Production</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/Niramaya Hospital Final.mp4" preload="metadata" muted playsinline
+                loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Healthcare Storytelling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 8.45.25 PM.mp4" preload="metadata"
+                muted playsinline loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Short-Form Reel</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.05.35 PM.mp4" preload="metadata"
+                muted playsinline loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Social Spotlight</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.07.53 PM.mp4" preload="metadata"
+                muted playsinline loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Visual Narrative</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.12.19 PM.mp4" preload="metadata"
+                muted playsinline loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Creative Campaign</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/qaani.mp4" preload="metadata" muted playsinline loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Qaani Couture</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+            <div class="video-card-inner">
+              <video class="showcase-video" src="Smm/satsang event 2.0.mp4" preload="metadata" muted playsinline
+                loop></video>
+              <div class="video-badge">
+                <span class="video-badge-dot"></span>
+                <span class="video-badge-text">PLAY</span>
+              </div>
+              <div class="video-overlay-info">
+                <span class="video-title">Event Atmosphere</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANIES TRUST US -->
+    <section class="trust" data-theme="light">
+      <div class="eyebrow reveal">Trusted By</div>
+      <h2 class="reveal reveal-d1">Companies That Trust Us</h2>
+
+      <div class="client-marquee-viewport reveal reveal-d2">
+        <div class="client-marquee-track" id="clientMarqueeTrack">
+          <div class="client-card" data-cursor="link">
+            <span class="logo-mark" aria-hidden="true">
+              <img src="prannshi clinic logo.jpg" alt="Prannshi Clinic" loading="lazy" />
+            </span>
+            <span class="client-name">Prannshi Clinic</span>
+          </div>
+          <div class="client-card" data-cursor="link">
+            <span class="logo-mark" aria-hidden="true">
+              <img src="qaani.avif" alt="QAANI" loading="lazy" />
+            </span>
+            <span class="client-name">QAANI</span>
+          </div>
+          <div class="client-card" data-cursor="link">
+            <span class="logo-mark" aria-hidden="true">
+              <img src="Niramaya logo.jpg" alt="Niramaya" loading="lazy" />
+            </span>
+            <span class="client-name">Niramaya</span>
+          </div>
+          <div class="client-card" data-cursor="link">
+            <span class="logo-mark" aria-hidden="true">
+              <img src="Shivam logo.png" alt="Shivam" loading="lazy" />
+            </span>
+            <span class="client-name">Shivam</span>
+          </div>
+          <div class="client-card" data-cursor="link">
+            <span class="logo-mark" aria-hidden="true">
+              <img src="cafe farohar.jpeg" alt="Cafe Farohar" loading="lazy" />
+            </span>
+            <span class="client-name">Cafe Farohar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT / WHEN / HOW / HOW MUCH (BLOCK 2: BLACK TRANSITION) -->
+    <section class="wwh editorial-block-transition transition-to-black transition-angled" data-theme="dark" id="approach">
+      <div class="wwh-head">
+        <div class="eyebrow reveal">The Engagement</div>
+        <h2 class="reveal reveal-d1">Everything you need to know, before you need to ask.</h2>
+      </div>
+
+      <div class="wwh-inner reveal reveal-d2">
+        <div class="wwh-tabs" role="tablist" id="wwhTabs">
+          <button class="wwh-tab active" data-panel="what" role="tab" aria-selected="true">
+            <span class="wwh-tab-ghost" aria-hidden="true">01</span>
+            <span class="wwh-tab-index">01</span><span class="wwh-tab-label">What</span>
+          </button>
+          <button class="wwh-tab" data-panel="when" role="tab" aria-selected="false">
+            <span class="wwh-tab-ghost" aria-hidden="true">02</span>
+            <span class="wwh-tab-index">02</span><span class="wwh-tab-label">When</span>
+          </button>
+          <button class="wwh-tab" data-panel="how" role="tab" aria-selected="false">
+            <span class="wwh-tab-ghost" aria-hidden="true">03</span>
+            <span class="wwh-tab-index">03</span><span class="wwh-tab-label">How</span>
+          </button>
+          <button class="wwh-tab" data-panel="howmuch" role="tab" aria-selected="false">
+            <span class="wwh-tab-ghost" aria-hidden="true">04</span>
+            <span class="wwh-tab-index">04</span><span class="wwh-tab-label">How Much</span>
+          </button>
+          <div class="wwh-indicator" id="wwhIndicator"></div>
+        </div>
+
+        <div class="wwh-panels">
+          <p class="wwh-panel active" data-panel="what">
+            <span class="tag">Scope</span>
+            End-to-end channel management across Instagram, YouTube, LinkedIn, and Meta. High-concept short-form reels
+            production, viral scripting, static carousels, aesthetic grid curation, daily community engagement, trend
+            response, creator collaboration coordination, and monthly performance intelligence.
+          </p>
+          <p class="wwh-panel" data-panel="when">
+            <span class="tag">Timeline</span>
+            Deploy when your brand feed feels stagnant, reach is declining under algorithm shifts, creative production
+            is inconsistent, or you are preparing for a major brand repositioning. Strategy and initial content drops
+            commence in week 1; measurable organic reach velocity compounds within 30 to 60 days.
+          </p>
+          <p class="wwh-panel" data-panel="how">
+            <span class="tag">Process</span>
+            Our creative production cycle: 1. Brand Voice &amp; Aesthetic Strategy → 2. Monthly Content Calendar &amp;
+            Scripting → 3. High-End Studio &amp; On-Site Video Shoot → 4. Motion Design &amp; Editing → 5. Algorithmic
+            Scheduling &amp; Publishing → 6. Daily Community Engagement &amp; DM Triage → 7. Virality Testing → 8.
+            Monthly Analytics &amp; Iteration.
+          </p>
+          <p class="wwh-panel" data-panel="howmuch">
+            <span class="tag">Investment</span>
+            Monthly Social Media retainers start at ₹40,000/month for standard brand presence (12-15 creative assets +
+            community triage) and scale to ₹85,000+/month for full-throttle production studios (daily reels,
+            professional on-site shoots, founder personal branding, and dedicated growth managers).
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+   DEFAULT DEMURUP FOOTER
+══════════════════════════════════════════════════════════════ -->
+  <footer class="border-t border-[#111] pt-16 pb-8 bg-black" data-theme="dark" id="contact">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="mb-6">
+            <img src="main logo.png" alt="DemuRup Media" class="h-10 lg:h-12 w-auto object-contain" />
+          </div>
+          <p class="text-white/35 text-sm leading-relaxed max-w-sm">
+            India's boldest creative marketing &amp; branding studio. One team,
+            every digital need, zero compromise.
+          </p>
+          <p class="text-white/28 text-xs font-mono mt-3">
+            Based in Maharashtra, Gujarat, Chhattisgarh &amp; Rajasthan.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <!-- Instagram -->
+            <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              aria-label="Instagram">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              aria-label="LinkedIn">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              aria-label="WhatsApp">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <div class="slabel mb-5 text-white/50 text-xs tracking-wider uppercase font-semibold">Services</div>
+          <ul class="space-y-3">
+            <li><a href="Social Media Management.html" class="text-lime text-sm transition-colors ugrow">Social Media
+                Marketing</a></li>
+            <li><a href="Branding.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Branding
+                &amp; Strategy</a></li>
+            <li><a href="SEO &amp; GMB.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">SEO
+                &amp; GMB</a></li>
+            <li><a href="Web Design &amp; Development.html"
+                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Web Development</a></li>
+            <li><a href="Performance Marketing.html"
+                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Performance Marketing</a></li>
+            <li><a href="Influencer Marketing.html"
+                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Influencer Marketing</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <div class="slabel mb-5 text-white/50 text-xs tracking-wider uppercase font-semibold">Company</div>
+          <ul class="space-y-3">
+            <li><a href="index.html#industries"
+                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Industries</a></li>
+            <li><a href="clients.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Clients</a>
+            </li>
+            <li><a href="index.html#contact-section"
+                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Get a Proposal</a></li>
+            <li><a href="blog.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Blog</a></li>
+            <li><a href="mailto:demurupmedia@gmail.com"
+                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Contact</a></li>
+          </ul>
+          <div class="mt-8">
+            <div class="slabel mb-2 text-white/50 text-xs tracking-wider uppercase font-semibold">Connect</div>
+            <p class="text-white/35 text-xs">@demurup_media</p>
+            <p class="text-white/35 text-xs mt-1">Demurup Media (LinkedIn)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row justify-between items-center pt-8 gap-4">
+        <p class="text-white/25 text-xs font-mono">
+          © 2026 DemuRup Media. All rights reserved. Founded by Shailesh Sharma &amp; Harsh Newale.
         </p>
       </div>
-      <div>
-        <div class="slabel mb-3">Connect</div>
-        <a href="mailto:demurupmedia@gmail.com" class="text-white hover:text-lime block transition-colors text-sm">demurupmedia@gmail.com</a>
-        <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="text-white hover:text-lime block transition-colors text-sm mt-1">+91 95865 69990</a>
-      </div>
     </div>
-    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-white/30">
-      <p>© 2026 DemuRup Media. All rights reserved.</p>
-      <p>India → Global</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="script.js"></script>
+  <script>
+    (function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var isFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+      /* ---------- High-Performance Active Theme & Navbar Synchronizer ---------- */
+      var mainNav = document.getElementById('main-nav');
+      var themeSections = Array.from(document.querySelectorAll('[data-theme]'));
+
+      function updateNavTheme() {
+        if (!mainNav) return;
+        var scrollY = window.scrollY;
+        var navHeight = mainNav.offsetHeight || 64;
+        var navTriggerY = scrollY + (navHeight / 2);
+
+        var activeTheme = 'light';
+        for (var i = 0; i < themeSections.length; i++) {
+          var sec = themeSections[i];
+          var top = sec.offsetTop;
+          var bottom = top + sec.offsetHeight;
+          if (navTriggerY >= top && navTriggerY < bottom) {
+            activeTheme = sec.getAttribute('data-theme') || 'light';
+            break;
+          }
+        }
+
+        if (activeTheme === 'dark') {
+          mainNav.classList.add('nav-dark');
+          mainNav.classList.remove('nav-light');
+          if (scrollY > 50) {
+            mainNav.classList.add('nav-scrolled-dark');
+            mainNav.classList.remove('nav-scrolled-light');
+          } else {
+            mainNav.classList.remove('nav-scrolled-dark', 'nav-scrolled-light');
+          }
+        } else {
+          mainNav.classList.add('nav-light');
+          mainNav.classList.remove('nav-dark');
+          if (scrollY > 50) {
+            mainNav.classList.add('nav-scrolled-light');
+            mainNav.classList.remove('nav-scrolled-dark');
+          } else {
+            mainNav.classList.remove('nav-scrolled-dark', 'nav-scrolled-light');
+          }
+        }
+      }
+
+      var ticking = false;
+      function requestNavUpdate() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(function () {
+            ticking = false;
+            updateNavTheme();
+          });
+        }
+      }
+
+      window.addEventListener('scroll', requestNavUpdate, { passive: true });
+      window.addEventListener('resize', requestNavUpdate, { passive: true });
+      window.addEventListener('load', requestNavUpdate);
+      document.addEventListener('DOMContentLoaded', requestNavUpdate);
+      updateNavTheme();
+
+      /* ---------- scroll reveal ---------- */
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+      /* ---------- hero parallax ---------- */
+      if (!reduceMotion) {
+        var glow = document.getElementById('heroGlow');
+        var heading = document.querySelector('.hero-heading');
+        window.addEventListener('scroll', function () {
+          var y = window.scrollY;
+          if (y < window.innerHeight) {
+            if (glow) glow.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+            if (heading) heading.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+          }
+        }, { passive: true });
+      }
+
+      /* ---------- endless client marquee cloner & controller ---------- */
+      (function initClientMarquee() {
+        var track = document.getElementById('clientMarqueeTrack') || document.querySelector('.client-marquee-track');
+        if (!track) return;
+
+        var originalCards = Array.from(track.querySelectorAll('.client-card'));
+        if (originalCards.length === 0) return;
+
+        track.innerHTML = '';
+
+        var group1 = document.createElement('div');
+        group1.className = 'client-marquee-group';
+
+        var minWidthNeeded = Math.max(window.innerWidth * 1.6, 1920);
+        var cardWidth = window.innerWidth <= 640 ? 203 : 258;
+        var repeats = Math.max(2, Math.ceil(minWidthNeeded / (originalCards.length * cardWidth)));
+
+        for (var r = 0; r < repeats; r++) {
+          originalCards.forEach(function (card) {
+            var clone = card.cloneNode(true);
+            group1.appendChild(clone);
+          });
+        }
+
+        var group2 = group1.cloneNode(true);
+        group2.setAttribute('aria-hidden', 'true');
+
+        track.appendChild(group1);
+        track.appendChild(group2);
+
+        function setMarqueeSpeed() {
+          var groupWidth = group1.offsetWidth;
+          if (groupWidth > 0) {
+            var speedPxPerSec = 50;
+            var duration = groupWidth / speedPxPerSec;
+            track.style.animationDuration = duration + 's';
+          }
+        }
+
+        setMarqueeSpeed();
+        window.addEventListener('load', setMarqueeSpeed);
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(setMarqueeSpeed, 150);
+        });
+      })();
+
+      /* ---------- endless video marquee cloner & playback controller ---------- */
+      (function initVideoMarquee() {
+        var track = document.getElementById('videoMarqueeTrack') || document.querySelector('.video-marquee-track');
+        if (!track) return;
+
+        var originalCards = Array.from(track.querySelectorAll('.video-card'));
+        if (originalCards.length === 0) return;
+
+        track.innerHTML = '';
+
+        var group1 = document.createElement('div');
+        group1.className = 'video-marquee-group';
+
+        var minWidthNeeded = Math.max(window.innerWidth * 1.8, 2400);
+        var cardWidth = window.innerWidth <= 640 ? (window.innerWidth * 0.78 + 16) : (window.innerWidth <= 1024 ? 332 : 392);
+        var repeats = Math.max(2, Math.ceil(minWidthNeeded / (originalCards.length * cardWidth)));
+
+        for (var r = 0; r < repeats; r++) {
+          originalCards.forEach(function (card) {
+            var clone = card.cloneNode(true);
+            group1.appendChild(clone);
+          });
+        }
+
+        var group2 = group1.cloneNode(true);
+        group2.setAttribute('aria-hidden', 'true');
+
+        track.appendChild(group1);
+        track.appendChild(group2);
+
+        function setVideoSpeed() {
+          var groupWidth = group1.offsetWidth;
+          if (groupWidth > 0) {
+            var speedPxPerSec = 40;
+            var duration = groupWidth / speedPxPerSec;
+            track.style.animationDuration = duration + 's';
+          }
+        }
+
+        setVideoSpeed();
+        window.addEventListener('load', setVideoSpeed);
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(setVideoSpeed, 150);
+        });
+
+        var allCards = Array.from(track.querySelectorAll('.video-card'));
+        var currentlyPlayingCard = null;
+
+        function playVideo(card, isClick) {
+          if (currentlyPlayingCard && currentlyPlayingCard !== card) {
+            pauseVideo(currentlyPlayingCard);
+          }
+          var video = card.querySelector('video');
+          if (!video) return;
+
+          // UNMUTED: Audio MUST be enabled when playing
+          video.muted = false;
+          video.playsInline = true;
+
+          var playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.then(function () {
+              card.classList.add('is-playing');
+              var badgeText = card.querySelector('.video-badge-text');
+              if (badgeText) badgeText.textContent = 'PLAYING';
+              currentlyPlayingCard = card;
+            }).catch(function (error) {
+              // If unmuted autoplay was blocked by browser policy on hover
+              if (!isClick) {
+                video.muted = true;
+                var fallbackPromise = video.play();
+                if (fallbackPromise !== undefined) {
+                  fallbackPromise.then(function () {
+                    card.classList.add('is-playing');
+                    var badgeText = card.querySelector('.video-badge-text');
+                    if (badgeText) badgeText.textContent = 'PLAYING';
+                    currentlyPlayingCard = card;
+                  }).catch(function () {
+                    video.pause();
+                    video.muted = true;
+                    card.classList.remove('is-playing');
+                    var badgeText = card.querySelector('.video-badge-text');
+                    if (badgeText) badgeText.textContent = 'PLAY';
+                    if (currentlyPlayingCard === card) currentlyPlayingCard = null;
+                  });
+                }
+              } else {
+                video.pause();
+                video.muted = true;
+                card.classList.remove('is-playing');
+                var badgeText = card.querySelector('.video-badge-text');
+                if (badgeText) badgeText.textContent = 'PLAY';
+                if (currentlyPlayingCard === card) currentlyPlayingCard = null;
+              }
+            });
+          } else {
+            card.classList.add('is-playing');
+            var badgeText = card.querySelector('.video-badge-text');
+            if (badgeText) badgeText.textContent = 'PLAYING';
+            currentlyPlayingCard = card;
+          }
+        }
+
+        function pauseVideo(card) {
+          if (!card) return;
+          var video = card.querySelector('video');
+          if (video) {
+            video.pause();
+            video.muted = true; // No sound when paused
+          }
+          card.classList.remove('is-playing');
+          var badgeText = card.querySelector('.video-badge-text');
+          if (badgeText) badgeText.textContent = 'PLAY';
+          if (currentlyPlayingCard === card) {
+            currentlyPlayingCard = null;
+          }
+        }
+
+        allCards.forEach(function (card) {
+          var timer = null;
+
+          card.addEventListener('mouseenter', function () {
+            timer = setTimeout(function () {
+              playVideo(card, false);
+            }, 2000);
+          });
+
+          card.addEventListener('mouseleave', function () {
+            if (timer) {
+              clearTimeout(timer);
+              timer = null;
+            }
+            if (card.classList.contains('is-playing')) {
+              pauseVideo(card);
+            }
+          });
+
+          card.addEventListener('click', function (e) {
+            if (timer) {
+              clearTimeout(timer);
+              timer = null;
+            }
+            if (card.classList.contains('is-playing')) {
+              pauseVideo(card);
+            } else {
+              playVideo(card, true);
+            }
+          });
+        });
+      })();
+
+
+      /* ---------- what/when/how/how-much tabs ---------- */
+      var tabs = document.querySelectorAll('.wwh-tab');
+      var panels = document.querySelectorAll('.wwh-panel');
+      var indicator = document.getElementById('wwhIndicator');
+      var tabsContainer = document.getElementById('wwhTabs');
+
+      function moveIndicator(tab) {
+        if (!indicator || !tabsContainer || window.innerWidth <= 860) return;
+        var cRect = tabsContainer.getBoundingClientRect();
+        var tRect = tab.getBoundingClientRect();
+        indicator.style.transform = 'translateY(' + (tRect.top - cRect.top) + 'px)';
+        indicator.style.height = tRect.height + 'px';
+      }
+      function setActive(name, tab) {
+        tabs.forEach(function (t) {
+          var isActive = t === tab;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        panels.forEach(function (p) { p.classList.toggle('active', p.getAttribute('data-panel') === name); });
+        moveIndicator(tab);
+      }
+      tabs.forEach(function (tab) {
+        var name = tab.getAttribute('data-panel');
+        tab.addEventListener('mouseenter', function () { setActive(name, tab); });
+        tab.addEventListener('focus', function () { setActive(name, tab); });
+        tab.addEventListener('click', function () { setActive(name, tab); });
+      });
+      window.addEventListener('load', function () {
+        var activeTab = document.querySelector('.wwh-tab.active');
+        if (activeTab) moveIndicator(activeTab);
+      });
+      window.addEventListener('resize', function () {
+        var activeTab = document.querySelector('.wwh-tab.active');
+        if (activeTab) moveIndicator(activeTab);
+      });
+    })();
+  </script>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

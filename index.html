@@ -170,15 +170,20 @@
   <!-- ══════════════════════════════════════════════════════════════
      NAV
 ══════════════════════════════════════════════════════════════ -->
-  <nav id="main-nav" class="z-[10000]">
-    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
-      <a href="#hero" class="flex items-center z-[10002]">
-        <img src="main logo.png" alt="DemuRup Media" class="h-12 lg:h-14 w-auto object-contain" />
+  <nav id="main-nav" class="z-[10000] nav-transparent">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="#hero" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
+        <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
+        <img src="Demurup white.png" alt="DemuRup Media"
+          class="dr-logo-light w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+        <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
+        <img src="Demurup black.png" alt="DemuRup Media"
+          class="dr-logo-dark w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
-        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h1"></span>
-        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h2"></span>
-        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h3"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h2"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h3"></span>
       </button>
     </div>
   </nav>
@@ -268,7 +273,7 @@
   <!-- ══════════════════════════════════════════════════════════════
      HERO SECTION (Interactive Free-Roam Reel Cards & Headline Reveal)
   ══════════════════════════════════════════════════════════════ -->
-  <section id="hero" class="dr-hero" aria-label="DemuRup Media introduction">
+  <section id="hero" class="dr-hero" data-theme="dark" aria-label="DemuRup Media introduction">
 
     <!-- Interactive Mouse Energy Trail Canvas (Brand Green #00cc33) -->
     <canvas class="dr-hero-trail-canvas" id="dr-hero-trail-canvas" aria-hidden="true"></canvas>
@@ -367,7 +372,7 @@
   </section>
 
   <!-- ══ Marquee 1 — Services ══ -->
-  <div class="mq-wrap py-3.5">
+  <div class="mq-wrap py-3.5" data-theme="dark">
     <div class="mq-track items-center">
       <span class="font-display text-[1.35rem] text-white/28 px-6">SOCIAL MEDIA MARKETING</span><span
         style="color: var(--lime)" class="text-lg px-2">✦</span>
@@ -410,122 +415,392 @@
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════
-     ABOUT
+     BLOCK 2 — WHITE COMPOSITION (TRANSITION 1: BLACK → WHITE)
+     ABOUT (WHITE SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section id="about" class="py-28 max-w-[1400px] mx-auto px-5 lg:px-10">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <!-- <div class="slabel mb-6 reveal">// About Us</div> -->
-        <h2 class="font-display leading-[0.91] reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
-          ONE TEAM.<br />ZERO<br /><span style="color: var(--lime)">COMPROMISE.</span>
-        </h2>
-        <p>
-          DemuRup Media functions as a one-stop shop for digital services,
-          focusing on startups, D2C brands, real estate, and finance
-          companies.
-        </p>
-        <br />
-        <p>
-          We provide a unified brand voice through an integrated team
-          approach, ensuring that your brand doesn't just grow—it evolves. By
-          redesigning the traditional marketing box, we offer a seamless
-          transition from local presence to global reach.
-        </p>
-        <div class="flex items-center gap-4 mt-10 reveal">
-          <a href="#contact-section" class="btn-lime px-7 py-3.5 rounded font-bold">Work With Us</a>
-          <span class="text-white/32 text-sm font-mono">India → Global</span>
+  <section id="about" class="editorial-block-transition transition-to-white transition-angled" data-theme="light">
+    <div class="about-container">
+      <div class="about-grid">
+        <!-- Left Column: The Statement / Core Copy -->
+        <div class="about-col-left">
+          <h2 class="about-heading reveal">
+            ONE TEAM.<br />ZERO<br /><span class="about-heading-accent">COMPROMISE.</span>
+          </h2>
+          <p class="about-text reveal">
+            DemuRup Media functions as a one-stop shop for digital services,
+            focusing on startups, D2C brands, real estate, and finance
+            companies.
+          </p>
+          <p class="about-text reveal">
+            We provide a unified brand voice through an integrated team
+            approach, ensuring that your brand doesn't just grow—it evolves. By
+            redesigning the traditional marketing box, we offer a seamless
+            transition from local presence to global reach.
+          </p>
+          <div class="about-cta-group reveal">
+            <a href="#contact-section" class="about-btn-cta">
+              <span class="about-btn-text">Work With Us</span>
+              <svg class="about-btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <span class="about-locale">India → Global</span>
+          </div>
         </div>
-      </div>
 
-      <div class="grid grid-cols-2 gap-3 reveal">
-        <div class="bcard rounded-xl p-6 col-span-2">
-          <span class="service-tag mb-3 block">MANIFESTO</span>
-          <p class="font-display text-2xl lg:text-[1.7rem] text-white leading-tight">
-            "WE DON'T JUST THINK OUTSIDE THE BOX — WE REDESIGN IT."
-          </p>
-        </div>
-        <div class="bcard rounded-xl p-5">
-          <div class="text-3xl mb-3">🚀</div>
-          <div class="font-semibold text-white mb-1 text-sm">Startups</div>
-          <p class="text-white/42 text-xs">
-            Launch fast, look premium from day one.
-          </p>
-        </div>
-        <div class="bcard rounded-xl p-5">
-          <div class="text-3xl mb-3">📦</div>
-          <div class="font-semibold text-white mb-1 text-sm">D2C Brands</div>
-          <p class="text-white/42 text-xs">
-            Drive sales with scroll-stopping creative.
-          </p>
-        </div>
-        <div class="bcard rounded-xl p-5">
-          <div class="text-3xl mb-3">🏗️</div>
-          <div class="font-semibold text-white mb-1 text-sm">Real Estate</div>
-          <p class="text-white/42 text-xs">
-            Build trust and drive qualified leads.
-          </p>
-        </div>
-        <div class="bcard rounded-xl p-5">
-          <div class="text-3xl mb-3">💹</div>
-          <div class="font-semibold text-white mb-1 text-sm">Finance</div>
-          <p class="text-white/42 text-xs">
-            Simplify complex value propositions.
-          </p>
+        <!-- Right Column: Storyboard Hero Visual + Manifesto -->
+        <div class="about-col-right reveal">
+          <!-- Manifesto Payoff Block (Positioned Above 3D Animation) -->
+          <div class="about-manifesto-hero">
+            <p class="about-manifesto-lead">WE DON'T JUST THINK OUTSIDE THE BOX —</p>
+            <h3 class="about-manifesto-punch">WE REDESIGN IT.</h3>
+          </div>
+
+          <!-- Storyboard 7-Stage Narrative Canvas -->
+          <div class="about-storyboard-stage" id="about-storyboard-stage" role="img"
+            aria-label="Storyboard continuous morph: A white cube fractures under designer interaction and reconstructs into a tall black faceted architectural monolith with an open portal and glowing green octahedron crystal core">
+            <svg class="about-storyboard-svg" viewBox="0 0 680 460" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <defs>
+                <!-- Photoreal Studio Lighting Gradients -->
+                <!-- White Studio Cube Face Gradients -->
+                <linearGradient id="dr-sb-cube-top" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#ececec" />
+                </linearGradient>
+                <linearGradient id="dr-sb-cube-left" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#e0e0e0" />
+                  <stop offset="100%" stop-color="#c4c4c4" />
+                </linearGradient>
+                <linearGradient id="dr-sb-cube-right" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#b6b6b6" />
+                  <stop offset="100%" stop-color="#949494" />
+                </linearGradient>
+
+                <!-- Black Faceted Monolith Gradients (Deep charcoal / matte black with studio sheen) -->
+                <linearGradient id="dr-sb-mono-apex" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3c3c3c" />
+                  <stop offset="50%" stop-color="#242424" />
+                  <stop offset="100%" stop-color="#121212" />
+                </linearGradient>
+                <linearGradient id="dr-sb-mono-left" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2c2c2c" />
+                  <stop offset="100%" stop-color="#141414" />
+                </linearGradient>
+                <linearGradient id="dr-sb-mono-right" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#202020" />
+                  <stop offset="100%" stop-color="#0a0a0a" />
+                </linearGradient>
+                <linearGradient id="dr-sb-mono-wedge" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#444444" />
+                  <stop offset="100%" stop-color="#1a1a1a" />
+                </linearGradient>
+                <linearGradient id="dr-sb-mono-sill" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1e1e1e" />
+                  <stop offset="100%" stop-color="#080808" />
+                </linearGradient>
+
+                <!-- Glowing Emerald Green Octahedron Crystal Facet Gradients -->
+                <linearGradient id="dr-sb-gem-top-l" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4dff79" />
+                  <stop offset="100%" stop-color="#00cc33" />
+                </linearGradient>
+                <linearGradient id="dr-sb-gem-top-r" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00e639" />
+                  <stop offset="100%" stop-color="#009926" />
+                </linearGradient>
+                <linearGradient id="dr-sb-gem-bot-l" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00b32c" />
+                  <stop offset="100%" stop-color="#005917" />
+                </linearGradient>
+                <linearGradient id="dr-sb-gem-bot-r" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#009926" />
+                  <stop offset="100%" stop-color="#004010" />
+                </linearGradient>
+
+                <!-- Radiant Internal Light Core -->
+                <radialGradient id="dr-sb-core-radiance" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(51, 255, 102, 0.95)" />
+                  <stop offset="35%" stop-color="rgba(0, 204, 51, 0.65)" />
+                  <stop offset="70%" stop-color="rgba(0, 204, 51, 0.18)" />
+                  <stop offset="100%" stop-color="rgba(0, 204, 51, 0)" />
+                </radialGradient>
+
+                <!-- Floor Reflection / Green Ground Spill -->
+                <radialGradient id="dr-sb-ground-green" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(0, 204, 51, 0.55)" />
+                  <stop offset="55%" stop-color="rgba(0, 204, 51, 0.15)" />
+                  <stop offset="100%" stop-color="rgba(0, 204, 51, 0)" />
+                </radialGradient>
+
+                <!-- Studio Soft Shadow Filter -->
+                <filter id="dr-sb-shadow-blur" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="12" />
+                </filter>
+                <filter id="dr-sb-glow-filter" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="5" result="blur1" />
+                  <feGaussianBlur stdDeviation="14" result="blur2" />
+                  <feMerge>
+                    <feMergeNode in="blur2" />
+                    <feMergeNode in="blur1" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Floor Ground Shadow & Emerald Reflection Spill -->
+              <ellipse cx="365" cy="382" rx="170" ry="24" fill="rgba(10, 10, 10, 0.16)" filter="url(#dr-sb-shadow-blur)"
+                class="dr-sb-floor-shadow" />
+              <ellipse cx="370" cy="385" rx="120" ry="20" fill="url(#dr-sb-ground-green)"
+                filter="url(#dr-sb-shadow-blur)" class="dr-sb-floor-green" />
+
+              <!-- Main Kinetic Sculpture Group -->
+              <g class="dr-sb-world" id="dr-sb-world">
+
+                <!-- ═══ INTERNAL GLOWING CRACKS & PARTICLES (Shot 4 Work Interaction) ═══ -->
+                <g class="dr-sb-crack-fx" filter="url(#dr-sb-glow-filter)">
+                  <!-- Lightning / Crack starting under hands on right face at (430, 270) -->
+                  <path d="M430,270 L395,240 L360,265 M395,240 L410,210" fill="none" stroke="#33ff66" stroke-width="3.2"
+                    stroke-linecap="round" stroke-linejoin="round" class="dr-sb-lightning-path" />
+                  <!-- Debris particles burst -->
+                  <circle cx="430" cy="270" r="2.5" fill="#33ff66" class="dr-sb-particle dr-sb-p1" />
+                  <circle cx="395" cy="240" r="2.2" fill="#33ff66" class="dr-sb-particle dr-sb-p2" />
+                  <circle cx="410" cy="210" r="2.5" fill="#33ff66" class="dr-sb-particle dr-sb-p3" />
+                  <circle cx="360" cy="265" r="2.0" fill="#33ff66" class="dr-sb-particle dr-sb-p4" />
+                  <circle cx="445" cy="235" r="2.2" fill="#33ff66" class="dr-sb-particle dr-sb-p5" />
+                </g>
+
+                <!-- ═══ MONOLITH ARCHITECTURAL SHARDS (Framing Around Core Aperture) ═══ -->
+
+                <!-- Piece 4: Monolith Base Foundation Plinth / Ground Sill -->
+                <g class="dr-sb-shard dr-sb-shard-sill">
+                  <polygon points="265,355 465,355 450,378 280,378" class="dr-sb-poly dr-sb-poly-sill" />
+                </g>
+
+                <!-- Piece 1: Canted Roof Apex Crown (Top Face of Cube -> Monolith Apex Canopy) -->
+                <g class="dr-sb-shard dr-sb-shard-apex">
+                  <polygon points="360,165 440,210 360,255 280,210" class="dr-sb-poly dr-sb-poly-apex" />
+                </g>
+
+                <!-- Piece 2: Left Vertical Pillar (Left Face of Cube -> Left Portal Frame) -->
+                <g class="dr-sb-shard dr-sb-shard-left">
+                  <polygon points="280,210 360,255 360,355 280,310" class="dr-sb-poly dr-sb-poly-left" />
+                </g>
+
+                <!-- Piece 3: Right Vertical Pillar (Right Face of Cube -> Right Portal Frame with Window Cutout) -->
+                <g class="dr-sb-shard dr-sb-shard-right">
+                  <polygon points="360,255 440,210 440,310 360,355" class="dr-sb-poly dr-sb-poly-right" />
+                  <!-- High-Contrast Negative Space Asymmetric Portal Window Cutout -->
+                  <polygon points="415,200 445,212 440,325 415,305" fill="#ffffff" class="dr-sb-portal-window" />
+                </g>
+
+                <!-- Piece 5: Lower Right Angular Structural Brace (Frames Beneath Core) -->
+                <g class="dr-sb-shard dr-sb-shard-brace">
+                  <polygon points="380,335 440,325 425,360 375,360" class="dr-sb-poly dr-sb-poly-brace" />
+                </g>
+
+                <!-- Piece 6: Poised Asymmetric Detached Accent Shard (Upper-Right Crown) -->
+                <g class="dr-sb-shard dr-sb-shard-accent">
+                  <polygon points="460,125 495,148 470,172" fill="url(#dr-sb-mono-right)" />
+                </g>
+
+                <!-- Piece 7: Dynamic Shard that tumbles during burst then dissolves -->
+                <g class="dr-sb-shard dr-sb-shard-tumble">
+                  <polygon points="250,140 290,110 270,170" fill="url(#dr-sb-mono-apex)" />
+                </g>
+
+                <!-- ═══ GLOWING GREEN OCTAHEDRON CRYSTAL CORE (COMPLETELY UNOBSTRUCTED) ═══ -->
+                <!-- Positioned centered in the open portal aperture with ZERO overlapping facets -->
+                <g class="dr-sb-core-group" id="dr-sb-core-group" filter="url(#dr-sb-glow-filter)">
+                  <!-- Radiant Ambient Halo -->
+                  <ellipse cx="365" cy="245" rx="58" ry="58" fill="url(#dr-sb-core-radiance)" class="dr-sb-core-halo" />
+
+                  <!-- Octahedron Diamond Crystal Facets -->
+                  <g class="dr-sb-octahedron">
+                    <!-- Top-Left Facet -->
+                    <polygon points="365,175 325,245 365,255" fill="url(#dr-sb-gem-top-l)" stroke="#5cff8a"
+                      stroke-width="0.8" />
+                    <!-- Top-Right Facet -->
+                    <polygon points="365,175 405,245 365,255" fill="url(#dr-sb-gem-top-r)" stroke="#5cff8a"
+                      stroke-width="0.8" />
+                    <!-- Bottom-Left Facet -->
+                    <polygon points="365,315 325,245 365,255" fill="url(#dr-sb-gem-bot-l)" stroke="#33ff66"
+                      stroke-width="0.8" />
+                    <!-- Bottom-Right Facet -->
+                    <polygon points="365,315 405,245 365,255" fill="url(#dr-sb-gem-bot-r)" stroke="#33ff66"
+                      stroke-width="0.8" />
+                    <!-- Central Inner Facet Ridge Light Line -->
+                    <line x1="365" y1="175" x2="365" y2="315" stroke="#ffffff" stroke-width="1.4" opacity="0.95" />
+                  </g>
+                </g>
+
+                <!-- ═══ ARTICULATED SILHOUETTE FIGURE RIG (7-STAGE CONTINUOUS SHORT STORY) ═══ -->
+                <g class="dr-sb-unified-figure" id="dr-sb-unified-figure">
+                  <!-- Dynamic Tracking Ground Shadow -->
+                  <ellipse cx="0" cy="368" rx="13" ry="3.2" fill="rgba(10, 10, 10, 0.2)" class="dr-sb-fig-shadow" />
+
+                  <!-- Skeleton Hierarchy with Anatomical Joint Groups -->
+                  <g class="dr-sb-fig-skeleton">
+
+                    <!-- REAR / FAR LEG (Behind Torso) -->
+                    <g class="dr-sb-leg-rear">
+                      <!-- Rear Thigh (Pivot at Hip: 0px, 322px) -->
+                      <g class="dr-sb-thigh-rear">
+                        <path d="M-1,322 L-2,344" stroke="#111111" stroke-width="4.8" stroke-linecap="round" />
+                        <!-- Rear Shin & Foot (Pivot at Knee: -2px, 344px) -->
+                        <g class="dr-sb-shin-rear">
+                          <path d="M-2,344 L-1,366 L4,367" stroke="#111111" stroke-width="4.0" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </g>
+                      </g>
+                    </g>
+
+                    <!-- REAR / FAR ARM (Behind Torso) -->
+                    <g class="dr-sb-arm-rear">
+                      <!-- Rear Bicep (Pivot at Shoulder: -2px, 287px) -->
+                      <g class="dr-sb-bicep-rear">
+                        <path d="M-2,287 L-4,303" stroke="#111111" stroke-width="3.4" stroke-linecap="round" />
+                        <!-- Rear Forearm & Hand (Pivot at Elbow: -4px, 303px) -->
+                        <g class="dr-sb-forearm-rear">
+                          <path d="M-4,303 L-3,319" stroke="#111111" stroke-width="2.9" stroke-linecap="round" />
+                        </g>
+                      </g>
+                    </g>
+
+                    <!-- TORSO & HEAD (Core Anatomic Silhouette) -->
+                    <g class="dr-sb-torso-group">
+                      <!-- Contoured Athletic Torso -->
+                      <path
+                        d="M0,282 C3,282 4,286 3,302 C2,314 2,322 0,323 C-2,322 -2,314 -3,302 C-4,286 -3,282 0,282 Z"
+                        fill="#111111" />
+                      <path d="M0,282 L0,323" stroke="#111111" stroke-width="5.2" stroke-linecap="round" />
+                      <!-- Neck & Head -->
+                      <path d="M0,282 L0,277" stroke="#111111" stroke-width="3.6" stroke-linecap="round" />
+                      <ellipse cx="0" cy="272" rx="5.8" ry="6.4" fill="#111111" class="dr-sb-fig-head" />
+                    </g>
+
+                    <!-- FRONT / NEAR LEG (In Front of Torso) -->
+                    <g class="dr-sb-leg-front">
+                      <!-- Front Thigh (Pivot at Hip: 1px, 322px) -->
+                      <g class="dr-sb-thigh-front">
+                        <path d="M1,322 L2,344" stroke="#111111" stroke-width="5.2" stroke-linecap="round" />
+                        <!-- Front Shin & Foot (Pivot at Knee: 2px, 344px) -->
+                        <g class="dr-sb-shin-front">
+                          <path d="M2,344 L2,366 L7,367" stroke="#111111" stroke-width="4.4" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </g>
+                      </g>
+                    </g>
+
+                    <!-- FRONT / NEAR ARM (In Front of Torso) -->
+                    <g class="dr-sb-arm-front">
+                      <!-- Front Bicep (Pivot at Shoulder: 3px, 287px) -->
+                      <g class="dr-sb-bicep-front">
+                        <path d="M3,287 L5,303" stroke="#111111" stroke-width="3.8" stroke-linecap="round" />
+                        <!-- Front Forearm & Hand (Pivot at Elbow: 5px, 303px) -->
+                        <g class="dr-sb-forearm-front">
+                          <path d="M5,303 L6,319" stroke="#111111" stroke-width="3.2" stroke-linecap="round" />
+                        </g>
+                      </g>
+                    </g>
+
+                  </g>
+                </g>
+
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
+    <script>
+      (function () {
+        const stage = document.getElementById('about-storyboard-stage');
+        if (!stage) return;
+
+        function runStoryboard() {
+          stage.classList.remove('is-active');
+          void stage.offsetWidth; // trigger reflow
+          stage.classList.add('is-active');
+        }
+
+        if ('IntersectionObserver' in window) {
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                runStoryboard();
+              } else {
+                stage.classList.remove('is-active');
+              }
+            });
+          }, { threshold: 0.2 });
+          obs.observe(stage);
+        } else {
+          stage.classList.add('is-active');
+        }
+      })();
+    </script>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     CLIENT LOGOS
+     CLIENT LOGOS (WHITE SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section id="clients" class="py-20 border-t border-[#111]">
+  <section id="clients" class="py-20 bg-[#ffffff] text-black border-t border-black/10" data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10 mb-10">
       <!-- <div class="slabel mb-4 reveal">// Clientele</div> -->
-      <h2 class="font-display leading-[0.91] reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.5rem)">
+      <h2 class="font-display leading-[0.91] text-black reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.5rem)">
         BRANDS THAT<br /><span style="color: var(--lime)">TRUST US.</span>
       </h2>
     </div>
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10 py-10 client-logo-container">
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-10 items-center justify-items-center">
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
         <div class="logo-card">
-          <img src="Bmw.png" alt="BMW" class="h-12 w-auto transition-all" />
+          <img src="Bmw.png" alt="BMW" class="h-12 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="honda.png" alt="Honda" class="h-12 w-auto transition-all" />
+          <img src="honda.png" alt="Honda" class="h-12 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="ather.png" alt="Ather" class="h-12 w-auto transition-all" />
+          <img src="ather.png" alt="Ather" class="h-12 w-auto object-contain transition-all" style="filter: brightness(0) !important;" />
         </div>
 
         <div class="logo-card">
-          <img src="ca-1-.png" alt="C&A Infra Realty" class="h-12 w-auto transition-all" />
+          <img src="pidilite-logo-1.avif" alt="Pidilite" class="h-12 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="Sunsilk.png" alt="Sunsilk" class="h-12 w-auto transition-all" />
+          <img src="Sunsilk_logo.png" alt="Sunsilk" class="h-12 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="Unimation_Robotics.png" alt="Unimation Robotics" class="h-12 w-auto transition-all" />
+          <img src="Unimation_Robotics.png" alt="Unimation Robotics" class="h-16 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="gamebot.png" alt="Gamebot" class="h-12 w-auto transition-all" />
+          <img src="ca-1-.png" alt="C&amp;A Infra Realty" class="h-12 w-auto object-contain transition-all" style="filter: brightness(0) !important;" />
         </div>
 
         <div class="logo-card">
-          <img src="zen.png" alt="Zen Secure" class="h-12 w-auto transition-all" />
+          <img src="Ocean wealth.jpg" alt="Ocean Wealth" class="h-12 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="Al.png" alt="Al Nayiha" class="h-12 w-auto transition-all" />
+          <img src="gamebot.png" alt="Gamebot" class="h-12 w-auto object-contain transition-all" />
         </div>
 
         <div class="logo-card">
-          <img src="hana.png" alt="Hana" class="h-12 w-auto transition-all" />
+          <img src="zen.png" alt="Zen Secure" class="h-9 w-auto object-contain transition-all" />
+        </div>
+
+        <div class="logo-card">
+          <img src="Al.png" alt="Al Nayiha" class="h-16 w-auto object-contain transition-all" />
+        </div>
+
+        <div class="logo-card">
+          <img src="hana.png" alt="Hana" class="h-12 w-auto object-contain transition-all" />
         </div>
       </div>
     </div>
@@ -554,7 +829,7 @@
           <span class="logo-fallback" style="display: none">BMW</span>
         </div>
         <div class="logo-img-item">
-          <img src="ca-1-.png" alt="C&A Infra Realty" onerror="
+          <img src="ca-1-.png" alt="C&A Infra Realty" style="filter: brightness(0) !important;" onerror="
                 this.style.display = 'none';
                 this.nextElementSibling.style.display = 'block';
               " />
@@ -564,7 +839,7 @@
           <img src="Diet_and_protein-.png" alt="Diet and Protein" onerror="
                 this.style.display = 'none';
                 this.nextElementSibling.style.display = 'block';
-              " />
+              " style="filter: brightness(0) !important;"/>
           <span class="logo-fallback" style="display: none">DIET AND PROTEIN</span>
         </div>
         <div class="logo-img-item">
@@ -766,18 +1041,18 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     SERVICES (BENTO)
+     SERVICES (BENTO) (WHITE SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section id="services" class="py-20 border-t border-[#111]">
+  <section id="services" class="py-20 bg-[#ffffff] text-black border-t border-black/10" data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
         <div>
           <!-- <div class="slabel mb-4 reveal">// Core Services</div> -->
-          <h2 class="font-display leading-[0.91] reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+          <h2 class="font-display leading-[0.91] text-black reveal ml-12" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
             EVERYTHING<br />YOU <span style="color: var(--lime)">NEED.</span>
           </h2>
         </div>
-        <p class="services-subtitle text-white/72 max-w-xs leading-relaxed reveal">
+        <p class="services-subtitle text-black/70 max-w-xs leading-relaxed reveal">
           Six powerful verticals. One cohesive strategy. No hand-offs, no
           silos, no excuses.
         </p>
@@ -785,287 +1060,301 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- 01 Branding -->
-        <a href="Branding.html" id="services-branding" class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all">
+        <a href="Branding.html" id="services-branding"
+          class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
             <div class="flex justify-between items-start mb-5">
-              <span class="service-tag">01 / 06</span>
-              <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
+              <span class="service-tag text-[var(--lime)] font-mono">01 / 06</span>
+              <div
+                class="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
                 <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </div>
             </div>
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               BRANDING &<br /><span style="color: var(--lime)">STRATEGY</span>
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-6">
+            <p class="text-black/65 text-sm leading-relaxed mb-6">
               Visual identity, brand voice guides, and market positioning that make you impossible to ignore.
             </p>
           </div>
-          <div class="pt-5 border-t border-[#181818]">
+          <div class="pt-5 border-t border-black/10">
             <div class="flex items-center gap-2">
               <div class="w-2.5 h-2.5 rounded-full" style="background: var(--lime)"></div>
-              <span class="text-white/35 text-xs font-mono">Logo · Guidelines · Voice</span>
+              <span class="text-black/50 text-xs font-mono">Logo · Guidelines · Voice</span>
             </div>
           </div>
         </a>
 
         <!-- 02 SEO & GMB -->
-        <a href="SEO & GMB.html" id="services-seo-gmb" class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all">
+        <a href="SEO & GMB.html" id="services-seo-gmb"
+          class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
             <div class="flex justify-between items-start mb-5">
-              <span class="service-tag">02 / 06</span>
-              <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
+              <span class="service-tag text-[var(--lime)] font-mono">02 / 06</span>
+              <div
+                class="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
                 <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </div>
             </div>
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               SEO &<br /><span style="color: var(--lime)">GMB</span>
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-6">
-              Local search dominance, Google My Business optimization, and organic ranking strategies that drive qualified traffic.
+            <p class="text-black/65 text-sm leading-relaxed mb-6">
+              Local search dominance, Google My Business optimization, and organic ranking strategies that drive
+              qualified traffic.
             </p>
           </div>
-          <div class="flex gap-2 flex-wrap pt-5 border-t border-[#181818]">
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">GMB Profile</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Local SEO</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Rankings</span>
+          <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">GMB Profile</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">Local SEO</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">Rankings</span>
           </div>
         </a>
 
         <!-- 03 Influencer Marketing -->
-        <a href="Influencer Marketing.html" id="services-influencer-marketing" class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all">
+        <a href="Influencer Marketing.html" id="services-influencer-marketing"
+          class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
             <div class="flex justify-between items-start mb-5">
-              <span class="service-tag">03 / 06</span>
-              <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
+              <span class="service-tag text-[var(--lime)] font-mono">03 / 06</span>
+              <div
+                class="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
                 <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </div>
             </div>
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               INFLUENCER<br /><span style="color: var(--lime)">MARKETING</span>
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-6">
+            <p class="text-black/65 text-sm leading-relaxed mb-6">
               Authentic creator partnerships and targeted campaigns bridging digital and physical audiences.
             </p>
           </div>
-          <div class="flex items-center gap-2 pt-5 border-t border-[#181818]">
+          <div class="flex items-center gap-2 pt-5 border-t border-black/10">
             <div class="w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-orange-400"></div>
             <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 -ml-2"></div>
-            <div class="w-6 h-6 rounded-full -ml-2" style="background: linear-gradient(135deg, var(--lime), #006619);"></div>
-            <span class="text-white/35 text-xs ml-2 font-mono">Creator Network</span>
+            <div class="w-6 h-6 rounded-full -ml-2" style="background: linear-gradient(135deg, var(--lime), #006619);">
+            </div>
+            <span class="text-black/50 text-xs ml-2 font-mono">Creator Network</span>
           </div>
         </a>
 
         <!-- 04 Performance Marketing -->
-        <a href="Performance Marketing.html" id="services-performance-marketing" class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all">
+        <a href="Performance Marketing.html" id="services-performance-marketing"
+          class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
             <div class="flex justify-between items-start mb-5">
-              <span class="service-tag">04 / 06</span>
-              <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
+              <span class="service-tag text-[var(--lime)] font-mono">04 / 06</span>
+              <div
+                class="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
                 <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </div>
             </div>
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               PERFORMANCE<br /><span style="color: var(--lime)">MARKETING</span>
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-6">
+            <p class="text-black/65 text-sm leading-relaxed mb-6">
               Meta Ads, Google Ads, and paid campaigns built for maximum ROAS. Every rupee tracked.
             </p>
           </div>
-          <div class="flex gap-2 flex-wrap pt-5 border-t border-[#181818]">
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Meta Ads</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Google Ads</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">ROAS</span>
+          <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">Meta Ads</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">Google Ads</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">ROAS</span>
           </div>
         </a>
 
         <!-- 05 Social Media Management -->
-        <a href="Social Media Management.html" id="services-social-media" class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all">
+        <a href="Social Media Management.html" id="services-social-media"
+          class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
             <div class="flex justify-between items-start mb-5">
-              <span class="service-tag">05 / 06</span>
-              <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
+              <span class="service-tag text-[var(--lime)] font-mono">05 / 06</span>
+              <div
+                class="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
                 <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </div>
             </div>
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               SOCIAL MEDIA<br /><span style="color: var(--lime)">MANAGEMENT</span>
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-6">
+            <p class="text-black/65 text-sm leading-relaxed mb-6">
               Scroll-stopping content calendars, multi-platform consistency, and communities that convert.
             </p>
           </div>
-          <div class="flex gap-2 flex-wrap pt-5 border-t border-[#181818]">
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Instagram</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">LinkedIn</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">YouTube</span>
+          <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">Instagram</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">LinkedIn</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">YouTube</span>
           </div>
         </a>
 
         <!-- 06 Web Design & Development -->
-        <a href="Web Design & Development.html" id="services-web-design" class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all">
+        <a href="Web Design & Development.html" id="services-web-design"
+          class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
             <div class="flex justify-between items-start mb-5">
-              <span class="service-tag">06 / 06</span>
-              <div class="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
+              <span class="service-tag text-[var(--lime)] font-mono">06 / 06</span>
+              <div
+                class="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center group-hover:border-[var(--lime)] group-hover:bg-[var(--lime)]/10 transition-colors">
                 <svg width="16" height="16" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
               </div>
             </div>
-            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3">
+            <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               WEB DESIGN &<br /><span style="color: var(--lime)">DEVELOPMENT</span>
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed mb-6">
+            <p class="text-black/65 text-sm leading-relaxed mb-6">
               Websites engineered to convert — from landing pages to full e-commerce ecosystems.
             </p>
           </div>
-          <div class="flex gap-2 flex-wrap pt-5 border-t border-[#181818]">
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">Responsive</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">UI/UX</span>
-            <span class="border border-[#252525] text-white/52 text-xs px-3 py-1 rounded-full">E-Commerce</span>
+          <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">Responsive</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">UI/UX</span>
+            <span class="border border-black/15 text-black/70 text-xs px-3 py-1 rounded-full">E-Commerce</span>
           </div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ══ Service Marquee (between Services & Industries) ══ -->
-  <div class="mq-wrap py-4">
+  <!-- ══ Service Marquee (between Services & Industries) (WHITE THEME) ══ -->
+  <div class="mq-wrap py-4 bg-white border-t border-b border-black/10" data-theme="light">
     <div class="mq-track rev items-center">
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">WEBSITE DESIGN & DEVELOPMENT</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">INFLUENCER MARKETING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">SOCIAL MEDIA MANAGEMENT</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">PERFORMANCE MARKETING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">BRANDING & PACKAGING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">VIDEO PRODUCTION</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">OUTDOOR MARKETING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">CONTENT CREATION</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">BRAND STRATEGY</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <!-- dupe -->
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">WEBSITE DESIGN & DEVELOPMENT</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">INFLUENCER MARKETING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">SOCIAL MEDIA MANAGEMENT</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">PERFORMANCE MARKETING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">BRANDING & PACKAGING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">VIDEO PRODUCTION</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">OUTDOOR MARKETING</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">CONTENT CREATION</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
       <span class="font-display text-[1.3rem] px-6" style="color: var(--lime)">BRAND STRATEGY</span><span
-        class="text-white/22 text-lg px-2">◆</span>
+        class="text-black/20 text-lg px-2">◆</span>
     </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════
-     INDUSTRIES
+     INDUSTRIES (WHITE SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section id="industries" class="py-28 border-t border-[#111]">
+  <section id="industries" class="py-28 bg-[#ffffff] text-black border-t border-black/10" data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Industries We Cater To</div> -->
-      <h2 class="font-display leading-[0.91] mb-4 reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+      <h2 class="font-display leading-[0.91] mb-4 text-black reveal ml-12" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
         YOUR SECTOR.<br />OUR
         <span style="color: var(--lime)">EXPERTISE.</span>
       </h2>
-      <p class="text-white/42 text-base max-w-lg mb-14 reveal">
+      <p class="text-black/60 text-base max-w-lg mb-14 reveal ml-12">
         Every industry has its own audience psychology — we've built dedicated
         playbooks for each.
       </p>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <!-- Industry cards -->
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">🚗</div>
-          <div class="font-display text-lg mb-1">AUTOMOBILE</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">🚗</div> -->
+          <div class="font-display text-lg mb-1 text-black">AUTOMOBILE</div>
+          <p class="text-black/50 text-xs">
             Drive conversions with visual campaigns.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">🏗️</div>
-          <div class="font-display text-lg mb-1">CONSTRUCTION</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">🏗️</div> -->
+          <div class="font-display text-lg mb-1 text-black">CONSTRUCTION</div>
+          <p class="text-black/50 text-xs">
             Build credibility and generate leads.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">💡</div>
-          <div class="font-display text-lg mb-1">ED-TECH & IT</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">💡</div> -->
+          <div class="font-display text-lg mb-1 text-black">ED-TECH & IT</div>
+          <p class="text-black/50 text-xs">
             Engage learners and drive enrollments.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">🛍️</div>
-          <div class="font-display text-lg mb-1">E-COMMERCE</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">🛍️</div> -->
+          <div class="font-display text-lg mb-1 text-black">E-COMMERCE</div>
+          <p class="text-black/50 text-xs">
             ROAS-driven creatives that sell.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">👗</div>
-          <div class="font-display text-lg mb-1">FASHION</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">👗</div> -->
+          <div class="font-display text-lg mb-1 text-black">FASHION</div>
+          <p class="text-black/50 text-xs">
             Style-forward content that converts.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">💄</div>
-          <div class="font-display text-lg mb-1">BEAUTY</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">💄</div> -->
+          <div class="font-display text-lg mb-1 text-black">BEAUTY</div>
+          <p class="text-black/50 text-xs">
             Glam content that builds loyal fans.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">☕</div>
-          <div class="font-display text-lg mb-1">CAFÉ & F&B</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">☕</div> -->
+          <div class="font-display text-lg mb-1 text-black">CAFÉ & F&B</div>
+          <p class="text-black/50 text-xs">
             Mouthwatering content drives footfall.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">🏥</div>
-          <div class="font-display text-lg mb-1">HEALTHCARE</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">🏥</div> -->
+          <div class="font-display text-lg mb-1 text-black">HEALTHCARE</div>
+          <p class="text-black/50 text-xs">
             Trust-first, empathetic storytelling.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">✈️</div>
-          <div class="font-display text-lg mb-1">HOSPITALITY</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">✈️</div> -->
+          <div class="font-display text-lg mb-1 text-black">HOSPITALITY</div>
+          <p class="text-black/50 text-xs">
             Inspire travel with cinematic content.
           </p>
         </div>
-        <div class="ind-pill rounded-xl p-5 text-center reveal">
-          <div class="text-3xl mb-3">💹</div>
-          <div class="font-display text-lg mb-1">FINANCE</div>
-          <p class="text-white/38 text-xs">
+        <div class="ind-pill rounded-xl p-5 text-center reveal bg-[#ffffff] border border-black/10">
+          <!-- <div class="text-3xl mb-3">💹</div> -->
+          <div class="font-display text-lg mb-1 text-black">FINANCE</div>
+          <p class="text-black/50 text-xs">
             Compliance-aware content that earns trust.
           </p>
         </div>
@@ -1074,76 +1363,83 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     HOW WE WORK
+     BLOCK 3 — BLACK (TRANSITION 2: WHITE → BLACK)
+     HOW WE WORK (BLACK SECTION — EDITORIAL CHAPTER)
 ══════════════════════════════════════════════════════════════ -->
-  <section class="py-28 border-t border-[#111]">
+  <section
+    class="py-28 bg-[#000000] text-white border-t border-white/15 editorial-block-transition transition-to-black transition-angled"
+    data-theme="dark">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Process</div> -->
-      <h2 class="font-display leading-[0.91] mb-16 reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+      <h2 class="font-display leading-[0.91] mb-16 text-white reveal ml-12" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
         HOW WE <span style="color: var(--lime)">WORK.</span>
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Step 1 -->
-        <div class="step-card p-8 reveal">
-          <div class="step-num">01</div>
-          <div class="w-12 h-12 rounded-lg border border-[#252525] flex items-center justify-center mb-6 relative z-10">
+        <div class="step-card p-8 reveal bg-[#000000] border border-white/15 text-white">
+          <div class="step-num text-white/10">01</div>
+          <div
+            class="w-12 h-12 rounded-lg border border-white/15 flex items-center justify-center mb-6 relative z-10 bg-white/[0.02]">
             <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
               <path d="M9 11l3 3L22 4" />
               <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
             </svg>
           </div>
-          <h3 class="font-display text-3xl mb-3 relative z-10">AUDIT</h3>
-          <p class="text-white/45 text-sm leading-relaxed relative z-10">
+          <h3 class="font-display text-3xl mb-3 relative z-10 text-white">AUDIT</h3>
+          <p class="text-white/65 text-sm leading-relaxed relative z-10">
             We understand your brand deeply, analyse competitors, and identify
             the exact gaps holding your growth back.
           </p>
-          <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
-            <span class="slabel">Week 1</span>
+          <div class="mt-6 pt-5 border-t border-white/15 relative z-10">
+            <span class="slabel text-white/60">Week 1</span>
           </div>
         </div>
         <!-- Step 2 -->
-        <div class="step-card p-8 reveal">
-          <div class="step-num">02</div>
-          <div class="w-12 h-12 rounded-lg border border-[#252525] flex items-center justify-center mb-6 relative z-10">
+        <div class="step-card p-8 reveal bg-[#000000] border border-white/15 text-white">
+          <div class="step-num text-white/10">02</div>
+          <div
+            class="w-12 h-12 rounded-lg border border-white/15 flex items-center justify-center mb-6 relative z-10 bg-white/[0.02]">
             <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
               <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
               <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
             </svg>
           </div>
-          <h3 class="font-display text-3xl mb-3 relative z-10">STRATEGY</h3>
-          <p class="text-white/45 text-sm leading-relaxed relative z-10">
+          <h3 class="font-display text-3xl mb-3 relative z-10 text-white">STRATEGY</h3>
+          <p class="text-white/65 text-sm leading-relaxed relative z-10">
             We build a clear, data-backed growth plan — channel selection,
             content pillars, ad budgets, and timelines — tailored to your
             goals.
           </p>
-          <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
-            <span class="slabel">Week 2</span>
+          <div class="mt-6 pt-5 border-t border-white/15 relative z-10">
+            <span class="slabel text-white/60">Week 2</span>
           </div>
         </div>
         <!-- Step 3 -->
-        <div class="step-card p-8 reveal">
-          <div class="step-num">03</div>
-          <div class="w-12 h-12 rounded-lg border border-[#252525] flex items-center justify-center mb-6 relative z-10">
+        <div class="step-card p-8 reveal bg-[#000000] border border-white/15 text-white">
+          <div class="step-num text-white/10">03</div>
+          <div
+            class="w-12 h-12 rounded-lg border border-white/15 flex items-center justify-center mb-6 relative z-10 bg-white/[0.02]">
             <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
           </div>
-          <h3 class="font-display text-3xl mb-3 relative z-10">EXECUTION</h3>
-          <p class="text-white/45 text-sm leading-relaxed relative z-10">
+          <h3 class="font-display text-3xl mb-3 relative z-10 text-white">EXECUTION</h3>
+          <p class="text-white/65 text-sm leading-relaxed relative z-10">
             Our in-house team brings the strategy to life — content, design,
             ads, and campaigns go live with obsessive attention to detail.
           </p>
-          <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
-            <span class="slabel">Week 3+</span>
+          <div class="mt-6 pt-5 border-t border-white/15 relative z-10">
+            <span class="slabel text-white/60">Week 3+</span>
           </div>
         </div>
         <!-- Step 4 -->
-        <div class="step-card p-8 reveal" style="border-color: rgba(0, 204, 51, 0.3)">
-          <div class="step-num">04</div>
+        <div class="step-card p-8 reveal bg-[#000000] text-white"
+          style="border: 1px solid rgba(0, 204, 51, 0.4); box-shadow: 0 4px 20px -2px rgba(0,204,51,0.08);">
+          <div class="step-num text-white/10">04</div>
           <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 relative z-10" style="
                 border: 1px solid rgba(0, 204, 51, 0.3);
-                background: rgba(0, 204, 51, 0.06);
+                background: rgba(0, 204, 51, 0.08);
               ">
             <svg width="22" height="22" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
               <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
@@ -1153,12 +1449,12 @@
           <h3 class="font-display text-3xl mb-3 relative z-10" style="color: var(--lime)">
             SCALE
           </h3>
-          <p class="text-white/45 text-sm leading-relaxed relative z-10">
+          <p class="text-white/65 text-sm leading-relaxed relative z-10">
             We optimise continuously — A/B testing, performance reports, and
             iterating on what works to compound your growth month over month.
           </p>
-          <div class="mt-6 pt-5 border-t border-[#161616] relative z-10">
-            <span class="slabel" style="color: rgba(0, 204, 51, 0.6)">Ongoing</span>
+          <div class="mt-6 pt-5 border-t border-white/15 relative z-10">
+            <span class="slabel" style="color: rgba(0, 204, 51, 0.8)">Ongoing</span>
           </div>
         </div>
       </div>
@@ -1166,41 +1462,38 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     CREDENTIALS / WORK / PORTFOLIO
+     BLOCK 4 — WHITE (TRANSITION 3: BLACK → WHITE)
+     PORTFOLIO / CASE STUDIES / CREDENTIALS (WHITE SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section id="portfolio" class="py-20 border-t border-[#111]">
+  <section id="portfolio"
+    class="py-20 bg-[#ffffff] text-black border-t border-black/10 editorial-block-transition transition-to-white transition-angled"
+    data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Our Work</div> -->
-      <h2 class="font-display leading-[0.91] mb-12 reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+      <h2 class="font-display leading-[0.91] mb-12 text-black reveal ml-12" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
         SEE WHAT<br /><span style="color: var(--lime)">WE'VE BUILT.</span>
       </h2>
 
-      <div class="cred-card p-10 lg:p-16 reveal" style="
-            background: radial-gradient(
-              ellipse 80% 80% at 50% 50%,
-              rgba(0, 204, 51, 0.06) 0%,
-              transparent 70%
-            );
-          ">
+      <div class="cred-card p-10 lg:p-16 reveal border border-black/10 bg-white rounded-2xl shadow-sm">
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div>
-            <div class="slabel mb-3">CREDENTIALS DECK</div>
-            <h3 class="font-display text-4xl lg:text-5xl mb-4">
+            <div class="slabel mb-3 text-[var(--lime)]">CREDENTIALS DECK</div>
+            <h3 class="font-display text-4xl lg:text-5xl mb-4 text-black">
               OUR PORTFOLIO &<br />CASE STUDIES
             </h3>
-            <p class="text-white/45 text-sm leading-relaxed max-w-md">
+            <p class="text-black/60 text-sm leading-relaxed max-w-md">
               Dive into 50+ brand transformations — social campaigns, brand
               identity systems, website builds, and performance ad results
               across industries.
             </p>
             <div class="flex flex-wrap gap-3 mt-6">
-              <div class="border border-[#222] rounded-lg px-4 py-2 text-xs font-mono text-white/40">
+              <div class="border border-black/10 rounded-lg px-4 py-2 text-xs font-mono text-black/60">
                 50+ Brands
               </div>
-              <div class="border border-[#222] rounded-lg px-4 py-2 text-xs font-mono text-white/40">
+              <div class="border border-black/10 rounded-lg px-4 py-2 text-xs font-mono text-black/60">
                 Real Results
               </div>
-              <div class="border border-[#222] rounded-lg px-4 py-2 text-xs font-mono text-white/40">
+              <div class="border border-black/10 rounded-lg px-4 py-2 text-xs font-mono text-black/60">
                 Case Studies
               </div>
             </div>
@@ -1215,8 +1508,6 @@
               </svg>
               Download Our Credentials Deck
             </a>
-            <!-- <a href="#contact-section" class="btn-outline px-8 py-4 rounded-lg text-base text-center">Request Case Study
-              →</a> -->
           </div>
         </div>
       </div>
@@ -1224,25 +1515,28 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     TESTIMONIALS
+     BLOCK 5 — BLACK (TRANSITION 4: WHITE → BLACK)
+     TESTIMONIALS (BLACK SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section class="py-28 border-t border-[#111]">
+  <section
+    class="py-28 bg-[#000000] text-white border-t border-white/15 editorial-block-transition transition-to-black transition-angled"
+    data-theme="dark">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Testimonials</div> -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
-        <h2 class="font-display leading-[0.91] reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+        <h2 class="font-display leading-[0.91] text-white reveal ml-12" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
           WHAT OUR CLIENTS<br /><span style="color: var(--lime)">HAVE TO SAY.</span>
         </h2>
         <div class="flex gap-3 reveal">
           <button onclick="prevSlide()"
-            class="w-11 h-11 border border-[#222] rounded-lg flex items-center justify-center text-white/60 hover:border-lime hover:text-lime transition-all"
+            class="w-11 h-11 border border-white/20 rounded-lg flex items-center justify-center text-white hover:border-lime hover:text-lime transition-all"
             aria-label="Prev">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
           <button onclick="nextSlide()"
-            class="w-11 h-11 border border-[#222] rounded-lg flex items-center justify-center text-white/60 hover:border-lime hover:text-lime transition-all"
+            class="w-11 h-11 border border-white/20 rounded-lg flex items-center justify-center text-white hover:border-lime hover:text-lime transition-all"
             aria-label="Next">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M9 18l6-6-6-6" />
@@ -1256,15 +1550,15 @@
           <!-- Slide 1 -->
           <div class="tslide px-1">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <div class="tcard p-8">
-                <div class="stars mb-4">★★★★★</div>
-                <p class="text-white/68 text-sm leading-relaxed mb-6">
+              <div class="tcard p-8 bg-[#000000] border border-white/15 text-white shadow-sm">
+                <div class="stars mb-4" style="color: var(--lime)">★★★★★</div>
+                <p class="text-white/80 text-sm leading-relaxed mb-6">
                   "DemuRup Media transformed our Instagram from a ghost town
                   to our #1 lead source. The content quality, consistency, and
                   strategy they bring is unlike any agency we've worked with
                   before."
                 </p>
-                <div class="flex items-center gap-3 pt-5 border-t border-[#161616]">
+                <div class="flex items-center gap-3 pt-5 border-t border-white/15">
                   <div class="w-10 h-10 rounded-full flex items-center justify-center font-display text-lg" style="
                         background: rgba(0, 204, 51, 0.15);
                         color: var(--lime);
@@ -1272,22 +1566,22 @@
                     R
                   </div>
                   <div>
-                    <div class="font-semibold text-sm">Rahul Mehta</div>
-                    <div class="text-white/38 text-xs font-mono">
+                    <div class="font-semibold text-sm text-white">Rahul Mehta</div>
+                    <div class="text-white/55 text-xs font-mono">
                       Founder, D2C Fashion Brand
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="tcard p-8">
-                <div class="stars mb-4">★★★★★</div>
-                <p class="text-white/68 text-sm leading-relaxed mb-6">
+              <div class="tcard p-8 bg-[#000000] border border-white/15 text-white shadow-sm">
+                <div class="stars mb-4" style="color: var(--lime)">★★★★★</div>
+                <p class="text-white/80 text-sm leading-relaxed mb-6">
                   "Our website was built in 3 weeks and it looks better than
                   brands 10x our size. The team understood our vision
                   immediately and executed it flawlessly. ROAS on our ads went
                   3x in month one."
                 </p>
-                <div class="flex items-center gap-3 pt-5 border-t border-[#161616]">
+                <div class="flex items-center gap-3 pt-5 border-t border-white/15">
                   <div class="w-10 h-10 rounded-full flex items-center justify-center font-display text-lg" style="
                         background: rgba(0, 204, 51, 0.15);
                         color: var(--lime);
@@ -1295,22 +1589,22 @@
                     P
                   </div>
                   <div>
-                    <div class="font-semibold text-sm">Priya Sharma</div>
-                    <div class="text-white/38 text-xs font-mono">
+                    <div class="font-semibold text-sm text-white">Priya Sharma</div>
+                    <div class="text-white/55 text-xs font-mono">
                       CEO, Real Estate Startup
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="tcard p-8">
-                <div class="stars mb-4">★★★★★</div>
-                <p class="text-white/68 text-sm leading-relaxed mb-6">
+              <div class="tcard p-8 bg-[#000000] border border-white/15 text-white shadow-sm">
+                <div class="stars mb-4" style="color: var(--lime)">★★★★★</div>
+                <p class="text-white/80 text-sm leading-relaxed mb-6">
                   "Shailesh and the DemuRup team are partners, not vendors.
                   They proactively share ideas, stay ahead of trends, and
                   genuinely care about our growth. Best marketing decision
                   we've made."
                 </p>
-                <div class="flex items-center gap-3 pt-5 border-t border-[#161616]">
+                <div class="flex items-center gap-3 pt-5 border-t border-white/15">
                   <div class="w-10 h-10 rounded-full flex items-center justify-center font-display text-lg" style="
                         background: rgba(0, 204, 51, 0.15);
                         color: var(--lime);
@@ -1318,8 +1612,8 @@
                     A
                   </div>
                   <div>
-                    <div class="font-semibold text-sm">Arjun Kapoor</div>
-                    <div class="text-white/38 text-xs font-mono">
+                    <div class="font-semibold text-sm text-white">Arjun Kapoor</div>
+                    <div class="text-white/55 text-xs font-mono">
                       MD, Healthcare Clinic
                     </div>
                   </div>
@@ -1338,32 +1632,32 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     LEAD MAGNET
+     LEAD MAGNET (BLACK SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section class="py-20 border-t border-[#111]">
+  <section class="py-20 bg-[#000000] text-white border-t border-white/15" data-theme="dark">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
-      <div class="lead-box p-10 lg:p-16 reveal">
+      <div class="lead-box p-10 lg:p-16 reveal bg-[#000000] border border-white/15 rounded-2xl">
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div>
             <!-- <div class="slabel mb-3">// Free Offer</div> -->
-            <h3 class="font-display leading-[0.92] mb-4" style="font-size: clamp(2.2rem, 5vw, 4rem)">
+            <h3 class="font-display leading-[0.92] mb-4 text-white" style="font-size: clamp(2.2rem, 5vw, 4rem)">
               NOT READY<br />YET?
             </h3>
-            <p class="text-white/52 text-base lg:text-lg leading-relaxed max-w-md">
+            <p class="text-white/70 text-base lg:text-lg leading-relaxed max-w-md">
               Get a <strong class="text-white">free brand audit</strong> and
               understand exactly what's holding your growth back — no strings
               attached.
             </p>
             <ul class="mt-4 space-y-2">
-              <li class="flex items-center gap-2 text-white/45 text-sm">
+              <li class="flex items-center gap-2 text-white/60 text-sm">
                 <span style="color: var(--lime)">✓</span> Brand presence
                 analysis
               </li>
-              <li class="flex items-center gap-2 text-white/45 text-sm">
+              <li class="flex items-center gap-2 text-white/60 text-sm">
                 <span style="color: var(--lime)">✓</span> Competitor gap
                 report
               </li>
-              <li class="flex items-center gap-2 text-white/45 text-sm">
+              <li class="flex items-center gap-2 text-white/60 text-sm">
                 <span style="color: var(--lime)">✓</span> Growth opportunities
                 identified
               </li>
@@ -1372,7 +1666,7 @@
           <div class="flex flex-col gap-3 flex-shrink-0">
             <a href="#contact-section" class="btn-lime px-10 py-5 rounded-lg text-base font-bold">Get A Free Brand Audit
               →</a>
-            <p class="text-white/35 text-xs font-mono text-center">
+            <p class="text-white/45 text-xs font-mono text-center">
               No payment. No commitment.
             </p>
           </div>
@@ -1382,18 +1676,19 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     CONTACT SECTION
+     CONTACT SECTION (BLACK SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <section id="contact-section" class="py-28 border-t border-[#111]">
+  <section id="contact-section" class="py-28 bg-[#000000] text-white border-t border-white/15" data-theme="dark">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <div class="grid lg:grid-cols-2 gap-16">
         <!-- Left info -->
         <div>
           <!-- <div class="slabel mb-4 reveal">// Get In Touch</div> -->
-          <h2 class="font-display leading-[0.91] mb-6 reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.5rem)">
+          <h2 class="font-display leading-[0.91] mb-6 text-white reveal"
+            style="font-size: clamp(2.8rem, 6.5vw, 5.5rem)">
             LET'S BUILD<br />SOMETHING<br /><span style="color: var(--lime)">ICONIC.</span>
           </h2>
-          <p class="text-white/48 text-base leading-relaxed mb-8 reveal">
+          <p class="text-white/70 text-base leading-relaxed mb-8 reveal">
             Book a free 30-minute strategy call. No pitches, no fluff — just
             honest conversation about what would move the needle for your
             brand.
@@ -1402,7 +1697,7 @@
           <!-- Contact details -->
           <div class="space-y-4 reveal">
             <a href="mailto:demurupmedia@gmail.com"
-              class="flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+              class="flex items-center gap-4 border border-white/15 rounded-xl p-4 bg-[#111] hover:border-lime transition-all group">
               <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                 style="background: rgba(0, 204, 51, 0.1)">
                 <svg width="18" height="18" fill="none" stroke="#00cc33" stroke-width="1.5" viewBox="0 0 24 24">
@@ -1411,24 +1706,15 @@
                 </svg>
               </div>
               <div>
-                <div class="slabel mb-0.5">Email</div>
+                <div class="slabel text-white/50 mb-0.5">Email</div>
                 <div class="text-white text-sm group-hover:text-lime transition-colors">
                   demurupmedia@gmail.com
                 </div>
               </div>
             </a>
             <div class="flex gap-3">
-              <!-- <a href="https://wa.me/917489998238" target="_blank" rel="noopener" class="flex-1 flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
-              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,204,51,.1)">
-                <svg width="17" height="17" fill="#00cc33" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              </div>
-              <div>
-                <div class="slabel mb-0.5">WhatsApp</div>
-                <div class="text-white text-sm group-hover:text-lime transition-colors">+91-7489998238</div>
-              </div>
-            </a> -->
               <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
-                class="flex-1 flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+                class="flex-1 flex items-center gap-4 border border-white/15 rounded-xl p-4 bg-[#111] hover:border-lime transition-all group">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                   style="background: rgba(0, 204, 51, 0.1)">
                   <svg width="17" height="17" fill="#00cc33" viewBox="0 0 24 24">
@@ -1437,7 +1723,7 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="slabel mb-0.5">WhatsApp</div>
+                  <div class="slabel text-white/50 mb-0.5">WhatsApp</div>
                   <div class="text-white text-sm group-hover:text-lime transition-colors">
                     +91-9586569990
                   </div>
@@ -1445,7 +1731,7 @@
               </a>
             </div>
             <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
-              class="flex items-center gap-4 border border-[#1e1e1e] rounded-xl p-4 hover:border-lime transition-all group">
+              class="flex items-center gap-4 border border-white/15 rounded-xl p-4 bg-[#111] hover:border-lime transition-all group">
               <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                 style="background: rgba(0, 204, 51, 0.1)">
                 <svg width="18" height="18" fill="#00cc33" viewBox="0 0 24 24">
@@ -1454,7 +1740,7 @@
                 </svg>
               </div>
               <div>
-                <div class="slabel mb-0.5">Instagram</div>
+                <div class="slabel text-white/50 mb-0.5">Instagram</div>
                 <div class="text-white text-sm group-hover:text-lime transition-colors">
                   @demurup_media
                 </div>
@@ -1465,31 +1751,34 @@
 
         <!-- Right form -->
         <div class="reveal">
-          <div class="border border-[#1e1e1e] rounded-2xl p-8" style="background: #060606">
+          <div class="border border-white/15 rounded-2xl p-8 bg-[#0a0a0a] shadow-sm">
             <!-- Form -->
             <div id="contact-form-wrap">
-              <div class="slabel mb-6">// Tell us about your brand</div>
+              <div class="slabel text-white/60 mb-6">// Tell us about your brand</div>
 
               <div class="space-y-5">
                 <!-- Name -->
                 <div>
-                  <label class="form-label">Your Name *</label>
-                  <input type="text" id="f-name" placeholder="e.g.  Rohan Gupta" class="form-input" required />
+                  <label class="form-label text-white/80 font-medium">Your Name *</label>
+                  <input type="text" id="f-name" placeholder="e.g. Rohan Gupta"
+                    class="form-input bg-black border border-white/20 text-white placeholder:text-white/40" required />
                 </div>
                 <!-- Brand -->
                 <div>
-                  <label class="form-label">Brand / Company Name *</label>
-                  <input type="text" id="f-brand" placeholder="e.g. XYZ Technology" class="form-input" required />
+                  <label class="form-label text-white/80 font-medium">Brand / Company Name *</label>
+                  <input type="text" id="f-brand" placeholder="e.g. XYZ Technology"
+                    class="form-input bg-black border border-white/20 text-white placeholder:text-white/40" required />
                 </div>
                 <!-- Phone -->
                 <div>
-                  <label class="form-label">Phone / WhatsApp Number *</label>
-                  <input type="tel" id="f-phone" placeholder="+91-XXXXX XXXXX" class="form-input" required />
+                  <label class="form-label text-white/80 font-medium">Phone / WhatsApp Number *</label>
+                  <input type="tel" id="f-phone" placeholder="+91-XXXXX XXXXX"
+                    class="form-input bg-black border border-white/20 text-white placeholder:text-white/40" required />
                 </div>
                 <!-- Services needed -->
                 <div>
-                  <label class="form-label">What do you need?</label>
-                  <select id="f-needs" class="form-input">
+                  <label class="form-label text-white/80 font-medium">What do you need?</label>
+                  <select id="f-needs" class="form-input bg-black border border-white/20 text-white">
                     <option value="" disabled selected>
                       Select a service
                     </option>
@@ -1522,7 +1811,7 @@
               <h3 class="font-display text-3xl mb-3" style="color: var(--lime)">
                 WE'VE GOT IT!
               </h3>
-              <p class="text-white/55 text-sm leading-relaxed mb-6">
+              <p class="text-white/70 text-sm leading-relaxed mb-6">
                 We'll review your details and get back to you
                 <strong class="text-white">within 24 hours.</strong> In the
                 meantime, feel free to chat with us directly.
@@ -1539,9 +1828,9 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-     FOOTER
+     FOOTER (BLACK SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <footer class="border-t border-[#111] pt-16 pb-8">
+  <footer class="border-t border-white/15 pt-16 pb-8 bg-[#000000] text-white" data-theme="dark">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
         <!-- Brand -->
@@ -1674,10 +1963,11 @@
 ══════════════════════════════════════════════════════════════ -->
   <div id="dr-video-modal-overlay" class="dr-video-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="dr-video-modal-container" id="dr-video-modal-container">
-      
+
       <!-- Floating Close Button (42x42px Black Glass Circle) -->
       <button id="dr-video-modal-close" class="dr-video-modal-close" aria-label="Close modal">
-        <svg width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" viewBox="0 0 24 24">
+        <svg width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"
+          viewBox="0 0 24 24">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -1685,7 +1975,9 @@
 
       <!-- 16:9 Video Player Frame -->
       <div class="dr-video-modal-frame">
-        <iframe id="dr-video-modal-iframe" title="DemuRup Media Video Showcase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe id="dr-video-modal-iframe" title="DemuRup Media Video Showcase" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </div>
 
     </div>

@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'The Seasons';
   src: url('fonts/TheSeasons-Regular.woff2') format('woff2'),
-       url('fonts/TheSeasons-Regular.woff') format('woff');
+    url('fonts/TheSeasons-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -19,7 +19,7 @@
 @font-face {
   font-family: 'Beautiful Delight';
   src: url('fonts/BeautifulDelight-Regular.woff2') format('woff2'),
-       url('fonts/BeautifulDelight-Regular.woff') format('woff');
+    url('fonts/BeautifulDelight-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -81,7 +81,6 @@ body {
   pointer-events: none !important;
   z-index: 100000;
   transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -133,18 +132,211 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
 }
 
-/* ── Nav ── */
+/* ============ SECTION BACKGROUND COLORS ============ */
+section[data-theme="light"],
+footer[data-theme="light"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+section[data-theme="dark"],
+footer[data-theme="dark"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Service Intro Contrast */
+section.intro[data-theme="light"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+section.intro[data-theme="light"] .intro-text {
+  color: #000000 !important;
+}
+
+section.intro[data-theme="light"] .intro-text+.intro-text {
+  color: rgba(0, 0, 0, 0.72) !important;
+}
+
+section.intro[data-theme="light"] .intro-quote {
+  color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Service Trust Contrast */
+section.trust[data-theme="light"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+section.trust[data-theme="light"] h2 {
+  color: #000000 !important;
+}
+
+section.trust[data-theme="light"] .client-card {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+section.trust[data-theme="light"] .client-card .client-name {
+  color: rgba(0, 0, 0, 0.72) !important;
+}
+
+/* Service WWH Contrast */
+section.wwh[data-theme="dark"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+section.wwh[data-theme="dark"] h2 {
+  color: #ffffff !important;
+}
+
+
+/* Client section under White Canvas */
+section#clients[data-theme="light"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+section#clients[data-theme="light"] h2 {
+  color: #000000 !important;
+  margin-left: 5%;
+  /* This gives it a nice, calculated nudge. */
+}
+
+/* ── Static logo grid cards ── */
+section#clients[data-theme="light"] .logo-card {
+  /* background: #ffffff !important;
+  border: 1px solid #f0f0f0 !important;    
+  border-radius: 10px; */
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+
+section#clients[data-theme="light"] .logo-card:hover {
+  border-color: rgba(3, 232, 60, 0.3) !important;
+  box-shadow: 0 4px 18px rgba(0, 204, 51, 0.1);
+}
+
+/* All logo images: no global filter — preserve brand colours.
+   mix-blend-mode:multiply blends away white JPG backgrounds naturally.
+   NOTE: filter has no !important so inline style="filter:brightness(0)"
+   on specific white-PNG logos (ather.png, ca-1-.png) can override it. */
+section#clients[data-theme="light"] .logo-card img {
+  filter: none;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+section#clients[data-theme="light"] .logo-card:hover img {
+  opacity: 1;
+}
+
+/* ── Marquee wrap: clear dark background ── */
+section#clients[data-theme="light"] .mq-wrap {
+  background: #ffffff !important;
+  border-top: 1px solid #f0f0f0 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+/* ── Marquee logo cards: pure-white, minimal border ── */
+section#clients[data-theme="light"] .logo-img-item {
+  background: #ffffff !important;
+  border: 1px solid #f0f0f0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+section#clients[data-theme="light"] .logo-img-item:hover {
+  border-color: rgba(0, 204, 51, 0.35) !important;
+  background: rgba(0, 204, 51, 0.03) !important;
+  box-shadow: 0 0 18px rgba(0, 204, 51, 0.1) !important;
+}
+
+/* All marquee logo images: NO global filter — preserve brand colours.
+   mix-blend-mode:multiply blends JPG white backgrounds away cleanly. */
+section#clients[data-theme="light"] .logo-img-item img {
+  filter: none !important;
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+  transition: opacity 0.25s, transform 0.3s;
+}
+
+section#clients[data-theme="light"] .logo-img-item:hover img {
+  opacity: 1;
+}
+
+/* Fallback text for broken image URLs */
+section#clients[data-theme="light"] .logo-img-item .logo-fallback {
+  color: black;
+}
+
+/* ════════════════════════════════════════════════════
+   TARGETED LOGO FILTER UTILITIES
+   Apply these classes directly on specific <img> tags
+   (white-on-transparent PNGs only — NOT on JPGs or colourful logos)
+   ════════════════════════════════════════════════════ */
+
+/* Use on white-stroke / white-fill transparent PNGs to render them black */
+.darken-logo {
+  filter: brightness(0) !important;
+  mix-blend-mode: normal !important;
+  /* override multiply so the black stays solid */
+}
+
+/* Use on pure-white logos where you want dark rendering with full contrast */
+.invert-logo {
+  filter: invert(1) !important;
+  mix-blend-mode: normal !important;
+}
+
+
+/* ============ LUXURY SCROLL-RESPONSIVE ARCHITECTURAL TRANSITION ============ */
+.editorial-block-transition {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* The Architectural Color Field SVG Overlay */
+.editorial-architectural-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 35;
+  transform: translateX(101%);
+  will-change: transform;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .editorial-architectural-plane {
+    display: none !important;
+  }
+}
+
+/* ── Minimal Transparent Editorial Navbar ── */
 #main-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10000;
-  background: rgba(0, 0, 0, .78);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border-bottom: 1px solid var(--border);
-  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color .3s;
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  pointer-events: auto;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
 }
 
@@ -152,19 +344,65 @@ body::after {
   transform: translateY(-100%);
 }
 
-#main-nav img {
-  height: 3rem;
-  /* 48px on mobile */
-  max-height: 56px;
-  width: auto;
+/* Logo Sizing & Scaling (Target 110-130px desktop, auto height, no distortion) */
+#main-nav .dr-nav-brand img {
+  width: 225px;
+  height: auto;
+  max-height: 152px;
   object-fit: contain;
+  transition: opacity 0.25s ease, filter 0.25s ease;
 }
 
-@media (min-width: 1024px) {
-  #main-nav img {
-    height: 3.5rem;
-    /* 56px on desktop */
+@media (max-width: 768px) {
+  #main-nav .dr-nav-brand img {
+    width: 105px;
+    max-height: 44px;
   }
+}
+
+/* Dual Contrast Switching: Default State on Dark Background */
+#main-nav .dr-logo-dark {
+  display: none !important;
+}
+
+#main-nav .dr-logo-light {
+  display: block !important;
+}
+
+/* Light section state (when section underneath is white/light): Dark Logo & Black Hamburger */
+#main-nav.nav-theme-dark-foreground .dr-logo-dark {
+  display: block !important;
+}
+
+#main-nav.nav-theme-dark-foreground .dr-logo-light {
+  display: none !important;
+}
+
+#main-nav.nav-theme-dark-foreground #hamburger span {
+  background-color: #000000;
+}
+
+/* When hamburger is open, lime accent overrides */
+#hamburger.open #h1,
+#hamburger.open #h2,
+#hamburger.open #h3,
+#main-nav.nav-theme-dark-foreground #hamburger.open #h1,
+#main-nav.nav-theme-dark-foreground #hamburger.open #h2,
+#main-nav.nav-theme-dark-foreground #hamburger.open #h3 {
+  background-color: var(--lime) !important;
+}
+
+/* When fullscreen menu overlay is open, force light logo & white/lime hamburger */
+body.menu-open #main-nav .dr-logo-dark {
+  display: none !important;
+}
+
+body.menu-open #main-nav .dr-logo-light {
+  display: block !important;
+}
+
+body.menu-open #main-nav #hamburger span {
+  background-color: #ffffff;
 }
 
 /* ── Section label ── */
@@ -744,21 +982,26 @@ select.form-input option {
     ════════════════════════════════════════════════ */
 /* Larger base descriptive text throughout */
 .bcard p,
+.ind-pill p,
+section#about[data-theme="light"] .bcard p,
+section#about[data-theme="light"] .cred-card p,
+section#about[data-theme="light"] .ind-pill p {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+
 .step-card p,
 .tcard p,
-.ind-pill p,
-.cred-card p,
 .lead-box p {
   font-size: .95rem !important;
   line-height: 1.7 !important;
-  color: rgba(255, 255, 255, .52) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
 }
 
 /* "Nine powerful verticals" subtitle — bold & bigger */
 .services-subtitle {
   font-size: 1.1rem !important;
   font-weight: 700 !important;
-  color: rgba(255, 255, 255, .72) !important;
+  color:rgba(0, 0, 0, 0.65) !important;
   letter-spacing: .01em;
 }
 
@@ -2848,9 +3091,9 @@ body.dr-modal-open {
   justify-content: center;
   text-align: center;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   isolation: isolate;
 }
@@ -2911,4 +3154,2863 @@ body.dr-modal-open {
   line-height: 1.25;
   text-align: center;
   z-index: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DEMURUP MEDIA — CREATIVE DIGITAL AGENCY SERVICE PAGES
+══════════════════════════════════════════════════════════════ */
+.srv-body {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.srv-body::after {
+  display: none !important;
+}
+
+.srv-body main,
+.srv-body section,
+.srv-body footer,
+.srv-body nav {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Service White Navbar */
+.srv-body #main-nav {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.srv-body #hamburger span {
+  background-color: #000000 !important;
+}
+
+.srv-body.menu-open #hamburger span {
+  background-color: #ffffff !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   1. HERO SECTION (Creative Ambient Mesh + Bold Typography)
+══════════════════════════════════════════════════════════════ */
+.srv-hero {
+  position: relative;
+  padding: 150px 24px 70px;
+  max-width: 1320px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Ambient Subtle Green Glow / Graphic Elements */
+.srv-hero-ambient {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(0, 204, 51, 0.07) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.srv-hero-graphic {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.srv-hero-graphic-1 {
+  top: 15%;
+  left: 8%;
+  width: 140px;
+  height: 140px;
+  border: 1px dashed rgba(0, 204, 51, 0.25);
+  border-radius: 50%;
+}
+
+.srv-hero-graphic-2 {
+  bottom: 10%;
+  right: 10%;
+  width: 180px;
+  height: 60px;
+  border-right: 2px solid rgba(0, 204, 51, 0.3);
+  border-top: 1px solid rgba(0, 204, 51, 0.15);
+  border-radius: 0 20px 0 0;
+}
+
+.srv-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: #F4FDF6;
+  border: 1px solid rgba(0, 204, 51, 0.25);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #008822;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.srv-hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #00cc33;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00cc33;
+}
+
+.srv-hero-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.08;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  margin: 0 auto;
+  max-width: 1050px;
+  position: relative;
+  z-index: 2;
+}
+
+.srv-hero-title span.text-highlight {
+  color: #00cc33;
+  position: relative;
+  display: inline-block;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   2. INTRODUCTORY SECTION (Creative Agency Editorial)
+══════════════════════════════════════════════════════════════ */
+.srv-intro-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 60px 24px 70px;
+  position: relative;
+}
+
+.srv-intro-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.03);
+}
+
+.srv-intro-accent {
+  width: 5px;
+  background: linear-gradient(180deg, #00cc33 0%, #009924 100%);
+  border-radius: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(0, 204, 51, 0.35);
+}
+
+.srv-intro-text {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  line-height: 1.7;
+  color: #1a1a1a;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   3. COMPANIES THAT TRUST US (Rhythm: Light Green Tint Background)
+══════════════════════════════════════════════════════════════ */
+.srv-trust-section {
+  background-color: #F4FDF6;
+  border-top: 1px solid rgba(0, 204, 51, 0.1);
+  border-bottom: 1px solid rgba(0, 204, 51, 0.1);
+  padding: 70px 24px 80px;
+  position: relative;
+}
+
+.srv-trust-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.srv-trust-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.srv-trust-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #222222;
+  text-transform: uppercase;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.srv-trust-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 2px;
+  background-color: #00cc33;
+  border-radius: 2px;
+}
+
+/* 7-Client Grid for Branding.html (4 Top, 3 Bottom Centered) */
+.srv-trust-grid-7 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+.srv-trust-row-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.srv-trust-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Standard Responsive Multi-Client Grid */
+.srv-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Full Color Original Client Cards with Polish */
+.srv-trust-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1.5rem;
+  height: 86px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 204, 51, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.srv-trust-item:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: #00cc33;
+  box-shadow: 0 12px 30px -5px rgba(0, 204, 51, 0.18);
+}
+
+/* Full Original Logo Colors — No Grayscale Filter */
+.srv-trust-logo {
+  max-height: 48px;
+  max-width: 130px;
+  width: auto;
+  object-fit: contain;
+  filter: none !important;
+  opacity: 1 !important;
+  transition: transform 0.3s ease;
+}
+
+.srv-trust-item:hover .srv-trust-logo {
+  transform: scale(1.04);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   4. MAIN 30/70 SECTION (Numbered Creative Tabs + Rich Cards)
+══════════════════════════════════════════════════════════════ */
+.srv-main-section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 90px 24px 100px;
+  background-color: #ffffff;
+}
+
+.srv-interactive-grid {
+  display: grid;
+  grid-template-columns: 32% 68%;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Left 30% Numbered Tabs Navigation */
+.srv-tab-nav {
+  position: sticky;
+  top: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.srv-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid #ebebeb;
+  border-left: 4px solid #ebebeb;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+
+.srv-tab-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.srv-tab-num {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #999999;
+  letter-spacing: 0.05em;
+  transition: color 0.25s ease;
+}
+
+.srv-tab-name {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #222222;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease;
+}
+
+.srv-tab-arrow {
+  font-size: 1.15rem;
+  color: #999999;
+  transform: translateX(0);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.srv-tab-btn:hover {
+  background: #fafafa;
+  border-color: #d8d8d8;
+  border-left-color: #00cc33;
+  transform: translateX(4px);
+}
+
+.srv-tab-btn:hover .srv-tab-arrow {
+  color: #00cc33;
+  transform: translateX(4px);
+}
+
+.srv-tab-btn.is-active {
+  background: #F4FDF6;
+  border-color: rgba(0, 204, 51, 0.25);
+  border-left: 4px solid #00cc33;
+  box-shadow: 0 8px 24px -6px rgba(0, 204, 51, 0.12);
+  transform: translateX(4px);
+}
+
+.srv-tab-btn.is-active .srv-tab-num {
+  color: #00cc33;
+}
+
+.srv-tab-btn.is-active .srv-tab-name {
+  color: #000000;
+}
+
+.srv-tab-btn.is-active .srv-tab-arrow {
+  color: #00cc33;
+  transform: translateX(4px);
+}
+
+/* Right 70% Content Panels */
+.srv-tab-panels {
+  min-height: 480px;
+  position: relative;
+}
+
+.srv-tab-panel {
+  display: none;
+  opacity: 0;
+}
+
+.srv-tab-panel.is-active {
+  display: block;
+  opacity: 1;
+}
+
+.srv-panel-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #00cc33;
+  margin-bottom: 0.5rem;
+}
+
+.srv-panel-heading {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.015em;
+}
+
+.srv-panel-lead {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #444444;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+/* Rich Feature Cards Layout */
+.srv-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.srv-point-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.35rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.srv-point-card:hover {
+  border-color: rgba(0, 204, 51, 0.35);
+  box-shadow: 0 8px 24px -4px rgba(0, 204, 51, 0.08);
+  transform: translateY(-2px);
+}
+
+.srv-point-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #F4FDF6;
+  border: 1px solid rgba(0, 204, 51, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #00cc33;
+}
+
+.srv-point-content strong {
+  display: block;
+  color: #000000;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.srv-point-content p {
+  color: #555555;
+  font-size: 0.925rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Process steps for HOW tab */
+.srv-steps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.srv-step-card {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  align-items: start;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.srv-step-card:hover {
+  border-color: #00cc33;
+  box-shadow: 0 8px 24px -4px rgba(0, 204, 51, 0.1);
+  transform: translateY(-2px);
+}
+
+.srv-step-num {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #00cc33;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F4FDF6;
+  border: 1px solid rgba(0, 204, 51, 0.2);
+  border-radius: 10px;
+}
+
+.srv-step-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.35rem;
+}
+
+.srv-step-desc {
+  color: #555555;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   5. CREATIVE DARK CTA SECTION (High-Contrast Category Closer)
+══════════════════════════════════════════════════════════════ */
+.srv-cta-section {
+  background-color: #050505;
+  color: #ffffff;
+  position: relative;
+  padding: 100px 24px 110px;
+  overflow: hidden;
+  border-top: 1px solid #1a1a1a;
+}
+
+.srv-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 204, 51, 0.15) 0%, rgba(5, 5, 5, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ABOUT SECTION — REDESIGN THE BOX & LIGHT CONTRAST SYSTEM
+   Scoped strictly to #about
+════════════════════════════════════════════════════════════════ */
+
+#about {
+  --about-bg: #ffffff;
+  --about-text: #0a0a0a;
+  --about-muted: #55564f;
+  --about-border: rgba(10, 10, 10, 0.1);
+  --about-green: #00cc33;
+
+  background-color: var(--about-bg) !important;
+  color: var(--about-text) !important;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.25rem, 4vh, 3.5rem) 0;
+  border-top: 1px solid var(--about-border);
+}
+
+#about * {
+  box-sizing: border-box;
+}
+
+/* ── Centered Balanced Container & Grid Layout ── */
+#about .about-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  #about {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(2rem, 3.5vh, 3.25rem) 0;
+  }
+
+  #about .about-container {
+    width: 100%;
+    max-width: 1140px;
+    padding: 0 2rem;
+  }
+}
+
+#about .about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+  /* force both column cells to equal height */
+}
+
+@media (min-width: 1024px) {
+  #about .about-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: stretch;
+    /* force both column cells to equal height */
+  }
+}
+
+@media (min-width: 1280px) {
+  #about .about-container {
+    max-width: 1160px;
+  }
+
+  #about .about-grid {
+    grid-template-columns: 1fr 1.05fr;
+    gap: 3.75rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   LEFT COLUMN: HEADLINE, COPY & CTA
+══════════════════════════════════════════════════ */
+
+#about .about-col-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* h1 anchored top, CTA anchored bottom — mirrors right col */
+}
+
+#about .about-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4vw, 3.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  color: var(--about-text);
+  margin: 0 0 1.25rem 0;
+  font-weight: 700;
+}
+
+#about .about-heading-accent {
+  color: var(--about-green);
+  font-weight: 700;
+}
+
+#about .about-text {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.15vw, 1.2rem);
+  /* fluid scale: fills vertical space without breaking layout */
+  line-height: 1.78;
+  /* generous leading for readability and vertical volume */
+  color: var(--about-muted);
+  margin: 0 0 1.4rem 0;
+  /* increased inter-paragraph gap to fill the column height */
+  max-width: 29.5rem;
+}
+
+#about .about-text:last-of-type {
+  margin-bottom: 0;
+}
+
+#about .about-cta-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.35rem;
+}
+
+#about .about-btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--about-text);
+  color: var(--about-bg);
+  border: 2px solid var(--about-text);
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+#about .about-btn-arrow {
+  color: var(--about-green);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+#about .about-btn-cta:hover {
+  background-color: var(--about-green);
+  border-color: var(--about-green);
+  color: var(--about-text);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 204, 51, 0.3);
+}
+
+#about .about-btn-cta:hover .about-btn-arrow {
+  color: var(--about-text);
+  transform: translateX(4px);
+}
+
+#about .about-locale {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--about-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ══════════════════════════════════════════════════
+   RIGHT COLUMN: CONTAINED MANIFESTO + 3D ANIMATION STACK
+══════════════════════════════════════════════════ */
+
+#about .about-col-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* bordered box at top, animation at bottom — mirrors left col */
+  width: 100%;
+  /* height:100% not needed — align-items:stretch on the grid handles this */
+}
+
+/* ── Contained Manifesto Hero Block (Distinct Card, Flush Left-Right Alignment) ── */
+#about .about-manifesto-hero {
+  /* border: 1.5px solid rgba(10, 10, 10, 0.12);
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03); */
+  padding: 0 1.4rem;
+  /* horizontal padding only — vertical space governed by flex centering */
+  width: 100%;
+  max-width: 490px;
+  min-height: 140px;
+  /* enough height so justify-content:center has room above & below text */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* vertically centers the two text children */
+  align-items: center;
+  /* horizontally centers the two text children */
+  gap: 0.35rem;
+  /* controlled spacing between lead and punch lines */
+  margin: 0;
+  text-align: center;
+}
+
+#about .about-manifesto-lead {
+  font-family: var(--font-heading);
+  font-size: clamp(0.9rem, 1.25vw, 1.1rem);
+  /* increased from 0.875rem max */
+  font-weight: 700;
+  color: var(--about-text);
+  margin: 0;
+  /* zero all margins — gap handled by parent flex gap */
+  padding: 0;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#about .about-manifesto-punch {
+  font-family: var(--font-heading);
+  font-size: clamp(1.45rem, 2.2vw, 2.15rem);
+  font-weight: 900;
+  color: var(--about-green);
+  margin: 0;
+  /* zero all margins — no vertical offset */
+  padding: 0;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Storyboard Animation Stage (Exact Matching Width Stack) ── */
+#about .about-storyboard-stage {
+  position: relative;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  /* SVG sits at the bottom of the stage, flush with CTA baseline */
+  width: 100%;
+  max-width: 490px;
+  flex: 1;
+  /* fill remaining vertical space in the right column flex */
+  overflow: hidden;
+  /* prevent the SVG from breaking out of the column bounds */
+  margin: 0;
+}
+
+#about .about-storyboard-svg {
+  width: 100%;
+  max-width: 490px;
+  max-height: 100%;
+  /* constrained by the stage's flex height */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+/* ── World & Ground Shadows ── */
+#about .dr-sb-world {
+  transform-origin: 380px 260px;
+  will-change: transform;
+}
+
+#about .dr-sb-floor-shadow {
+  transform-origin: 380px 385px;
+  will-change: transform, opacity;
+}
+
+#about .dr-sb-floor-green {
+  transform-origin: 385px 388px;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* ── Shards Base Origins & Transforms ── */
+#about .dr-sb-shard {
+  transform-box: fill-box;
+  will-change: transform, opacity;
+}
+
+#about .dr-sb-shard-apex {
+  transform-origin: 360px 165px;
+}
+
+#about .dr-sb-shard-left {
+  transform-origin: 280px 280px;
+}
+
+#about .dr-sb-shard-right {
+  transform-origin: 440px 280px;
+}
+
+#about .dr-sb-shard-sill {
+  transform-origin: 365px 366px;
+  opacity: 0;
+}
+
+#about .dr-sb-shard-brace {
+  transform-origin: 405px 342px;
+  opacity: 0;
+}
+
+#about .dr-sb-shard-accent {
+  transform-origin: 478px 148px;
+  opacity: 0;
+}
+
+#about .dr-sb-shard-tumble {
+  transform-origin: 270px 140px;
+  opacity: 0;
+}
+
+#about .dr-sb-portal-window {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+#about .dr-sb-crack-fx {
+  opacity: 0;
+  will-change: opacity;
+}
+
+#about .dr-sb-core-group {
+  transform-origin: 365px 245px;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* ── Articulated Silhouette Figure Rig ── */
+#about .dr-sb-unified-figure {
+  transform-origin: 0px 368px;
+  will-change: transform;
+}
+
+#about .dr-sb-fig-skeleton {
+  transform-origin: 0px 368px;
+  will-change: transform;
+}
+
+#about .dr-sb-fig-shadow {
+  transform-origin: 0px 368px;
+  will-change: transform, opacity;
+}
+
+#about .dr-sb-torso-group {
+  transform-origin: 0px 323px;
+  will-change: transform;
+}
+
+#about .dr-sb-thigh-front {
+  transform-origin: 1px 322px;
+  will-change: transform;
+}
+
+#about .dr-sb-shin-front {
+  transform-origin: 2px 344px;
+  will-change: transform;
+}
+
+#about .dr-sb-thigh-rear {
+  transform-origin: -1px 322px;
+  will-change: transform;
+}
+
+#about .dr-sb-shin-rear {
+  transform-origin: -2px 344px;
+  will-change: transform;
+}
+
+#about .dr-sb-bicep-front {
+  transform-origin: 3px 287px;
+  will-change: transform;
+}
+
+#about .dr-sb-forearm-front {
+  transform-origin: 5px 303px;
+  will-change: transform;
+}
+
+#about .dr-sb-bicep-rear {
+  transform-origin: -2px 287px;
+  will-change: transform;
+}
+
+#about .dr-sb-forearm-rear {
+  transform-origin: -4px 303px;
+  will-change: transform;
+}
+
+/* ══════════════════════════════════════════════════
+   14.0s CONTINUOUS 7-STAGE SHORT STORY NARRATIVE
+   Stage 1 (0.0s – 2.0s | 0.0% – 14.3%): APPROACH (Walk from far left to box)
+   Stage 2 (2.0s – 2.8s | 14.3% – 20.0%): OBSERVE (Contemplative pause & head tilt)
+   Stage 3 (2.8s – 4.6s | 20.0% – 32.9%): MOVE TO RIGHT SIDE (Walk to right & face box)
+   Stage 4 (4.6s – 6.2s | 32.9% – 44.3%): WORK / INTERACT (Hands touch right face, crack splits)
+   Stage 5 (6.2s – 9.0s | 44.3% – 64.3%): TRANSFORM & DIAMOND REVEAL (Unobstructed emerald climax)
+   Stage 6 (9.0s – 10.2s | 64.3% – 72.9%): REACTION (Anticipate -> Joyful celebratory jump -> Land)
+   Stage 7 (10.2s – 14.0s | 72.9% – 100.0%): RETURN & REST (Walk back to far left, seamless loop)
+══════════════════════════════════════════════════ */
+
+/* ── Camera Subtle Breathing ── */
+#about .about-storyboard-stage.is-active .dr-sb-world {
+  animation: dr-sb-world-anim 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-world-anim {
+
+  0%,
+  44% {
+    transform: scale(1) translateY(0);
+  }
+
+  60% {
+    transform: scale(1.03) translateY(-5px);
+  }
+
+  65%,
+  100% {
+    transform: scale(1.015) translateY(-3px);
+  }
+}
+
+/* Floor Emerald Light Spill */
+#about .about-storyboard-stage.is-active .dr-sb-floor-green {
+  animation: dr-sb-ground-spill 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-ground-spill {
+
+  0%,
+  37% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  42% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+
+  55% {
+    opacity: 0.75;
+    transform: scale(1.1);
+  }
+
+  64%,
+  100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+}
+
+/* ── STAGE 4: CRACKS & BURST PARTICLES (On Right Face at 5.2s / 37.1%) ── */
+#about .about-storyboard-stage.is-active .dr-sb-crack-fx {
+  animation: dr-sb-crack-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-crack-anim {
+
+  0%,
+  36.5% {
+    opacity: 0;
+  }
+
+  37.5%,
+  44.5% {
+    opacity: 1;
+  }
+
+  49.0%,
+  100% {
+    opacity: 0;
+  }
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-lightning-path {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  animation: dr-sb-lightning-draw 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes dr-sb-lightning-draw {
+
+  0%,
+  37.0% {
+    stroke-dashoffset: 140;
+    opacity: 0;
+  }
+
+  39.0% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    stroke-width: 3.2;
+  }
+
+  43.5% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    stroke-width: 4.2;
+  }
+
+  47.0%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-particle {
+  animation: dr-sb-particle-scatter 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes dr-sb-particle-scatter {
+
+  0%,
+  41.0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+
+  43.5% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1.5);
+  }
+
+  48.0% {
+    opacity: 0.8;
+  }
+
+  52.0%,
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx, 25px), var(--ty, -30px)) scale(0);
+  }
+}
+
+#about .dr-sb-p1 {
+  --tx: 38px;
+  --ty: -35px;
+}
+
+#about .dr-sb-p2 {
+  --tx: -42px;
+  --ty: -38px;
+}
+
+#about .dr-sb-p3 {
+  --tx: 55px;
+  --ty: -18px;
+}
+
+#about .dr-sb-p4 {
+  --tx: -50px;
+  --ty: 20px;
+}
+
+#about .dr-sb-p5 {
+  --tx: 45px;
+  --ty: 25px;
+}
+
+/* ── STAGE 5: GREEN OCTAHEDRON CRYSTAL CORE (100% COMPLETELY UNOBSTRUCTED) ── */
+#about .about-storyboard-stage.is-active .dr-sb-core-group {
+  animation: dr-sb-core-morph 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-core-morph {
+
+  0%,
+  41.5% {
+    /* Hidden inside cube */
+    opacity: 0;
+    transform: translate(0, 30px) scale(0.15) rotate(-20deg);
+  }
+
+  46.0% {
+    /* Floods out of fracture */
+    opacity: 0.95;
+    transform: translate(0, 10px) scale(0.7) rotate(6deg);
+  }
+
+  54.0% {
+    /* Floating in center of shards cluster */
+    opacity: 1;
+    transform: translate(0, -10px) scale(0.95) rotate(18deg);
+  }
+
+  62.0% {
+    /* Settles into aperture */
+    opacity: 1;
+    transform: translate(0, -2px) scale(1.02) rotate(-1deg);
+  }
+
+  64.3%,
+  100% {
+    /* Fully revealed, 100% unobstructed, radiant climax */
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+}
+
+/* Crystal ambient float in climax & hold */
+#about .about-storyboard-stage.is-active .dr-sb-octahedron {
+  animation: dr-sb-octa-idle 4.5s ease-in-out infinite alternate;
+  transform-origin: 365px 245px;
+}
+
+@keyframes dr-sb-octa-idle {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 10px #33ff66);
+  }
+
+  50% {
+    transform: translateY(-4px) rotate(2deg) scale(1.02);
+    filter: drop-shadow(0 0 18px #33ff66);
+  }
+
+  100% {
+    transform: translateY(2px) rotate(-1.5deg) scale(0.99);
+    filter: drop-shadow(0 0 12px #33ff66);
+  }
+}
+
+/* Core radiant halo pulse */
+#about .about-storyboard-stage.is-active .dr-sb-core-halo {
+  animation: dr-sb-halo-pulse 3.5s ease-in-out infinite alternate;
+  transform-origin: 365px 245px;
+}
+
+@keyframes dr-sb-halo-pulse {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   MONOLITH ARCHITECTURAL SHARDS MORPHING (14.0s)
+   Framing Around the Aperture
+══════════════════════════════════════════════════ */
+
+/* Piece 1: Canted Roof Apex Crown */
+#about .about-storyboard-stage.is-active .dr-sb-shard-apex {
+  animation: dr-sb-anim-apex 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-apex {
+
+  0%,
+  41.5% {
+    /* Cube Top Face */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  47.0% {
+    /* Fractures upward & tilts */
+    transform: translate(14px, -36px) rotate(-9deg) scale(0.97);
+  }
+
+  54.0% {
+    /* Orbiting shard */
+    transform: translate(38px, -58px) rotate(22deg) scale(0.92);
+  }
+
+  62.0% {
+    /* Converging */
+    transform: translate(0, -70px) rotate(0.5deg) scale(1.02);
+  }
+
+  64.3%,
+  100% {
+    /* Monolith apex canopy locked across pillars */
+    transform: translate(0, -68px) rotate(0deg) scale(1);
+  }
+}
+
+/* Piece 2: Left Vertical Monolith Pier */
+#about .about-storyboard-stage.is-active .dr-sb-shard-left {
+  animation: dr-sb-anim-left 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-left {
+
+  0%,
+  41.5% {
+    /* Cube Left Face */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  47.0% {
+    transform: translate(-34px, 10px) rotate(7deg) scale(0.98);
+  }
+
+  54.0% {
+    transform: translate(-58px, -18px) rotate(16deg) scale(0.94);
+  }
+
+  62.0% {
+    transform: translate(-2px, -8px) rotate(-1deg) scale(1.02);
+  }
+
+  64.3%,
+  100% {
+    /* Left Column Monolith grounded in place */
+    transform: translate(0, -6px) rotate(0deg) scale(1);
+  }
+}
+
+/* Piece 3: Right Vertical Monolith Pier (Houses Portal Window) */
+#about .about-storyboard-stage.is-active .dr-sb-shard-right {
+  animation: dr-sb-anim-right 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-right {
+
+  0%,
+  41.5% {
+    /* Cube Right Face */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  47.0% {
+    transform: translate(36px, 12px) rotate(-7deg) scale(0.98);
+  }
+
+  54.0% {
+    transform: translate(62px, -12px) rotate(-20deg) scale(0.94);
+  }
+
+  62.0% {
+    transform: translate(2px, -8px) rotate(1deg) scale(1.02);
+  }
+
+  64.3%,
+  100% {
+    /* Right Column & Portal locked */
+    transform: translate(0, -6px) rotate(0deg) scale(1);
+  }
+}
+
+/* Portal Window High-Contrast Negative Space */
+#about .about-storyboard-stage.is-active .dr-sb-portal-window {
+  animation: dr-sb-portal-reveal 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-portal-reveal {
+
+  0%,
+  58.0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  63.0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Piece 4: Monolith Base Ground Foundation Plinth */
+#about .about-storyboard-stage.is-active .dr-sb-shard-sill {
+  animation: dr-sb-anim-sill 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-sill {
+
+  0%,
+  50.0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.85);
+  }
+
+  58.0% {
+    opacity: 0.85;
+    transform: translateY(4px) scale(0.98);
+  }
+
+  64.0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Piece 5: Lower Right Structural Brace (Frames Beneath Crystal) */
+#about .about-storyboard-stage.is-active .dr-sb-shard-brace {
+  animation: dr-sb-anim-brace 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-brace {
+
+  0%,
+  48.0% {
+    opacity: 0;
+    transform: translate(35px, 25px) scale(0.5);
+  }
+
+  56.0% {
+    opacity: 0.8;
+    transform: translate(18px, -6px) rotate(-12deg) scale(0.88);
+  }
+
+  62.0% {
+    opacity: 1;
+    transform: translate(2px, 1px) scale(1.02);
+  }
+
+  64.3%,
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* Piece 6: Poised Asymmetric Detached Accent Shard */
+#about .about-storyboard-stage.is-active .dr-sb-shard-accent {
+  animation: dr-sb-anim-accent 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-accent {
+
+  0%,
+  45.0% {
+    opacity: 0;
+    transform: translate(30px, -20px) scale(0.4);
+  }
+
+  54.0% {
+    opacity: 0.9;
+    transform: translate(22px, -12px) rotate(14deg) scale(0.9);
+  }
+
+  62.0% {
+    opacity: 1;
+    transform: translate(2px, -2px) scale(1.02);
+  }
+
+  64.3%,
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* Piece 7: Dynamic Shard that dissolves during burst */
+#about .about-storyboard-stage.is-active .dr-sb-shard-tumble {
+  animation: dr-sb-shard-tumble-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-shard-tumble-anim {
+
+  0%,
+  42.0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+
+  47.0% {
+    opacity: 1;
+    transform: translate(-60px, -45px) rotate(-35deg) scale(1);
+  }
+
+  54.0% {
+    opacity: 0.45;
+    transform: translate(-15px, -15px) rotate(-10deg) scale(0.7);
+  }
+
+  59.0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+}
+
+/* ── Material Transitions ── */
+#about .about-storyboard-stage.is-active .dr-sb-poly-apex {
+  fill: url(#dr-sb-cube-top);
+  animation: dr-sb-mat-apex 14s ease infinite;
+}
+
+@keyframes dr-sb-mat-apex {
+
+  0%,
+  44.0% {
+    fill: url(#dr-sb-cube-top);
+  }
+
+  62.0%,
+  100% {
+    fill: url(#dr-sb-mono-apex);
+  }
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-poly-left {
+  fill: url(#dr-sb-cube-left);
+  animation: dr-sb-mat-left 14s ease infinite;
+}
+
+@keyframes dr-sb-mat-left {
+
+  0%,
+  44.0% {
+    fill: url(#dr-sb-cube-left);
+  }
+
+  62.0%,
+  100% {
+    fill: url(#dr-sb-mono-left);
+  }
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-poly-right {
+  fill: url(#dr-sb-cube-right);
+  animation: dr-sb-mat-right 14s ease infinite;
+}
+
+@keyframes dr-sb-mat-right {
+
+  0%,
+  44.0% {
+    fill: url(#dr-sb-cube-right);
+  }
+
+  62.0%,
+  100% {
+    fill: url(#dr-sb-mono-right);
+  }
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-poly-sill {
+  fill: url(#dr-sb-mono-sill);
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-poly-brace {
+  fill: url(#dr-sb-mono-wedge);
+}
+
+/* ══════════════════════════════════════════════════
+   ARTICULATED SILHOUETTE FIGURE RIG KINEMATICS (14.0s)
+   Natural Weight, Stride, Work Contact, Jump & Return
+══════════════════════════════════════════════════ */
+
+/* 1. Figure Root: Global Position & Jump Apex */
+#about .about-storyboard-stage.is-active .dr-sb-unified-figure {
+  animation: dr-sb-fig-root 14s linear infinite;
+}
+
+@keyframes dr-sb-fig-root {
+
+  /* Stage 1: APPROACH (Walk from x=55 to x=210) */
+  0% {
+    transform: translate(55px, 0);
+  }
+
+  3.5% {
+    transform: translate(94px, 0);
+  }
+
+  7.0% {
+    transform: translate(133px, 0);
+  }
+
+  10.5% {
+    transform: translate(172px, 0);
+  }
+
+  14.3% {
+    transform: translate(210px, 0);
+  }
+
+  /* Stage 2: OBSERVE (Pause & contemplate at x=210) */
+  20.0% {
+    transform: translate(210px, 0);
+  }
+
+  /* Stage 3: MOVE TO RIGHT SIDE (Walk from x=210 to x=465) */
+  23.2% {
+    transform: translate(274px, 0);
+  }
+
+  26.4% {
+    transform: translate(338px, 0);
+  }
+
+  29.6% {
+    transform: translate(402px, 0);
+  }
+
+  32.9% {
+    transform: translate(465px, 0);
+  }
+
+  /* Stage 4: WORK / INTERACT (Hands contact box at x=430) */
+  44.3% {
+    transform: translate(465px, 0);
+  }
+
+  /* Stage 5: TRANSFORM & DIAMOND REVEAL (Steps back to x=478, holds) */
+  48.0% {
+    transform: translate(478px, 0);
+  }
+
+  64.3% {
+    transform: translate(478px, 0);
+  }
+
+  /* Stage 6: REACTION (Joyful Jump!) */
+  65.7% {
+    transform: translate(478px, 5px);
+  }
+
+  /* Crouch anticipation */
+  67.9% {
+    transform: translate(478px, -22px);
+  }
+
+  /* Jump Apex: feet off ground! */
+  70.0% {
+    transform: translate(478px, 4px);
+  }
+
+  /* Landing impact cushion */
+  72.0% {
+    transform: translate(478px, 0);
+  }
+
+  72.9% {
+    transform: translate(478px, 0);
+  }
+
+  /* Stage 7: RETURN (Walk all the way back from x=478 to x=55) */
+  76.8% {
+    transform: translate(408px, 0);
+  }
+
+  80.7% {
+    transform: translate(338px, 0);
+  }
+
+  84.6% {
+    transform: translate(268px, 0);
+  }
+
+  88.5% {
+    transform: translate(198px, 0);
+  }
+
+  92.4% {
+    transform: translate(128px, 0);
+  }
+
+  96.4% {
+    transform: translate(55px, 0);
+  }
+
+  /* Stage 7b: REST & SEAMLESS LOOP */
+  100% {
+    transform: translate(55px, 0);
+  }
+}
+
+/* 2. Skeleton Orientation Flip (Facing Right vs Left) */
+#about .about-storyboard-stage.is-active .dr-sb-fig-skeleton {
+  animation: dr-sb-fig-skel-dir 14s linear infinite;
+}
+
+@keyframes dr-sb-fig-skel-dir {
+
+  0%,
+  32.8% {
+    transform: scaleX(1);
+  }
+
+  32.9%,
+  72.8% {
+    transform: scaleX(-1);
+  }
+
+  72.9%,
+  96.4% {
+    transform: scaleX(-1);
+  }
+
+  96.5%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* 3. Tracking Foot Shadow */
+#about .about-storyboard-stage.is-active .dr-sb-fig-shadow {
+  animation: dr-sb-fig-shadow-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-fig-shadow-anim {
+
+  0%,
+  65.0% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+
+  65.7% {
+    transform: scale(1.15);
+    opacity: 0.25;
+  }
+
+  67.9% {
+    transform: scale(0.45);
+    opacity: 0.08;
+  }
+
+  /* Shrinks/fades during jump apex */
+  70.0% {
+    transform: scale(1.12);
+    opacity: 0.24;
+  }
+
+  72.0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+}
+
+/* 4. Torso & Spine (Pitch, Weight, Bob) */
+#about .about-storyboard-stage.is-active .dr-sb-torso-group {
+  animation: dr-sb-fig-torso-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-fig-torso-anim {
+
+  /* Stage 1: Walk bob & subtle forward lean */
+  0% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  1.8% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  3.5% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  7.0% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  10.5% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  14.3% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  /* Stage 2: Observe - Head/Torso tilt toward box */
+  17.0%,
+  20.0% {
+    transform: translateY(0) rotate(8deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  26.4% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  29.6% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  32.9% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  /* Stage 4: Work - Deep athletic forward pitch */
+  34.5%,
+  44.3% {
+    transform: translateY(0) rotate(16deg);
+  }
+
+  /* Stage 5: Transform - Receptive awe */
+  48.0%,
+  64.3% {
+    transform: translateY(0) rotate(-4deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: translateY(4px) rotate(12deg);
+  }
+
+  /* Crouch */
+  67.9% {
+    transform: translateY(0) rotate(-6deg);
+  }
+
+  /* Jump apex proud arch */
+  70.0% {
+    transform: translateY(3px) rotate(10deg);
+  }
+
+  /* Landing cushion */
+  72.0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  80.7% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  84.6% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  88.5% {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  92.4% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  96.4% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* 5. Front Thigh (Hip Pivot: 1px, 322px) */
+#about .about-storyboard-stage.is-active .dr-sb-thigh-front {
+  animation: dr-sb-thigh-front-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-thigh-front-anim {
+
+  /* Stage 1: Walk Strides */
+  0% {
+    transform: rotate(-22deg);
+  }
+
+  3.5% {
+    transform: rotate(22deg);
+  }
+
+  7.0% {
+    transform: rotate(-22deg);
+  }
+
+  10.5% {
+    transform: rotate(22deg);
+  }
+
+  14.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 2: Observe - Rest stance */
+  20.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: rotate(-22deg);
+  }
+
+  26.4% {
+    transform: rotate(22deg);
+  }
+
+  29.6% {
+    transform: rotate(-22deg);
+  }
+
+  32.9% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 4: Work - Braced rear leg extension */
+  34.5%,
+  44.3% {
+    transform: rotate(18deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(4deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(24deg);
+  }
+
+  /* Crouch */
+  67.9% {
+    transform: rotate(-14deg);
+  }
+
+  /* Jump apex tuck */
+  70.0% {
+    transform: rotate(20deg);
+  }
+
+  /* Cushion */
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: rotate(-22deg);
+  }
+
+  80.7% {
+    transform: rotate(22deg);
+  }
+
+  84.6% {
+    transform: rotate(-22deg);
+  }
+
+  88.5% {
+    transform: rotate(22deg);
+  }
+
+  92.4% {
+    transform: rotate(-22deg);
+  }
+
+  96.4% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 6. Front Shin & Foot (Knee Pivot: 2px, 344px) */
+#about .about-storyboard-stage.is-active .dr-sb-shin-front {
+  animation: dr-sb-shin-front-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-shin-front-anim {
+
+  /* Stage 1: Walk Strides */
+  0% {
+    transform: rotate(0deg);
+  }
+
+  1.8% {
+    transform: rotate(38deg);
+  }
+
+  3.5% {
+    transform: rotate(0deg);
+  }
+
+  5.2% {
+    transform: rotate(38deg);
+  }
+
+  7.0% {
+    transform: rotate(0deg);
+  }
+
+  10.5% {
+    transform: rotate(0deg);
+  }
+
+  14.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 2: Observe */
+  20.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: rotate(0deg);
+  }
+
+  24.8% {
+    transform: rotate(38deg);
+  }
+
+  26.4% {
+    transform: rotate(0deg);
+  }
+
+  29.6% {
+    transform: rotate(0deg);
+  }
+
+  32.9% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 4: Work */
+  34.5%,
+  44.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(42deg);
+  }
+
+  /* Crouch */
+  67.9% {
+    transform: rotate(26deg);
+  }
+
+  /* Apex tuck */
+  70.0% {
+    transform: rotate(36deg);
+  }
+
+  /* Cushion */
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: rotate(0deg);
+  }
+
+  78.8% {
+    transform: rotate(38deg);
+  }
+
+  80.7% {
+    transform: rotate(0deg);
+  }
+
+  84.6% {
+    transform: rotate(0deg);
+  }
+
+  88.5% {
+    transform: rotate(0deg);
+  }
+
+  92.4% {
+    transform: rotate(0deg);
+  }
+
+  96.4% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 7. Rear Thigh (Hip Pivot: -1px, 322px) */
+#about .about-storyboard-stage.is-active .dr-sb-thigh-rear {
+  animation: dr-sb-thigh-rear-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-thigh-rear-anim {
+
+  /* Stage 1: Walk Strides (Opposite phase) */
+  0% {
+    transform: rotate(22deg);
+  }
+
+  3.5% {
+    transform: rotate(-22deg);
+  }
+
+  7.0% {
+    transform: rotate(22deg);
+  }
+
+  10.5% {
+    transform: rotate(-22deg);
+  }
+
+  14.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 2: Observe */
+  20.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: rotate(22deg);
+  }
+
+  26.4% {
+    transform: rotate(-22deg);
+  }
+
+  29.6% {
+    transform: rotate(22deg);
+  }
+
+  32.9% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 4: Work - Forward knee bend */
+  34.5%,
+  44.3% {
+    transform: rotate(-14deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(-4deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(-20deg);
+  }
+
+  /* Crouch */
+  67.9% {
+    transform: rotate(14deg);
+  }
+
+  /* Apex tuck */
+  70.0% {
+    transform: rotate(-18deg);
+  }
+
+  /* Cushion */
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: rotate(22deg);
+  }
+
+  80.7% {
+    transform: rotate(-22deg);
+  }
+
+  84.6% {
+    transform: rotate(22deg);
+  }
+
+  88.5% {
+    transform: rotate(-22deg);
+  }
+
+  92.4% {
+    transform: rotate(22deg);
+  }
+
+  96.4% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 8. Rear Shin & Foot (Knee Pivot: -2px, 344px) */
+#about .about-storyboard-stage.is-active .dr-sb-shin-rear {
+  animation: dr-sb-shin-rear-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-shin-rear-anim {
+
+  /* Stage 1: Walk Strides */
+  0% {
+    transform: rotate(0deg);
+  }
+
+  3.5% {
+    transform: rotate(0deg);
+  }
+
+  5.2% {
+    transform: rotate(38deg);
+  }
+
+  7.0% {
+    transform: rotate(0deg);
+  }
+
+  10.5% {
+    transform: rotate(0deg);
+  }
+
+  14.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 2: Observe */
+  20.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: rotate(0deg);
+  }
+
+  26.4% {
+    transform: rotate(0deg);
+  }
+
+  28.0% {
+    transform: rotate(38deg);
+  }
+
+  29.6% {
+    transform: rotate(0deg);
+  }
+
+  32.9% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 4: Work */
+  34.5%,
+  44.3% {
+    transform: rotate(14deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(38deg);
+  }
+
+  /* Crouch */
+  67.9% {
+    transform: rotate(24deg);
+  }
+
+  /* Apex tuck */
+  70.0% {
+    transform: rotate(34deg);
+  }
+
+  /* Cushion */
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: rotate(0deg);
+  }
+
+  80.7% {
+    transform: rotate(0deg);
+  }
+
+  82.7% {
+    transform: rotate(38deg);
+  }
+
+  84.6% {
+    transform: rotate(0deg);
+  }
+
+  88.5% {
+    transform: rotate(0deg);
+  }
+
+  92.4% {
+    transform: rotate(0deg);
+  }
+
+  96.4% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 9. Front Bicep & Arm Swing (Shoulder Pivot: 3px, 287px) */
+#about .about-storyboard-stage.is-active .dr-sb-bicep-front {
+  animation: dr-sb-bicep-front-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-bicep-front-anim {
+
+  /* Stage 1: Walk Counter-Swing */
+  0% {
+    transform: rotate(18deg);
+  }
+
+  3.5% {
+    transform: rotate(-18deg);
+  }
+
+  7.0% {
+    transform: rotate(18deg);
+  }
+
+  10.5% {
+    transform: rotate(-18deg);
+  }
+
+  14.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 2: Observe - Thoughtful hand-to-chin */
+  17.0%,
+  20.0% {
+    transform: rotate(-42deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: rotate(18deg);
+  }
+
+  26.4% {
+    transform: rotate(-18deg);
+  }
+
+  29.6% {
+    transform: rotate(18deg);
+  }
+
+  32.9% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 4: Work - Hands firmly contacting right box face at (430, 270) */
+  34.5%,
+  44.3% {
+    transform: rotate(-66deg);
+  }
+
+  /* Stage 5: Transform - Open arms in awe */
+  48.0%,
+  64.3% {
+    transform: rotate(-35deg);
+  }
+
+  /* Stage 6: Joyful Jump - Celebratory high reach */
+  65.7% {
+    transform: rotate(28deg);
+  }
+
+  /* Pull back */
+  67.9% {
+    transform: rotate(-142deg);
+  }
+
+  /* Jump Apex Victory! */
+  70.0% {
+    transform: rotate(-30deg);
+  }
+
+  /* Cushion */
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: rotate(18deg);
+  }
+
+  80.7% {
+    transform: rotate(-18deg);
+  }
+
+  84.6% {
+    transform: rotate(18deg);
+  }
+
+  88.5% {
+    transform: rotate(-18deg);
+  }
+
+  92.4% {
+    transform: rotate(18deg);
+  }
+
+  96.4% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 10. Front Forearm (Elbow Pivot: 5px, 303px) */
+#about .about-storyboard-stage.is-active .dr-sb-forearm-front {
+  animation: dr-sb-forearm-front-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-forearm-front-anim {
+
+  /* Stage 1: Walk */
+  0%,
+  14.3% {
+    transform: rotate(-12deg);
+  }
+
+  /* Stage 2: Observe - Hand touches chin */
+  17.0%,
+  20.0% {
+    transform: rotate(-48deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2%,
+  32.9% {
+    transform: rotate(-12deg);
+  }
+
+  /* Stage 4: Work - Extended to box surface with zero gap */
+  34.5%,
+  44.3% {
+    transform: rotate(-20deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(-25deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(-10deg);
+  }
+
+  67.9% {
+    transform: rotate(-25deg);
+  }
+
+  /* Apex celebration */
+  70.0% {
+    transform: rotate(-15deg);
+  }
+
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8%,
+  96.4% {
+    transform: rotate(-12deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 11. Rear Bicep & Arm Swing (Shoulder Pivot: -2px, 287px) */
+#about .about-storyboard-stage.is-active .dr-sb-bicep-rear {
+  animation: dr-sb-bicep-rear-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-bicep-rear-anim {
+
+  /* Stage 1: Walk */
+  0% {
+    transform: rotate(-18deg);
+  }
+
+  3.5% {
+    transform: rotate(18deg);
+  }
+
+  7.0% {
+    transform: rotate(-18deg);
+  }
+
+  10.5% {
+    transform: rotate(18deg);
+  }
+
+  14.3% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 2: Observe - Relaxed */
+  17.0%,
+  20.0% {
+    transform: rotate(5deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2% {
+    transform: rotate(-18deg);
+  }
+
+  26.4% {
+    transform: rotate(18deg);
+  }
+
+  29.6% {
+    transform: rotate(-18deg);
+  }
+
+  32.9% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 4: Work - Supporting push contact at (432, 273) */
+  34.5%,
+  44.3% {
+    transform: rotate(-58deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(-25deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(24deg);
+  }
+
+  67.9% {
+    transform: rotate(-130deg);
+  }
+
+  /* Apex Victory! */
+  70.0% {
+    transform: rotate(-25deg);
+  }
+
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8% {
+    transform: rotate(-18deg);
+  }
+
+  80.7% {
+    transform: rotate(18deg);
+  }
+
+  84.6% {
+    transform: rotate(-18deg);
+  }
+
+  88.5% {
+    transform: rotate(18deg);
+  }
+
+  92.4% {
+    transform: rotate(-18deg);
+  }
+
+  96.4% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 12. Rear Forearm (Elbow Pivot: -4px, 303px) */
+#about .about-storyboard-stage.is-active .dr-sb-forearm-rear {
+  animation: dr-sb-forearm-rear-anim 14s ease-in-out infinite;
+}
+
+@keyframes dr-sb-forearm-rear-anim {
+
+  /* Stage 1: Walk */
+  0%,
+  14.3% {
+    transform: rotate(-10deg);
+  }
+
+  /* Stage 2: Observe */
+  17.0%,
+  20.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 3: Walk to right */
+  23.2%,
+  32.9% {
+    transform: rotate(-10deg);
+  }
+
+  /* Stage 4: Work - Zero gap contact */
+  34.5%,
+  44.3% {
+    transform: rotate(-24deg);
+  }
+
+  /* Stage 5: Transform */
+  48.0%,
+  64.3% {
+    transform: rotate(-20deg);
+  }
+
+  /* Stage 6: Joyful Jump */
+  65.7% {
+    transform: rotate(-10deg);
+  }
+
+  67.9% {
+    transform: rotate(-20deg);
+  }
+
+  70.0% {
+    transform: rotate(-10deg);
+  }
+
+  72.0% {
+    transform: rotate(0deg);
+  }
+
+  /* Stage 7: Return Walk */
+  76.8%,
+  96.4% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* ── Timeline Progress UI (Hidden/Removed for Clean Layout) ── */
+#about .about-timeline-progress {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE REFINEMENTS
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  #about {
+    padding: 4.5rem 0;
+  }
+
+  #about .about-container {
+    max-width: 720px;
+    padding: 0 1.5rem;
+  }
+
+  #about .about-heading {
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    margin-bottom: 1.25rem;
+  }
+
+  #about .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  #about .about-manifesto-hero {
+    max-width: 100%;
+    min-height: auto;
+    padding: 1rem 1.25rem;
+  }
+
+  #about .about-storyboard-stage {
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  #about .about-storyboard-svg {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #about {
+    padding: 3.5rem 0;
+  }
+
+  #about .about-container {
+    padding: 0 1.25rem;
+  }
+
+  #about .about-heading {
+    font-size: clamp(1.95rem, 7.5vw, 2.75rem);
+  }
+
+  #about .about-text {
+    font-size: 1.05rem;
+    /* corrected — 1.5rem was too large for mobile */
+    max-width: 100%;
+  }
+
+  #about .about-cta-group {
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  #about .about-btn-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #about .about-storyboard-stage {
+    min-height: auto;
+  }
+
+  #about .about-manifesto-punch {
+    font-size: clamp(1.4rem, 6.5vw, 2rem);
+  }
+}
+
+/* ── Prefers Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  #about .dr-sb-world,
+  #about .about-storyboard-svg,
+  #about .dr-sb-floor-green,
+  #about .dr-sb-crack-fx,
+  #about .dr-sb-lightning-path,
+  #about .dr-sb-particle,
+  #about .dr-sb-core-group,
+  #about .dr-sb-octahedron,
+  #about .dr-sb-core-halo,
+  #about .dr-sb-shard,
+  #about .dr-sb-portal-window,
+  #about .dr-sb-poly,
+  #about .dr-sb-unified-figure,
+  #about .dr-sb-fig-skeleton,
+  #about .dr-sb-fig-shadow,
+  #about .dr-sb-torso-group,
+  #about .dr-sb-thigh-front,
+  #about .dr-sb-shin-front,
+  #about .dr-sb-thigh-rear,
+  #about .dr-sb-shin-rear,
+  #about .dr-sb-bicep-front,
+  #about .dr-sb-forearm-front,
+  #about .dr-sb-bicep-rear,
+  #about .dr-sb-forearm-rear,
+  #about .about-timeline-bar,
+  #about .about-dot {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Show final settled structure with completely unobstructed diamond */
+  #about .dr-sb-shard-apex {
+    transform: translate(0, -68px) rotate(0deg) scale(1) !important;
+  }
+
+  #about .dr-sb-shard-left {
+    transform: translate(0, -6px) rotate(0deg) scale(1) !important;
+  }
+
+  #about .dr-sb-shard-right {
+    transform: translate(0, -6px) rotate(0deg) scale(1) !important;
+  }
+
+  #about .dr-sb-shard-sill {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+
+  #about .dr-sb-shard-brace {
+    opacity: 1 !important;
+    transform: translate(0, 0) scale(1) !important;
+  }
+
+  #about .dr-sb-shard-accent {
+    opacity: 1 !important;
+    transform: translate(0, 0) scale(1) !important;
+  }
+
+  #about .dr-sb-portal-window {
+    opacity: 1 !important;
+  }
+
+  #about .dr-sb-poly-apex {
+    fill: url(#dr-sb-mono-apex) !important;
+  }
+
+  #about .dr-sb-poly-left {
+    fill: url(#dr-sb-mono-left) !important;
+  }
+
+  #about .dr-sb-poly-right {
+    fill: url(#dr-sb-mono-right) !important;
+  }
+
+  #about .dr-sb-poly-sill {
+    fill: url(#dr-sb-mono-sill) !important;
+  }
+
+  #about .dr-sb-poly-brace {
+    fill: url(#dr-sb-mono-wedge) !important;
+  }
+
+  #about .dr-sb-core-group {
+    opacity: 1 !important;
+    transform: translate(0, 0) scale(1) rotate(0deg) !important;
+  }
+
+  #about .dr-sb-floor-green {
+    opacity: 0.95 !important;
+    transform: scale(1) !important;
+  }
+
+  #about .dr-sb-unified-figure {
+    transform: translate(55px, 0px) !important;
+  }
+
+  #about .dr-sb-fig-skeleton {
+    transform: scaleX(1) !important;
+  }
+
+  #about .about-timeline-bar {
+    width: 100% !important;
+  }
 }
