@@ -217,7 +217,7 @@
     }
 
     #main-nav.nav-scrolled-light {
-      background-color: rgba(255, 255, 255, 0.94) !important;
+      /* background-color: rgba(255, 255, 255, 0.94) !important; */
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: none !important;
@@ -233,13 +233,13 @@
     }
 
     /* Logo Sizing & Dual Contrast Switching */
-    #main-nav .dr-nav-brand img {
-      height: 52px !important;
-      max-height: 64px !important;
-      width: auto !important;
-      object-fit: contain;
-    }
-
+   #main-nav .dr-nav-brand img {
+  width: 225px;
+  height: auto;
+  max-height: 152px;
+  object-fit: contain;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
     @media (min-width: 1024px) {
       #main-nav .dr-nav-brand img {
         height: 60px !important;
@@ -1038,7 +1038,7 @@
     .wwh-tab-label {
       font-family: var(--display);
       font-size: clamp(1.3rem, 2vw, 1.7rem);
-      color: rgba(0, 0, 0, 0.68);
+      color: rgba(255, 255, 255, 0.68);
       transition: color .4s var(--ease), transform .4s var(--ease);
       position: relative;
       z-index: 1;
@@ -1046,7 +1046,7 @@
 
     .wwh-tab:hover .wwh-tab-label,
     .wwh-tab.active .wwh-tab-label {
-      color: #000000 !important;
+      color: #00cc33 !important;
       transform: translateX(4px);
     }
 
@@ -1081,7 +1081,7 @@
       pointer-events: none;
       font-size: clamp(1.05rem, 1.6vw, 1.3rem);
       line-height: 1.72;
-      color: rgba(0, 0, 0, 0.72) !important;
+      color: rgba(255, 255, 255, 0.72) !important;
       font-weight: 400;
       font-family: var(--sans);
       padding-top: 22px;
@@ -1174,12 +1174,15 @@
   <!-- ══════════════════════════════════════════════════════════════
    DEFAULT DEMURUP NAVBAR
 ══════════════════════════════════════════════════════════════ -->
-  <nav id="main-nav" class="z-[10000] nav-light">
+  <nav id="main-nav" class="z-[10000] nav-transparent">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
-      <a href="index.html" class="flex items-center z-[10002] dr-nav-brand">
-        <img src="Demurup Final Logo.png" alt="DemuRup Media"
-          class="dr-logo-light h-14 lg:h-16 w-auto object-contain" />
-        <img src="main logo.png" alt="DemuRup Media" class="dr-logo-dark h-14 lg:h-16 w-auto object-contain" />
+      <a href="#hero" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
+        <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
+        <img src="Demurup white.png" alt="DemuRup Media"
+          class="dr-logo-light w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+        <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
+        <img src="Demurup black.png" alt="DemuRup Media"
+          class="dr-logo-dark w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
         <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>

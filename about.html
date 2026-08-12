@@ -788,15 +788,20 @@
   </a>
 
   <!-- ══ NAV ══ -->
-  <nav id="main-nav" class="z-[10000]">
-    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center z-[10002]">
-        <img src="main logo.png" alt="DemuRup Media" class="h-12 lg:h-14 w-auto object-contain">
+  <nav id="main-nav" class="z-[10000] nav-transparent">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="#hero" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
+        <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
+        <img src="Demurup white.png" alt="DemuRup Media"
+          class="dr-logo-light w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+        <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
+        <img src="Demurup black.png" alt="DemuRup Media"
+          class="dr-logo-dark w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
-        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h1"></span>
-        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h2"></span>
-        <span class="w-6 h-0.5 bg-white transition-all duration-300" id="h3"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h2"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h3"></span>
       </button>
     </div>
   </nav>
