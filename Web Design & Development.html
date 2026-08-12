@@ -8,7 +8,7 @@
   <meta name="description"
     content="Web Design & Development at DemuRup Media — High-performance bespoke websites, fluid micro-interactions, and conversion-focused architectures.">
   <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png">
-
+  <link rel="stylesheet" href="style.css">
   <!-- Font Preloads (Local DemuRup Fonts) -->
   <link rel="preload" href="fonts/TheSeasons-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/TheSeasons-Bold.woff2" as="font" type="font/woff2" crossorigin>
@@ -233,13 +233,13 @@
     }
 
     /* Logo Sizing & Dual Contrast Switching */
-  #main-nav .dr-nav-brand img {
-  width: 225px;
-  height: auto;
-  max-height: 152px;
-  object-fit: contain;
-  transition: opacity 0.25s ease, filter 0.25s ease;
-}
+    #main-nav .dr-nav-brand img {
+      width: 225px;
+      height: auto;
+      max-height: 152px;
+      object-fit: contain;
+      transition: opacity 0.25s ease, filter 0.25s ease;
+    }
 
     @media (min-width: 1024px) {
       #main-nav .dr-nav-brand img {
@@ -933,9 +933,9 @@
   <!-- ══════════════════════════════════════════════════════════════
    DEFAULT DEMURUP NAVBAR
 ══════════════════════════════════════════════════════════════ -->
- <nav id="main-nav" class="z-[10000] nav-transparent">
+  <nav id="main-nav" class="z-[10000] nav-transparent">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
-      <a href="#hero" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
+      <a href="index.html" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
         <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
         <img src="Demurup white.png" alt="DemuRup Media"
           class="dr-logo-light w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
@@ -1110,7 +1110,8 @@
     </section>
 
     <!-- WHAT / WHEN / HOW / HOW MUCH (BLOCK 2: BLACK TRANSITION) -->
-    <section class="wwh editorial-block-transition transition-to-black transition-angled" data-theme="dark" id="approach">
+    <section class="wwh editorial-block-transition transition-to-black transition-angled" data-theme="dark"
+      id="approach">
       <div class="wwh-head">
         <div class="eyebrow reveal">The Engagement</div>
         <h2 class="reveal reveal-d1">Everything you need to know, before you need to ask.</h2>
