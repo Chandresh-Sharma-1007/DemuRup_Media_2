@@ -199,6 +199,63 @@ section#clients[data-theme="light"] {
   color: #000000 !important;
 }
 
+/* ============ DR LEAD MAGNET / CONVERSION COMPONENT ============ */
+.dr-lead-magnet {
+  position: relative;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.dr-lead-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.85rem;
+  font-family: var(--font-heading, "The Seasons", serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.35s ease, color 0.35s ease;
+  z-index: 1;
+}
+
+.dr-lead-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #00cc33;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.dr-lead-btn:hover {
+  border-color: #00cc33;
+  color: #000000 !important;
+}
+
+.dr-lead-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.dr-lead-btn .dr-lead-btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.dr-lead-btn:hover .dr-lead-btn-arrow {
+  transform: translateX(4px);
+}
+
 /* ══════════════════════════════════════════════════════════════
    SECTION #CLIENTS — CURATED BRAND CREDIBILITY WALL
 ══════════════════════════════════════════════════════════════ */
