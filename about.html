@@ -360,68 +360,129 @@
       margin-top: 14px;
     }
 
-    /* ================= VISION ROW ================= */
+    /* ================= VISION SECTION (EDITORIAL LUXURY REDESIGN) ================= */
     .vision-section {
       background: #ffffff;
       color: #000000;
       width: 100%;
       position: relative;
       z-index: 2;
+      padding: clamp(45px, 6vh, 65px) 48px clamp(50px, 7vh, 75px) 80px;
     }
 
-    .vision-row {
-      position: relative;
-      padding: 90px 48px 90px 80px;
-      max-width: 1400px;
+    .vision-container {
+      max-width: 1280px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 32px;
+      position: relative;
+      z-index: 2;
     }
 
-    .vision-copy h3 {
+    .vision-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      margin-bottom: clamp(20px, 3vh, 30px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .vision-header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .vision-title {
       font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: clamp(22px, 2.4vw, 30px);
-      line-height: 1.4;
-      max-width: 32ch;
-      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: clamp(26px, 2.8vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
       color: #000000;
     }
 
-    .vision-copy .body-block {
-      font-size: 14px;
-      line-height: 1.85;
-      color: rgba(0, 0, 0, 0.72);
-      max-width: 54ch;
-      font-weight: 400;
+    .vision-title span {
+      color: var(--accent);
     }
 
-    .vision-vertical {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
+    .vision-statement-wrap {
+      margin-bottom: clamp(24px, 3.5vh, 36px);
+    }
+
+    .vision-statement-text {
       font-family: var(--font-heading);
       font-weight: 500;
+      font-size: clamp(22px, 2.3vw, 34px);
+      line-height: 1.32;
+      letter-spacing: -0.015em;
+      color: #0a0a0a;
+      max-width: 1040px;
+    }
+
+    .vision-statement-text .accent-phrase {
       font-style: italic;
-      font-size: clamp(44px, 6vw, 78px);
-      letter-spacing: .01em;
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--accent);
-      text-shadow: 0 0 40px var(--accent-dim);
-      white-space: nowrap;
-      transition: -webkit-text-stroke .6s var(--ease), color .6s var(--ease), text-shadow .6s var(--ease);
-      cursor: default;
+      color: #000000;
+      position: relative;
+      display: inline;
     }
 
-    .vision-vertical:hover {
-      color: var(--accent);
-      text-shadow: 0 0 60px var(--accent-dim), 0 0 120px var(--accent-dim);
+    .vision-statement-text .accent-phrase::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.85;
+      transform-origin: left;
     }
 
-    .vision-vertical:hover {
+    .vision-support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px clamp(36px, 4.5vw, 64px);
+      padding-top: clamp(20px, 3vh, 30px);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .vision-support-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vision-support-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .vision-support-num {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       color: var(--accent);
-      text-shadow: 0 0 60px var(--accent-dim), 0 0 120px var(--accent-dim);
+    }
+
+    .vision-support-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .vision-support-body {
+      font-family: var(--font-body);
+      font-size: clamp(13.5px, 0.95vw, 15px);
+      line-height: 1.72;
+      color: rgba(0, 0, 0, 0.72);
+      font-weight: 400;
+      max-width: 48ch;
     }
 
     /* ================= VALUES ================= */
@@ -663,34 +724,32 @@
       }
 
       /* vision */
-      .vision-row {
+      .vision-section {
+        padding: 55px 24px 60px;
+      }
+
+      .vision-header-row {
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+      }
+
+      .vision-title {
+        font-size: clamp(24px, 6.5vw, 34px);
+      }
+
+      .vision-statement-wrap {
+        margin-bottom: 28px;
+      }
+
+      .vision-statement-text {
+        font-size: clamp(19px, 4.8vw, 24px);
+        line-height: 1.35;
+      }
+
+      .vision-support-grid {
         grid-template-columns: 1fr;
-        padding: 64px 0;
-        gap: 20px;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .vision-vertical {
-        order: -1;
-        writing-mode: horizontal-tb;
-        transform: none !important;
-        font-size: clamp(34px, 13vw, 52px);
-        text-align: left;
-        align-self: flex-start;
-        margin-bottom: 8px;
-        margin-left: 0;
-      }
-
-      .vision-copy h3 {
-        max-width: none;
-        font-size: 24px;
-      }
-
-      .vision-copy .body-block {
-        max-width: none;
-        font-size: 13.5px;
+        gap: 24px;
+        padding-top: 24px;
       }
 
       /* values */
@@ -793,10 +852,10 @@
       <a href="index.html" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
         <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
         <img src="Demurup white.png" alt="DemuRup Media"
-          class="dr-logo-light w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+          class="dr-logo-light w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
         <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
         <img src="Demurup black.png" alt="DemuRup Media"
-          class="dr-logo-dark w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+          class="dr-logo-dark w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
         <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
@@ -835,9 +894,9 @@
               </div>
             </li>
             <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
-            <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
+            <li class="dr-menu-item"><a href="casestudy.html" class="dr-menu-link">Case Study</a></li>
             <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-            <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
+            <li class="dr-menu-item"><a href="contact.html" class="dr-menu-link">Contact</a></li>
           </ul>
         </div>
 
@@ -930,21 +989,47 @@
 
   </main>
 
-  <!-- ================= BLOCK 2: VISION (TRANSITION 1: BLACK → WHITE) ================= -->
-  <section class="vision-section border-t border-b border-black/10 editorial-block-transition transition-to-white transition-angled" data-theme="light">
-    <div class="vision-row">
-      <div class="vision-copy reveal">
-        <h3>To be the leading one-stop solution for all marketing needs, empowering brands with creative, effective, and
-          budget-friendly strategies to achieve their goals.</h3>
-        <div class="body-block">
-          Whether you're launching a startup or elevating an established business, our team of experts combines
-          creativity, technology, and strategy to craft tailor-made solutions that drive results.
-          <br><br>
-          Let us help you stand out, engage your audience, and grow your business - all without breaking the bank.
-          Together, we'll create digital experiences that captivate, inspire, and deliver.
+  <!-- ================= BLOCK 2: VISION ================= -->
+  <section class="vision-section border-t border-b border-black/10" data-theme="light">
+    <div class="vision-container vision-row">
+
+      <!-- Editorial Header Row -->
+      <div class="vision-header-row reveal">
+        <div class="vision-header-left">
+          <h2 class="vision-title">OUR <span>VISION</span></h2>
         </div>
       </div>
-      <div class="vision-vertical reveal" data-parallax-slow>Our vision</div>
+
+      <!-- Main Vision Statement -->
+      <div class="vision-statement-wrap reveal reveal-delay-1">
+        <h3 class="vision-statement-text">
+          To be the leading <span class="accent-phrase">one-stop solution</span> for all marketing needs, empowering brands with creative, effective, and budget-friendly strategies to achieve their goals.
+        </h3>
+      </div>
+
+      <!-- Supporting Editorial Grid -->
+      <div class="vision-support-grid">
+        <div class="vision-support-card reveal reveal-delay-2">
+          <div class="vision-support-meta">
+            <span class="vision-support-num">01</span>
+            <span class="vision-support-label">CREATIVE APPROACH</span>
+          </div>
+          <p class="vision-support-body">
+            Whether you’re launching a startup or elevating an established business, our team of experts combines creativity, technology, and strategy to craft tailor-made solutions that drive results.
+          </p>
+        </div>
+
+        <div class="vision-support-card reveal reveal-delay-3">
+          <div class="vision-support-meta">
+            <span class="vision-support-num">02</span>
+            <span class="vision-support-label">MEANINGFUL RESULTS</span>
+          </div>
+          <p class="vision-support-body">
+            Let us help you stand out, engage your audience, and grow your business —all without breaking the bank. Together, we’ll create digital experiences that captivate, inspire, and deliver.
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1002,20 +1087,17 @@
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
         <!-- Brand -->
         <div class="lg:col-span-2">
-          <div class="mb-6">
-            <img src="main logo.png" alt="DemuRup Media" class="h-10 lg:h-12 w-auto object-contain" />
+          <div class="mb-2">
+            <img src="main logo.png" alt="DemuRup Media" class="dr-footer-logo w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
           </div>
-          <p class="text-white/35 text-sm leading-relaxed max-w-sm">
-            India's boldest creative marketing & branding studio. One team,
+          <p class="text-white/70 text-sm leading-relaxed max-w-sm">
+            India's boldest creative marketing &amp; branding studio. One team,
             every digital need, zero compromise.
-          </p>
-          <p class="text-white/28 text-xs font-mono mt-3">
-            Based in Maharashtra, Gujarat, Chhattisgarh & Rajasthan.
           </p>
           <div class="flex gap-3 mt-6">
             <!-- Instagram -->
             <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
               aria-label="Instagram">
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1024,7 +1106,7 @@
             </a>
             <!-- LinkedIn -->
             <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
               aria-label="LinkedIn">
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1032,8 +1114,8 @@
               </svg>
             </a>
             <!-- WhatsApp -->
-            <a href="https://wa.me/917489998238" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+            <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
               aria-label="WhatsApp">
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1045,84 +1127,74 @@
 
         <!-- Services -->
         <div>
-          <div class="slabel mb-5">Services</div>
+          <div class="slabel mb-5 text-white">OUR SERVICES</div>
           <ul class="space-y-3">
             <li>
-              <a href="Social Media Management.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Social Media
-                Marketing</a>
+              <a href="Branding.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Branding</a>
             </li>
             <li>
-              <a href="Branding.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Branding &
-                Strategy</a>
+              <a href="SEO &amp; GMB.html" class="text-white hover:text-lime text-sm transition-colors duration-200">SEO
+                &amp; GMB</a>
             </li>
             <li>
-              <a href="Web Design & Development.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Content
-                Creation</a>
-            </li>
-            <li>
-              <a href="Web Design & Development.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Web
-                Development</a>
+              <a href="Influencer Marketing.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Influencer Marketing</a>
             </li>
             <li>
               <a href="Performance Marketing.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Performance
-                Marketing</a>
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Performance Marketing</a>
             </li>
             <li>
-              <a href="Influencer Marketing.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Video
-                Production</a>
+              <a href="Social Media Management.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Social Media Management</a>
             </li>
             <li>
-              <a href="Influencer Marketing.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Influencer
-                Marketing</a>
+              <a href="Web Design &amp; Development.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Web Design &amp;
+                Development</a>
             </li>
           </ul>
         </div>
 
-        <!-- Company -->
+        <!-- Company / Quick links -->
         <div>
-          <div class="slabel mb-5">Company</div>
+          <div class="slabel mb-5 text-white">Quick links</div>
           <ul class="space-y-3">
             <li>
-              <a href="index.html#industries"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Industries</a>
+              <a href="about.html" class="text-white hover:text-lime text-sm transition-colors duration-200">About</a>
             </li>
             <li>
-              <a href="clients.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Clients</a>
+              <a href="clients.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Clients</a>
             </li>
             <li>
-              <a href="index.html#contact-section"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Get a
-                Proposal</a>
+              <a href="casestudy.html" class="text-white hover:text-lime text-sm transition-colors duration-200">Case
+                Study</a>
             </li>
             <li>
-              <a href="blog.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Blog</a>
+              <a href="blog.html" class="text-white hover:text-lime text-sm transition-colors duration-200">Blog</a>
             </li>
             <li>
-              <a href="mailto:demurupmedia@gmail.com"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Contact</a>
+              <a href="contact.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Contact</a>
             </li>
           </ul>
           <div class="mt-8">
-            <div class="slabel mb-2">Connect</div>
-            <p class="text-white/35 text-xs">@demurup_media</p>
-            <p class="text-white/35 text-xs mt-1">Demurup Media (LinkedIn)</p>
+            <div class="slabel mb-2 text-white">Connect</div>
+            <p class="text-white/70 text-xs">@demurup_media</p>
+            <p class="text-white/70 text-xs mt-1">Demurup Media (LinkedIn)</p>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col lg:flex-row justify-between items-center pt-8 gap-4">
-        <p class="text-white/25 text-xs font-mono">
-          © 2026 DemuRup Media. All rights reserved. Founded by Shailesh
-          Sharma & Harsh Newale.
+      <div class="flex flex-col sm:flex-row justify-between items-center pt-8 gap-4">
+        <p class="text-white/50 text-xs font-mono">
+          © 2026 DemuRup Media. All rights reserved.
         </p>
-        <div class="flex gap-6">
-        </div>
+        <p class="text-white/50 text-xs font-mono">
+          Designed &amp; Developed by DemuRup Media
+        </p>
       </div>
     </div>
   </footer>

@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Studies — DemuRup Media</title>
+  <meta name="description"
+    content="Selected case studies by DemuRup Media across Website Design & Development, Branding, and Influencer Marketing.">
+  <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png">
+  <script>
+    (function () {
+      const _warn = console.warn;
+      console.warn = function (...args) {
+        if (args[0] && typeof args[0] === 'string' && args[0].indexOf('cdn.tailwindcss.com') !== -1) return;
+        _warn.apply(console, args);
+      };
+      window._originalWarn = _warn;
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (window._originalWarn) {
+      console.warn = window._originalWarn;
+      delete window._originalWarn;
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="preload" href="fonts/TheSeasons-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/TheSeasons-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/BeautifulDelight-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = { theme: { extend: { colors: { lime: '#00cc33' } } } };
+  </script>
+
+  <style>
+    /* ── Luxury Editorial Refinements ── */
+    :root {
+      --lime: #00cc33;
+      --lime-dim: rgba(0, 204, 51, 0.12);
+      --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .font-seasons {
+      font-family: "The Seasons", serif;
+    }
+
+    .font-delight {
+      font-family: "Beautiful Delight", serif;
+    }
+
+    /* Section Full-Width Transitions */
+    .editorial-section {
+      position: relative;
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .editorial-section-dark {
+      background-color: #000000;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .editorial-section-light {
+      background-color: #ffffff;
+      color: #000000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Architectural Image Frame */
+    .editorial-img-frame {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background-color: #111111;
+    }
+
+    .editorial-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease-editorial);
+    }
+
+    .editorial-img-frame:hover img {
+      transform: scale(1.025);
+    }
+
+    /* Editorial CTA Buttons */
+    .editorial-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-editorial);
+    }
+
+    .editorial-btn-dark {
+      color: #000000;
+      border: 1px solid #000000;
+      background: transparent;
+    }
+
+    .editorial-btn-dark::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #00cc33;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-editorial);
+      z-index: 0;
+    }
+
+    .editorial-btn-dark:hover {
+      border-color: #00cc33;
+      color: #000000;
+    }
+
+    .editorial-btn-dark:hover::before {
+      transform: scaleX(1);
+    }
+
+    .editorial-btn-light {
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: transparent;
+    }
+
+    .editorial-btn-light::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #00cc33;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-editorial);
+      z-index: 0;
+    }
+
+    .editorial-btn-light:hover {
+      border-color: #00cc33;
+      color: #000000;
+    }
+
+    .editorial-btn-light:hover::before {
+      transform: scaleX(1);
+    }
+
+    .editorial-btn span,
+    .editorial-btn svg {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .editorial-btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Detail Modal State — White Editorial Article */
+    #case-detail-modal {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-editorial), visibility 0.4s;
+    }
+
+    #case-detail-modal.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    #case-detail-scroll {
+      transform: translateY(24px);
+      transition: transform 0.45s var(--ease-editorial);
+    }
+
+    #case-detail-modal.active #case-detail-scroll {
+      transform: translateY(0);
+    }
+
+    /* Modal Navigation Buttons */
+    .article-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.15rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      background: #ffffff;
+      color: #000000;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .article-nav-btn:hover {
+      border-color: #00cc33;
+      background: #00cc33;
+      color: #000000;
+    }
+
+    /* Scroll Reveal */
+    .reveal-editorial {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease-editorial), transform 0.8s var(--ease-editorial);
+    }
+
+    .reveal-editorial.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile ordering */
+    @media (max-width: 1023px) {
+      .mobile-order-content {
+        order: 1 !important;
+      }
+
+      .mobile-order-visual {
+        order: 2 !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black selection:bg-lime selection:text-black overflow-x-hidden font-delight">
+
+  <!-- Custom Cursor -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursor-ring" class="cursor-ring"></div>
+
+  <!-- Header / Navigation -->
+  <nav id="main-nav" class="z-[10000] nav-transparent">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
+        <!-- Light Logo for Dark Sections (White text + Green Rup) -->
+        <img src="main logo.png" alt="DemuRup Media"
+          class="dr-logo-light w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+        <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
+        <img src="Demurup black.png" alt="DemuRup Media"
+          class="dr-logo-dark w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+      </a>
+      <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
+        <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h2"></span>
+        <span class="w-6 h-0.5 transition-all duration-300" id="h3"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Fullscreen Menu Overlay -->
+  <div id="dr-menu-overlay" class="dr-menu-overlay" aria-hidden="true">
+    <div class="dr-menu-container">
+      <div class="dr-menu-content">
+        <!-- Left Column: Large Bold Links -->
+        <div class="dr-menu-left">
+          <ul class="dr-menu-links">
+            <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
+            <li class="dr-menu-item dr-menu-item-services">
+              <a href="index.html#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle"
+                aria-expanded="false">
+                Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span
+                  class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
+              </a>
+              <!-- Mobile/Tablet Accordion Dropdown -->
+              <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
+                <ul class="dr-services-accordion-list">
+                  <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+                  <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+                  <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+                  <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a>
+                  </li>
+                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
+            <li class="dr-menu-item"><a href="casestudy.html" class="dr-menu-link text-lime">Case Study</a></li>
+            <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
+            <li class="dr-menu-item"><a href="contact.html" class="dr-menu-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Right Column: Contact details & Socials + Services Panel -->
+        <div class="dr-menu-right" id="dr-menu-right">
+          <div class="dr-menu-right-info" id="dr-menu-right-info">
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Connect</h4>
+              <a href="mailto:demurupmedia@gmail.com" class="dr-menu-contact-link">demurupmedia@gmail.com</a>
+              <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-menu-contact-link">+91 95865
+                69990</a>
+            </div>
+
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Location</h4>
+              <p class="dr-menu-text">Vapi, Gujarat, India</p>
+            </div>
+
+            <div class="dr-menu-right-item dr-menu-contact-section">
+              <h4 class="dr-menu-sublabel">Socials</h4>
+              <div class="dr-menu-socials">
+                <a href="https://www.instagram.com/demurup_media" target="_blank" rel="noopener"
+                  class="dr-menu-social-link">Instagram</a>
+                <a href="https://www.linkedin.com/company/demurup-media/" target="_blank" rel="noopener"
+                  class="dr-menu-social-link">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Services Panel -->
+          <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
+            <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
+            <ul class="dr-services-desktop-list">
+              <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+              <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+              <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+              <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+              <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
+              <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN EDITORIAL CONTENT -->
+  <main class="relative z-10">
+
+    <!-- ==========================================
+         HERO SECTION: Luxury Editorial Case Archive
+         ========================================== -->
+    <section
+      class="case-study-hero relative pt-[54px] sm:pt-[60px] lg:pt-[68px] pb-12 sm:pb-14 lg:pb-16 px-5 lg:px-10 bg-white text-black border-b border-black/10"
+      data-theme="light">
+      <div class="max-w-[1400px] w-full mx-auto">
+
+        <!-- Main Asymmetric Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+          <!-- Left: Dominant Editorial Headline (8 cols) -->
+          <div class="lg:col-span-7 xl:col-span-8">
+            <h1
+              class="font-seasons text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] xl:text-[6.2rem] leading-[0.94] tracking-tight text-black uppercase select-none">
+              WORK THAT BUILDS<br />
+              <span class="text-lime">MODERN BRANDS.</span>
+            </h1>
+          </div>
+
+          <!-- Right: Supporting Narrative & Editorial Metadata (4 cols) -->
+          <div class="lg:col-span-5 xl:col-span-4 flex flex-col justify-center">
+            <div class="flex items-center gap-2.5 mb-3.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime inline-block"></span>
+              <span class="text-xs font-mono tracking-[0.22em] text-black/50 uppercase font-semibold">OVERVIEW / ARCHIVE</span>
+            </div>
+            <p class="text-base sm:text-lg text-black/75 font-light leading-relaxed mb-5">
+              A curated index of digital platforms, brand architectures, and creator campaigns crafted with measurable
+              commercial and cultural impact.
+            </p>
+        
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CASE STUDIES FEED: Alternating White & Black Chapters
+         ========================================== -->
+    <div id="cases-feed" class="w-full">
+
+      <!-- ──────────────────────────────────────────
+           CASE STUDY 01: 360 Security
+           THEME: WHITE SECTION | LAYOUT: IMAGE LEFT (60%) | CONTENT RIGHT (40%)
+           ────────────────────────────────────────── -->
+      <section class="editorial-section editorial-section-light py-20 lg:py-32 px-6 lg:px-12" data-theme="light">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            <!-- Visual 60% (7 cols) -->
+            <div class="lg:col-span-7 mobile-order-visual">
+              <div class="editorial-img-frame aspect-[16/10] sm:aspect-[16/9] border border-black/10 shadow-sm">
+                <img src="case_01_360_security.png" alt="360 Security case study" loading="lazy" />
+              </div>
+            </div>
+
+            <!-- Content 40% (5 cols) -->
+            <div class="lg:col-span-5 mobile-order-content flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold">01</span>
+                <span class="w-8 h-px bg-black/20"></span>
+                <span class="text-xs font-mono text-black/50 tracking-[0.2em] uppercase">CASE STUDIES</span>
+              </div>
+
+              <!-- Maximum 2-Line Headline -->
+              <h2
+                class="font-seasons text-3xl sm:text-4xl lg:text-[2.65rem] text-black font-normal leading-[1.12] mb-5 tracking-tight">
+                360 Security: Building a Digital Presence That Reflects Trust and Expertise
+              </h2>
+
+              <p class="text-sm sm:text-base text-black/70 font-light leading-relaxed mb-8 max-w-lg">
+                We are thrilled to highlight our collaboration with 360 Security, a premier IT solutions and security
+                company with operations in KSA and UAE. DemuRup Media delivered a sleek and captivating website design,
+                and we are proud to have been part of their digital transformation journey.
+              </p>
+
+              <div>
+                <button type="button" class="editorial-btn editorial-btn-dark open-case-trigger" data-target="1"
+                  aria-label="View Case Study 01 - 360 Security">
+                  <span>VIEW CASE STUDY</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────
+           CASE STUDY 02: GameBot
+           THEME: BLACK SECTION | LAYOUT: CONTENT LEFT (40%) | IMAGE RIGHT (60%)
+           ────────────────────────────────────────── -->
+      <section class="editorial-section editorial-section-dark py-20 lg:py-32 px-6 lg:px-12" data-theme="dark">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            <!-- Content 40% (5 cols) -->
+            <div class="lg:col-span-5 mobile-order-content flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold">02</span>
+                <span class="w-8 h-px bg-white/20"></span>
+                <span class="text-xs font-mono text-white/50 tracking-[0.2em] uppercase">CASE STUDIES</span>
+              </div>
+
+              <!-- Maximum 2-Line Headline -->
+              <h2
+                class="font-seasons text-3xl sm:text-4xl lg:text-[2.65rem] text-white font-normal leading-[1.12] mb-5 tracking-tight">
+                GameBot: Leveling Up a PlayStation Dealer's Digital Storefront
+              </h2>
+
+              <p class="text-sm sm:text-base text-white/70 font-light leading-relaxed mb-8 max-w-lg">
+                GameBot had built a strong offline reputation as a trusted Sony PlayStation dealer and a go-to gaming
+                lounge for enthusiasts to browse, play, and buy. But their online presence didn't reflect that same
+                energy or credibility.
+              </p>
+
+              <div>
+                <button type="button" class="editorial-btn editorial-btn-light open-case-trigger" data-target="2"
+                  aria-label="View Case Study 02 - GameBot">
+                  <span>VIEW CASE STUDY</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual 60% (7 cols) -->
+            <div class="lg:col-span-7 mobile-order-visual">
+              <div class="editorial-img-frame aspect-[16/10] sm:aspect-[16/9] border border-white/10 shadow-sm">
+                <img src="case_02_gamebot.png" alt="GameBot case study" loading="lazy" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────
+           CASE STUDY 03: Khalid Al Ameri — SBC
+           THEME: WHITE SECTION | LAYOUT: IMAGE LEFT (60%) | CONTENT RIGHT (40%)
+           ────────────────────────────────────────── -->
+      <section class="editorial-section editorial-section-light py-20 lg:py-32 px-6 lg:px-12" data-theme="light">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            <!-- Visual 60% (7 cols) -->
+            <div class="lg:col-span-7 mobile-order-visual">
+              <div class="editorial-img-frame aspect-[16/10] sm:aspect-[16/9] border border-black/10 shadow-sm">
+                <img src="case_03_creator_sbc.png" alt="Khalid Al Ameri case study" loading="lazy" />
+              </div>
+            </div>
+
+            <!-- Content 40% (5 cols) -->
+            <div class="lg:col-span-5 mobile-order-content flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold">03</span>
+                <span class="w-8 h-px bg-black/20"></span>
+                <span class="text-xs font-mono text-black/50 tracking-[0.2em] uppercase">CASE STUDIES</span>
+              </div>
+
+              <!-- Maximum 2-Line Headline -->
+              <h2
+                class="font-seasons text-3xl sm:text-4xl lg:text-[2.65rem] text-black font-normal leading-[1.12] mb-5 tracking-tight">
+                Khalid Al Ameri: Building a Digital Home for the School of Branded Content
+              </h2>
+
+              <p class="text-sm sm:text-base text-black/70 font-light leading-relaxed mb-8 max-w-lg">
+                Khalid Al Ameri has built one of the most trusted voices in the Middle East's content creator space,
+                known for authentic storytelling and a deeply engaged audience across the region. As he moved from
+                content creator to educator, he needed a digital home for his new offering: the School of Branded
+                Content — a course teaching creators and brands how to tell stories that actually connect.
+              </p>
+
+              <div>
+                <button type="button" class="editorial-btn editorial-btn-dark open-case-trigger" data-target="3"
+                  aria-label="View Case Study 03 - Khalid Al Ameri">
+                  <span>VIEW CASE STUDY</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────
+           CASE STUDY 04: C&A Infra Realty
+           THEME: BLACK SECTION | LAYOUT: CONTENT LEFT (40%) | IMAGE RIGHT (60%)
+           ────────────────────────────────────────── -->
+      <section class="editorial-section editorial-section-dark py-20 lg:py-32 px-6 lg:px-12" data-theme="dark">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            <!-- Content 40% (5 cols) -->
+            <div class="lg:col-span-5 mobile-order-content flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold">04</span>
+                <span class="w-8 h-px bg-white/20"></span>
+                <span class="text-xs font-mono text-white/50 tracking-[0.2em] uppercase">CASE STUDIES</span>
+              </div>
+
+              <!-- Maximum 2-Line Headline -->
+              <h2
+                class="font-seasons text-3xl sm:text-4xl lg:text-[2.65rem] text-white font-normal leading-[1.12] mb-5 tracking-tight">
+                C&A Infra Realty: Building a Standout Brand in Real Estate
+              </h2>
+
+              <p class="text-sm sm:text-base text-white/70 font-light leading-relaxed mb-8 max-w-lg">
+                C&A Infra Realty had the fundamentals of a strong real estate player — solid projects, credible
+                leadership, and a growing portfolio — but their brand wasn't communicating any of that. In a category
+                where trust and perceived scale directly influence buyer decisions, C&A Infra was getting lost in a
+                crowded, look-alike market.
+              </p>
+
+              <div>
+                <button type="button" class="editorial-btn editorial-btn-light open-case-trigger" data-target="4"
+                  aria-label="View Case Study 04 - C&A Infra Realty">
+                  <span>VIEW CASE STUDY</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual 60% (7 cols) -->
+            <div class="lg:col-span-7 mobile-order-visual">
+              <div class="editorial-img-frame aspect-[16/10] sm:aspect-[16/9] border border-white/10 shadow-sm">
+                <img src="case_04_infra_realty.png" alt="C&A Infra Realty case study" loading="lazy" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────
+           CASE STUDY 05: Qaani
+           THEME: WHITE SECTION | LAYOUT: IMAGE LEFT (60%) | CONTENT RIGHT (40%)
+           ────────────────────────────────────────── -->
+      <section class="editorial-section editorial-section-light py-20 lg:py-32 px-6 lg:px-12" data-theme="light">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            <!-- Visual 60% (7 cols) -->
+            <div class="lg:col-span-7 mobile-order-visual">
+              <div class="editorial-img-frame aspect-[16/10] sm:aspect-[16/9] border border-black/10 shadow-sm">
+                <img src="case_05_sustainable_qaani.png" alt="Qaani case study" loading="lazy" />
+              </div>
+            </div>
+
+            <!-- Content 40% (5 cols) -->
+            <div class="lg:col-span-5 mobile-order-content flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold">05</span>
+                <span class="w-8 h-px bg-black/20"></span>
+                <span class="text-xs font-mono text-black/50 tracking-[0.2em] uppercase">CASE STUDIES</span>
+              </div>
+
+              <!-- Maximum 2-Line Headline -->
+              <h2
+                class="font-seasons text-3xl sm:text-4xl lg:text-[2.65rem] text-black font-normal leading-[1.12] mb-5 tracking-tight">
+                Qaani: Growing a Sustainable Brand Through Influencer Marketing
+              </h2>
+
+              <p class="text-sm sm:text-base text-black/70 font-light leading-relaxed mb-8 max-w-lg">
+                Qaani had built a genuinely sustainable product — recyclable packaging, eco-conscious production, and
+                a real commitment to minimizing environmental impact. But sustainability alone doesn't sell itself. In a
+                market crowded with brands making similar green claims, Qaani needed a way to cut through the noise and
+                reach an audience that would actually care about, trust, and act on their message.
+              </p>
+
+              <div>
+                <button type="button" class="editorial-btn editorial-btn-dark open-case-trigger" data-target="5"
+                  aria-label="View Case Study 05 - Qaani">
+                  <span>VIEW CASE STUDY</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────
+           CASE STUDY 06: Sunsilk
+           THEME: BLACK SECTION | LAYOUT: CONTENT LEFT (40%) | IMAGE RIGHT (60%)
+           ────────────────────────────────────────── -->
+      <section class="editorial-section editorial-section-dark py-20 lg:py-32 px-6 lg:px-12" data-theme="dark">
+        <div class="max-w-[1400px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            <!-- Content 40% (5 cols) -->
+            <div class="lg:col-span-5 mobile-order-content flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold">06</span>
+                <span class="w-8 h-px bg-white/20"></span>
+                <span class="text-xs font-mono text-white/50 tracking-[0.2em] uppercase">CASE STUDIES</span>
+              </div>
+
+              <!-- Maximum 2-Line Headline -->
+              <h2
+                class="font-seasons text-3xl sm:text-4xl lg:text-[2.65rem] text-white font-normal leading-[1.12] mb-5 tracking-tight">
+                Sunsilk: Amplifying a Global Hair Care Icon Through Influencer Marketing
+              </h2>
+
+              <p class="text-sm sm:text-base text-white/70 font-light leading-relaxed mb-8 max-w-lg">
+                Sunsilk is a globally recognized hair care brand, present in over 80 countries and backed by Unilever,
+                offering a wide range of products across hair types, colors, and lengths. But global scale brings its
+                own challenge: staying relevant and personal in markets where beauty and hair care conversations are
+                increasingly driven by creators, not traditional advertising.
+              </p>
+
+              <div>
+                <button type="button" class="editorial-btn editorial-btn-light open-case-trigger" data-target="6"
+                  aria-label="View Case Study 06 - Sunsilk">
+                  <span>VIEW CASE STUDY</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual 60% (7 cols) -->
+            <div class="lg:col-span-7 mobile-order-visual">
+              <div class="editorial-img-frame aspect-[16/10] sm:aspect-[16/9] border border-white/10 shadow-sm">
+                <img src="case_06_sunsilk_beauty.png" alt="Sunsilk case study" loading="lazy" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ==========================================
+         LEAD MAGNET / CLOSING CTA SECTION
+         Redesigned Editorial Full-Width Composition
+         ========================================== -->
+    <section class="py-24 lg:py-36 px-6 lg:px-12 bg-black text-white border-t border-white/10" data-theme="dark">
+      <div class="max-w-[1400px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end pb-16 border-b border-white/10">
+
+          <div class="lg:col-span-8">
+            <span class="text-xs font-mono text-lime tracking-[0.25em] uppercase block mb-4">START A CONVERSATION</span>
+            <h2
+              class="font-seasons text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[0.95] text-white uppercase tracking-tight">
+              HAVE A PROJECT <br />
+              <span class="text-lime">WORTH BUILDING?</span>
+            </h2>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col justify-end">
+            <p class="text-base sm:text-lg text-white/70 font-light leading-relaxed mb-8">
+              If you have a brand, marketing or digital project, DemuRup can help turn the idea into something
+              meaningful.
+            </p>
+            <div>
+              <a href="contact.html" class="editorial-btn editorial-btn-light inline-flex items-center gap-3">
+                <span>LET'S TALK</span>
+                <span class="text-lg">→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-white/40 gap-4">
+          <span>DEMURUP MEDIA • STRATEGY • CODE • BRANDING • GROWTH</span>
+          <a href="#main-nav" class="hover:text-lime transition-colors">BACK TO TOP ↑</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       REDESIGNED CASE STUDY DETAIL VIEW (Editorial Publication Article)
+       Pure White Background + Black Text + Vertical Flow
+       ========================================== -->
+  <div id="case-detail-modal" class="fixed inset-0 z-[10005] bg-white text-black overflow-y-auto" aria-hidden="true"
+    role="dialog">
+    <div id="case-detail-scroll" class="min-h-screen py-10 px-6 lg:px-12 flex flex-col justify-between">
+
+      <!-- Top Sticky Minimal Bar -->
+      <div
+        class="max-w-[1000px] w-full mx-auto flex items-center justify-between pb-6 border-b border-black/10 sticky top-0 bg-white/90 backdrop-blur-md z-30 py-4">
+        <button type="button" id="close-detail-btn" class="article-nav-btn group" aria-label="Back to Case Studies">
+          <span class="group-hover:-translate-x-1 transition-transform">←</span>
+          <span>BACK TO ALL CASES</span>
+        </button>
+
+        <div class="flex items-center gap-3 font-mono text-xs text-black/60">
+          <button type="button" id="prev-case-btn" class="article-nav-btn text-xs" aria-label="Previous Case Study">
+            <span>← PREV</span>
+          </button>
+          <span id="modal-counter" class="px-2">1 / 6</span>
+          <button type="button" id="next-case-btn" class="article-nav-btn text-xs" aria-label="Next Case Study">
+            <span>NEXT →</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Detail Article Content Area -->
+      <div class="max-w-[1000px] w-full mx-auto py-12 sm:py-16">
+
+        <!-- Case Meta Top Strip -->
+        <div class="flex items-center gap-3 mb-6">
+          <span id="modal-case-num" class="text-xs font-mono font-bold text-lime tracking-[0.25em] uppercase">
+            CASE 01
+          </span>
+          <span class="w-6 h-px bg-black/20"></span>
+          <span id="modal-category" class="text-xs font-mono text-black/50 tracking-[0.2em] uppercase">
+            CASE STUDIES
+          </span>
+        </div>
+
+        <!-- Case Headline (Max 2 Lines) -->
+        <h1 id="modal-heading"
+          class="font-seasons text-3xl sm:text-5xl lg:text-6xl text-black font-normal leading-[1.08] tracking-tight mb-8">
+          360 Security: Building a Digital Presence That Reflects Trust and Expertise
+        </h1>
+
+        <!-- Metadata Row Separated by Editorial Slashes -->
+        <div
+          class="flex flex-wrap items-center gap-y-2 gap-x-6 pb-8 border-b border-black/10 text-xs font-mono text-black/60 mb-12">
+          <div><span class="text-black/40">CLIENT:</span> <span id="modal-strip-client"
+              class="text-black font-medium">360 Security</span></div>
+          <div><span class="text-black/40">/</span></div>
+          <div><span class="text-black/40">SERVICE:</span> <span id="modal-strip-service"
+              class="text-black font-medium">Website Design &amp; Development</span></div>
+          <div><span class="text-black/40">/</span></div>
+          <div><span class="text-black/40">REGION:</span> <span id="modal-strip-region"
+              class="text-black font-medium">Kingdom of Saudi Arabia (KSA) &amp; UAE</span></div>
+          <div><span class="text-black/40">/</span></div>
+          <div><span class="text-black/40">INDUSTRY:</span> <span id="modal-strip-deliverables"
+              class="text-black font-medium">IT Solutions &amp; Security</span></div>
+        </div>
+
+        <!-- Large Centered Project Visual -->
+        <div class="w-full aspect-[16/9] sm:aspect-[21/10] overflow-hidden mb-16 border border-black/10">
+          <img id="modal-hero-img" src="case_01_360_security.png" alt="360 Security case study"
+            class="w-full h-full object-cover" />
+        </div>
+
+        <!-- Vertical Article Chapters (No 2x2 cards, clean editorial rules) -->
+        <div class="max-w-3xl mx-auto space-y-16 text-black/80 font-light leading-relaxed">
+
+          <!-- Chapter 1: The Challenge -->
+          <div class="pt-6 border-t border-black/10">
+            <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold uppercase block mb-4">01 — THE
+              CHALLENGE</span>
+            <p id="modal-challenge" class="text-base sm:text-lg text-black/85 leading-relaxed font-light">
+              As a trusted IT and security solutions provider operating across two major markets, 360 Security needed a digital presence that matched the caliber of the services they deliver. Their existing website fell short of reflecting their expertise, credibility, and regional reach — making it difficult to build trust with prospective clients and stand out in a competitive, security-conscious industry.
+            </p>
+          </div>
+
+          <!-- Chapter 2: The Approach -->
+          <div class="pt-6 border-t border-black/10">
+            <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold uppercase block mb-4">02 — THE
+              APPROACH</span>
+            <p id="modal-strategy" class="text-base sm:text-lg text-black/85 leading-relaxed font-light">
+              DemuRup Media partnered closely with the 360 Security team to understand their brand identity, service offerings, and target audience across the KSA and UAE markets. Our team focused on modern, trust-building design that conveys authority and reliability, and user-centric experience structuring the site for intuitive navigation across their full range of IT and security solutions.
+            </p>
+          </div>
+
+          <!-- Chapter 3: The Execution -->
+          <div class="pt-6 border-t border-black/10">
+            <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold uppercase block mb-4">03 — THE
+              EXECUTION</span>
+            <p id="modal-execution" class="text-base sm:text-lg text-black/85 leading-relaxed font-light">
+              We executed a tailored, fully responsive web architecture with regional relevance for the KSA and UAE markets, ensuring seamless high-performance browsing across desktop, tablet, and mobile devices.
+            </p>
+          </div>
+
+          <!-- Chapter 4: The Outcome -->
+          <div class="pt-6 border-t border-black/10">
+            <span class="text-xs font-mono text-lime tracking-[0.25em] font-semibold uppercase block mb-4">04 — THE
+              OUTCOME</span>
+            <p id="modal-outcome" class="text-base sm:text-lg text-black/85 leading-relaxed font-light">
+              The final website became a true reflection of 360 Security's brand promise — polished, secure-feeling, and professional. It now serves as a strong digital foundation that supports their credibility in both the KSA and UAE markets, helping them engage prospective clients with confidence and clarity. This collaboration highlights DemuRup Media's adaptability in delivering tailored digital solutions for organizations across different industries and regions, reinforcing our commitment to helping businesses of all sizes achieve meaningful digital transformation.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Minimal Bar in Modal -->
+      <div
+        class="max-w-[1000px] w-full mx-auto pt-10 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <button type="button" id="modal-bottom-back-btn" class="article-nav-btn" aria-label="Back to Case Studies">
+          <span>← BACK TO ALL CASE STUDIES</span>
+        </button>
+
+        <a href="contact.html"
+          class="inline-flex items-center gap-2 text-xs font-mono text-black hover:text-lime tracking-widest uppercase transition-colors">
+          <span>START A PROJECT WITH DEMURUP →</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       DEFAULT FOOTER
+       ========================================== -->
+  <footer class="border-t border-white/15 pt-16 pb-8 bg-[#000000] text-white" data-theme="dark">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="mb-2">
+            <img src="main logo.png" alt="DemuRup Media"
+              class="dr-footer-logo w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+          </div>
+          <p class="text-white/70 text-sm leading-relaxed max-w-sm">
+            India's boldest creative marketing &amp; branding studio. One team,
+            every digital need, zero compromise.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <!-- Instagram -->
+            <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+              aria-label="Instagram">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+              aria-label="LinkedIn">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+              aria-label="WhatsApp">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <div class="slabel mb-5 text-white">OUR SERVICES</div>
+          <ul class="space-y-3">
+            <li>
+              <a href="Branding.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Branding</a>
+            </li>
+            <li>
+              <a href="SEO &amp; GMB.html" class="text-white hover:text-lime text-sm transition-colors duration-200">SEO
+                &amp; GMB</a>
+            </li>
+            <li>
+              <a href="Influencer Marketing.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Influencer Marketing</a>
+            </li>
+            <li>
+              <a href="Performance Marketing.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Performance Marketing</a>
+            </li>
+            <li>
+              <a href="Social Media Management.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Social Media Management</a>
+            </li>
+            <li>
+              <a href="Web Design &amp; Development.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Web Design &amp;
+                Development</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company / Quick links -->
+        <div>
+          <div class="slabel mb-5 text-white">Quick links</div>
+          <ul class="space-y-3">
+            <li>
+              <a href="about.html" class="text-white hover:text-lime text-sm transition-colors duration-200">About</a>
+            </li>
+            <li>
+              <a href="clients.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Clients</a>
+            </li>
+            <li>
+              <a href="casestudy.html" class="text-white hover:text-lime text-sm transition-colors duration-200">Case
+                Study</a>
+            </li>
+            <li>
+              <a href="blog.html" class="text-white hover:text-lime text-sm transition-colors duration-200">Blog</a>
+            </li>
+            <li>
+              <a href="contact.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Contact</a>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <div class="slabel mb-2 text-white">Connect</div>
+            <p class="text-white/70 text-xs">@demurup_media</p>
+            <p class="text-white/70 text-xs mt-1">Demurup Media (LinkedIn)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center pt-8 gap-4">
+        <p class="text-white/50 text-xs font-mono">
+          © 2026 DemuRup Media. All rights reserved.
+        </p>
+        <p class="text-white/50 text-xs font-mono">
+          Designed &amp; Developed by DemuRup Media
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Base Site Script -->
+  <script src="script.js"></script>
+
+  <!-- ==========================================
+       CASE STUDY DETAIL VIEW CONTROLLER
+       ========================================== -->
+  <script>
+    (function () {
+      const CASE_DATA = [
+        {
+          id: 1,
+          caseNum: "CASE 01",
+          client: "360 Security",
+          category: "CASE STUDIES",
+          heading: "360 Security: Building a Digital Presence That Reflects Trust and Expertise",
+          stripClient: "360 Security",
+          stripService: "Website Design & Development",
+          stripRegion: "Kingdom of Saudi Arabia (KSA) & UAE",
+          stripDeliverables: "IT Solutions & Security",
+          imgSrc: "case_01_360_security.png",
+          challenge: "As a trusted IT and security solutions provider operating across two major markets, 360 Security needed a digital presence that matched the caliber of the services they deliver. Their existing website fell short of reflecting their expertise, credibility, and regional reach — making it difficult to build trust with prospective clients and stand out in a competitive, security-conscious industry.",
+          strategy: "DemuRup Media partnered closely with the 360 Security team to understand their brand identity, service offerings, and target audience across the KSA and UAE markets. Our team focused on modern, trust-building design that conveys authority and reliability, and user-centric experience structuring the site for intuitive navigation across their full range of IT and security solutions.",
+          execution: "We executed a tailored, fully responsive web architecture with regional relevance for the KSA and UAE markets, ensuring seamless high-performance browsing across desktop, tablet, and mobile devices.",
+          outcome: "The final website became a true reflection of 360 Security's brand promise — polished, secure-feeling, and professional. It now serves as a strong digital foundation that supports their credibility in both the KSA and UAE markets, helping them engage prospective clients with confidence and clarity. This collaboration highlights DemuRup Media's adaptability in delivering tailored digital solutions for organizations across different industries and regions, reinforcing our commitment to helping businesses of all sizes achieve meaningful digital transformation."
+        },
+        {
+          id: 2,
+          caseNum: "CASE 02",
+          client: "GameBot",
+          category: "CASE STUDIES",
+          heading: "GameBot: Leveling Up a PlayStation Dealer's Digital Storefront",
+          stripClient: "GameBot",
+          stripService: "eCommerce Web Design, UX/UI & Development",
+          stripRegion: "Retail & Gaming Lounge",
+          stripDeliverables: "Gaming & Consumer Electronics Retail",
+          imgSrc: "case_02_gamebot.png",
+          challenge: "Their existing website felt generic — more like a placeholder than a storefront for a brand rooted in gaming culture. Key pain points included: a dated, template-driven design with no visual identity tied to gaming or the PlayStation ecosystem; a clunky, multi-step checkout process that caused cart abandonment; poor product discoverability, with consoles, accessories, and bundles buried in flat, unstructured category pages; no mobile optimization despite most traffic coming from phones and tablets; and zero brand storytelling — visitors couldn't tell GameBot was also a physical lounge and community hub, not just another reseller. The goal was clear: build an eCommerce experience that felt as immersive and exciting as the gaming world GameBot sells into, while making the actual business of buying a console or accessory fast and frictionless.",
+          strategy: "We started by digging into who actually shops at GameBot — competitive gamers hunting for the latest PS5 bundle, parents buying gifts, and lounge regulars who wanted merch and accessories. The strategy centered on three pillars: a brand-first design language borrowing from gaming UI conventions with bold typography and dark-mode-friendly palettes; a shopper-centric information architecture restructured around how gamers actually search, with faceted filtering; and a conversion-focused UX simplifying every screen from product page to checkout, surfacing trust signals and making mobile the primary design surface.",
+          execution: "We also made sure the site captured GameBot's dual identity — dealer and lounge — by weaving in lounge photography, event listings, and community touchpoints so the brand felt like a destination, not just a checkout page.",
+          outcome: "The result was a complete transformation of GameBot's digital presence: a modern, gaming-native storefront that immediately signals authenticity and authority as a PlayStation dealer; a simplified, faster checkout flow that reduced friction and cart abandonment; improved product discoverability helping shoppers find the right console, bundle, or accessory in fewer clicks; a fully responsive experience performing seamlessly across mobile, tablet, and desktop; and a stronger brand identity online, unifying GameBot's role as both a trusted retailer and a community gaming lounge. GameBot now has an eCommerce platform built not just to sell hardware, but to represent the culture around it — giving them a digital storefront ready to grow alongside their business."
+        },
+        {
+          id: 3,
+          caseNum: "CASE 03",
+          client: "Khalid Al Ameri",
+          category: "CASE STUDIES",
+          heading: "Khalid Al Ameri: Building a Digital Home for the School of Branded Content",
+          stripClient: "Khalid Al Ameri",
+          stripService: "Website Design & Development",
+          stripRegion: "Middle East & Global",
+          stripDeliverables: "Personal Branding / Online Education / Creator Economy",
+          imgSrc: "case_03_creator_sbc.png",
+          challenge: "Nothing existed yet to represent the course. This meant no dedicated space that reflected Khalid's personal brand — warm, authentic, culturally rooted, and premium; no clear platform to explain the course, build credibility, and convert interested creators into enrolled students; a risk of the course being seen as 'just another online course' rather than an extension of Khalid's own trusted voice; and the need for a design that could speak to both an Arabic-speaking regional audience and an international audience following his work. Khalid needed a site that didn't just list course modules — it needed to feel like him: personal, polished, and rooted in real storytelling craft.",
+          strategy: "We approached this as a personal brand extension first, and a course sales page second. Our strategy focused on three things: a brand-authentic visual identity built directly around Khalid's existing tone, photography style, and color palette; a trust-building narrative structure leading with Khalid's story and authority before moving into course value, curriculum, and social proof; and culturally attuned, conversion-ready UX designed with the Middle Eastern audience front and center, while keeping the structure clean and intuitive enough to convert visitors from any market.",
+          execution: "We engineered an inspiring, typography-led digital learning website featuring integrated video showcases, interactive curriculum breakdowns, instructor credibility panels, and seamless checkout integrations. The design maintained an approachable yet highly professional tone, ensuring that prospective students could easily explore module outcomes and enroll with confidence.",
+          outcome: "The result is a personal, on-brand digital presence that feels like a natural extension of Khalid's own platform, not a generic course page — with a trust-first structure that builds credibility before asking for the sale, a clear guided path to enrollment that turns interest into action without friction, a culturally resonant design that speaks authentically to a Middle Eastern audience while remaining accessible internationally, and a premium, polished experience across devices matching the caliber of Khalid's personal brand. The School of Branded Content now has a digital presence that does justice to Khalid's story — and gives his students a compelling first step into learning from him directly."
+        },
+        {
+          id: 4,
+          caseNum: "CASE 04",
+          client: "C&A Infra Realty",
+          category: "CASE STUDIES",
+          heading: "C&A Infra Realty: Building a Standout Brand in Real Estate",
+          stripClient: "C&A Infra Realty",
+          stripService: "Branding, Web Design & Development, Advertising",
+          stripRegion: "Regional & National Property",
+          stripDeliverables: "Real Estate & Property Development",
+          imgSrc: "case_04_infra_realty.png",
+          challenge: "Key challenges included a dated, inconsistent visual identity that didn't reflect the quality or ambition of their actual projects; a website that functioned more like a digital brochure than a lead-generating asset — hard to navigate, weak on property presentation, and not built to convert visitors into inquiries; advertising efforts that lacked a consistent voice or visual system, making campaigns feel disconnected from the brand itself; and no clear brand positioning to differentiate C&A Infra from larger, more established developers competing for the same buyers and investors. C&A Infra needed more than a facelift — they needed a complete brand system that could carry them across digital, web, and advertising touchpoints with consistency and authority.",
+          strategy: "We treated this as a full brand transformation, not a series of isolated deliverables. Our approach rested on three connected pillars: a brand identity built on trust and scale, visually communicating stability, credibility, and ambition without losing warmth or approachability; a web experience designed to convert, not just inform, structured around how buyers and investors actually evaluate properties with clear paths to inquiry at every stage; and advertising built on a unified system, ensuring every campaign asset drew from the same visual and messaging framework as the brand and website.",
+          execution: "We engineered a modern property showcase website featuring high-definition architectural project galleries, interactive floor plans, locality highlights, and seamless inquiry funnels, backed by unified print and digital campaign assets.",
+          outcome: "The rebrand gave C&A Infra Realty the identity and digital presence to compete confidently with the biggest names in the market: a premium, cohesive brand identity communicating trust, stability, and ambition at every touchpoint; a conversion-focused website that turns property browsers into qualified inquiries, not just page views; consistent advertising presence across digital and print, reinforcing brand recognition with every campaign; a stronger competitive position allowing C&A Infra to stand shoulder-to-shoulder with more established developers; and a scalable brand system the internal team can confidently apply to future projects and campaigns. C&A Infra Realty now has a brand built to match its ambitions — one that turns first impressions into lasting trust with buyers and investors alike."
+        },
+        {
+          id: 5,
+          caseNum: "CASE 05",
+          client: "Qaani",
+          category: "CASE STUDIES",
+          heading: "Qaani: Growing a Sustainable Brand Through Influencer Marketing",
+          stripClient: "Qaani",
+          stripService: "Influencer Marketing",
+          stripRegion: "National / Sustainable Retail",
+          stripDeliverables: "Sustainable Consumer Goods",
+          imgSrc: "case_05_sustainable_qaani.png",
+          challenge: "The core challenges were limited brand awareness outside of Qaani's existing customer base; difficulty communicating genuine sustainability credentials in a space full of greenwashing, where audiences have grown skeptical of eco-claims; no established presence in the influencer or creator space to build authentic, third-party credibility; and a need to reach environmentally conscious consumers in a way that felt organic, not like traditional advertising. Qaani needed voices their audience already trusted to tell their story — not just push their product.",
+          strategy: "We built an influencer marketing strategy rooted in authenticity, since a sustainability story only works if it feels genuine. Our approach centered on three pillars: values-aligned creator selection, partnering with influencers who had a real, demonstrated interest in sustainability and ethical consumption rather than chasing follower counts; story-first content shaped around Qaani's actual sustainability practices so creators could speak to real, specific details rather than vague green messaging; and multi-format, platform-native content tailored to each platform and creator's natural style, ensuring the content felt native to each channel rather than repurposed ad copy.",
+          execution: "We orchestrated visually cohesive campaign narratives showcasing the lifecycle of recyclable packaging, mindful daily routines, and the craftsmanship behind Qaani's products, producing authentic creator reels, candid lifestyle testimonials, and sustainable living educational posts across digital channels.",
+          outcome: "The influencer marketing campaign gave Qaani a credible, authentic voice in the sustainability conversation: stronger brand awareness among environmentally conscious consumers who hadn't previously encountered Qaani; increased trust and credibility driven by genuine third-party endorsement rather than traditional advertising; authentic storytelling around Qaani's recyclable packaging and eco-friendly production that resonated with sustainability-focused audiences; meaningful audience engagement, with creators' communities actively discussing Qaani's environmental commitments; and a foundation for long-term creator partnerships, positioning Qaani to keep building credibility in the sustainability space over time. Qaani's commitment to sustainability is now being told by the voices its audience already trusts — turning genuine environmental practice into genuine brand growth."
+        },
+        {
+          id: 6,
+          caseNum: "CASE 06",
+          client: "Sunsilk (Unilever)",
+          category: "CASE STUDIES",
+          heading: "Sunsilk: Amplifying a Global Hair Care Icon Through Influencer Marketing",
+          stripClient: "Sunsilk (Unilever)",
+          stripService: "Influencer Marketing",
+          stripRegion: "Global / FMCG Hair Care",
+          stripDeliverables: "Hair Care & Beauty",
+          imgSrc: "case_06_sunsilk_beauty.png",
+          challenge: "Key challenges included a broad, diverse product range needing to speak to very different hair types, textures, and concerns across regions — a one-size-fits-all message wouldn't work; increasing competition from newer, creator-native hair care brands that felt more current and community-driven; the need to build authentic engagement in a beauty landscape where audiences trust creators and real results far more than traditional brand advertising; and maintaining consistent brand voice and quality across a large-scale influencer campaign spanning multiple markets and audience segments. Sunsilk needed an influencer strategy that could flex across its diverse product line and audience base, while still feeling like one cohesive, trustworthy brand.",
+          strategy: "We built a segmented influencer marketing strategy that let Sunsilk speak authentically to different hair care needs without losing brand consistency. Our approach was built on three pillars: hair-type-matched creator partnerships, representing a genuine range of hair types, textures, and routines so each product line was represented by someone whose audience could relate; real routine, real results content, prioritizing genuine before-and-after usage and honest reactions over polished, overly produced brand content; and consistent brand voice with flexible creator expression, giving creators a clear framework to work within while leaving room for their individual style.",
+          execution: "We coordinated dynamic creator collaborations producing high-energy transition reels, styling routines, and authentic UGC tutorials that blended seamlessly into organic social feeds across diverse beauty communities.",
+          outcome: "The influencer marketing campaign strengthened Sunsilk's connection with modern beauty audiences: broader, more relevant reach across diverse hair types and beauty communities, reflecting the true range of Sunsilk's product line; increased authenticity and trust, driven by real routines and honest results rather than traditional advertising; stronger competitive positioning against newer, creator-native hair care brands; deeper audience engagement, with creator communities actively discussing routines, results, and product recommendations; and a repeatable influencer framework Sunsilk can apply across markets and future product launches. Through authentic, hair-type-matched storytelling, Sunsilk strengthened its place in the modern beauty conversation — proving that even a global icon can show up as personal and relevant as the creators its audience already trusts."
+        }
+      ];
+
+      let currentCaseIndex = 0;
+
+      const modal = document.getElementById("case-detail-modal");
+      const closeBtn = document.getElementById("close-detail-btn");
+      const bottomBackBtn = document.getElementById("modal-bottom-back-btn");
+      const prevBtn = document.getElementById("prev-case-btn");
+      const nextBtn = document.getElementById("next-case-btn");
+      const counterEl = document.getElementById("modal-counter");
+
+      const heroImg = document.getElementById("modal-hero-img");
+      const caseNumEl = document.getElementById("modal-case-num");
+      const categoryEl = document.getElementById("modal-category");
+      const headingEl = document.getElementById("modal-heading");
+
+      const stripClient = document.getElementById("modal-strip-client");
+      const stripService = document.getElementById("modal-strip-service");
+      const stripRegion = document.getElementById("modal-strip-region");
+      const stripDeliverables = document.getElementById("modal-strip-deliverables");
+
+      const challengeEl = document.getElementById("modal-challenge");
+      const strategyEl = document.getElementById("modal-strategy");
+      const executionEl = document.getElementById("modal-execution");
+      const outcomeEl = document.getElementById("modal-outcome");
+
+      function renderModalContent(index) {
+        const item = CASE_DATA[index];
+        if (!item) return;
+
+        currentCaseIndex = index;
+
+        heroImg.src = item.imgSrc;
+        heroImg.alt = item.heading;
+
+        caseNumEl.textContent = item.caseNum;
+        categoryEl.textContent = item.category;
+        headingEl.textContent = item.heading;
+
+        stripClient.textContent = item.stripClient;
+        stripService.textContent = item.stripService;
+        stripRegion.textContent = item.stripRegion;
+        stripDeliverables.textContent = item.stripDeliverables;
+
+        challengeEl.textContent = item.challenge;
+        strategyEl.textContent = item.strategy;
+        executionEl.textContent = item.execution;
+        outcomeEl.textContent = item.outcome;
+
+        counterEl.textContent = `${item.id} / ${CASE_DATA.length}`;
+
+        if (history.pushState) {
+          history.pushState(null, null, `#case-${item.id}`);
+        } else {
+          location.hash = `#case-${item.id}`;
+        }
+      }
+
+      function openModal(index) {
+        renderModalContent(index);
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        modal.scrollTop = 0;
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+
+        if (history.pushState) {
+          history.pushState("", document.title, window.location.pathname + window.location.search);
+        } else {
+          location.hash = "";
+        }
+      }
+
+      // Triggers
+      const triggers = document.querySelectorAll(".open-case-trigger");
+      triggers.forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetNum = parseInt(this.getAttribute("data-target"), 10);
+          if (!isNaN(targetNum) && targetNum >= 1 && targetNum <= CASE_DATA.length) {
+            openModal(targetNum - 1);
+          }
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener("click", closeModal);
+      if (bottomBackBtn) bottomBackBtn.addEventListener("click", closeModal);
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          const newIndex = (currentCaseIndex - 1 + CASE_DATA.length) % CASE_DATA.length;
+          renderModalContent(newIndex);
+          modal.scrollTop = 0;
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          const newIndex = (currentCaseIndex + 1) % CASE_DATA.length;
+          renderModalContent(newIndex);
+          modal.scrollTop = 0;
+        });
+      }
+
+      window.addEventListener("keydown", function (e) {
+        if (!modal.classList.contains("active")) return;
+        if (e.key === "Escape") {
+          closeModal();
+        } else if (e.key === "ArrowLeft") {
+          const newIndex = (currentCaseIndex - 1 + CASE_DATA.length) % CASE_DATA.length;
+          renderModalContent(newIndex);
+          modal.scrollTop = 0;
+        } else if (e.key === "ArrowRight") {
+          const newIndex = (currentCaseIndex + 1) % CASE_DATA.length;
+          renderModalContent(newIndex);
+          modal.scrollTop = 0;
+        }
+      });
+
+      function checkUrlHash() {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith("#case-")) {
+          const caseNum = parseInt(hash.replace("#case-", ""), 10);
+          if (!isNaN(caseNum) && caseNum >= 1 && caseNum <= CASE_DATA.length) {
+            openModal(caseNum - 1);
+          }
+        }
+      }
+
+      window.addEventListener("popstate", function () {
+        if (!window.location.hash || !window.location.hash.startsWith("#case-")) {
+          if (modal.classList.contains("active")) {
+            closeModal();
+          }
+        } else {
+          checkUrlHash();
+        }
+      });
+
+      checkUrlHash();
+    })();
+  </script>
+</body>
+
+</html>

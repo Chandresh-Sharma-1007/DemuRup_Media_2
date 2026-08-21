@@ -59,9 +59,9 @@ const MENU_OVERLAY_HTML = `
             </div>
           </li>
           <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
-          <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
+          <li class="dr-menu-item"><a href="casestudy.html" class="dr-menu-link">Case Study</a></li>
           <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-          <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
+          <li class="dr-menu-item"><a href="contact.html" class="dr-menu-link">Contact</a></li>
         </ul>
       </div>
 
@@ -810,9 +810,13 @@ setInterval(nextSlide, 6000);
     badge.style.display = "none";
     clearTimeout(laterTimer);
     clearTimeout(autoTimer);
-    // Smooth scroll to contact
+    // Smooth scroll to contact or navigate
     const target = document.getElementById("contact-section");
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = "contact.html";
+    }
   };
 
   // ── Click backdrop to dismiss (acts like X) ────────────────

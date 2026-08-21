@@ -232,59 +232,6 @@
       box-shadow: none !important;
     }
 
-    /* Logo Sizing & Dual Contrast Switching */
-   #main-nav .dr-nav-brand img {
-  width: 225px;
-  height: auto;
-  max-height: 152px;
-  object-fit: contain;
-  transition: opacity 0.25s ease, filter 0.25s ease;
-}
-    @media (min-width: 1024px) {
-      #main-nav .dr-nav-brand img {
-        height: 60px !important;
-        max-height: 72px !important;
-      }
-    }
-
-    #main-nav .dr-logo-dark {
-      display: none !important;
-    }
-
-    #main-nav .dr-logo-light {
-      display: block !important;
-    }
-
-    #main-nav.nav-dark .dr-logo-dark {
-      display: block !important;
-    }
-
-    #main-nav.nav-dark .dr-logo-light {
-      display: none !important;
-    }
-
-    body.menu-open #main-nav .dr-logo-dark {
-      display: block !important;
-    }
-
-    body.menu-open #main-nav .dr-logo-light {
-      display: none !important;
-    }
-
-    /* Hamburger Contrast Switching */
-    #hamburger span {
-      background-color: #000000 !important;
-      transition: background-color .2s ease, transform .3s ease;
-    }
-
-    #main-nav.nav-dark #hamburger span {
-      background-color: #ffffff !important;
-    }
-
-    body.menu-open #hamburger span {
-      background-color: #ffffff !important;
-    }
-
     /* ============ HERO ============ */
     .hero {
       position: relative;
@@ -937,10 +884,10 @@
       <a href="index.html" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
         <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
         <img src="Demurup white.png" alt="DemuRup Media"
-          class="dr-logo-light w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+          class="dr-logo-light w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
         <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
         <img src="Demurup black.png" alt="DemuRup Media"
-          class="dr-logo-dark w-[115px] sm:w-[125px] lg:w-[130px] h-auto max-h-[52px] object-contain" />
+          class="dr-logo-dark w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
         <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
@@ -980,9 +927,9 @@
               </div>
             </li>
             <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
-            <li class="dr-menu-item"><a href="index.html#portfolio" class="dr-menu-link">Portfolio</a></li>
+            <li class="dr-menu-item"><a href="casestudy.html" class="dr-menu-link">Case Study</a></li>
             <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-            <li class="dr-menu-item"><a href="index.html#contact-section" class="dr-menu-link">Contact</a></li>
+            <li class="dr-menu-item"><a href="contact.html" class="dr-menu-link">Contact</a></li>
           </ul>
         </div>
 
@@ -1109,7 +1056,8 @@
     </section>
 
     <!-- WHAT / WHEN / HOW / HOW MUCH (BLOCK 2: BLACK TRANSITION) -->
-    <section class="wwh editorial-block-transition transition-to-black transition-angled" data-theme="dark" id="approach">
+    <section class="wwh editorial-block-transition transition-to-black transition-angled" data-theme="dark"
+      id="approach">
       <div class="wwh-head">
         <div class="eyebrow reveal">The Engagement</div>
         <h2 class="reveal reveal-d1">Everything you need to know, before you need to ask.</h2>
@@ -1176,20 +1124,18 @@
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
         <!-- Brand -->
         <div class="lg:col-span-2">
-          <div class="mb-6">
-            <img src="main logo.png" alt="DemuRup Media" class="h-10 lg:h-12 w-auto object-contain" />
+          <div class="mb-2">
+            <img src="main logo.png" alt="DemuRup Media"
+              class="dr-footer-logo w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
           </div>
-          <p class="text-white/35 text-sm leading-relaxed max-w-sm">
+          <p class="text-white/70 text-sm leading-relaxed max-w-sm">
             India's boldest creative marketing &amp; branding studio. One team,
             every digital need, zero compromise.
-          </p>
-          <p class="text-white/28 text-xs font-mono mt-3">
-            Based in Maharashtra, Gujarat, Chhattisgarh &amp; Rajasthan.
           </p>
           <div class="flex gap-3 mt-6">
             <!-- Instagram -->
             <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
               aria-label="Instagram">
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1198,7 +1144,7 @@
             </a>
             <!-- LinkedIn -->
             <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
               aria-label="LinkedIn">
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1207,7 +1153,7 @@
             </a>
             <!-- WhatsApp -->
             <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white/35 transition-all hover:border-lime hover:text-lime"
+              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
               aria-label="WhatsApp">
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1219,47 +1165,73 @@
 
         <!-- Services -->
         <div>
-          <div class="slabel mb-5 text-white/50 text-xs tracking-wider uppercase font-semibold">Services</div>
+          <div class="slabel mb-5 text-white">OUR SERVICES</div>
           <ul class="space-y-3">
-            <li><a href="Social Media Management.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Social Media Marketing</a></li>
-            <li><a href="Branding.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Branding
-                &amp; Strategy</a></li>
-            <li><a href="SEO &amp; GMB.html" class="text-lime text-sm transition-colors ugrow">SEO &amp; GMB</a></li>
-            <li><a href="Web Design &amp; Development.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Web Development</a></li>
-            <li><a href="Performance Marketing.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Performance Marketing</a></li>
-            <li><a href="Influencer Marketing.html"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Influencer Marketing</a></li>
+            <li>
+              <a href="Branding.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Branding</a>
+            </li>
+            <li>
+              <a href="SEO &amp; GMB.html" class="text-white hover:text-lime text-sm transition-colors duration-200">SEO
+                &amp; GMB</a>
+            </li>
+            <li>
+              <a href="Influencer Marketing.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Influencer Marketing</a>
+            </li>
+            <li>
+              <a href="Performance Marketing.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Performance Marketing</a>
+            </li>
+            <li>
+              <a href="Social Media Management.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Social Media Management</a>
+            </li>
+            <li>
+              <a href="Web Design &amp; Development.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Web Design &amp;
+                Development</a>
+            </li>
           </ul>
         </div>
 
-        <!-- Company -->
+        <!-- Company / Quick links -->
         <div>
-          <div class="slabel mb-5 text-white/50 text-xs tracking-wider uppercase font-semibold">Company</div>
+          <div class="slabel mb-5 text-white">Quick links</div>
           <ul class="space-y-3">
-            <li><a href="index.html#industries"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Industries</a></li>
-            <li><a href="clients.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Clients</a>
+            <li>
+              <a href="about.html" class="text-white hover:text-lime text-sm transition-colors duration-200">About</a>
             </li>
-            <li><a href="index.html#contact-section"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Get a Proposal</a></li>
-            <li><a href="blog.html" class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Blog</a></li>
-            <li><a href="mailto:demurupmedia@gmail.com"
-                class="text-white/42 hover:text-lime text-sm transition-colors ugrow">Contact</a></li>
+            <li>
+              <a href="clients.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Clients</a>
+            </li>
+            <li>
+              <a href="casestudy.html" class="text-white hover:text-lime text-sm transition-colors duration-200">Case
+                Study</a>
+            </li>
+            <li>
+              <a href="blog.html" class="text-white hover:text-lime text-sm transition-colors duration-200">Blog</a>
+            </li>
+            <li>
+              <a href="contact.html"
+                class="text-white hover:text-lime text-sm transition-colors duration-200">Contact</a>
+            </li>
           </ul>
           <div class="mt-8">
-            <div class="slabel mb-2 text-white/50 text-xs tracking-wider uppercase font-semibold">Connect</div>
-            <p class="text-white/35 text-xs">@demurup_media</p>
-            <p class="text-white/35 text-xs mt-1">Demurup Media (LinkedIn)</p>
+            <div class="slabel mb-2 text-white">Connect</div>
+            <p class="text-white/70 text-xs">@demurup_media</p>
+            <p class="text-white/70 text-xs mt-1">Demurup Media (LinkedIn)</p>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col lg:flex-row justify-between items-center pt-8 gap-4">
-        <p class="text-white/25 text-xs font-mono">
-          © 2026 DemuRup Media. All rights reserved. Founded by Shailesh Sharma &amp; Harsh Newale.
+      <div class="flex flex-col sm:flex-row justify-between items-center pt-8 gap-4">
+        <p class="text-white/50 text-xs font-mono">
+          © 2026 DemuRup Media. All rights reserved.
+        </p>
+        <p class="text-white/50 text-xs font-mono">
+          Designed &amp; Developed by DemuRup Media
         </p>
       </div>
     </div>
@@ -1270,64 +1242,6 @@
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var isFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-      /* ---------- High-Performance Active Theme & Navbar Synchronizer ---------- */
-      var mainNav = document.getElementById('main-nav');
-      var themeSections = Array.from(document.querySelectorAll('[data-theme]'));
-
-      function updateNavTheme() {
-        if (!mainNav) return;
-        var scrollY = window.scrollY;
-        var navHeight = mainNav.offsetHeight || 64;
-        var navTriggerY = scrollY + (navHeight / 2);
-
-        var activeTheme = 'light';
-        for (var i = 0; i < themeSections.length; i++) {
-          var sec = themeSections[i];
-          var top = sec.offsetTop;
-          var bottom = top + sec.offsetHeight;
-          if (navTriggerY >= top && navTriggerY < bottom) {
-            activeTheme = sec.getAttribute('data-theme') || 'light';
-            break;
-          }
-        }
-
-        if (activeTheme === 'dark') {
-          mainNav.classList.add('nav-dark');
-          mainNav.classList.remove('nav-light');
-          if (scrollY > 50) {
-            mainNav.classList.add('nav-scrolled-dark');
-            mainNav.classList.remove('nav-scrolled-light');
-          } else {
-            mainNav.classList.remove('nav-scrolled-dark', 'nav-scrolled-light');
-          }
-        } else {
-          mainNav.classList.add('nav-light');
-          mainNav.classList.remove('nav-dark');
-          if (scrollY > 50) {
-            mainNav.classList.add('nav-scrolled-light');
-            mainNav.classList.remove('nav-scrolled-dark');
-          } else {
-            mainNav.classList.remove('nav-scrolled-dark', 'nav-scrolled-light');
-          }
-        }
-      }
-
-      var ticking = false;
-      function requestNavUpdate() {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(function () {
-            ticking = false;
-            updateNavTheme();
-          });
-        }
-      }
-
-      window.addEventListener('scroll', requestNavUpdate, { passive: true });
-      window.addEventListener('resize', requestNavUpdate, { passive: true });
-      window.addEventListener('load', requestNavUpdate);
-      document.addEventListener('DOMContentLoaded', requestNavUpdate);
-      updateNavTheme();
 
       /* ---------- scroll reveal ---------- */
       var revealObserver = new IntersectionObserver(function (entries) {
