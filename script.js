@@ -50,7 +50,7 @@ const MENU_OVERLAY_HTML = `
             <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
               <ul class="dr-services-accordion-list">
                 <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-                <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+                <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
                 <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
                 <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
                 <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
@@ -93,7 +93,7 @@ const MENU_OVERLAY_HTML = `
           <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
           <ul class="dr-services-desktop-list">
             <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-            <li><a href="SEO & GMB.html" class="dr-service-item-link">SEO & GMB</a></li>
+            <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
             <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
             <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
             <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
