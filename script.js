@@ -49,12 +49,12 @@ const MENU_OVERLAY_HTML = `
             <!-- Mobile/Tablet Accordion Dropdown -->
             <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
               <ul class="dr-services-accordion-list">
-                <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-                <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
-                <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
-                <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
                 <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
                 <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+                <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+                <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
+                <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+                <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
               </ul>
             </div>
           </li>
@@ -92,12 +92,12 @@ const MENU_OVERLAY_HTML = `
         <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
           <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
           <ul class="dr-services-desktop-list">
-            <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-            <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
-            <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
-            <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
             <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
             <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+            <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+            <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
+            <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
+            <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
           </ul>
         </div>
       </div>
@@ -598,6 +598,137 @@ function submitForm() {
     });
 }
 
+// ── Portfolio Request Modal ──────────────────────────────────
+function openPortfolioModal() {
+  const overlay = document.getElementById("dr-portfolio-modal-overlay");
+  if (!overlay) return;
+  overlay.style.display = "flex";
+  void overlay.offsetWidth;
+  overlay.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+
+  const formWrap = document.getElementById("dr-portfolio-form-wrap");
+  const successWrap = document.getElementById("dr-portfolio-success");
+  const errorBox = document.getElementById("dr-p-error");
+  if (formWrap) formWrap.style.display = "block";
+  if (successWrap) successWrap.style.display = "none";
+  if (errorBox) {
+    errorBox.style.display = "none";
+    errorBox.textContent = "";
+  }
+
+  setTimeout(() => {
+    const firstInput = document.getElementById("dr-p-name");
+    if (firstInput) firstInput.focus();
+  }, 100);
+}
+
+function closePortfolioModal() {
+  const overlay = document.getElementById("dr-portfolio-modal-overlay");
+  if (!overlay) return;
+  overlay.classList.remove("is-open");
+  document.body.style.overflow = "";
+  setTimeout(() => {
+    if (!overlay.classList.contains("is-open")) {
+      overlay.style.display = "none";
+    }
+  }, 350);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const pOverlay = document.getElementById("dr-portfolio-modal-overlay");
+  if (pOverlay) {
+    pOverlay.addEventListener("click", (e) => {
+      if (e.target === pOverlay) {
+        closePortfolioModal();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const modalOverlay = document.getElementById("dr-portfolio-modal-overlay");
+      if (modalOverlay && modalOverlay.classList.contains("is-open")) {
+        closePortfolioModal();
+      }
+    }
+  });
+});
+
+function handlePortfolioSubmit(e) {
+  e.preventDefault();
+  const nameInput = document.getElementById("dr-p-name");
+  const emailInput = document.getElementById("dr-p-email");
+  const brandInput = document.getElementById("dr-p-brand");
+  const phoneInput = document.getElementById("dr-p-phone");
+  const msgInput = document.getElementById("dr-p-message");
+  const errorBox = document.getElementById("dr-p-error");
+  const submitBtn = document.getElementById("dr-p-submit-btn");
+  const btnText = document.getElementById("dr-p-btn-text");
+  const btnSpinner = document.getElementById("dr-p-btn-spinner");
+
+  const name = nameInput ? nameInput.value.trim() : "";
+  const email = emailInput ? emailInput.value.trim() : "";
+  const brand = brandInput ? brandInput.value.trim() : "";
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const message = msgInput ? msgInput.value.trim() : "";
+
+  // Validation
+  if (!name || !email || !brand) {
+    if (errorBox) {
+      errorBox.textContent = "Please fill in all required fields (Name, Work Email, Brand).";
+      errorBox.style.display = "block";
+    }
+    return;
+  }
+
+  // Basic email regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    if (errorBox) {
+      errorBox.textContent = "Please enter a valid work email address.";
+      errorBox.style.display = "block";
+    }
+    return;
+  }
+
+  if (errorBox) errorBox.style.display = "none";
+  if (submitBtn) submitBtn.disabled = true;
+  if (btnText) btnText.textContent = "Submitting Request...";
+  if (btnSpinner) btnSpinner.style.display = "inline-block";
+
+  const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSf69FZxO2yfhzztccagS5yramNNNxBkFE2lnysiMDPhsx8BDA/formResponse";
+  const formData = new FormData();
+  formData.append("entry.473350564", name);
+  formData.append("entry.907618539", brand);
+  formData.append("entry.1773922703", phone || email);
+  formData.append("entry.160217275", `Portfolio Request | Email: ${email} | Note: ${message || "N/A"}`);
+
+  fetch(googleFormURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  }).then(() => {
+    if (submitBtn) submitBtn.disabled = false;
+    if (btnText) btnText.textContent = "REQUEST PORTFOLIO →";
+    if (btnSpinner) btnSpinner.style.display = "none";
+
+    const formWrap = document.getElementById("dr-portfolio-form-wrap");
+    const successWrap = document.getElementById("dr-portfolio-success");
+    if (formWrap) formWrap.style.display = "none";
+    if (successWrap) successWrap.style.display = "block";
+  }).catch((err) => {
+    console.error("Submission Error:", err);
+    if (submitBtn) submitBtn.disabled = false;
+    if (btnText) btnText.textContent = "REQUEST PORTFOLIO →";
+    if (btnSpinner) btnSpinner.style.display = "none";
+    if (errorBox) {
+      errorBox.textContent = "Submission failed. Please try again or contact us directly on WhatsApp.";
+      errorBox.style.display = "block";
+    }
+  });
+}
+
 // ── Testimonial slider ─────────────────────────────────────
 let curSlide = 0;
 const track = document.getElementById("tslider-track");
@@ -1011,12 +1142,15 @@ setInterval(nextSlide, 6000);
   var depths = [0.35, 0.22, 0.4, 0.28, 0.2, 0.32, 0.25, 0.38, 0.21, 0.3];
 
   var W = 0, H = 0;
+  var centerX = 0, centerY = 0;
   var bodies = [];
 
   function measure() {
     var heroRect = hero.getBoundingClientRect();
     W = heroRect.width;
     H = heroRect.height;
+    centerX = heroRect.left + W / 2;
+    centerY = heroRect.top + H / 2;
 
     bodies.forEach(function(b) {
       var r = b.el.getBoundingClientRect();
@@ -1032,6 +1166,8 @@ setInterval(nextSlide, 6000);
   var heroRect = hero.getBoundingClientRect();
   W = heroRect.width || window.innerWidth;
   H = heroRect.height || window.innerHeight;
+  centerX = (heroRect.left || 0) + W / 2;
+  centerY = (heroRect.top || 0) + H / 2;
 
   active.forEach(function(pair, i) {
     var r = pair.card.getBoundingClientRect();
@@ -1074,34 +1210,108 @@ setInterval(nextSlide, 6000);
   measure();
   window.addEventListener("resize", measure);
 
-  /* ---- Mouse position relative to hero center (Wind / Current force) ---- */
-  var mouseInside = false;
-  var windX = 0;
-  var windY = 0;
+  /* ---- Continuous Smooth 2D Motion Force & Infinite Steering Pipeline ---- */
+  var targetInputX = centerX;
+  var targetInputY = centerY;
+  var smoothInputX = centerX;
+  var smoothInputY = centerY;
+  var isInputActive = false;
+  var inputInfluence = 0; // 0.0 to 1.0 smooth envelope
+  var lastInputX = centerX;
+  var lastInputY = centerY;
+  var lastInputTime = 0;
+  var inputVelocityX = 0;
+  var inputVelocityY = 0;
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var isTouchDragging = false;
 
-  if (!isTouch && !reduceMotion) {
-    hero.addEventListener("mouseenter", function() {
-      mouseInside = true;
+  // Mobile persistent 2D traveling heading (continuous 360-degree flight vector)
+  var mobileHeadingX = Math.cos(45 * Math.PI / 180);
+  var mobileHeadingY = Math.sin(45 * Math.PI / 180);
+
+  function onInputStart(clientX, clientY) {
+    targetInputX = clientX;
+    targetInputY = clientY;
+    smoothInputX = clientX;
+    smoothInputY = clientY;
+    lastInputX = clientX;
+    lastInputY = clientY;
+    touchStartX = clientX;
+    touchStartY = clientY;
+    isTouchDragging = false;
+    lastInputTime = Date.now();
+    inputVelocityX = 0;
+    inputVelocityY = 0;
+    isInputActive = true;
+    inputInfluence = 1.0;
+  }
+
+  function onInputMove(clientX, clientY) {
+    targetInputX = clientX;
+    targetInputY = clientY;
+    isInputActive = true;
+
+    if (Math.hypot(clientX - touchStartX, clientY - touchStartY) > 12) {
+      isTouchDragging = true;
+    }
+
+    var now = Date.now();
+    var dtMove = Math.max(10, now - lastInputTime) / 1000;
+    var rawVx = (clientX - lastInputX) / dtMove;
+    var rawVy = (clientY - lastInputY) / dtMove;
+
+    inputVelocityX += (rawVx - inputVelocityX) * 0.5;
+    inputVelocityY += (rawVy - inputVelocityY) * 0.5;
+    lastInputX = clientX;
+    lastInputY = clientY;
+    lastInputTime = now;
+  }
+
+  function onInputEnd() {
+    isInputActive = false;
+    if (isTouchDragging) {
+      window.drSuppressHeroCardClick = true;
+      setTimeout(function() {
+        window.drSuppressHeroCardClick = false;
+      }, 250);
+    }
+  }
+
+  if (!reduceMotion) {
+    // Desktop mouse interaction
+    hero.addEventListener("mouseenter", function(e) {
+      onInputStart(e.clientX, e.clientY);
     });
 
     hero.addEventListener("mousemove", function(e) {
-      mouseInside = true;
-
-      var heroRect = hero.getBoundingClientRect();
-      var centerX = heroRect.left + heroRect.width / 2;
-      var centerY = heroRect.top + heroRect.height / 2;
-
-      var relativeX = e.clientX - centerX;
-      var relativeY = e.clientY - centerY;
-
-      var distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY) || 1;
-      windX = relativeX / distance;
-      windY = relativeY / distance;
+      onInputMove(e.clientX, e.clientY);
     }, { passive: true });
 
     hero.addEventListener("mouseleave", function() {
-      mouseInside = false;
+      onInputEnd();
     });
+
+    // Mobile touch interaction (2D Virtual Cursor Controller)
+    hero.addEventListener("touchstart", function(e) {
+      if (e.touches && e.touches.length > 0) {
+        onInputStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    hero.addEventListener("touchmove", function(e) {
+      if (e.touches && e.touches.length > 0) {
+        onInputMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    hero.addEventListener("touchend", function() {
+      onInputEnd();
+    }, { passive: true });
+
+    hero.addEventListener("touchcancel", function() {
+      onInputEnd();
+    }, { passive: true });
   }
 
   function render(t) {
@@ -1132,37 +1342,91 @@ setInterval(nextSlide, 6000);
     lastTime = now;
     if (dt > 0.05) dt = 0.05;
 
+    var isMobile = (window.innerWidth <= 768);
+
+    // 1. Frame-rate independent responsive input interpolation (~25ms latency)
+    var inputLerpFactor = Math.min(1.0, 30.0 * dt);
+    smoothInputX += (targetInputX - smoothInputX) * inputLerpFactor;
+    smoothInputY += (targetInputY - smoothInputY) * inputLerpFactor;
+
+    // 2. Smoothly decay input influence on release (seamless fade, no jumping)
+    if (isInputActive) {
+      inputInfluence += (1.0 - inputInfluence) * Math.min(1.0, 20.0 * dt);
+    } else {
+      inputInfluence += (0.0 - inputInfluence) * Math.min(1.0, 2.5 * dt);
+      inputVelocityX += (0.0 - inputVelocityX) * Math.min(1.0, 3.5 * dt);
+      inputVelocityY += (0.0 - inputVelocityY) * Math.min(1.0, 3.5 * dt);
+    }
+
+    // 3. 2D Steering Vector (360-degree virtual controller)
+    var relX = smoothInputX - centerX;
+    var relY = smoothInputY - centerY;
+    var rawDist = Math.sqrt(relX * relX + relY * relY);
+    var dist = rawDist || 1;
+
+    var dirX = relX / dist;
+    var dirY = relY / dist;
+
+    // Distance curve: balanced force modulation from center to edges
+    var maxRadius = Math.max(100, Math.min(W, H) * 0.45);
+    var distRatio = Math.min(1.0, rawDist / maxRadius);
+    var distForce = 0.45 + 0.55 * (distRatio * distRatio);
+
+    // Dynamic swipe velocity steering
+    var fingerSpeed = Math.hypot(inputVelocityX, inputVelocityY);
+    var targetSteerX = dirX;
+    var targetSteerY = dirY;
+    if (fingerSpeed > 30) {
+      targetSteerX = inputVelocityX / fingerSpeed;
+      targetSteerY = inputVelocityY / fingerSpeed;
+    }
+
+    // Continuously rotate mobile heading toward finger direction (immediate response)
+    if (isInputActive) {
+      mobileHeadingX += (targetSteerX - mobileHeadingX) * Math.min(1.0, 16.0 * dt);
+      mobileHeadingY += (targetSteerY - mobileHeadingY) * Math.min(1.0, 16.0 * dt);
+      var hLen = Math.hypot(mobileHeadingX, mobileHeadingY) || 1;
+      mobileHeadingX /= hLen;
+      mobileHeadingY /= hLen;
+    }
+
     var i, b;
 
     for (i = 0; i < bodies.length; i++) {
       b = bodies[i];
 
-      if (mouseInside) {
-        // Continuous wind force applied every frame while cursor is resting inside hero section
-        var windStrength = b.baseSpeed * 2.8; // scale wind strength proportionally to card base speed
-        var targetVx = windX * windStrength;
-        var targetVy = windY * windStrength;
+      var targetVx, targetVy;
 
-        // Smoothly accelerate toward wind vector direction
+      if (isMobile) {
+        // Fast & Responsive Mobile 2D Infinite Travel (~2.5x speed boost):
+        // Active steering speed (~320-400px/s) -> Cruise floating speed (~110px/s)
+        var activeSpeed = b.baseSpeed * (14.0 + Math.min(4.0, fingerSpeed / 120));
+        var cruiseSpeed = b.baseSpeed * 5.0;
+        var currentSpeed = cruiseSpeed * (1.0 - inputInfluence) + activeSpeed * inputInfluence;
+
+        targetVx = mobileHeadingX * currentSpeed;
+        targetVy = mobileHeadingY * currentSpeed;
+
+        // Immediate responsive physical acceleration toward target velocity
+        b.vx += (targetVx - b.vx) * (8.5 * dt);
+        b.vy += (targetVy - b.vy) * (8.5 * dt);
+      } else {
+        // Desktop Physics (100% untouched desktop behavior)
+        var desktopStrength = b.baseSpeed * 2.8;
+        var effForceX = dirX * distForce;
+        var effForceY = dirY * distForce;
+        targetVx = b.baseVx * (1.0 - inputInfluence) + (effForceX * desktopStrength) * inputInfluence;
+        targetVy = b.baseVy * (1.0 - inputInfluence) + (effForceY * desktopStrength) * inputInfluence;
+
         b.vx += (targetVx - b.vx) * (2.5 * dt);
         b.vy += (targetVy - b.vy) * (2.5 * dt);
-      } else {
-        // Cursor left hero section: smoothly blend back to ambient random drift over ~1s
-        b.vx += (b.baseVx - b.vx) * (1.0 * dt);
-        b.vy += (b.baseVy - b.vy) * (1.0 * dt);
-      }
 
-      // Enforce minimum speed so cards never stop or freeze
-      var curSpeed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
-      var minSpeed = Math.max(12, b.baseSpeed * 0.65);
-      if (curSpeed < minSpeed) {
-        if (curSpeed < 0.001) {
-          b.vx = b.baseVx;
-          b.vy = b.baseVy;
-        } else {
-          var factor = minSpeed / curSpeed;
-          b.vx *= factor;
-          b.vy *= factor;
+        var curSpeed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+        var minSpeed = Math.max(14, b.baseSpeed * 0.7);
+        if (curSpeed < minSpeed && curSpeed > 0.001) {
+          var speedFactor = minSpeed / curSpeed;
+          b.vx += (b.vx * speedFactor - b.vx) * Math.min(1.0, 3.5 * dt);
+          b.vy += (b.vy * speedFactor - b.vy) * Math.min(1.0, 3.5 * dt);
         }
       }
 
@@ -1170,21 +1434,24 @@ setInterval(nextSlide, 6000);
       b.y += b.vy * dt;
     }
 
+    // 4. Infinite 2D Wrap-Around Canvas (Multi-axis, Safe Buffer, Zero Flicker)
+    var BUFFER = 32; // px buffer so cards completely exit before re-entering
     for (i = 0; i < bodies.length; i++) {
       b = bodies[i];
-      if (b.x > W) {
-        b.x = -b.w + 1;
-      } else if (b.x < -b.w) {
-        b.x = W - 1;
+      if (b.x > W + BUFFER) {
+        b.x = -b.w - BUFFER + 1;
+      } else if (b.x < -b.w - BUFFER) {
+        b.x = W + BUFFER - 1;
       }
-      if (b.y > H) {
-        b.y = -b.h + 1;
-      } else if (b.y < -b.h) {
-        b.y = H - 1;
+      if (b.y > H + BUFFER) {
+        b.y = -b.h - BUFFER + 1;
+      } else if (b.y < -b.h - BUFFER) {
+        b.y = H + BUFFER - 1;
       }
     }
 
-    // Separation: push cards apart if within CARD_MARGIN of each other
+    // Soft card separation (continuous relaxation, zero teleporting/snapping)
+    var relaxRate = Math.min(1.0, 5.0 * dt);
     for (i = 0; i < bodies.length; i++) {
       for (var j = i + 1; j < bodies.length; j++) {
         var a = bodies[i], c = bodies[j];
@@ -1197,11 +1464,11 @@ setInterval(nextSlide, 6000);
           var overlapY = Math.min(ay2, cy2) - Math.max(ay1, cy1);
 
           if (overlapX < overlapY) {
-            var pushX = overlapX * 0.5;
+            var pushX = overlapX * 0.5 * relaxRate;
             if (a.x < c.x) { a.x -= pushX; c.x += pushX; }
             else { a.x += pushX; c.x -= pushX; }
           } else {
-            var pushY = overlapY * 0.5;
+            var pushY = overlapY * 0.5 * relaxRate;
             if (a.y < c.y) { a.y -= pushY; c.y += pushY; }
             else { a.y += pushY; c.y -= pushY; }
           }
@@ -1357,9 +1624,19 @@ setInterval(nextSlide, 6000);
   function onMouseEnter() { isHovered = true; }
   function onMouseLeave() { isHovered = false; history = []; }
 
+  function onTouchMove(e) {
+    if (e.touches && e.touches.length > 0) {
+      onMouseMove(e.touches[0]);
+    }
+  }
+
   hero.addEventListener("mousemove", onMouseMove, { passive: true });
   hero.addEventListener("mouseenter", onMouseEnter, { passive: true });
   hero.addEventListener("mouseleave", onMouseLeave, { passive: true });
+  hero.addEventListener("touchstart", onTouchMove, { passive: true });
+  hero.addEventListener("touchmove", onTouchMove, { passive: true });
+  hero.addEventListener("touchend", onMouseLeave, { passive: true });
+  hero.addEventListener("touchcancel", onMouseLeave, { passive: true });
 
   function renderTrail() {
     ctx.clearRect(0, 0, width, height);
@@ -1452,88 +1729,71 @@ setInterval(nextSlide, 6000);
   requestAnimationFrame(renderTrail);
 })();
 
-/* ── Professional Centered YouTube Video Modal Handler ── */
+/* ── Hero Reel Video Modal Handler (Embedded YouTube Shorts) ── */
 (function() {
   "use strict";
 
-  var overlay = document.getElementById("dr-video-modal-overlay");
-  var container = document.getElementById("dr-video-modal-container");
-  var closeBtn = document.getElementById("dr-video-modal-close");
-  var iframe = document.getElementById("dr-video-modal-iframe");
-  if (!overlay || !container || !closeBtn || !iframe) return;
+  var modal = document.getElementById("dr-reel-video-modal");
+  var backdrop = document.getElementById("dr-reel-video-backdrop");
+  var closeBtn = document.getElementById("dr-reel-video-close");
+  var iframe = document.getElementById("dr-reel-video-iframe");
+  if (!modal || !iframe) return;
 
-  var defaultVideoUrl = "https://www.youtube.com/embed/bjxTIcuzB6k?autoplay=1&rel=0";
-
-  function parseYouTubeEmbedUrl(input) {
-    if (!input) return null;
-    var match = input.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-    var videoId = match ? match[1] : (input.length === 11 ? input : null);
-    return videoId ? "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0" : null;
+  function openVideoModal(videoId) {
+    if (!videoId) return;
+    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(videoId) + "?autoplay=1&rel=0";
+    modal.classList.add("visible");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    if (closeBtn) closeBtn.focus();
   }
 
-  function openModal(triggerEl) {
-    var targetUrl = defaultVideoUrl;
-
-    if (triggerEl) {
-      var customUrl = triggerEl.getAttribute("data-video-url") || triggerEl.getAttribute("data-youtube-id") || triggerEl.getAttribute("data-video-id");
-      var parsed = parseYouTubeEmbedUrl(customUrl);
-      if (parsed) targetUrl = parsed;
-    }
-
-    iframe.src = targetUrl;
-    overlay.setAttribute("aria-hidden", "false");
-    overlay.classList.add("is-active");
-    document.body.classList.add("dr-modal-open");
+  function closeVideoModal() {
+    modal.classList.remove("visible");
+    modal.setAttribute("aria-hidden", "true");
+    iframe.src = "";
+    document.body.style.overflow = "";
   }
 
-  function closeModal() {
-    overlay.classList.remove("is-active");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("dr-modal-open");
-
-    // Clear iframe src after 0.35s transition finishes to stop video completely
-    setTimeout(function() {
-      if (!overlay.classList.contains("is-active")) {
-        iframe.src = "";
-      }
-    }, 350);
-  }
-
-  // Bind click handlers to portfolio cards and reel items
-  var triggers = document.querySelectorAll(".dr-card, .cred-card, [data-video-modal]");
-  triggers.forEach(function(el) {
-    el.addEventListener("click", function(e) {
-      var href = el.getAttribute("href");
-      if (!href || href === "" || href === "#") {
+  // Bind click on all Hero reel cards with data-youtube-id
+  var cards = document.querySelectorAll(".dr-card[data-youtube-id]");
+  cards.forEach(function(card) {
+    card.addEventListener("click", function(e) {
+      if (window.drSuppressHeroCardClick) {
         e.preventDefault();
+        e.stopPropagation();
+        return;
       }
-      openModal(el);
+      e.preventDefault();
+      var videoId = card.getAttribute("data-youtube-id");
+      if (videoId) {
+        openVideoModal(videoId);
+      }
     });
   });
 
-  // Close button click
-  closeBtn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    closeModal();
-  });
+  // Close Button
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeVideoModal();
+    });
+  }
 
-  // ESC keypress close
+  // Backdrop click
+  if (backdrop) {
+    backdrop.addEventListener("click", function(e) {
+      e.preventDefault();
+      closeVideoModal();
+    });
+  }
+
+  // ESC key
   window.addEventListener("keydown", function(e) {
-    if (e.key === "Escape" && overlay.classList.contains("is-active")) {
-      closeModal();
+    if (e.key === "Escape" && modal.classList.contains("visible")) {
+      closeVideoModal();
     }
-  });
-
-  // Overlay backdrop click (outside modal box)
-  overlay.addEventListener("click", function(e) {
-    if (e.target === overlay) {
-      closeModal();
-    }
-  });
-
-  // Prevent click inside modal container from closing
-  container.addEventListener("click", function(e) {
-    e.stopPropagation();
   });
 })();
 
