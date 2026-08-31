@@ -3807,6 +3807,34 @@ body.menu-open {
   z-index: 1;
 }
 
+@media (max-width: 767px) {
+  .client-card {
+    padding: 1.25rem 0.75rem;
+    border-radius: 16px;
+    min-height: 145px;
+  }
+
+  .client-card-logo-wrap {
+    height: 52px;
+    margin-bottom: 0.625rem;
+    border-radius: 10px;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .client-card-logo {
+    max-height: 38px;
+    max-width: 100%;
+  }
+
+  .client-card-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
 /* ══════════════════════════════════════════════════════════════
    DEMURUP MEDIA — CREATIVE DIGITAL AGENCY SERVICE PAGES
 ══════════════════════════════════════════════════════════════ */
