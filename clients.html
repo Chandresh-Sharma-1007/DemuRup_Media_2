@@ -45,6 +45,253 @@
   <script>
     tailwind.config = { theme: { extend: { colors: { lime: "#00cc33" } } } };
   </script>
+
+  <!-- ══ Clients View More Button & Modal Styles ══ -->
+  <style>
+    .clients-view-more-wrap {
+      margin-top: 3.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (min-width: 640px) {
+      .clients-view-more-wrap {
+        margin-top: 4.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .clients-view-more-wrap {
+        margin-top: 5rem;
+      }
+    }
+
+    .clients-view-more-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-heading, "The Seasons", serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #000000;
+      background: transparent;
+      border: 1.5px solid #000000;
+      border-radius: 9999px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: color 0.35s ease, border-color 0.35s ease, transform 0.25s ease, box-shadow 0.35s ease;
+      z-index: 1;
+    }
+
+    .clients-view-more-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #00cc33;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: -1;
+      border-radius: 9999px;
+    }
+
+    .clients-view-more-btn:hover {
+      color: #000000;
+      border-color: #00cc33;
+      box-shadow: 0 10px 30px -6px rgba(0, 204, 51, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .clients-view-more-btn:hover::before {
+      transform: scaleX(1);
+    }
+
+    .clients-view-more-btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .clients-view-more-arrow {
+      font-size: 1.15rem;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .clients-view-more-btn:hover .clients-view-more-arrow {
+      transform: translateX(4px);
+    }
+
+    /* — Clients More Modal Overlay — */
+    .clients-more-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100005;
+      background: rgba(4, 7, 5, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+      overflow-y: auto;
+    }
+
+    .clients-more-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    /* — Modal Card Container — */
+    .clients-more-modal {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      background: #0d0f0e !important;
+      border: 1px solid rgba(0, 204, 51, 0.32);
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 24px 70px -10px rgba(0, 0, 0, 0.95),
+        0 0 45px -8px rgba(0, 204, 51, 0.18);
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+      transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      color: #ffffff;
+    }
+
+    .clients-more-modal-overlay.active .clients-more-modal {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* — Close Button — */
+    .clients-more-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.6);
+      transition: border-color 0.22s ease, background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+      z-index: 20;
+      padding: 0;
+    }
+
+    .clients-more-modal-close:hover {
+      border-color: rgba(0, 204, 51, 0.6);
+      background: rgba(0, 204, 51, 0.12);
+      color: #00cc33;
+      transform: scale(1.08);
+    }
+
+    .clients-more-modal-close:active {
+      transform: scale(0.95);
+    }
+
+    /* — Content Padding & Typography — */
+    .clients-more-modal-content {
+      position: relative;
+      background: #0d0f0e;
+      padding: 48px 40px 42px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .clients-more-modal-content {
+        padding: 40px 24px 34px;
+      }
+    }
+
+    .clients-more-modal-title {
+      font-family: var(--font-heading, "The Seasons", serif);
+      font-size: clamp(1.85rem, 5vw, 2.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .clients-more-modal-title em {
+      font-style: normal;
+      color: #00cc33;
+      font-weight: inherit;
+    }
+
+    .clients-more-modal-desc {
+      font-family: var(--font-body, "Beautiful Delight", serif);
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.6;
+      margin-bottom: 26px;
+      max-width: 440px;
+      text-align: center;
+    }
+
+    .clients-more-modal-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 28px;
+      background: #00cc33;
+      color: #050805;
+      font-family: var(--font-heading, "The Seasons", serif);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+      cursor: pointer;
+    }
+
+    .clients-more-modal-cta:hover {
+      background: #00e639;
+      box-shadow: 0 0 28px rgba(0, 204, 51, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .clients-more-modal-cta:active {
+      transform: translateY(0);
+    }
+
+    .clients-more-cta-arrow {
+      font-size: 1.1rem;
+      transition: transform 0.25s ease;
+    }
+
+    .clients-more-modal-cta:hover .clients-more-cta-arrow {
+      transform: translateX(4px);
+    }
+  </style>
 </head>
 
 <body class="bg-black text-white selection:bg-lime selection:text-black">
@@ -125,19 +372,17 @@
 
   <!-- ══ Sticky Navigation ══ -->
   <nav id="main-nav" class="z-[10000] nav-transparent">
-    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-24">
       <a href="index.html" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
         <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
-        <img src="Demurup white.png" alt="DemuRup Media"
-          class="dr-logo-light w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+        <img src="Demurup white.png" alt="DemuRup Media" class="dr-logo-light" />
         <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
-        <img src="Demurup black.png" alt="DemuRup Media"
-          class="dr-logo-dark w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+        <img src="Demurup black.png" alt="DemuRup Media" class="dr-logo-dark" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
-        <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
-        <span class="w-6 h-0.5 transition-all duration-300" id="h2"></span>
-        <span class="w-6 h-0.5 transition-all duration-300" id="h3"></span>
+        <span class="w-7 h-0.5 transition-all duration-300" id="h1"></span>
+        <span class="w-7 h-0.5 transition-all duration-300" id="h2"></span>
+        <span class="w-7 h-0.5 transition-all duration-300" id="h3"></span>
       </button>
     </div>
   </nav>
@@ -156,8 +401,10 @@
               </a>
               <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
                 <ul class="dr-services-accordion-list">
-                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
-                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a>
+                  </li>
+                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+                  </li>
                   <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
                   <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
                   <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
@@ -220,28 +467,19 @@
     </div>
 
     <div class="max-w-5xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-lime/30 bg-lime/10 mb-8 reveal">
-        <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
-        <span class="slabel text-lime text-xs font-medium tracking-widest uppercase">PROVEN PARTNERSHIPS</span>
-      </div>
 
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.15] mb-6 reveal"
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.15] mb-10 reveal"
         style="font-family: var(--font-heading);">
         Trusted by Visionaries. <br class="hidden md:block" />
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-lime">Built for
           Growth.</span>
       </h1>
 
-      <p class="text-lg md:text-2xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed mb-10 reveal"
-        style="font-family: var(--font-body);">
-        Our clients aren't just brands—we build long-term partnerships that create measurable impact, category
-        leadership, and digital dominance.
-      </p>
-
       <!-- Intro Quote -->
       <div class="max-w-2xl mx-auto p-6 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md reveal">
-        <p class="text-sm md:text-base text-white/80 italic" style="font-family: var(--font-body);">
-          "Great agency work isn't just seen—it is felt in bottom-line growth and enduring brand equity."
+        <p class="text-sm md:text-base text-white/80 italic"
+          style="font-family: var(--font-body); font-size: 1.5rem !important; line-height: 1.5 !important">
+          "Great agency work isn't just seen it is felt in bottom-line growth and enduring brand equity."
         </p>
       </div>
     </div>
@@ -255,9 +493,8 @@
     data-theme="light">
     <div class="max-w-[1400px] mx-auto">
       <div class="text-center mb-16">
-        <div class="slabel text-black/60 mb-3 font-mono font-bold">CLIENT SHOWCASE</div>
         <h2 class="text-3xl md:text-5xl font-bold text-black tracking-tight" style="font-family: var(--font-heading);">
-          Engineered For Leaders Across <span class="text-lime">20+ Industries</span>
+          Engineered for Leaders Across <span class="text-lime"> Every Industry</span>
         </h2>
       </div>
 
@@ -355,15 +592,6 @@
             <img src="360 security.jpg" alt="360 Security" class="client-card-logo" loading="lazy" />
           </div>
           <h3 class="client-card-title text-black">360 Security</h3>
-        </div>
-
-        <!-- Card 7: Suhana Travels -->
-        <div class="client-card reveal bg-white border border-black/10 text-black shadow-sm">
-          <div class="client-card-logo-wrap bg-black/[0.02] border border-black/10">
-            <img src="Suhana_travels.png" alt="Suhana Travels" class="client-card-logo client-logo--light"
-              loading="lazy" />
-          </div>
-          <h3 class="client-card-title text-black">Suhana Travels</h3>
         </div>
 
         <!-- Card 8: Tinton Eco Resorts -->
@@ -498,31 +726,14 @@
 
 
       </div>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════════════════════════════════════════
-     NUMBERS / STATISTICS SECTION (WHITE SECTION)
-══════════════════════════════════════════════════════════════ -->
-  <section class="py-24 px-6 bg-[#ffffff] text-black border-t border-black/10" data-theme="light">
-    <div class="max-w-[1400px] mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" id="stat-counters">
-        <div class="p-6 rounded-2xl border border-black/10 bg-white reveal">
-          <div class="stat-num text-lime text-4xl lg:text-6xl font-bold mb-2" data-target="50" data-suffix="+">0+</div>
-          <div class="slabel text-black/70">Projects Delivered</div>
-        </div>
-        <div class="p-6 rounded-2xl border border-black/10 bg-white reveal">
-          <div class="stat-num text-lime text-4xl lg:text-6xl font-bold mb-2" data-target="25" data-suffix="+">0+</div>
-          <div class="slabel text-black/70">Happy Clients</div>
-        </div>
-        <div class="p-6 rounded-2xl border border-black/10 bg-white reveal">
-          <div class="stat-num text-lime text-4xl lg:text-6xl font-bold mb-2" data-target="8" data-suffix="+">0+</div>
-          <div class="slabel text-black/70">Industries Served</div>
-        </div>
-        <div class="p-6 rounded-2xl border border-black/10 bg-white reveal">
-          <div class="stat-num text-lime text-4xl lg:text-6xl font-bold mb-2" data-target="100" data-suffix="%">0%</div>
-          <div class="slabel text-black/70">Client Satisfaction</div>
-        </div>
+      <!-- View More Clients CTA -->
+      <div class="clients-view-more-wrap reveal">
+        <button type="button" class="clients-view-more-btn" id="clients-view-more-btn" aria-haspopup="dialog"
+          aria-controls="clients-more-modal">
+          VIEW MORE CLIENTS
+          <span class="clients-view-more-arrow" aria-hidden="true">→</span>
+        </button>
       </div>
     </div>
   </section>
@@ -535,7 +746,7 @@
     data-theme="dark">
     <div class="max-w-4xl mx-auto text-center reveal">
       <div class="p-10 md:p-16 rounded-3xl border border-white/15 bg-black shadow-sm relative overflow-hidden">
-        <div class="slabel text-white/60 mb-6 font-mono font-bold">OUR PHILOSOPHY</div>
+
         <blockquote class="text-2xl md:text-4xl font-semibold text-white leading-snug mb-6"
           style="font-family: var(--font-heading);">
           "Every logo here represents a relationship built on trust, creativity, and measurable results."
@@ -545,19 +756,15 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════
+  <!-- ═════════════════════════════════════════════════════════════
      CALL TO ACTION (CTA) SECTION (BLACK SECTION)
 ══════════════════════════════════════════════════════════════ -->
   <section class="py-24 px-6 bg-[#000000] text-white border-t border-white/15 text-center" data-theme="dark">
     <div class="max-w-5xl mx-auto reveal">
-      <div class="slabel text-lime mb-4">START YOUR JOURNEY</div>
-      <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6"
+      <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-10"
         style="font-family: var(--font-heading);">
         Let's Build Something <span class="text-lime">Extraordinary</span> Together.
       </h2>
-      <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10" style="font-family: var(--font-body);">
-        Whether you're a startup or an established brand, we're ready to turn your vision into measurable growth.
-      </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
         <a href="https://wa.me/919586569990" target="_blank" rel="noopener noreferrer"
@@ -580,40 +787,37 @@
       <div class="dr-desktop-footer-content grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
         <!-- Brand -->
         <div class="lg:col-span-2">
-          <div class="mb-2">
-            <img src="main logo.png" alt="DemuRup Media" class="dr-footer-logo w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
-          </div>
-          <p class="text-white/70 text-sm leading-relaxed max-w-sm">
-            India's boldest creative marketing &amp; branding studio. One team, every digital need, zero compromise.
-          </p>
-          <div class="flex gap-3 mt-6">
-            <!-- Instagram -->
-            <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
-              aria-label="Instagram">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
-              aria-label="LinkedIn">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <!-- WhatsApp -->
-            <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
-              aria-label="WhatsApp">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-            </a>
+          <div class="dr-footer-brand-block">
+            <img src="main logo.png" alt="DemuRup Media" class="dr-footer-logo" />
+            <div class="dr-footer-socials flex gap-3">
+              <!-- Instagram -->
+              <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
+                class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+                aria-label="Instagram">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
+                class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+                aria-label="LinkedIn">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <!-- WhatsApp -->
+              <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
+                class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+                aria-label="WhatsApp">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -671,11 +875,7 @@
                 class="text-white hover:text-lime text-sm transition-colors duration-200">Contact</a>
             </li>
           </ul>
-          <div class="mt-8">
-            <div class="slabel mb-2 text-white">Connect</div>
-            <p class="text-white/70 text-xs">@demurup_media</p>
-            <p class="text-white/70 text-xs mt-1">Demurup Media (LinkedIn)</p>
-          </div>
+
         </div>
       </div>
 
@@ -695,23 +895,26 @@
           <div class="dr-mf-logo-wrap">
             <img src="main logo.png" alt="DemuRup Media" class="dr-mf-logo" />
           </div>
-          <p class="dr-mf-tagline">
-            India's boldest creative marketing &amp; branding studio. One team, every digital need, zero compromise.
-          </p>
           <div class="dr-mf-socials">
-            <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-mf-social-btn" aria-label="Instagram">
+            <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-mf-social-btn"
+              aria-label="Instagram">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
               </svg>
             </a>
-            <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener" class="dr-mf-social-btn" aria-label="LinkedIn">
+            <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener" class="dr-mf-social-btn"
+              aria-label="LinkedIn">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
-            <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-mf-social-btn" aria-label="WhatsApp">
+            <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-mf-social-btn"
+              aria-label="WhatsApp">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
             </a>
           </div>
@@ -777,7 +980,8 @@
             <a href="mailto:demurupmedia@gmail.com" class="dr-mf-contact-card">
               <div class="dr-mf-contact-top">
                 <span class="dr-mf-card-label">EMAIL</span>
-                <svg class="dr-mf-card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="dr-mf-card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
@@ -788,8 +992,11 @@
             <a href="https://wa.me/919586569990" target="_blank" rel="noopener" class="dr-mf-contact-card">
               <div class="dr-mf-contact-top">
                 <span class="dr-mf-card-label">CALL / WHATSAPP</span>
-                <svg class="dr-mf-card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                <svg class="dr-mf-card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                  </path>
                 </svg>
               </div>
               <span class="dr-mf-card-val">+91 95865 69990</span>
@@ -798,7 +1005,8 @@
             <div class="dr-mf-contact-card dr-mf-contact-card-full">
               <div class="dr-mf-contact-top">
                 <span class="dr-mf-card-label">LOCATION</span>
-                <svg class="dr-mf-card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="dr-mf-card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
@@ -819,38 +1027,92 @@
     </div>
   </footer>
 
+  <!-- ══ Clients "View More Clients" Modal ══ -->
+  <div id="clients-more-modal-overlay" class="clients-more-modal-overlay" role="dialog" aria-modal="true"
+    aria-labelledby="clients-more-modal-title" aria-hidden="true">
+    <div id="clients-more-modal" class="clients-more-modal">
+      <!-- Close Button -->
+      <button type="button" id="clients-more-modal-close" class="clients-more-modal-close" aria-label="Close modal">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          viewBox="0 0 14 14">
+          <line x1="1" y1="1" x2="13" y2="13" />
+          <line x1="13" y1="1" x2="1" y2="13" />
+        </svg>
+      </button>
+
+      <div class="clients-more-modal-content">
+        <!-- Status Badge -->
+        <div class="dr-pop-badge">
+          <div class="dr-pop-badge-dot"></div>
+          <span class="dr-pop-badge-text">EXTENDED PORTFOLIO</span>
+        </div>
+
+        <!-- Headline -->
+        <h2 id="clients-more-modal-title" class="clients-more-modal-title">
+          MORE BRANDS.<br />
+          <em>MORE PARTNERSHIPS.</em>
+        </h2>
+
+        <!-- Supporting Text -->
+        <p class="clients-more-modal-desc">
+          The brands shown here are only a selection of the partnerships we've built. Want to see more of our work and
+          explore what we can build together?
+        </p>
+
+        <div class="dr-pop-divider"></div>
+
+        <!-- CTA Button -->
+        <a href="contact.html" class="clients-more-modal-cta" id="clients-more-modal-cta">
+          <span>LET'S WORK TOGETHER</span>
+          <span class="clients-more-cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 
-  <!-- ══ Counter GSAP ScrollTrigger Script ══ -->
+  <!-- ══ Clients View More Modal Script ══ -->
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        const counterElements = document.querySelectorAll('.stat-num[data-target]');
-        if (counterElements.length > 0) {
-          ScrollTrigger.create({
-            trigger: '#stat-counters',
-            start: 'top 85%',
-            once: true,
-            onEnter: () => {
-              counterElements.forEach(el => {
-                const targetVal = parseFloat(el.getAttribute('data-target'));
-                const suffix = el.getAttribute('data-suffix') || '';
-                const obj = { val: 0 };
+    (function () {
+      const openBtn = document.getElementById('clients-view-more-btn');
+      const overlay = document.getElementById('clients-more-modal-overlay');
+      const closeBtn = document.getElementById('clients-more-modal-close');
 
-                gsap.to(obj, {
-                  val: targetVal,
-                  duration: 2.2,
-                  ease: 'power2.out',
-                  onUpdate: () => {
-                    el.textContent = Math.floor(obj.val) + suffix;
-                  }
-                });
-              });
-            }
-          });
-        }
+      if (!openBtn || !overlay) return;
+
+      function openModal() {
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (closeBtn) closeBtn.focus();
       }
-    });
+
+      function closeModal() {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (openBtn) openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', openModal);
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    })();
   </script>
 </body>
 

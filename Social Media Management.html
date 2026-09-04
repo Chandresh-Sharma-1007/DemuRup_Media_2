@@ -303,7 +303,7 @@
     }
 
     .hero-heading .line-mask {
-      overflow: hidden;
+
       display: block;
     }
 
@@ -451,11 +451,16 @@
     .intro-text {
       font-family: var(--sans);
       font-weight: 400;
-      font-size: clamp(1.7rem, 3.2vw, 2.5rem);
-      line-height: 1.42;
+      font-size: clamp(1.80rem, 1.8vw, 1.80rem) !important;
+      line-height: 1.2;
       letter-spacing: 0;
       color: #ffffff;
       max-width: 760px;
+    }
+
+    section.intro .intro-inner .intro-body p.intro-text,
+    section.intro .intro-text {
+      font-size: clamp(1.1rem, 1.8vw, 1.25rem);
     }
 
     .intro-text+.intro-text {
@@ -496,7 +501,7 @@
 
     /* ============ VIDEO SHOWCASE MARQUEE (Pure #FFFFFF Background) ============ */
     .video-showcase-section {
-      padding: 150px 0 170px;
+      padding: clamp(54px, 7vh, 84px) 0 clamp(64px, 8vh, 96px);
       text-align: center;
       background-color: #ffffff;
       color: #000000;
@@ -507,67 +512,111 @@
     }
 
     .video-showcase-head {
-      margin-bottom: 70px;
+      margin-bottom: clamp(28px, 4vh, 44px);
       padding: 0 6vw;
-    }
-
-    .video-showcase-head .eyebrow {
-      justify-content: center;
-      margin-bottom: 24px;
+      text-align: center;
     }
 
     .video-showcase-head h2 {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+      font-size: clamp(2.1rem, 4.2vw, 3.2rem);
       letter-spacing: -.01em;
       color: #000000;
-      margin: 0;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .video-showcase-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Side Navigation Controls - Vertically Centered on Left and Right */
+    .video-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 25;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      background: #ffffff;
+      color: #000000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color .22s var(--ease), color .22s var(--ease), background .22s var(--ease), transform .22s var(--ease), box-shadow .22s var(--ease);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+      padding: 0;
+    }
+
+    .video-nav-prev {
+      left: clamp(14px, 2.5vw, 36px);
+    }
+
+    .video-nav-next {
+      right: clamp(14px, 2.5vw, 36px);
+    }
+
+    .video-nav-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+      background: #ffffff;
+      transform: translateY(-50%) scale(1.06);
+      box-shadow: 0 6px 20px rgba(0, 204, 51, 0.22), 0 0 12px rgba(0, 204, 51, 0.12);
+    }
+
+    .video-nav-btn:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .video-nav-btn svg {
+      transition: transform .22s var(--ease);
+    }
+
+    .video-nav-prev:hover svg {
+      transform: translateX(-2px);
+    }
+
+    .video-nav-next:hover svg {
+      transform: translateX(2px);
     }
 
     .video-marquee-viewport {
       position: relative;
       width: 100%;
       overflow: hidden;
-      padding: 24px 0 36px;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      padding: 16px 0 28px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
     }
 
     .video-marquee-track {
       display: flex;
+      align-items: center;
       width: max-content;
       will-change: transform;
-      animation: videoMarqueeLTR 55s linear infinite;
-    }
-
-    .video-marquee-track:hover {
-      animation-play-state: paused;
+      user-select: none;
     }
 
     .video-marquee-group {
       display: flex;
       align-items: center;
-      gap: 32px;
-      padding-right: 32px;
+      gap: 28px;
+      padding-right: 28px;
       flex-shrink: 0;
     }
 
-    @keyframes videoMarqueeLTR {
-      0% {
-        transform: translate3d(-50%, 0, 0);
-      }
-
-      100% {
-        transform: translate3d(0, 0, 0);
-      }
-    }
-
     .video-card {
-      flex: 0 0 360px;
-      width: 360px;
-      min-width: 360px;
-      height: 580px;
+      flex: 0 0 310px;
+      width: 310px;
+      min-width: 310px;
+      height: clamp(460px, 56vh, 520px);
       position: relative;
       border-radius: 20px;
       overflow: hidden;
@@ -857,27 +906,41 @@
 
     @media(max-width:1024px) {
       .video-card {
-        flex: 0 0 310px;
-        width: 310px;
-        min-width: 310px;
-        height: 500px;
+        flex: 0 0 280px;
+        width: 280px;
+        min-width: 280px;
+        height: 460px;
       }
 
       .video-marquee-group {
-        gap: 22px;
-        padding-right: 22px;
+        gap: 20px;
+        padding-right: 20px;
       }
     }
 
     @media(max-width:640px) {
       .video-showcase-section {
-        padding: 90px 0 110px;
+        padding: 50px 0 60px;
+      }
+
+      .video-nav-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .video-nav-prev {
+        left: 8px;
+      }
+
+      .video-nav-next {
+        right: 8px;
       }
 
       .video-card {
         flex: 0 0 78vw;
         width: 78vw;
         min-width: 260px;
+        max-width: 320px;
         height: 440px;
         border-radius: 16px;
       }
@@ -941,12 +1004,11 @@
 
     .wwh-tab {
       display: flex;
-      align-items: baseline;
-      gap: 16px;
+      align-items: center;
       width: 100%;
       text-align: left;
       padding: 30px 0 30px 22px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       cursor: pointer;
       position: relative;
       overflow: hidden;
@@ -960,33 +1022,29 @@
       font-family: var(--display);
       font-size: clamp(4.4rem, 7vw, 6.4rem);
       color: transparent;
-      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.06);
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
       line-height: 1;
       pointer-events: none;
-      transition: opacity .5s var(--ease), -webkit-text-stroke-color .5s var(--ease);
-      opacity: .7;
+      transition: opacity .4s var(--ease), -webkit-text-stroke-color .4s var(--ease);
+      opacity: 0;
+      visibility: hidden;
     }
 
+    .wwh-tab:hover .wwh-tab-ghost,
     .wwh-tab.active .wwh-tab-ghost {
-      -webkit-text-stroke-color: rgba(0, 204, 51, .28);
+      -webkit-text-stroke-color: rgba(0, 204, 51, .35);
       opacity: 1;
+      visibility: visible;
     }
 
     .wwh-tab-index {
-      font-size: 12px;
-      letter-spacing: .08em;
-      color: rgba(0, 0, 0, 0.38);
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      font-family: var(--sans);
-      transition: color .4s var(--ease);
-      position: relative;
-      z-index: 1;
+      display: none !important;
     }
 
     .wwh-tab-label {
       font-family: var(--display);
-      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+      letter-spacing: -.01em;
       color: rgba(255, 255, 255, 0.68);
       transition: color .4s var(--ease), transform .4s var(--ease);
       position: relative;
@@ -1028,9 +1086,9 @@
       transform: translateY(14px);
       transition: opacity .55s var(--ease), transform .55s var(--ease);
       pointer-events: none;
-      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-      line-height: 1.72;
-      color: rgba(255, 255, 255, 0.72) !important;
+      font-size: clamp(1.18rem, 1.85vw, 1.42rem) !important;
+      line-height: 1.76;
+      color: rgba(255, 255, 255, 0.76) !important;
       font-weight: 400;
       font-family: var(--sans);
       padding-top: 22px;
@@ -1039,6 +1097,12 @@
       box-sizing: border-box;
       overflow-wrap: break-word;
       word-break: normal;
+    }
+
+    section.wwh .wwh-panels p.wwh-panel,
+    section.wwh .wwh-panel {
+      font-size: clamp(1.18rem, 1.85vw, 1.42rem) !important;
+      line-height: 1.76;
     }
 
     .wwh-panel .tag {
@@ -1056,6 +1120,36 @@
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
+    }
+
+    .wwh-process-intro {
+      margin-bottom: 16px;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .wwh-process-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .wwh-process-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: inherit;
+      line-height: 1.5;
+    }
+
+    .wwh-step-num {
+      color: var(--green, #00cc33);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
     }
 
     @media (max-width:1024px) {
@@ -1124,19 +1218,17 @@
    DEFAULT DEMURUP NAVBAR
 ══════════════════════════════════════════════════════════════ -->
   <nav id="main-nav" class="z-[10000] nav-transparent">
-    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-24">
       <a href="index.html" class="flex items-center dr-nav-brand z-[10002]" aria-label="DemuRup Media Home">
         <!-- Light Logo for Black/Dark Sections (White text + Green Rup) -->
-        <img src="Demurup white.png" alt="DemuRup Media"
-          class="dr-logo-light w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+        <img src="Demurup white.png" alt="DemuRup Media" class="dr-logo-light" />
         <!-- Dark Logo for White/Light Sections (Black text + Green Rup) -->
-        <img src="Demurup black.png" alt="DemuRup Media"
-          class="dr-logo-dark w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
+        <img src="Demurup black.png" alt="DemuRup Media" class="dr-logo-dark" />
       </a>
       <button id="hamburger" class="flex flex-col gap-1.5 p-2 z-[10002]" aria-label="Menu">
-        <span class="w-6 h-0.5 transition-all duration-300" id="h1"></span>
-        <span class="w-6 h-0.5 transition-all duration-300" id="h2"></span>
-        <span class="w-6 h-0.5 transition-all duration-300" id="h3"></span>
+        <span class="w-7 h-0.5 transition-all duration-300" id="h1"></span>
+        <span class="w-7 h-0.5 transition-all duration-300" id="h2"></span>
+        <span class="w-7 h-0.5 transition-all duration-300" id="h3"></span>
       </button>
     </div>
   </nav>
@@ -1161,7 +1253,8 @@
                 <ul class="dr-services-accordion-list">
                   <li><a href="Social Media Management.html" class="dr-service-item-link text-lime">Social Media
                       Management</a></li>
-                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
+                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+                  </li>
                   <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
                   <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
                   <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
@@ -1206,7 +1299,8 @@
           <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
             <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
             <ul class="dr-services-desktop-list">
-              <li><a href="Social Media Management.html" class="dr-service-item-link text-lime">Social Media Management</a></li>
+              <li><a href="Social Media Management.html" class="dr-service-item-link text-lime">Social Media
+                  Management</a></li>
               <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
               <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
               <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
@@ -1226,16 +1320,12 @@
       <div class="hero-glow" id="heroGlow"><span></span></div>
 
 
-      <div class="hero-eyebrow eyebrow">DemuRup Media — Services</div>
       <h1 class="hero-heading">
         <span class="line-mask"><span class="line">Social Media</span></span>
         <!-- <span class="line-mask amp-line"><span class="line">&amp;</span></span> -->
         <span class="line-mask"><span class="line">Management</span></span>
       </h1>
-      <div class="hero-scroll">
-        <span>Scroll</span>
-        <span class="stem"></span>
-      </div>
+
     </section>
 
     <!-- INTRO -->
@@ -1248,7 +1338,7 @@
         <div class="intro-body">
           <p class="intro-text reveal reveal-d1">Social media is the living pulse of modern brand culture and customer
             loyalty.</p>
-          <p class="intro-text reveal reveal-d2">We create high-tempo visual creative, algorithm-fluent short-form
+          <p class="intro-text reveal reveal-d2">We create high tempo visual creative, algorithm-fluent short-form
             video, and structured community management systems that build authoritative channel equity, ignite viral
             engagement, and turn passive scrollers into loyal brand advocates.</p>
           <p class="intro-sub reveal reveal-d3">Culture First. Creative Production. Algorithmic Velocity.</p>
@@ -1259,171 +1349,150 @@
     <!-- VIDEO SHOWCASE MARQUEE -->
     <section class="video-showcase-section" data-theme="light">
       <div class="video-showcase-head">
-        <div class="eyebrow reveal">SOCIAL MEDIA — IN MOTION</div>
         <h2 class="reveal reveal-d1">Ideas That Move.</h2>
       </div>
 
-      <div class="video-marquee-viewport reveal reveal-d2">
-        <div class="video-marquee-track" id="videoMarqueeTrack">
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/CP.mp4" preload="metadata" muted playsinline loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Commercial Production</span>
+      <div class="video-showcase-wrap relative">
+        <!-- Left Navigation Button (Vertically Centered at Carousel Left) -->
+        <button class="video-nav-btn video-nav-prev" id="videoPrevBtn" aria-label="Previous videos" title="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+
+        <!-- Marquee Viewport -->
+        <div class="video-marquee-viewport reveal reveal-d2" id="videoCarouselViewport">
+          <div class="video-marquee-track" id="videoMarqueeTrack">
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/CP.mp4" preload="metadata" muted playsinline loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Commercial Production</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/Niramaya Hospital Final.mp4" preload="metadata" muted playsinline
-                loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Healthcare Storytelling</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/Niramaya Hospital Final.mp4" preload="metadata" muted playsinline
+                  loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Healthcare Storytelling</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 8.45.25 PM.mp4" preload="metadata"
-                muted playsinline loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Short-Form Reel</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 8.45.25 PM.mp4" preload="metadata"
+                  muted playsinline loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Short-Form Reel</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.05.35 PM.mp4" preload="metadata"
-                muted playsinline loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Social Spotlight</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.05.35 PM.mp4" preload="metadata"
+                  muted playsinline loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Social Spotlight</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.07.53 PM.mp4" preload="metadata"
-                muted playsinline loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Visual Narrative</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.07.53 PM.mp4" preload="metadata"
+                  muted playsinline loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Visual Narrative</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.12.19 PM.mp4" preload="metadata"
-                muted playsinline loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Creative Campaign</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/WhatsApp Video 2026-08-08 at 9.12.19 PM.mp4" preload="metadata"
+                  muted playsinline loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Creative Campaign</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/qaani.mp4" preload="metadata" muted playsinline loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Qaani Couture</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/qaani.mp4" preload="metadata" muted playsinline loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Qaani Couture</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
-            <div class="video-card-inner">
-              <video class="showcase-video" src="Smm/satsang event 2.0.mp4" preload="metadata" muted playsinline
-                loop></video>
-              <div class="video-badge">
-                <span class="video-badge-dot"></span>
-                <span class="video-badge-text">PLAY</span>
-              </div>
-              <div class="video-overlay-info">
-                <span class="video-title">Event Atmosphere</span>
+            <div class="video-card" data-cursor="link" tabindex="0" role="button" aria-label="Play video">
+              <div class="video-card-inner">
+                <video class="showcase-video" src="Smm/satsang event 2.0.mp4" preload="metadata" muted playsinline
+                  loop></video>
+                <div class="video-badge">
+                  <span class="video-badge-dot"></span>
+                  <span class="video-badge-text">PLAY</span>
+                </div>
+                <div class="video-overlay-info">
+                  <span class="video-title">Event Atmosphere</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Right Navigation Button (Vertically Centered at Carousel Right) -->
+        <button class="video-nav-btn video-nav-next" id="videoNextBtn" aria-label="Next videos" title="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
       </div>
     </section>
 
-    <!-- COMPANIES TRUST US -->
-    <!-- <section class="trust" data-theme="light">
-      <div class="eyebrow reveal">Trusted By</div>
-      <h2 class="reveal reveal-d1">Companies That Trust Us</h2>
-
-      <div class="client-marquee-viewport reveal reveal-d2">
-        <div class="client-marquee-track" id="clientMarqueeTrack">
-          <div class="client-card" data-cursor="link">
-            <span class="logo-mark" aria-hidden="true">
-              <img src="prannshi clinic logo.jpg" alt="Prannshi Clinic" loading="lazy" />
-            </span>
-            <span class="client-name">Prannshi Clinic</span>
-          </div>
-          <div class="client-card" data-cursor="link">
-            <span class="logo-mark" aria-hidden="true">
-              <img src="qaani.avif" alt="QAANI" loading="lazy" />
-            </span>
-            <span class="client-name">QAANI</span>
-          </div>
-          <div class="client-card" data-cursor="link">
-            <span class="logo-mark" aria-hidden="true">
-              <img src="Niramaya logo.jpg" alt="Niramaya" loading="lazy" />
-            </span>
-            <span class="client-name">Niramaya</span>
-          </div>
-          <div class="client-card" data-cursor="link">
-            <span class="logo-mark" aria-hidden="true">
-              <img src="Shivam logo.png" alt="Shivam" loading="lazy" />
-            </span>
-            <span class="client-name">Shivam</span>
-          </div>
-          <div class="client-card" data-cursor="link">
-            <span class="logo-mark" aria-hidden="true">
-              <img src="cafe farohar.jpeg" alt="Cafe Farohar" loading="lazy" />
-            </span>
-            <span class="client-name">Cafe Farohar</span>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
     <!-- WHAT / WHEN / HOW / HOW MUCH (BLOCK 2: BLACK TRANSITION) -->
     <section class="wwh editorial-block-transition transition-to-black transition-angled" data-theme="dark"
       id="approach">
       <div class="wwh-head">
-        <div class="eyebrow reveal">The Engagement</div>
         <h2 class="reveal reveal-d1">Everything you need to know, before you need to ask.</h2>
       </div>
 
@@ -1431,19 +1500,19 @@
         <div class="wwh-tabs" role="tablist" id="wwhTabs">
           <button class="wwh-tab active" data-panel="what" role="tab" aria-selected="true">
             <span class="wwh-tab-ghost" aria-hidden="true">01</span>
-            <span class="wwh-tab-index">01</span><span class="wwh-tab-label">What</span>
+            <span class="wwh-tab-label">What</span>
           </button>
           <button class="wwh-tab" data-panel="when" role="tab" aria-selected="false">
             <span class="wwh-tab-ghost" aria-hidden="true">02</span>
-            <span class="wwh-tab-index">02</span><span class="wwh-tab-label">When</span>
+            <span class="wwh-tab-label">When</span>
           </button>
           <button class="wwh-tab" data-panel="how" role="tab" aria-selected="false">
             <span class="wwh-tab-ghost" aria-hidden="true">03</span>
-            <span class="wwh-tab-index">03</span><span class="wwh-tab-label">How</span>
+            <span class="wwh-tab-label">How</span>
           </button>
           <button class="wwh-tab" data-panel="howmuch" role="tab" aria-selected="false">
             <span class="wwh-tab-ghost" aria-hidden="true">04</span>
-            <span class="wwh-tab-index">04</span><span class="wwh-tab-label">How Much</span>
+            <span class="wwh-tab-label">How Much</span>
           </button>
           <div class="wwh-indicator" id="wwhIndicator"></div>
         </div>
@@ -1461,18 +1530,26 @@
             is inconsistent, or you are preparing for a major brand repositioning. Strategy and initial content drops
             commence in week 1; measurable organic reach velocity compounds within 30 to 60 days.
           </p>
-          <p class="wwh-panel" data-panel="how">
+          <div class="wwh-panel" data-panel="how">
             <span class="tag">Process</span>
-            Our creative production cycle: 1. Brand Voice &amp; Aesthetic Strategy → 2. Monthly Content Calendar &amp;
-            Scripting → 3. High-End Studio &amp; On-Site Video Shoot → 4. Motion Design &amp; Editing → 5. Algorithmic
-            Scheduling &amp; Publishing → 6. Daily Community Engagement &amp; DM Triage → 7. Virality Testing → 8.
-            Monthly Analytics &amp; Iteration.
-          </p>
+            <div class="wwh-process-intro">Our creative production cycle:</div>
+            <ol class="wwh-process-list">
+              <li><span class="wwh-step-num">1.</span> Brand Voice &amp; Aesthetic Strategy</li>
+              <li><span class="wwh-step-num">2.</span> Monthly Content Calendar &amp; Scripting</li>
+              <li><span class="wwh-step-num">3.</span> High-End Studio &amp; On-Site Video Shoot</li>
+              <li><span class="wwh-step-num">4.</span> Motion Design &amp; Editing</li>
+              <li><span class="wwh-step-num">5.</span> Algorithmic Scheduling &amp; Publishing</li>
+              <li><span class="wwh-step-num">6.</span> Daily Community Engagement &amp; DM Triage</li>
+              <li><span class="wwh-step-num">7.</span> Virality Testing</li>
+              <li><span class="wwh-step-num">8.</span> Monthly Analytics &amp; Iteration</li>
+            </ol>
+          </div>
           <p class="wwh-panel" data-panel="howmuch">
             <span class="tag">Investment</span>
-            Monthly Social Media retainers start at ₹40,000/month for standard brand presence (12-15 creative assets +
-            community triage) and scale to ₹85,000+/month for full-throttle production studios (daily reels,
-            professional on-site shoots, founder personal branding, and dedicated growth managers).
+            Monthly Social Media retainers begin at ₹50,000/month for a polished, consistent brand presence (12–15
+            bespoke creative assets + dedicated community management) and scale up to ₹90,000+/month for
+            full-scale content production (daily reels, professional on-site shoots, founder personal
+            branding, and a dedicated growth manager).
           </p>
         </div>
       </div>
@@ -1482,43 +1559,30 @@
          LEAD MAGNET / CONVERSION SECTION
          Editorial Asymmetric Composition
          ========================================== -->
-    <section class="dr-lead-magnet py-24 lg:py-32 px-6 lg:px-12 bg-black text-white border-t border-white/10 relative overflow-hidden" data-theme="dark">
+    <section
+      class="dr-lead-magnet py-24 lg:py-32 px-6 lg:px-12 bg-black text-white border-t border-white/10 relative overflow-hidden"
+      data-theme="dark">
       <div class="max-w-[1400px] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end pb-16 border-b border-white/10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pb-16 border-b border-white/10">
 
           <!-- Left Column (8 cols): Eyebrow + Display Headline -->
           <div class="lg:col-span-8">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-2 h-2 rounded-full bg-lime"></span>
-              <span class="text-xs font-mono text-lime tracking-[0.25em] uppercase font-semibold">
-                ORGANIC SCALE &amp; COMMUNITY CULTURE
-              </span>
-            </div>
-            <h2 class="font-display text-3xl sm:text-5xl md:text-6xl lg:text-[4.75rem] leading-[1.02] text-white uppercase tracking-tight">
+            <h2
+              class="font-display text-3xl sm:text-5xl md:text-6xl lg:text-[4.75rem] leading-[1.02] text-white uppercase tracking-tight">
               BUILD A SOCIAL PRESENCE <br />
               <span class="text-lime">THAT PERFORMS.</span>
             </h2>
           </div>
 
           <!-- Right Column (4 cols): Contextual Narrative + Luxury CTA -->
-          <div class="lg:col-span-4 flex flex-col justify-end">
-            <p class="text-sm sm:text-base text-white/70 font-light leading-relaxed mb-8">
-              Transform stagnant feeds into vibrant, high-velocity cultural destinations with bespoke short-form video production, aesthetic grid curation, and active daily community engagement.
-            </p>
-            <div>
-              <a href="contact.html" class="dr-lead-btn inline-flex items-center gap-3" aria-label="Elevate Your Social Feed With DemuRup Media">
-                <span>ELEVATE YOUR SOCIAL FEED</span>
-                <span class="dr-lead-btn-arrow text-base">→</span>
-              </a>
-            </div>
+          <div class="lg:col-span-4 flex items-center justify-center">
+            <a href="contact.html" class="dr-lead-btn inline-flex items-center gap-3"
+              aria-label="Elevate Your Social Feed With DemuRup Media">
+              <span>ELEVATE YOUR SOCIAL FEED</span>
+              <span class="dr-lead-btn-arrow text-base">→</span>
+            </a>
           </div>
 
-        </div>
-
-        <!-- Meta Sub-Strip -->
-        <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-white/40 gap-4">
-          <span class="tracking-[0.15em] uppercase">DEMURUP MEDIA • SHORT-FORM REELS • CONTENT PLANNING • COMMUNITY</span>
-          <a href="#main-nav" class="hover:text-lime transition-colors duration-200 tracking-wider">BACK TO TOP ↑</a>
         </div>
       </div>
     </section>
@@ -1526,49 +1590,44 @@
   </main>
 
   <!-- ══════════════════════════════════════════════════════════════
-   DEFAULT DEMURUP FOOTER
+     FOOTER (BLACK SECTION)
 ══════════════════════════════════════════════════════════════ -->
-  <footer class="border-t border-[#111] pt-16 pb-8 bg-black" data-theme="dark" id="contact">
+  <footer class="border-t border-white/15 pt-16 pb-8 bg-[#000000] text-white" data-theme="dark">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <div class="dr-desktop-footer-content grid grid-cols-1 lg:grid-cols-4 gap-10 pb-14 border-b border-[#111]">
         <!-- Brand -->
         <div class="lg:col-span-2">
-          <div class="mb-2">
-            <img src="main logo.png" alt="DemuRup Media"
-              class="dr-footer-logo w-[160px] sm:w-[190px] lg:w-[225px] h-auto max-h-[100px] sm:max-h-[125px] lg:max-h-[152px] object-contain" />
-          </div>
-          <p class="text-white/70 text-sm leading-relaxed max-w-sm">
-            India's boldest creative marketing &amp; branding studio. One team,
-            every digital need, zero compromise.
-          </p>
-          <div class="flex gap-3 mt-6">
-            <!-- Instagram -->
-            <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
-              aria-label="Instagram">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
-              aria-label="LinkedIn">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <!-- WhatsApp -->
-            <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
-              class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
-              aria-label="WhatsApp">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-            </a>
+          <div class="dr-footer-brand-block">
+            <img src="main logo.png" alt="DemuRup Media" class="dr-footer-logo" />
+            <div class="dr-footer-socials flex gap-3">
+              <!-- Instagram -->
+              <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener"
+                class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+                aria-label="Instagram">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/company/demurup-media" target="_blank" rel="noopener"
+                class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+                aria-label="LinkedIn">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <!-- WhatsApp -->
+              <a href="https://wa.me/919586569990" target="_blank" rel="noopener"
+                class="w-9 h-9 border border-[#222] rounded flex items-center justify-center text-white transition-all hover:border-lime hover:text-lime"
+                aria-label="WhatsApp">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -1626,11 +1685,7 @@
                 class="text-white hover:text-lime text-sm transition-colors duration-200">Contact</a>
             </li>
           </ul>
-          <div class="mt-8">
-            <div class="slabel mb-2 text-white">Connect</div>
-            <p class="text-white/70 text-xs">@demurup_media</p>
-            <p class="text-white/70 text-xs mt-1">Demurup Media (LinkedIn)</p>
-          </div>
+          
         </div>
       </div>
 
@@ -1650,9 +1705,6 @@
           <div class="dr-mf-logo-wrap">
             <img src="main logo.png" alt="DemuRup Media" class="dr-mf-logo" />
           </div>
-          <p class="dr-mf-tagline">
-            India's boldest creative marketing &amp; branding studio. One team, every digital need, zero compromise.
-          </p>
           <div class="dr-mf-socials">
             <a href="https://instagram.com/demurup_media" target="_blank" rel="noopener" class="dr-mf-social-btn" aria-label="Instagram">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
@@ -1849,9 +1901,12 @@
         });
       })();
 
-      /* ---------- endless video marquee cloner & playback controller ---------- */
+      /* ---------- Video Showcase Endless Marquee & Navigation Controller ---------- */
       (function initVideoMarquee() {
         var track = document.getElementById('videoMarqueeTrack') || document.querySelector('.video-marquee-track');
+        var viewport = document.getElementById('videoCarouselViewport') || document.querySelector('.video-marquee-viewport');
+        var prevBtn = document.getElementById('videoPrevBtn');
+        var nextBtn = document.getElementById('videoNextBtn');
         if (!track) return;
 
         var originalCards = Array.from(track.querySelectorAll('.video-card'));
@@ -1863,8 +1918,8 @@
         group1.className = 'video-marquee-group';
 
         var minWidthNeeded = Math.max(window.innerWidth * 1.8, 2400);
-        var cardWidth = window.innerWidth <= 640 ? (window.innerWidth * 0.78 + 16) : (window.innerWidth <= 1024 ? 332 : 392);
-        var repeats = Math.max(2, Math.ceil(minWidthNeeded / (originalCards.length * cardWidth)));
+        var cardWidthEst = window.innerWidth <= 640 ? (window.innerWidth * 0.78 + 16) : (window.innerWidth <= 1024 ? 300 : 338);
+        var repeats = Math.max(2, Math.ceil(minWidthNeeded / (originalCards.length * cardWidthEst)));
 
         for (var r = 0; r < repeats; r++) {
           originalCards.forEach(function (card) {
@@ -1879,23 +1934,116 @@
         track.appendChild(group1);
         track.appendChild(group2);
 
-        function setVideoSpeed() {
-          var groupWidth = group1.offsetWidth;
-          if (groupWidth > 0) {
-            var speedPxPerSec = 40;
-            var duration = groupWidth / speedPxPerSec;
-            track.style.animationDuration = duration + 's';
-          }
+        var groupWidth = group1.offsetWidth;
+        function updateGroupWidth() {
+          var w = group1.offsetWidth;
+          if (w > 0) groupWidth = w;
+        }
+        updateGroupWidth();
+        window.addEventListener('load', updateGroupWidth);
+        window.addEventListener('resize', updateGroupWidth);
+
+        // Movement variables (LEFT -> RIGHT: positive translate direction)
+        var speedPxPerSec = 40; // established marquee speed
+        var currentX = -groupWidth;
+        var nudgeTarget = 0;
+        var nudgeCurrent = 0;
+        var isHovered = false;
+        var isManualPause = false;
+        var manualPauseTimer = null;
+        var lastTime = performance.now();
+        var rafId = null;
+
+        // Hover pause on track or side buttons
+        if (viewport) {
+          viewport.addEventListener('mouseenter', function () { isHovered = true; });
+          viewport.addEventListener('mouseleave', function () { isHovered = false; });
+        }
+        if (prevBtn) {
+          prevBtn.addEventListener('mouseenter', function () { isHovered = true; });
+          prevBtn.addEventListener('mouseleave', function () { isHovered = false; });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('mouseenter', function () { isHovered = true; });
+          nextBtn.addEventListener('mouseleave', function () { isHovered = false; });
         }
 
-        setVideoSpeed();
-        window.addEventListener('load', setVideoSpeed);
-        var resizeTimer;
-        window.addEventListener('resize', function () {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(setVideoSpeed, 150);
-        });
+        function getStep() {
+          var firstCard = group1.querySelector('.video-card');
+          if (!firstCard) return 338;
+          var cw = firstCard.offsetWidth;
+          var style = window.getComputedStyle(group1);
+          var gap = parseFloat(style.gap) || 28;
+          return cw + gap;
+        }
 
+        function triggerNudge(deltaX) {
+          nudgeTarget += deltaX;
+          isManualPause = true;
+          clearTimeout(manualPauseTimer);
+          manualPauseTimer = setTimeout(function () {
+            isManualPause = false;
+          }, 1400); // resumes steady marquee drift 1.4s after manual button click
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            triggerNudge(-getStep());
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            triggerNudge(getStep());
+          });
+        }
+
+        // Animation loop: continuous left-to-right drift + smooth manual spring lerp
+        function tick(now) {
+          var dt = Math.min((now - lastTime) / 1000, 0.1);
+          lastTime = now;
+
+          // Smooth lerp for manual button clicks
+          var diff = nudgeTarget - nudgeCurrent;
+          if (Math.abs(diff) > 0.4) {
+            nudgeCurrent += diff * 0.14;
+          } else {
+            nudgeCurrent = nudgeTarget;
+          }
+
+          if (groupWidth <= 0 && group1.offsetWidth > 0) {
+            groupWidth = group1.offsetWidth;
+            currentX = -groupWidth;
+          }
+
+          // Automatic marquee movement (LEFT -> RIGHT: positive X)
+          if (!isHovered && !isManualPause && groupWidth > 0) {
+            currentX += speedPxPerSec * dt;
+          }
+
+          var totalX = currentX + nudgeCurrent;
+
+          // Seamless loop within [-groupWidth, 0)
+          if (groupWidth > 0) {
+            while (totalX >= 0) {
+              totalX -= groupWidth;
+              currentX -= groupWidth;
+            }
+            while (totalX < -groupWidth) {
+              totalX += groupWidth;
+              currentX += groupWidth;
+            }
+          }
+
+          track.style.transform = 'translate3d(' + totalX.toFixed(2) + 'px, 0, 0)';
+          rafId = requestAnimationFrame(tick);
+        }
+
+        rafId = requestAnimationFrame(tick);
+
+        // Video playback controller (Preserved 100%)
         var allCards = Array.from(track.querySelectorAll('.video-card'));
         var currentlyPlayingCard = null;
 
@@ -1906,7 +2054,6 @@
           var video = card.querySelector('video');
           if (!video) return;
 
-          // UNMUTED: Audio MUST be enabled when playing
           video.muted = false;
           video.playsInline = true;
 
@@ -1918,7 +2065,6 @@
               if (badgeText) badgeText.textContent = 'PLAYING';
               currentlyPlayingCard = card;
             }).catch(function (error) {
-              // If unmuted autoplay was blocked by browser policy on hover
               if (!isClick) {
                 video.muted = true;
                 var fallbackPromise = video.play();
@@ -1959,7 +2105,7 @@
           var video = card.querySelector('video');
           if (video) {
             video.pause();
-            video.muted = true; // No sound when paused
+            video.muted = true;
           }
           card.classList.remove('is-playing');
           var badgeText = card.querySelector('.video-badge-text');

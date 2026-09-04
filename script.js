@@ -756,17 +756,12 @@ setInterval(nextSlide, 6000);
 
   const overlay = document.getElementById("dr-popup-overlay");
   if (!overlay) return;
-  const badge = document.getElementById("dr-reappear-badge");
-  const cntEl = document.getElementById("dr-badge-countdown");
   const timerCircle = document.getElementById("dr-timer-circle");
 
   let userHasInteracted = false;
   let laterTimer = null;
   let autoTimer = null;
-  let timerCountdown = null;
   let ringTimer = null;
-  let ringVal = 75.4; // full circumference
-  let badgeInterval = null;
 
   // ── Track first interaction (for audio autoplay) ───────────
   const markInteraction = () => {
@@ -835,52 +830,10 @@ setInterval(nextSlide, 6000);
     }
   }
 
-  // ── Confetti burst on open ─────────────────────────────────
-  function spawnConfetti() {
-    const modal = document.getElementById("dr-popup-modal");
-    const colors = ["#00cc33", "#00ff44", "#ffffff", "#00aa29"];
-    for (let i = 0; i < 12; i++) {
-      const el = document.createElement("div");
-      el.className = "dr-confetti";
-      el.style.cssText = `
-          left: ${20 + Math.random() * 60}%;
-          top: ${10 + Math.random() * 30}%;
-          background: ${colors[i % colors.length]};
-          width: ${3 + Math.random() * 5}px;
-          height: ${3 + Math.random() * 5}px;
-          animation-delay: ${Math.random() * 0.3}s;
-          animation-duration: ${0.7 + Math.random() * 0.5}s;
-        `;
-      modal.appendChild(el);
-      el.addEventListener("animationend", () => el.remove());
-    }
-  }
-
-  // ── Timer ring countdown (20s auto-close) ─────────────────
-  function startRingCountdown(seconds) {
-    const circumference = 75.4;
-    ringVal = circumference;
-    if (timerCircle) timerCircle.style.strokeDashoffset = 0;
-    clearInterval(ringTimer);
-    let elapsed = 0;
-    ringTimer = setInterval(() => {
-      elapsed++;
-      const progress = elapsed / seconds;
-      const offset = circumference * progress;
-      if (timerCircle) timerCircle.style.strokeDashoffset = offset;
-      if (elapsed >= seconds) clearInterval(ringTimer);
-    }, 1000);
-  }
-
   // ── Show modal ─────────────────────────────────────────────
   window.drShowModal = function () {
     // Don't show if X was clicked this session
     if (sessionStorage.getItem(SESSION_KEY_CLOSED)) return;
-
-    // Hide badge if visible
-    badge.style.display = "none";
-    clearInterval(badgeInterval);
-    if (cntEl) cntEl.textContent = "30";
 
     // Show
     overlay.classList.add("visible");
@@ -888,12 +841,6 @@ setInterval(nextSlide, 6000);
 
     // Sound
     playPopSound();
-
-    // Confetti
-    setTimeout(spawnConfetti, 150);
-
-    // Ring countdown (20s)
-    startRingCountdown(20);
   };
 
   // ── Hide modal (shared) ────────────────────────────────────
@@ -907,30 +854,18 @@ setInterval(nextSlide, 6000);
   window.drCloseX = function () {
     drHide();
     sessionStorage.setItem(SESSION_KEY_CLOSED, "1");
-    badge.style.display = "none";
     clearTimeout(laterTimer);
     clearTimeout(autoTimer);
   };
 
-  // ── Maybe Later: hide → reshow after 30s ──────────────────
+  // ── Maybe Later: hide modal silently, internal reshow after cooldown ────
   window.drMaybeLater = function () {
     drHide();
-
-    // Show the countdown badge
-    let remaining = 80;
-    badge.style.display = "block";
-    if (cntEl) cntEl.textContent = remaining;
-
-    clearInterval(badgeInterval);
-    badgeInterval = setInterval(() => {
-      remaining--;
-      if (cntEl) cntEl.textContent = remaining;
-      if (remaining <= 0) {
-        clearInterval(badgeInterval);
-        badge.style.display = "none";
-        drShowModal();
-      }
-    }, 1000);
+    clearTimeout(laterTimer);
+    // Silent internal cooldown: reshow after 60s without any user-facing countdown/toast/timer
+    laterTimer = setTimeout(function () {
+      drShowModal();
+    }, 60000);
   };
 
   // ── CTA click: go to contact & close ──────────────────────
@@ -938,7 +873,6 @@ setInterval(nextSlide, 6000);
     e.preventDefault();
     drHide();
     sessionStorage.setItem(SESSION_KEY_CLOSED, "1"); // don't re-show after CTA
-    badge.style.display = "none";
     clearTimeout(laterTimer);
     clearTimeout(autoTimer);
     // Smooth scroll to contact or navigate
