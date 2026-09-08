@@ -1029,638 +1029,158 @@ setInterval(nextSlide, 6000);
   runSequence();
 })();
 
-/* ── Interactive Hero Section Physics Engine ── */
+/* ══════════════════════════════════════════════════════════════
+   DEMURUP MEDIA — NEW HERO ANIMATION & ORBIT ENGINE
+══════════════════════════════════════════════════════════════ */
 (function() {
   "use strict";
 
-  var hero = document.querySelector(".dr-hero");
-  var headline = document.querySelector(".dr-hero__headline");
-  if (!hero || !headline) return;
+  var hero = document.getElementById("hero");
+  if (!hero) return;
+
+  var stage = document.getElementById("dr-hero-stage");
+  var orbitSvg = document.getElementById("dr-hero-orbit-svg");
+  var headline = hero.querySelector(".dr-hero-headline");
+  var nodes = hero.querySelectorAll(".dr-service-node");
+  var paths = hero.querySelectorAll(".dr-orbit-path");
+  var scrollBtn = document.getElementById("dr-hero-scroll-btn");
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var isTouch = window.matchMedia("(pointer: coarse)").matches;
+  var isFinePointer = window.matchMedia("(pointer: fine)").matches;
 
-  /* ---- 1. Entrance sequence ----------------------------------- */
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      hero.classList.add("is-revealed");
-    });
-  });
-
-  /* ---- 2. Free-roam DVD-logo-style physics engine --------------- */
-  var motionEls = Array.prototype.slice.call(hero.querySelectorAll(".dr-card__motion"));
-  var cardEls   = Array.prototype.slice.call(hero.querySelectorAll(".dr-card"));
-
-  var active = [];
-  cardEls.forEach(function(cardEl, i) {
-    if (getComputedStyle(cardEl).display !== "none") {
-      active.push({ card: cardEl, motion: motionEls[i] });
-    }
-  });
-  if (!active.length) return;
-
-  var speeds = [18, 24, 20, 28, 22, 25, 19, 26, 21, 23];
-  var angles = [35, 205, 120, 300, 165, 45, 140, 230, 310, 85];
-  var spinProfiles = [
-    { rot: 2.6, fr: 0.16, pr: 0.4, sc: 0.018, fs: 0.11, ps: 1.0 },
-    { rot: 2.2, fr: 0.13, pr: 1.8, sc: 0.015, fs: 0.14, ps: 0.2 },
-    { rot: 3.0, fr: 0.11, pr: 2.6, sc: 0.02,  fs: 0.09, ps: 2.1 },
-    { rot: 2.4, fr: 0.18, pr: 0.9, sc: 0.016, fs: 0.15, ps: 1.4 },
-    { rot: 2.8, fr: 0.14, pr: 3.1, sc: 0.019, fs: 0.1,  ps: 0.7 },
-    { rot: 2.5, fr: 0.15, pr: 1.2, sc: 0.017, fs: 0.12, ps: 1.8 },
-    { rot: 2.1, fr: 0.17, pr: 2.1, sc: 0.016, fs: 0.13, ps: 0.5 },
-    { rot: 2.9, fr: 0.12, pr: 0.7, sc: 0.019, fs: 0.10, ps: 2.4 },
-    { rot: 2.3, fr: 0.19, pr: 2.8, sc: 0.015, fs: 0.14, ps: 1.1 },
-    { rot: 2.7, fr: 0.13, pr: 1.5, sc: 0.018, fs: 0.11, ps: 0.9 }
-  ];
-  var depths = [0.35, 0.22, 0.4, 0.28, 0.2, 0.32, 0.25, 0.38, 0.21, 0.3];
-
-  var W = 0, H = 0;
-  var centerX = 0, centerY = 0;
-  var bodies = [];
-
-  function measure() {
-    var heroRect = hero.getBoundingClientRect();
-    W = heroRect.width;
-    H = heroRect.height;
-    centerX = heroRect.left + W / 2;
-    centerY = heroRect.top + H / 2;
-
-    bodies.forEach(function(b) {
-      var r = b.el.getBoundingClientRect();
-      b.w = r.width;
-      b.h = r.height;
-    });
-  }
-
-  function rectsOverlap(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) {
-    return ax1 < bx2 && ax2 > bx1 && ay1 < by2 && ay2 > by1;
-  }
-
-  var heroRect = hero.getBoundingClientRect();
-  W = heroRect.width || window.innerWidth;
-  H = heroRect.height || window.innerHeight;
-  centerX = (heroRect.left || 0) + W / 2;
-  centerY = (heroRect.top || 0) + H / 2;
-
-  active.forEach(function(pair, i) {
-    var r = pair.card.getBoundingClientRect();
-    var w = r.width || 80, h = r.height || 140;
-    var speed = speeds[i % speeds.length];
-    var ang = (angles[i % angles.length]) * Math.PI / 180;
-
-    var spawnX = 0, spawnY = 0;
-    for (var attempt = 0; attempt < 50; attempt++) {
-      spawnX = Math.random() * Math.max(10, W - w);
-      spawnY = Math.random() * Math.max(10, H - h);
-      
-      var overlapsExisting = false;
-      for (var k = 0; k < bodies.length; k++) {
-        var existing = bodies[k];
-        if (rectsOverlap(spawnX - 25, spawnY - 25, spawnX + w + 25, spawnY + h + 25, existing.x, existing.y, existing.x + existing.w, existing.y + existing.h)) {
-          overlapsExisting = true;
-          break;
-        }
+  /* ── 1. Setup SVG Path Dash Drawing ── */
+  paths.forEach(function(path) {
+    try {
+      var len = path.getTotalLength();
+      if (!reduceMotion) {
+        path.style.strokeDasharray = len + " " + len;
+        path.style.strokeDashoffset = len;
+      } else {
+        path.style.strokeDasharray = "none";
+        path.style.strokeDashoffset = "0";
       }
-      if (!overlapsExisting) break;
-    }
-
-    bodies.push({
-      el: pair.card,
-      motion: pair.motion,
-      w: w, h: h,
-      x: spawnX,
-      y: spawnY,
-      vx: Math.cos(ang) * speed,
-      vy: Math.sin(ang) * speed,
-      baseVx: Math.cos(ang) * speed,
-      baseVy: Math.sin(ang) * speed,
-      baseSpeed: speed,
-      spin: spinProfiles[i % spinProfiles.length],
-      depth: depths[i % depths.length]
-    });
+    } catch(e) {}
   });
 
-  measure();
-  window.addEventListener("resize", measure);
-
-  /* ---- Continuous Smooth 2D Motion Force & Infinite Steering Pipeline ---- */
-  var targetInputX = centerX;
-  var targetInputY = centerY;
-  var smoothInputX = centerX;
-  var smoothInputY = centerY;
-  var isInputActive = false;
-  var inputInfluence = 0; // 0.0 to 1.0 smooth envelope
-  var lastInputX = centerX;
-  var lastInputY = centerY;
-  var lastInputTime = 0;
-  var inputVelocityX = 0;
-  var inputVelocityY = 0;
-  var touchStartX = 0;
-  var touchStartY = 0;
-  var isTouchDragging = false;
-
-  // Mobile persistent 2D traveling heading (continuous 360-degree flight vector)
-  var mobileHeadingX = Math.cos(45 * Math.PI / 180);
-  var mobileHeadingY = Math.sin(45 * Math.PI / 180);
-
-  function onInputStart(clientX, clientY) {
-    targetInputX = clientX;
-    targetInputY = clientY;
-    smoothInputX = clientX;
-    smoothInputY = clientY;
-    lastInputX = clientX;
-    lastInputY = clientY;
-    touchStartX = clientX;
-    touchStartY = clientY;
-    isTouchDragging = false;
-    lastInputTime = Date.now();
-    inputVelocityX = 0;
-    inputVelocityY = 0;
-    isInputActive = true;
-    inputInfluence = 1.0;
-  }
-
-  function onInputMove(clientX, clientY) {
-    targetInputX = clientX;
-    targetInputY = clientY;
-    isInputActive = true;
-
-    if (Math.hypot(clientX - touchStartX, clientY - touchStartY) > 12) {
-      isTouchDragging = true;
+  /* ── 2. Entrance Animation Sequence (GSAP) ── */
+  function startEntrance() {
+    if (typeof gsap === "undefined" || reduceMotion) {
+      if (headline) headline.style.opacity = "1";
+      nodes.forEach(function(node) { node.style.opacity = "1"; });
+      paths.forEach(function(path) { path.style.strokeDashoffset = "0"; });
+      if (scrollBtn) scrollBtn.style.opacity = "1";
+      return;
     }
 
-    var now = Date.now();
-    var dtMove = Math.max(10, now - lastInputTime) / 1000;
-    var rawVx = (clientX - lastInputX) / dtMove;
-    var rawVy = (clientY - lastInputY) / dtMove;
-
-    inputVelocityX += (rawVx - inputVelocityX) * 0.5;
-    inputVelocityY += (rawVy - inputVelocityY) * 0.5;
-    lastInputX = clientX;
-    lastInputY = clientY;
-    lastInputTime = now;
-  }
-
-  function onInputEnd() {
-    isInputActive = false;
-    if (isTouchDragging) {
-      window.drSuppressHeroCardClick = true;
-      setTimeout(function() {
-        window.drSuppressHeroCardClick = false;
-      }, 250);
-    }
-  }
-
-  if (!reduceMotion) {
-    // Desktop mouse interaction
-    hero.addEventListener("mouseenter", function(e) {
-      onInputStart(e.clientX, e.clientY);
+    var tl = gsap.timeline({
+      defaults: { ease: "power2.out" },
+      delay: 0.15
     });
 
-    hero.addEventListener("mousemove", function(e) {
-      onInputMove(e.clientX, e.clientY);
-    }, { passive: true });
+    // Step A: Headline reveals cleanly
+    tl.fromTo(headline, 
+      { opacity: 0, y: 28, scale: 0.98 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power2.out" }
+    );
 
+    // Step B: Orbit paths draw gracefully around headline
+    paths.forEach(function(path, i) {
+      tl.to(path, {
+        strokeDashoffset: 0,
+        duration: 1.6,
+        ease: "power2.inOut"
+      }, 0.2 + (i * 0.12));
+    });
+
+    // Step C: Service nodes enter with smooth stagger
+    tl.fromTo(nodes,
+      { opacity: 0, scale: 0.88, transformOrigin: "center center" },
+      { opacity: 1, scale: 1, duration: 0.6, stagger: 0.09, ease: "back.out(1.3)" },
+      0.85
+    );
+
+    // Step D: Scroll indicator appears
+    if (scrollBtn) {
+      tl.fromTo(scrollBtn,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+        1.3
+      );
+    }
+  }
+
+  // Trigger entrance sequence
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function() {
+      var delayMs = document.body.classList.contains("dr-splash-active") ? 3200 : 150;
+      setTimeout(startEntrance, delayMs);
+    });
+  } else {
+    var delayMs = document.body.classList.contains("dr-splash-active") ? 3200 : 150;
+    setTimeout(startEntrance, delayMs);
+  }
+
+  /* ── 3. Subtle Desktop Mouse Parallax ── */
+  if (isFinePointer && !reduceMotion && stage) {
+    var targetX = 0, targetY = 0;
+    var currentX = 0, currentY = 0;
+    var rafId = null;
+
+    function onMouseMove(e) {
+      var rect = hero.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+
+      var nx = (e.clientX - cx) / (rect.width / 2);
+      var ny = (e.clientY - cy) / (rect.height / 2);
+
+      // Controlled subtle shift: 5px max on X, 3px max on Y
+      targetX = nx * 5;
+      targetY = ny * 3;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateParallax);
+      }
+    }
+
+    function updateParallax() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      if (orbitSvg) {
+        orbitSvg.style.transform = "translate3d(" + currentX.toFixed(2) + "px, " + currentY.toFixed(2) + "px, 0)";
+      }
+
+      if (headline) {
+        headline.style.transform = "translate3d(" + (-currentX * 0.22).toFixed(2) + "px, " + (-currentY * 0.22).toFixed(2) + "px, 0)";
+      }
+
+      if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+        rafId = requestAnimationFrame(updateParallax);
+      } else {
+        rafId = null;
+      }
+    }
+
+    hero.addEventListener("mousemove", onMouseMove, { passive: true });
     hero.addEventListener("mouseleave", function() {
-      onInputEnd();
+      targetX = 0;
+      targetY = 0;
+      if (!rafId) rafId = requestAnimationFrame(updateParallax);
     });
+  }
 
-    // Mobile touch interaction (2D Virtual Cursor Controller)
-    hero.addEventListener("touchstart", function(e) {
-      if (e.touches && e.touches.length > 0) {
-        onInputStart(e.touches[0].clientX, e.touches[0].clientY);
+  /* ── 4. Scroll Down Button Smooth Action ── */
+  if (scrollBtn) {
+    scrollBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      var target = document.querySelector(".dr-brand-marquee") || document.getElementById("about");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
       }
-    }, { passive: true });
-
-    hero.addEventListener("touchmove", function(e) {
-      if (e.touches && e.touches.length > 0) {
-        onInputMove(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
-
-    hero.addEventListener("touchend", function() {
-      onInputEnd();
-    }, { passive: true });
-
-    hero.addEventListener("touchcancel", function() {
-      onInputEnd();
-    }, { passive: true });
+    });
   }
 
-  function render(t) {
-    for (var i = 0; i < bodies.length; i++) {
-      var b = bodies[i];
-      var s = b.spin;
-      var rot = Math.sin(t * s.fr + s.pr) * s.rot;
-      var scale = 1 + Math.sin(t * s.fs + s.ps) * s.sc;
-
-      b.motion.style.transform =
-        "translate3d(" + b.x.toFixed(2) + "px," + b.y.toFixed(2) + "px,0) " +
-        "rotate(" + rot.toFixed(2) + "deg) scale(" + scale.toFixed(3) + ")";
-    }
-  }
-
-  if (reduceMotion) {
-    render(0);
-    return;
-  }
-
-  var lastTime = null;
-
-  var CARD_MARGIN = 24; // px of guaranteed spacing around each card (20px-30px gap)
-
-  function tick(now) {
-    if (lastTime === null) lastTime = now;
-    var dt = (now - lastTime) / 1000;
-    lastTime = now;
-    if (dt > 0.05) dt = 0.05;
-
-    var isMobile = (window.innerWidth <= 768);
-
-    // 1. Frame-rate independent responsive input interpolation (~25ms latency)
-    var inputLerpFactor = Math.min(1.0, 30.0 * dt);
-    smoothInputX += (targetInputX - smoothInputX) * inputLerpFactor;
-    smoothInputY += (targetInputY - smoothInputY) * inputLerpFactor;
-
-    // 2. Smoothly decay input influence on release (seamless fade, no jumping)
-    if (isInputActive) {
-      inputInfluence += (1.0 - inputInfluence) * Math.min(1.0, 20.0 * dt);
-    } else {
-      inputInfluence += (0.0 - inputInfluence) * Math.min(1.0, 2.5 * dt);
-      inputVelocityX += (0.0 - inputVelocityX) * Math.min(1.0, 3.5 * dt);
-      inputVelocityY += (0.0 - inputVelocityY) * Math.min(1.0, 3.5 * dt);
-    }
-
-    // 3. 2D Steering Vector (360-degree virtual controller)
-    var relX = smoothInputX - centerX;
-    var relY = smoothInputY - centerY;
-    var rawDist = Math.sqrt(relX * relX + relY * relY);
-    var dist = rawDist || 1;
-
-    var dirX = relX / dist;
-    var dirY = relY / dist;
-
-    // Distance curve: balanced force modulation from center to edges
-    var maxRadius = Math.max(100, Math.min(W, H) * 0.45);
-    var distRatio = Math.min(1.0, rawDist / maxRadius);
-    var distForce = 0.45 + 0.55 * (distRatio * distRatio);
-
-    // Dynamic swipe velocity steering
-    var fingerSpeed = Math.hypot(inputVelocityX, inputVelocityY);
-    var targetSteerX = dirX;
-    var targetSteerY = dirY;
-    if (fingerSpeed > 30) {
-      targetSteerX = inputVelocityX / fingerSpeed;
-      targetSteerY = inputVelocityY / fingerSpeed;
-    }
-
-    // Continuously rotate mobile heading toward finger direction (immediate response)
-    if (isInputActive) {
-      mobileHeadingX += (targetSteerX - mobileHeadingX) * Math.min(1.0, 16.0 * dt);
-      mobileHeadingY += (targetSteerY - mobileHeadingY) * Math.min(1.0, 16.0 * dt);
-      var hLen = Math.hypot(mobileHeadingX, mobileHeadingY) || 1;
-      mobileHeadingX /= hLen;
-      mobileHeadingY /= hLen;
-    }
-
-    var i, b;
-
-    for (i = 0; i < bodies.length; i++) {
-      b = bodies[i];
-
-      var targetVx, targetVy;
-
-      if (isMobile) {
-        // Fast & Responsive Mobile 2D Infinite Travel (~2.5x speed boost):
-        // Active steering speed (~320-400px/s) -> Cruise floating speed (~110px/s)
-        var activeSpeed = b.baseSpeed * (14.0 + Math.min(4.0, fingerSpeed / 120));
-        var cruiseSpeed = b.baseSpeed * 5.0;
-        var currentSpeed = cruiseSpeed * (1.0 - inputInfluence) + activeSpeed * inputInfluence;
-
-        targetVx = mobileHeadingX * currentSpeed;
-        targetVy = mobileHeadingY * currentSpeed;
-
-        // Immediate responsive physical acceleration toward target velocity
-        b.vx += (targetVx - b.vx) * (8.5 * dt);
-        b.vy += (targetVy - b.vy) * (8.5 * dt);
-      } else {
-        // Desktop Physics (100% untouched desktop behavior)
-        var desktopStrength = b.baseSpeed * 2.8;
-        var effForceX = dirX * distForce;
-        var effForceY = dirY * distForce;
-        targetVx = b.baseVx * (1.0 - inputInfluence) + (effForceX * desktopStrength) * inputInfluence;
-        targetVy = b.baseVy * (1.0 - inputInfluence) + (effForceY * desktopStrength) * inputInfluence;
-
-        b.vx += (targetVx - b.vx) * (2.5 * dt);
-        b.vy += (targetVy - b.vy) * (2.5 * dt);
-
-        var curSpeed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
-        var minSpeed = Math.max(14, b.baseSpeed * 0.7);
-        if (curSpeed < minSpeed && curSpeed > 0.001) {
-          var speedFactor = minSpeed / curSpeed;
-          b.vx += (b.vx * speedFactor - b.vx) * Math.min(1.0, 3.5 * dt);
-          b.vy += (b.vy * speedFactor - b.vy) * Math.min(1.0, 3.5 * dt);
-        }
-      }
-
-      b.x += b.vx * dt;
-      b.y += b.vy * dt;
-    }
-
-    // 4. Infinite 2D Wrap-Around Canvas (Multi-axis, Safe Buffer, Zero Flicker)
-    var BUFFER = 32; // px buffer so cards completely exit before re-entering
-    for (i = 0; i < bodies.length; i++) {
-      b = bodies[i];
-      if (b.x > W + BUFFER) {
-        b.x = -b.w - BUFFER + 1;
-      } else if (b.x < -b.w - BUFFER) {
-        b.x = W + BUFFER - 1;
-      }
-      if (b.y > H + BUFFER) {
-        b.y = -b.h - BUFFER + 1;
-      } else if (b.y < -b.h - BUFFER) {
-        b.y = H + BUFFER - 1;
-      }
-    }
-
-    // Soft card separation (continuous relaxation, zero teleporting/snapping)
-    var relaxRate = Math.min(1.0, 5.0 * dt);
-    for (i = 0; i < bodies.length; i++) {
-      for (var j = i + 1; j < bodies.length; j++) {
-        var a = bodies[i], c = bodies[j];
-        var m = CARD_MARGIN;
-        var ax1 = a.x - m, ay1 = a.y - m, ax2 = a.x + a.w + m, ay2 = a.y + a.h + m;
-        var cx1 = c.x - m, cy1 = c.y - m, cx2 = c.x + c.w + m, cy2 = c.y + c.h + m;
-
-        if (rectsOverlap(ax1, ay1, ax2, ay2, cx1, cy1, cx2, cy2)) {
-          var overlapX = Math.min(ax2, cx2) - Math.max(ax1, cx1);
-          var overlapY = Math.min(ay2, cy2) - Math.max(ay1, cy1);
-
-          if (overlapX < overlapY) {
-            var pushX = overlapX * 0.5 * relaxRate;
-            if (a.x < c.x) { a.x -= pushX; c.x += pushX; }
-            else { a.x += pushX; c.x -= pushX; }
-          } else {
-            var pushY = overlapY * 0.5 * relaxRate;
-            if (a.y < c.y) { a.y -= pushY; c.y += pushY; }
-            else { a.y += pushY; c.y -= pushY; }
-          }
-        }
-      }
-    }
-
-    render(now / 1000);
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
-
-/* ── Hero Typewriter Headline Animation ── */
-(function() {
-  "use strict";
-
-  var targetEl = document.getElementById("hero-typewriter-text");
-  if (!targetEl) return;
-
-  var services = [
-    "Branding",
-    "SEO & GMB",
-    "Influencer Marketing",
-    "Performance Marketing",
-    "Social Media Management",
-    "Web Design & Development"
-  ];
-
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var currentIndex = 0;
-  var charIndex = 0;
-  var isDeleting = false;
-  var activeTimer = null;
-
-  var PAUSE_AFTER_TYPED = 1800; // ~1.8s pause when full word is typed
-  var PAUSE_BEFORE_TYPE = 350;  // ~0.35s pause before typing next word
-
-  function getTypingDelay(char) {
-    if (char === ' ' || char === '&') {
-      return 110 + Math.random() * 40; // Slight pause on word boundaries
-    }
-    return 45 + Math.random() * 35; // 45-80ms per character
-  }
-
-  function getDeletingDelay() {
-    return 25 + Math.random() * 15; // 25-40ms per character
-  }
-
-  if (reduceMotion) {
-    targetEl.textContent = services[currentIndex];
-    setInterval(function() {
-      currentIndex = (currentIndex + 1) % services.length;
-      targetEl.textContent = services[currentIndex];
-    }, 3200);
-    return;
-  }
-
-  function typeLoop() {
-    if (activeTimer) {
-      clearTimeout(activeTimer);
-      activeTimer = null;
-    }
-
-    var currentText = services[currentIndex];
-
-    if (isDeleting) {
-      charIndex--;
-      targetEl.textContent = currentText.substring(0, charIndex);
-    } else {
-      charIndex++;
-      targetEl.textContent = currentText.substring(0, charIndex);
-    }
-
-    var delay = 50;
-
-    if (!isDeleting && charIndex === currentText.length) {
-      isDeleting = true;
-      delay = PAUSE_AFTER_TYPED;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      currentIndex = (currentIndex + 1) % services.length;
-      delay = PAUSE_BEFORE_TYPE;
-    } else if (isDeleting) {
-      delay = getDeletingDelay();
-    } else {
-      var lastChar = currentText.charAt(charIndex - 1);
-      delay = getTypingDelay(lastChar);
-    }
-
-    activeTimer = setTimeout(typeLoop, delay);
-  }
-
-  targetEl.textContent = "";
-  activeTimer = setTimeout(typeLoop, 450);
-})();
-
-/* ── Interactive Hero Canvas Ribbon (Wide Liquid Silk #00cc33) ── */
-(function() {
-  "use strict";
-
-  var hero = document.querySelector(".dr-hero");
-  var canvas = document.getElementById("dr-hero-trail-canvas");
-  if (!hero || !canvas) return;
-
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var isTouch = window.matchMedia("(pointer: coarse)").matches;
-  if (reduceMotion) return;
-
-  var ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  var width = 0, height = 0;
-  function resize() {
-    var rect = hero.getBoundingClientRect();
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = rect.width;
-    height = rect.height;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
-  }
-  resize();
-  window.addEventListener("resize", resize);
-
-  var MAX_POINTS = 30; // ~200-250px max trail length
-  var history = [];
-  var targetX = width / 2;
-  var targetY = height / 2;
-  var currentX = targetX;
-  var currentY = targetY;
-  var lastAddedX = -9999;
-  var lastAddedY = -9999;
-  var lastMoveTime = 0;
-  var initialized = false;
-  var isHovered = false;
-
-  function onMouseMove(e) {
-    var rect = hero.getBoundingClientRect();
-    targetX = e.clientX - rect.left;
-    targetY = e.clientY - rect.top;
-    lastMoveTime = Date.now();
-
-    if (!initialized) {
-      currentX = targetX;
-      currentY = targetY;
-      initialized = true;
-    }
-    isHovered = true;
-  }
-
-  function onMouseEnter() { isHovered = true; }
-  function onMouseLeave() { isHovered = false; history = []; }
-
-  function onTouchMove(e) {
-    if (e.touches && e.touches.length > 0) {
-      onMouseMove(e.touches[0]);
-    }
-  }
-
-  hero.addEventListener("mousemove", onMouseMove, { passive: true });
-  hero.addEventListener("mouseenter", onMouseEnter, { passive: true });
-  hero.addEventListener("mouseleave", onMouseLeave, { passive: true });
-  hero.addEventListener("touchstart", onTouchMove, { passive: true });
-  hero.addEventListener("touchmove", onTouchMove, { passive: true });
-  hero.addEventListener("touchend", onMouseLeave, { passive: true });
-  hero.addEventListener("touchcancel", onMouseLeave, { passive: true });
-
-  function renderTrail() {
-    ctx.clearRect(0, 0, width, height);
-
-    var now = Date.now();
-    // Only generate new trail points while active mouse motion is detected (within 50ms and distance >= 1.8px)
-    var isMouseMoving = isHovered && (now - lastMoveTime < 50) && (Math.hypot(targetX - currentX, targetY - currentY) >= 1.5);
-
-    if (initialized) {
-      if (isMouseMoving) {
-        // Lerp lead point toward cursor
-        currentX += (targetX - currentX) * 0.22;
-        currentY += (targetY - currentY) * 0.22;
-
-        // Add new point ONLY if cursor has moved >= 2.0px from last point
-        if (Math.hypot(currentX - lastAddedX, currentY - lastAddedY) >= 2.0 || history.length === 0) {
-          history.unshift({ x: currentX, y: currentY });
-          lastAddedX = currentX;
-          lastAddedY = currentY;
-          if (history.length > MAX_POINTS) {
-            history.pop();
-          }
-        }
-      } else {
-        // Stationary / Idle: Stop drawing new points at same position.
-        // Dissolve existing trail by popping oldest point frame by frame
-        if (history.length > 0) {
-          history.pop();
-        }
-      }
-
-      var len = history.length;
-
-      if (len >= 2) {
-        ctx.save();
-        ctx.globalCompositeOperation = "screen";
-
-        // Render densely interpolated radial gradient circles along active history points only
-        for (var i = 0; i < len - 1; i++) {
-          var p1 = history[i];
-          var p2 = history[i + 1];
-
-          var t1 = i / len;
-          var t2 = (i + 1) / len;
-
-          var dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
-          var steps = Math.max(2, Math.ceil(dist / 3));
-
-          for (var s = 0; s < steps; s++) {
-            var subT = s / steps;
-            var x = p1.x + (p2.x - p1.x) * subT;
-            var y = p1.y + (p2.y - p1.y) * subT;
-
-            var progress = t1 + (t2 - t1) * subT; // 0 at head, 1 at tail
-
-            // Ribbon Radius Profile: Head (~45px) -> Wide Body (~145px / 290px width) -> Tail (~4px)
-            var radius;
-            if (progress < 0.2) {
-              radius = 45 + (145 - 45) * (progress / 0.2);
-            } else {
-              radius = Math.max(4, 145 * Math.pow(1 - (progress - 0.2) / 0.8, 1.2));
-            }
-
-            // Opacity decays from head to tail, also factoring remaining history count
-            var fadeFactor = Math.min(1, len / 10);
-            var alpha = (1 - progress) * 0.22 * fadeFactor;
-
-            if (alpha <= 0.001 || radius <= 0) continue;
-
-            // Pure Brand Green #00cc33 Radial Gradient ONLY
-            var grad = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            grad.addColorStop(0, "rgba(0, 204, 51, " + alpha.toFixed(3) + ")");
-            grad.addColorStop(0.5, "rgba(0, 204, 51, " + (alpha * 0.5).toFixed(3) + ")");
-            grad.addColorStop(1, "rgba(0, 204, 51, 0)");
-
-            ctx.fillStyle = grad;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-
-        ctx.restore();
-      }
-    }
-
-    requestAnimationFrame(renderTrail);
-  }
-
-  requestAnimationFrame(renderTrail);
 })();
 
 /* ── Hero Reel Video Modal Handler (Embedded YouTube Shorts) ── */
