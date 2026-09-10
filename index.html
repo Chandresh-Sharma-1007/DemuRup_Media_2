@@ -636,6 +636,191 @@ C 285 264, 345 264, 400 268
         </g>
       </svg>
 
+<!-- =====================================================
+     TABLET / IPAD ORBIT SYSTEM
+     3 TOP + CENTER HEADLINE + 3 BOTTOM
+===================================================== -->
+
+<svg
+  class="dr-tablet-orbit-svg"
+  viewBox="0 0 768 1024"
+  preserveAspectRatio="xMidYMid meet"
+  aria-hidden="true"
+>
+
+  <!-- ================= TOP 3 ARCS ================= -->
+
+  <!-- Branding -->
+  <path
+    id="tablet-arc-1"
+    class="dr-tablet-arc"
+    d="M 165 255 C 235 280, 285 340, 330 430"
+  />
+
+  <!-- Social Media Management -->
+  <path
+    id="tablet-arc-2"
+    class="dr-tablet-arc"
+    d="M 384 205 C 390 285, 390 350, 384 430"
+  />
+
+  <!-- Web Design & Development -->
+  <path
+    id="tablet-arc-3"
+    class="dr-tablet-arc"
+    d="M 603 255 C 533 280, 483 340, 438 430"
+  />
+
+
+  <!-- ================= CENTER SIDE ORBITS ================= -->
+
+
+
+
+  <!-- ================= BOTTOM 3 ARCS ================= -->
+
+  <!-- Influencer Marketing -->
+  <path
+    id="tablet-arc-4"
+    class="dr-tablet-arc"
+    d="M 330 565 C 285 655, 235 710, 165 755"
+  />
+
+  <!-- SEO -->
+  <path
+    id="tablet-arc-5"
+    class="dr-tablet-arc"
+    d="M 384 570 C 390 650, 390 720, 384 795"
+  />
+
+  <!-- Performance Marketing -->
+  <path
+    id="tablet-arc-6"
+    class="dr-tablet-arc"
+    d="M 438 565 C 483 655, 533 710, 603 755"
+  />
+
+
+  <!-- ================= TOP SERVICE NODES ================= -->
+
+  <!-- Branding -->
+  <g class="dr-tablet-node">
+    <circle cx="165" cy="255" r="7" />
+    <text x="145" y="240" text-anchor="end">Branding</text>
+  </g>
+
+  <!-- Social Media Management -->
+  <g class="dr-tablet-node">
+    <circle cx="384" cy="205" r="7" />
+    <text x="384" y="170" text-anchor="middle">
+      <tspan x="384" dy="0">Social Media</tspan>
+      <tspan x="384" dy="24">Management</tspan>
+    </text>
+  </g>
+
+  <!-- Web Design & Development -->
+  <g class="dr-tablet-node">
+    <circle cx="603" cy="255" r="7" />
+    <text x="623" y="225" text-anchor="start">
+      <tspan x="623" dy="0">Web Design &amp;</tspan>
+      <tspan x="623" dy="24">Development</tspan>
+    </text>
+  </g>
+
+
+  <!-- ================= BOTTOM SERVICE NODES ================= -->
+
+  <!-- Influencer Marketing -->
+  <g class="dr-tablet-node">
+    <circle cx="165" cy="755" r="7" />
+    <text x="145" y="790" text-anchor="end">
+      <tspan x="145" dy="0">Influencer</tspan>
+      <tspan x="145" dy="24">Marketing</tspan>
+    </text>
+  </g>
+
+  <!-- SEO -->
+  <g class="dr-tablet-node">
+    <circle cx="384" cy="795" r="7" />
+    <text x="384" y="835" text-anchor="middle">SEO</text>
+  </g>
+
+  <!-- Performance Marketing -->
+  <g class="dr-tablet-node">
+    <circle cx="603" cy="755" r="7" />
+    <text x="623" y="790" text-anchor="start">
+      <tspan x="623" dy="0">Performance</tspan>
+      <tspan x="623" dy="24">Marketing</tspan>
+    </text>
+  </g>
+
+<!-- =====================================================
+     TABLET TRAVELLING DOT
+===================================================== -->
+
+<circle class="dr-tablet-travel-dot" r="6">
+
+  <animateMotion
+    id="tablet-arc1move"
+    dur="3.2s"
+    begin="0s;tablet-arc6move.end"
+    fill="freeze"
+  >
+    <mpath href="#tablet-arc-1" />
+  </animateMotion>
+
+  <animateMotion
+    id="tablet-arc2move"
+    dur="3.2s"
+    begin="tablet-arc1move.end"
+    fill="freeze"
+  >
+    <mpath href="#tablet-arc-2" />
+  </animateMotion>
+
+  <animateMotion
+    id="tablet-arc3move"
+    dur="3.2s"
+    begin="tablet-arc2move.end"
+    fill="freeze"
+  >
+    <mpath href="#tablet-arc-3" />
+  </animateMotion>
+
+  <animateMotion
+    id="tablet-arc4move"
+    dur="3.2s"
+    begin="tablet-arc3move.end"
+    fill="freeze"
+  >
+    <mpath href="#tablet-arc-4" />
+  </animateMotion>
+
+  <animateMotion
+    id="tablet-arc5move"
+    dur="3.2s"
+    begin="tablet-arc4move.end"
+    fill="freeze"
+  >
+    <mpath href="#tablet-arc-5" />
+  </animateMotion>
+
+  <animateMotion
+    id="tablet-arc6move"
+    dur="3.2s"
+    begin="tablet-arc5move.end"
+    fill="freeze"
+  >
+    <mpath href="#tablet-arc-6" />
+  </animateMotion>
+
+</circle>
+
+</svg>
+
+<!-- END TABLET / IPAD ORBIT SYSTEM -->
+
+
       <!-- Central Sculpted Curved Headline (Matching Image B: Wide Presence, Gentle Wave, White Dominant) -->
       <div class="dr-hero-headline-wrap">
         <h1 class="dr-hero-headline" aria-label="One Stop Solution For">
@@ -674,6 +859,243 @@ C 285 264, 345 264, 400 268
     </div>
     <!-- /stage -->
   </section>
+
+
+
+  <!-- =====================================================
+     MOBILE ONLY HERO MAP
+===================================================== -->
+
+  <svg class="dr-mobile-orbit-svg" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+
+    <defs>
+
+      <linearGradient id="mobileArcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#00cc33" stop-opacity="0.50" />
+        <stop offset="45%" stop-color="#00cc33" stop-opacity="1" />
+        <stop offset="100%" stop-color="#00cc33" stop-opacity="0.55" />
+      </linearGradient>
+
+    </defs>
+
+
+    <!-- =================================================
+       TOP LEFT — BRANDING
+  ================================================== -->
+
+    <path id="mobile-arc-1" class="dr-mobile-arc" d="
+      M 68 255
+      C 110 265, 145 310, 170 382
+    " />
+
+    <circle cx="68" cy="255" r="5.5" class="dr-mobile-node-dot" />
+
+    <text x="58" y="246" text-anchor="end" class="dr-mobile-label">
+      Branding
+    </text>
+
+
+    <!-- =================================================
+       TOP CENTER — SOCIAL MEDIA
+  ================================================== -->
+
+    <path id="mobile-arc-2" class="dr-mobile-arc" d="
+      M 195 215
+      C 202 275, 202 325, 195 382
+    " />
+
+    <circle cx="195" cy="215" r="5.5" class="dr-mobile-node-dot" />
+
+    <text x="195" y="184" text-anchor="middle" class="dr-mobile-label">
+      <tspan x="195" dy="0">Social Media</tspan>
+      <tspan x="195" dy="17">Management</tspan>
+    </text>
+
+
+    <!-- =================================================
+       TOP RIGHT — WEB DESIGN
+  ================================================== -->
+
+    <path id="mobile-arc-3" class="dr-mobile-arc" d="
+      M 322 258
+      C 280 268, 245 312, 220 382
+    " />
+
+    <circle cx="322" cy="258" r="5.5" class="dr-mobile-node-dot" />
+
+    <text x="370" y="238" text-anchor="end" class="dr-mobile-label">
+      <tspan x="370" dy="0">Web Design &</tspan>
+      <tspan x="370" dy="17">Development</tspan>
+    </text>
+
+
+<!-- =================================================
+     SIDE ORBITS AROUND CENTER HEADLINE
+================================================== -->
+
+<!-- LEFT ORBIT -->
+<!-- <path
+  class="dr-mobile-arc dr-mobile-side-arc"
+  d="
+    M 32 395
+    C 58 345, 125 342, 174 390
+
+    M 185 425
+    C 125 468, 58 465, 32 415
+  " -->
+/>
+
+
+<!-- RIGHT ORBIT -->
+<!-- <path
+  class="dr-mobile-arc dr-mobile-side-arc"
+  d="
+    M 358 395
+    C 332 345, 265 342, 216 390
+
+    M 216 425
+    C 265 468, 332 465, 358 415
+  "
+/> -->
+
+    <!-- =================================================
+       BOTTOM LEFT — INFLUENCER
+  ================================================== -->
+
+    <path id="mobile-arc-4" class="dr-mobile-arc" d="
+      M 170 458
+      C 145 515, 110 557, 70 585
+    " />
+
+    <circle cx="70" cy="585" r="5.5" class="dr-mobile-node-dot" />
+
+    <text x="26" y="612" text-anchor="start" class="dr-mobile-label">
+      <tspan x="26" dy="0">Influencer</tspan>
+      <tspan x="26" dy="17">Marketing</tspan>
+    </text>
+
+
+    <!-- =================================================
+       BOTTOM CENTER — SEO
+  ================================================== -->
+
+    <path id="mobile-arc-5" class="dr-mobile-arc" d="
+      M 195 458
+      C 200 510, 200 570, 195 615
+    " />
+
+    <circle cx="195" cy="615" r="5.5" class="dr-mobile-node-dot" />
+
+    <text x="195" y="644" text-anchor="middle" class="dr-mobile-label">
+      SEO
+    </text>
+
+
+    <!-- =================================================
+       BOTTOM RIGHT — PERFORMANCE
+  ================================================== -->
+
+    <path id="mobile-arc-6" class="dr-mobile-arc" d="
+      M 220 458
+      C 245 515, 280 557, 320 585
+    " />
+
+    <circle cx="320" cy="585" r="5.5" class="dr-mobile-node-dot" />
+
+    <text x="365" y="612" text-anchor="end" class="dr-mobile-label">
+      <tspan x="365" dy="0">Performance</tspan>
+      <tspan x="365" dy="17">Marketing</tspan>
+    </text>
+
+
+    <!-- =====================================================
+       SEQUENTIAL MOVING DOT
+  ====================================================== -->
+
+    <!-- ARC 1 -->
+    <circle r="5.5" class="dr-mobile-travel-dot" opacity="0">
+
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.4s"
+        begin="0s;mobileArc6Move.end" />
+
+      <animateMotion id="mobileArc1Move" dur="3.4s" begin="0s;mobileArc6Move.end" calcMode="spline" keyTimes="0;1"
+        keySplines="0.42 0 0.58 1" fill="freeze">
+        <mpath href="#mobile-arc-1" />
+      </animateMotion>
+
+    </circle>
+
+
+    <!-- ARC 2 -->
+    <circle r="5.5" class="dr-mobile-travel-dot" opacity="0">
+
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.4s"
+        begin="mobileArc1Move.end" />
+
+      <animateMotion id="mobileArc2Move" dur="3.4s" begin="mobileArc1Move.end" calcMode="spline" keyTimes="0;1"
+        keySplines="0.42 0 0.58 1" fill="freeze">
+        <mpath href="#mobile-arc-2" />
+      </animateMotion>
+
+    </circle>
+
+
+    <!-- ARC 3 -->
+    <circle r="5.5" class="dr-mobile-travel-dot" opacity="0">
+
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.4s"
+        begin="mobileArc2Move.end" />
+
+      <animateMotion id="mobileArc3Move" dur="3.4s" begin="mobileArc2Move.end" calcMode="spline" keyTimes="0;1"
+        keySplines="0.42 0 0.58 1" fill="freeze">
+        <mpath href="#mobile-arc-3" />
+      </animateMotion>
+
+    </circle>
+
+
+    <!-- ARC 4 -->
+    <circle r="5.5" class="dr-mobile-travel-dot" opacity="0">
+
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.4s"
+        begin="mobileArc3Move.end" />
+
+      <animateMotion id="mobileArc4Move" dur="3.4s" begin="mobileArc3Move.end" calcMode="spline" keyTimes="0;1"
+        keySplines="0.42 0 0.58 1" fill="freeze">
+        <mpath href="#mobile-arc-4" />
+      </animateMotion>
+
+    </circle>
+
+
+    <!-- ARC 5 -->
+    <circle r="5.5" class="dr-mobile-travel-dot" opacity="0">
+
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.4s"
+        begin="mobileArc4Move.end" />
+
+      <animateMotion id="mobileArc5Move" dur="3.4s" begin="mobileArc4Move.end" calcMode="spline" keyTimes="0;1"
+        keySplines="0.42 0 0.58 1" fill="freeze">
+        <mpath href="#mobile-arc-5" />
+      </animateMotion>
+
+    </circle>
+
+
+    <!-- ARC 6 -->
+    <circle r="5.5" class="dr-mobile-travel-dot" opacity="0">
+
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.4s"
+        begin="mobileArc5Move.end" />
+
+      <animateMotion id="mobileArc6Move" dur="3.4s" begin="mobileArc5Move.end" calcMode="spline" keyTimes="0;1"
+        keySplines="0.42 0 0.58 1" fill="freeze">
+        <mpath href="#mobile-arc-6" />
+      </animateMotion>
+
+    </circle>
+
+  </svg>
 
   <!-- ══════════════════════════════════════════════════════════════
      CLIENT BRAND MARQUEE (PURE BLACK STRIP)

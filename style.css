@@ -3081,6 +3081,9 @@ body.menu-open {
     drop-shadow(0 2px 3px rgba(0, 0, 0, 0.85));
 }
 
+
+
+
 /* ══════════════════════════════════════════════
    HERO RESPONSIVE BREAKPOINTS
 ══════════════════════════════════════════════ */
@@ -6656,4 +6659,712 @@ body.menu-open {
   .dr-contact-desktop-presence {
     display: none !important;
   }
+}
+
+/* =====================================================
+   TABLET / IPAD HERO
+   769px — 1024px
+===================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .dr-hero {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    overflow: hidden;
+  }
+
+  .dr-hero-stage {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    max-width: none;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    /* Side safety */
+    margin-left: 5vw;
+    margin-right: 5vw;
+
+    box-sizing: border-box;
+  }
+
+  /* =================================================
+     MAIN COMPOSITION
+     Reduce top/bottom empty area
+  ================================================= */
+
+  .dr-hero-orbit-svg {
+    position: absolute;
+
+    width: 88%;
+    height: auto;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+      translate(-50%, -50%)
+      scaleY(1.42);
+
+    transform-origin: center center;
+
+    overflow: visible;
+
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+  }
+
+  /* =================================================
+     ORBIT LINES
+  ================================================= */
+
+  .dr-orbit-path {
+    stroke-width: 2.2px !important;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    vector-effect: non-scaling-stroke;
+
+    filter:
+      drop-shadow(0 0 2px rgba(0, 204, 51, 0.58))
+      drop-shadow(0 0 5px rgba(0, 204, 51, 0.24));
+
+    transition:
+      filter 0.8s ease,
+      stroke-width 0.8s ease;
+  }
+
+  .dr-orbit-path.is-active-glow {
+    stroke-width: 4.5px !important;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 9px rgba(0, 204, 51, 0.90))
+      drop-shadow(0 0 18px rgba(0, 204, 51, 0.55))
+      drop-shadow(0 0 26px rgba(0, 204, 51, 0.25));
+  }
+
+  /* =================================================
+     SERVICE LABELS
+  ================================================= */
+
+  .dr-node-label {
+    font-size: 30px !important;
+    font-weight: 600;
+
+    letter-spacing: 0;
+
+    fill: #ffffff;
+
+    text-rendering: geometricPrecision;
+
+    filter:
+      drop-shadow(0 2px 3px rgba(0, 0, 0, 0.85))
+      drop-shadow(0 0 3px rgba(255, 255, 255, 0.08));
+  }
+
+  /* Better spacing for 2-line labels */
+  .dr-node-label tspan {
+   
+
+    line-height: 12px;
+  }
+
+  /* =================================================
+     FIX MULTILINE LABEL SPACING
+  ================================================= */
+
+  /* .dr-node-influencer .dr-node-label tspan + tspan,
+  .dr-node-web .dr-node-label tspan + tspan,
+  .dr-node-performance .dr-node-label tspan + tspan,
+  .dr-node-smm .dr-node-label tspan + tspan {
+    dy: 26px;
+  } */
+
+  /* =================================================
+     SIDE LABEL SAFETY
+     Move side labels slightly inward
+  ================================================= */
+
+  .dr-node-influencer {
+    transform: translateX(18px);
+  }
+
+  .dr-node-web {
+    transform: translateX(-28px);
+  }
+
+  .dr-node-performance {
+    transform: translateX(-18px);
+  }
+
+  .dr-node-smm {
+    transform: translateX(-18px);
+  }
+
+  /* =================================================
+     CENTER HEADLINE
+  ================================================= */
+
+  .dr-headline-curved-svg {
+    transform: scale(1.4) !important;
+    transform-origin: center center;
+    transform-box: fill-box;
+
+    text-rendering: geometricPrecision;
+
+    filter:
+      drop-shadow(0 6px 3px rgba(0, 0, 0, 0.90))
+      drop-shadow(0 9px 7px rgba(0, 204, 51, 0.10));
+  }
+
+  /* =================================================
+     NORMAL DOTS
+  ================================================= */
+
+  .dr-node-dot {
+    r: 6px;
+
+    fill: #00cc33;
+
+    filter:
+      drop-shadow(0 0 3px rgba(0, 204, 51, 0.95))
+      drop-shadow(0 0 7px rgba(0, 204, 51, 0.45));
+  }
+
+  /* =================================================
+     TRAVELLING DOT
+  ================================================= */
+
+  .dr-travel-dot {
+    r: 6px;
+
+    fill: #00cc33;
+
+    pointer-events: none;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 9px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 16px rgba(0, 204, 51, 0.72))
+      drop-shadow(0 0 24px rgba(0, 204, 51, 0.35));
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE HERO
+   0px — 768px
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .dr-hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .dr-hero-stage {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    max-width: none;
+    margin: 0;
+
+    overflow: hidden;
+  }
+
+  /* =================================================
+     MAIN COMPOSITION
+  ================================================= */
+
+  .dr-hero-orbit-svg {
+    position: absolute;
+
+    /* Large enough to feel strong on mobile */
+    width: 150%;
+    height: auto;
+
+    left: 50%;
+    top: 50%;
+
+    /* No aggressive vertical distortion */
+    transform: translate(-50%, -50%) scaleY(1.08);
+
+    transform-origin: center center;
+
+    overflow: visible;
+
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+  }
+
+
+  /* =================================================
+     CENTER HEADLINE
+  ================================================= */
+
+  .dr-headline-curved-svg {
+    transform: scale(1.12) !important;
+
+    transform-origin: center center;
+    transform-box: fill-box;
+
+    text-rendering: geometricPrecision;
+
+    filter:
+      drop-shadow(0 5px 3px rgba(0, 0, 0, 0.90))
+      drop-shadow(0 7px 6px rgba(0, 204, 51, 0.12));
+  }
+
+
+  /* =================================================
+     SERVICE LABELS
+  ================================================= */
+
+  .dr-node-label {
+    font-size: 25px !important;
+    font-weight: 600;
+
+    fill: #ffffff;
+    letter-spacing: 0;
+
+    text-rendering: geometricPrecision;
+
+    filter:
+      drop-shadow(0 2px 3px rgba(0, 0, 0, 0.90));
+  }
+
+
+  /* =================================================
+     MOVE SIDE SERVICES INSIDE
+  ================================================= */
+
+  .dr-node-branding {
+    transform: translateX(55px);
+  }
+
+  .dr-node-influencer {
+    transform: translateX(95px);
+  }
+
+  .dr-node-smm {
+    transform: translateX(-90px);
+  }
+
+  .dr-node-web {
+    transform: translateX(-135px);
+  }
+
+  .dr-node-performance {
+    transform: translateX(-75px);
+  }
+
+  .dr-node-seo {
+    transform: translateX(35px);
+  }
+
+
+  /* =================================================
+     ARCS
+  ================================================= */
+
+  .dr-orbit-path {
+    stroke-width: 1.8px !important;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+
+    filter:
+      drop-shadow(0 0 2px rgba(0, 204, 51, 0.55))
+      drop-shadow(0 0 5px rgba(0, 204, 51, 0.22));
+  }
+
+
+  .dr-orbit-path.is-active-glow {
+    stroke-width: 4px !important;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 9px rgba(0, 204, 51, 0.90))
+      drop-shadow(0 0 18px rgba(0, 204, 51, 0.50));
+  }
+
+
+  /* =================================================
+     DOTS
+  ================================================= */
+
+  .dr-node-dot {
+    r: 5.5px;
+
+    fill: #00cc33;
+
+    filter:
+      drop-shadow(0 0 3px rgba(0, 204, 51, 0.95))
+      drop-shadow(0 0 7px rgba(0, 204, 51, 0.45));
+  }
+
+
+  .dr-travel-dot {
+    r: 5.5px;
+
+    fill: #00cc33;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 9px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 16px rgba(0, 204, 51, 0.70));
+  }
+
+}
+
+
+
+
+/* =====================================================
+   MOBILE SVG HIDDEN ON DESKTOP
+===================================================== */
+
+.dr-mobile-orbit-svg {
+  display: none;
+}
+
+
+/* =====================================================
+   MOBILE HERO
+===================================================== */
+
+@media (max-width: 768px) {
+
+  /* Hide desktop orbit */
+  .dr-hero-orbit-svg {
+    display: none !important;
+  }
+
+
+  .dr-hero {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    overflow: hidden;
+  }
+
+
+  .dr-hero-stage {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    margin: 0;
+    max-width: none;
+
+    overflow: hidden;
+  }
+
+
+  /* =================================================
+     MOBILE MAP
+  ================================================= */
+
+  .dr-mobile-orbit-svg {
+    display: block;
+
+    position: absolute;
+
+    width: 94%;
+    height: 88%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    overflow: visible;
+
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+  }
+
+
+  /* =================================================
+     NORMAL MOBILE ARC
+  ================================================= */
+
+  .dr-mobile-arc {
+    fill: none;
+
+    stroke: url(#mobileArcGradient);
+    stroke-width: 2px;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    vector-effect: non-scaling-stroke;
+
+    filter:
+      drop-shadow(0 0 2px rgba(0, 204, 51, 0.55))
+      drop-shadow(0 0 5px rgba(0, 204, 51, 0.20));
+
+    transition:
+      filter 0.75s ease,
+      stroke-width 0.75s ease;
+  }
+
+
+  /* =================================================
+     ACTIVE ARC
+     Same idea as desktop
+  ================================================= */
+
+  .dr-mobile-arc.is-active-glow {
+    stroke-width: 4.5px;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 9px rgba(0, 204, 51, 0.92))
+      drop-shadow(0 0 18px rgba(0, 204, 51, 0.58))
+      drop-shadow(0 0 27px rgba(0, 204, 51, 0.30));
+  }
+
+
+  
+
+  .dr-mobile-side-arc {
+  stroke-width: 2px;
+  opacity: 0.9;
+
+  filter:
+    drop-shadow(0 0 2px rgba(0, 204, 51, 0.60))
+    drop-shadow(0 0 6px rgba(0, 204, 51, 0.30));
+}
+
+  /* =================================================
+     SERVICE LABELS
+  ================================================= */
+
+  .dr-mobile-label {
+    fill: #ffffff;
+
+    font-family:
+      'Plus Jakarta Sans',
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0;
+
+    text-rendering: geometricPrecision;
+
+    filter:
+      drop-shadow(0 2px 2px rgba(0, 0, 0, 0.90));
+  }
+
+
+  /* =================================================
+     STATIC SERVICE DOTS
+  ================================================= */
+
+  .dr-mobile-node-dot {
+    fill: #00cc33;
+
+    filter:
+      drop-shadow(0 0 3px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 8px rgba(0, 204, 51, 0.55));
+  }
+
+
+  /* =================================================
+     MOVING DOT
+  ================================================= */
+
+  .dr-mobile-travel-dot {
+    fill: #00cc33;
+
+    pointer-events: none;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 9px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 16px rgba(0, 204, 51, 0.80))
+      drop-shadow(0 0 24px rgba(0, 204, 51, 0.45));
+  }
+
+
+  /* =================================================
+     CENTER HEADLINE
+  ================================================= */
+
+  .dr-headline-curved-svg {
+    position: absolute;
+
+    width: 76%;
+
+    left: 50%;
+    top: 49%;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.18) !important;
+
+    transform-origin: center center;
+    transform-box: fill-box;
+
+    z-index: 5;
+
+    text-rendering: geometricPrecision;
+
+    filter:
+      drop-shadow(0 5px 3px rgba(0, 0, 0, 0.92))
+      drop-shadow(0 8px 8px rgba(0, 204, 51, 0.14));
+  }
+
+}
+
+
+
+/* =====================================================
+   TABLET / IPAD ORBIT SYSTEM
+===================================================== */
+
+/* Tablet SVG hidden by default */
+.dr-tablet-orbit-svg {
+  display: none;
+}
+
+
+/* =====================================================
+   TABLET ONLY — 769px to 1024px
+===================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* Hide existing desktop orbit */
+  .dr-hero-orbit-svg {
+    display: none !important;
+  }
+
+  /* Hide mobile orbit */
+  .dr-mobile-orbit-svg {
+    display: none !important;
+  }
+
+  /* Show new tablet orbit */
+  .dr-tablet-orbit-svg {
+    display: block !important;
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    z-index: 2;
+    pointer-events: none;
+  }
+
+
+  /* =========================
+     TABLET ARCS
+  ========================= */
+
+  .dr-tablet-arc {
+    fill: none;
+    stroke: #00cc33;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+      drop-shadow(0 0 3px rgba(0, 204, 51, 0.75))
+      drop-shadow(0 0 8px rgba(0, 204, 51, 0.35));
+  }
+
+
+  /* =========================
+     SIDE ORBITS
+  ========================= */
+
+  .dr-tablet-side-arc {
+    stroke-width: 2px;
+    opacity: 0.9;
+  }
+
+
+  /* =========================
+     SERVICE DOTS
+  ========================= */
+
+  .dr-tablet-node circle {
+    fill: #00cc33;
+
+    filter:
+      drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+      drop-shadow(0 0 10px rgba(0, 204, 51, 0.65));
+  }
+
+
+  /* =========================
+     SERVICE TEXT
+  ========================= */
+
+  .dr-tablet-node text {
+    fill: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 23px;
+    font-weight: 600;
+
+    letter-spacing: 0;
+  }
+
+
+  /* Keep headline ABOVE tablet arcs */
+  .dr-hero-headline-wrap {
+    position: relative;
+    z-index: 5;
+  }
+
+
+  .dr-tablet-travel-dot {
+  fill: #00cc33;
+
+  filter:
+    drop-shadow(0 0 4px rgba(0, 204, 51, 1))
+    drop-shadow(0 0 9px rgba(0, 204, 51, 0.95))
+    drop-shadow(0 0 16px rgba(0, 204, 51, 0.65));
+}
 }
