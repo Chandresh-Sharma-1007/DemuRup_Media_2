@@ -7180,8 +7180,8 @@ body.menu-open {
       "Segoe UI",
       sans-serif;
 
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 20px !important;
+    font-weight: 600 !important;
 
     letter-spacing: 0;
 
@@ -7225,6 +7225,10 @@ body.menu-open {
   /* =================================================
      CENTER HEADLINE
   ================================================= */
+ .dr-hero-headline-wrap {
+    transform: scale(2);
+    transform-origin: center center;
+  }
 
   .dr-headline-curved-svg {
     position: absolute;
