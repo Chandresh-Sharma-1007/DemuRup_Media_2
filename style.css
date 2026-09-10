@@ -484,7 +484,7 @@ section#clients .logo-card:hover img {
 
 /* Logo Sizing & Scaling (Desktop ~210px, Tablet ~190px, Mobile ~165px) */
 #main-nav .dr-nav-brand img {
-  width: 210px !important;
+  width: 180px !important;
   height: auto !important;
   max-height: none !important;
   display: block;
