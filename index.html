@@ -14,7 +14,12 @@
     (function () {
       const _warn = console.warn;
       console.warn = function (...args) {
-        if (args[0] && typeof args[0] === 'string' && args[0].indexOf('cdn.tailwindcss.com') !== -1) return;
+        if (
+          args[0] &&
+          typeof args[0] === "string" &&
+          args[0].indexOf("cdn.tailwindcss.com") !== -1
+        )
+          return;
         _warn.apply(console, args);
       };
       window._originalWarn = _warn;
@@ -29,9 +34,9 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="preload" href="fonts/TheSeasons-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/TheSeasons-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/BeautifulDelight-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/TheSeasons-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/TheSeasons-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/BeautifulDelight-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <script>
     tailwind.config = { theme: { extend: { colors: { lime: "#00cc33" } } } };
@@ -42,10 +47,10 @@
   <!-- ══ Splash Screen ══ -->
   <div class="dr-splash-stage" id="dr-splash-stage">
     <script>
-      if (sessionStorage.getItem('splashPlayed')) {
-        document.getElementById('dr-splash-stage').style.display = 'none';
+      if (sessionStorage.getItem("splashPlayed")) {
+        document.getElementById("dr-splash-stage").style.display = "none";
       } else {
-        document.body.classList.add('dr-splash-active');
+        document.body.classList.add("dr-splash-active");
       }
     </script>
     <div class="dr-splash-backdrop-grid"></div>
@@ -56,13 +61,11 @@
 
     <div class="dr-splash-logo-wrap">
       <div class="dr-splash-mark-frame">
-        <img src="main logo.png" alt="DemuRup Media" draggable="false">
+        <img src="main logo.png" alt="DemuRup Media" draggable="false" />
         <div class="dr-splash-sweep"></div>
       </div>
 
       <div class="dr-splash-divider"></div>
-
-
     </div>
 
     <div class="dr-splash-hint">Tap to replay</div>
@@ -117,9 +120,7 @@
         </h2>
 
         <!-- Sub text -->
-        <p class="dr-pop-sub">
-          Let's redesign your brand's future together.
-        </p>
+        <p class="dr-pop-sub">Let's redesign your brand's future together.</p>
 
         <div class="dr-pop-divider"></div>
 
@@ -169,31 +170,52 @@
         <!-- Left Column: Large Bold Links -->
         <div class="dr-menu-left">
           <ul class="dr-menu-links">
-            <li class="dr-menu-item"><a href="about.html" class="dr-menu-link">About</a></li>
+            <li class="dr-menu-item">
+              <a href="about.html" class="dr-menu-link">About</a>
+            </li>
             <li class="dr-menu-item dr-menu-item-services">
               <a href="#services" class="dr-menu-link dr-services-trigger" id="dr-services-toggle"
                 aria-expanded="false">
-                Services <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span
+                Services
+                <span class="dr-services-arrow dr-services-arrow-desktop" aria-hidden="true">→</span><span
                   class="dr-services-arrow dr-services-arrow-mobile" aria-hidden="true">↓</span>
               </a>
               <!-- Mobile/Tablet Accordion Dropdown -->
               <div class="dr-services-accordion" id="dr-services-accordion" aria-hidden="true">
                 <ul class="dr-services-accordion-list">
-                  <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a>
+                  <li>
+                    <a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a>
                   </li>
-                  <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+                  <li>
+                    <a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
                   </li>
-                  <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
-                  <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
-                  <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
-                  <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+                  <li>
+                    <a href="Branding.html" class="dr-service-item-link">Branding</a>
+                  </li>
+                  <li>
+                    <a href="SEO.html" class="dr-service-item-link">SEO</a>
+                  </li>
+                  <li>
+                    <a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a>
+                  </li>
+                  <li>
+                    <a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a>
+                  </li>
                 </ul>
               </div>
             </li>
-            <li class="dr-menu-item"><a href="clients.html" class="dr-menu-link">Clients</a></li>
-            <li class="dr-menu-item"><a href="casestudy.html" class="dr-menu-link">Case Study</a></li>
-            <li class="dr-menu-item"><a href="blog.html" class="dr-menu-link">Blog</a></li>
-            <li class="dr-menu-item"><a href="contact.html" class="dr-menu-link">Contact</a></li>
+            <li class="dr-menu-item">
+              <a href="clients.html" class="dr-menu-link">Clients</a>
+            </li>
+            <li class="dr-menu-item">
+              <a href="casestudy.html" class="dr-menu-link">Case Study</a>
+            </li>
+            <li class="dr-menu-item">
+              <a href="blog.html" class="dr-menu-link">Blog</a>
+            </li>
+            <li class="dr-menu-item">
+              <a href="contact.html" class="dr-menu-link">Contact</a>
+            </li>
           </ul>
         </div>
 
@@ -227,12 +249,22 @@
           <div class="dr-menu-services-panel" id="dr-menu-services-panel" aria-hidden="true">
             <h4 class="dr-menu-sublabel dr-services-header">Our Services</h4>
             <ul class="dr-services-desktop-list">
-              <li><a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a></li>
-              <li><a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a></li>
-              <li><a href="Branding.html" class="dr-service-item-link">Branding</a></li>
+              <li>
+                <a href="Social Media Management.html" class="dr-service-item-link">Social Media Management</a>
+              </li>
+              <li>
+                <a href="Web Design & Development.html" class="dr-service-item-link">Web Design & Development</a>
+              </li>
+              <li>
+                <a href="Branding.html" class="dr-service-item-link">Branding</a>
+              </li>
               <li><a href="SEO.html" class="dr-service-item-link">SEO</a></li>
-              <li><a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a></li>
-              <li><a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a></li>
+              <li>
+                <a href="Performance Marketing.html" class="dr-service-item-link">Performance Marketing</a>
+              </li>
+              <li>
+                <a href="Influencer Marketing.html" class="dr-service-item-link">Influencer Marketing</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -250,13 +282,12 @@
 
     <!-- Orbit Parallax / Floating Stage -->
     <div class="dr-hero-stage" id="dr-hero-stage">
-
       <!-- Dynamic SVG Orbit System with Integrated Service Nodes (Zero-Gap Direct Attachment) -->
       <svg class="dr-hero-orbit-svg" id="dr-hero-orbit-svg" viewBox="0 0 1200 700" fill="none"
         xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
         <defs>
           <filter id="dr-green-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.2" result="blur" />
+            <feGaussianBlur stdDeviation="1.4" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -269,17 +300,83 @@
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <linearGradient id="orbit-grad-1" x1="10%" y1="20%" x2="90%" y2="80%">
-            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.95" />
-            <stop offset="50%" stop-color="#00CC33" stop-opacity="0.4" />
-            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.9" />
-          </linearGradient>
-          <linearGradient id="orbit-grad-2" x1="90%" y1="20%" x2="10%" y2="80%">
-            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.9" />
-            <stop offset="40%" stop-color="#00CC33" stop-opacity="0.3" />
-            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.95" />
+          <linearGradient id="orbit-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0" />
+            <stop offset="15%" stop-color="#00CC33" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#00CC33" stop-opacity="0.45" />
+            <stop offset="85%" stop-color="#00CC33" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0" />
           </linearGradient>
 
+          <linearGradient id="orbit-grad-2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0" />
+            <stop offset="18%" stop-color="#00CC33" stop-opacity="0.75" />
+            <stop offset="50%" stop-color="#00CC33" stop-opacity="0.28" />
+            <stop offset="82%" stop-color="#00CC33" stop-opacity="0.7" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0" />
+          </linearGradient>
+
+          <linearGradient id="arc-1-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.95" />
+            <stop offset="45%" stop-color="#00CC33" stop-opacity="0.75" />
+            <stop offset="78%" stop-color="#00CC33" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.85" />
+          </linearGradient>
+
+          <linearGradient id="arc-2-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.85" />
+            <stop offset="30%" stop-color="#00CC33" stop-opacity="0.70" />
+            <stop offset="65%" stop-color="#00CC33" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.75" />
+          </linearGradient>
+          <!-- ARC 4 GRADIENT -->
+          <linearGradient id="arc-4-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.35" />
+            <stop offset="18%" stop-color="#00CC33" stop-opacity="0.65" />
+            <stop offset="45%" stop-color="#00CC33" stop-opacity="0.85" />
+            <stop offset="70%" stop-color="#00CC33" stop-opacity="0.65" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.35" />
+          </linearGradient>
+          <!-- ARC 7 GRADIENT -->
+          <linearGradient id="arc-7-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.50" />
+            <stop offset="40%" stop-color="#00CC33" stop-opacity="0.70" />
+            <stop offset="75%" stop-color="#00CC33" stop-opacity="0.82" />
+            <stop offset="90%" stop-color="#00CC33" stop-opacity="0.65" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.45" />
+          </linearGradient>
+
+          <!-- PRIMARY ARC -->
+          <linearGradient id="arc-primary-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.55" />
+            <stop offset="20%" stop-color="#00E846" stop-opacity="0.95" />
+            <stop offset="50%" stop-color="#00CC33" stop-opacity="0.70" />
+            <stop offset="82%" stop-color="#00E846" stop-opacity="0.88" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.42" />
+          </linearGradient>
+
+          <!-- MEDIUM ARC -->
+          <linearGradient id="arc-medium-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.28" />
+            <stop offset="25%" stop-color="#00CC33" stop-opacity="0.60" />
+            <stop offset="55%" stop-color="#00E846" stop-opacity="0.50" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.22" />
+          </linearGradient>
+
+          <!-- FAINT ARC -->
+          <linearGradient id="arc-faint-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="0.10" />
+            <stop offset="40%" stop-color="#00CC33" stop-opacity="0.32" />
+            <stop offset="70%" stop-color="#00CC33" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0.08" />
+          </linearGradient>
+
+          <linearGradient id="all-arcs-fade" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC33" stop-opacity="1" />
+            <stop offset="99%" stop-color="#00CC33" stop-opacity="0.9" />
+            <stop offset="99.5%" stop-color="#00CC33" stop-opacity="0.35" />
+            <stop offset="100%" stop-color="#00CC33" stop-opacity="0" />
+          </linearGradient>
           <!-- Subtle, Crisp 3D Dimensional Bevel Filter (Matching Approved Visual: Brilliant White Face, No Thick Chunky Extrusion) -->
           <filter id="dr-subtle-depth" x="-20%" y="-20%" width="140%" height="150%">
             <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000000" flood-opacity="0.85" />
@@ -300,31 +397,68 @@
 
         <!-- ══ 5 Open Sweeping Bézier Paths (Rebuilt from Image B: No Capsule, No Closed Oval) ══ -->
 
-        <!-- Path 1: Upper Sweeping Arch from Branding (180,210) over ONE STOP to SMM (830,135) with loop behind -->
-        <path id="orbit-path-1" class="dr-orbit-path dr-orbit-path-primary"
-          d="M 180 210 C 320 115, 580 85, 830 135 C 915 155, 930 250, 875 320" stroke="url(#orbit-grad-1)"
-          stroke-width="1.3" filter="url(#dr-green-glow)" />
+        <!-- Arc 1: Branding → upper sweep -->
+        <path id="arc-1" class="dr-orbit-path" d="
+    M 180 210
+    C 300 85, 555 65, 585 200
+  " stroke-width="1.05" fill="none" />
 
-        <!-- Path 2: Diagonal Infinity Crossing from Influencer (130,360) through Center (580,470) to Web Design (1020,380) -->
-        <path id="orbit-path-2" class="dr-orbit-path dr-orbit-path-secondary"
-          d="M 130 360 C 240 430, 440 490, 580 470 C 720 450, 880 365, 1020 380" stroke="url(#orbit-grad-2)"
-          stroke-width="1.2" filter="url(#dr-green-glow)" />
+        <!-- ARC 2 — Arc 1 end → Social Media → down toward P/F area -->
+        <path id="arc-2" class="dr-orbit-path" d=" 
+    M 650 187
+    C 735 145, 880 95, 1030 110
+    C 1095 120, 1110 205, 1065 270
+    C 1010 330, 925 355, 830 340
+  " stroke-width="1.0" fill="none" />
 
-        <!-- Path 3: Counter-Diagonal Infinity Crossing from SEO (340,560) through Center (580,470) to Performance (810,560) and up to Web Design -->
-        <path id="orbit-path-3" class="dr-orbit-path dr-orbit-path-accent"
-          d="M 340 560 C 440 495, 520 460, 580 470 C 650 480, 730 525, 810 560 C 920 540, 1010 470, 1020 380"
-          stroke="#00CC33" stroke-width="1.15" stroke-opacity="0.9" filter="url(#dr-green-glow)" />
+        <!-- ARC 3 — E of ONE → smooth sweep → after P of STOP -->
+        <path id="arc-3" class="dr-orbit-path" d="
+    M 550 245
+    C 650 175, 760 170, 845 210
+    C 885 230, 905 245, 925 255
+  " stroke-width="0.95" fill="none" />
+        <!-- ARC 4 — Web Design → smooth inward sweep → IO of SOLUTION -->
 
-        <!-- Path 4: Left Crescent Ribbon connecting Influencer (130,360) upward to Branding (180,210) -->
-        <path id="orbit-path-4" class="dr-orbit-path dr-orbit-path-left" d="M 130 360 C 95 295, 120 235, 180 210"
-          stroke="#00CC33" stroke-width="1.1" stroke-opacity="0.8" filter="url(#dr-green-glow)" />
+        <path id="arc-4" class="dr-orbit-path" d="
+    M 945 255
+    C 1040 245, 1115 285, 1100 380
+    C 1085 475, 900 505, 600 450
+  " stroke-width="1" fill="none" />
 
-        <!-- Path 5: Lower Harmonic Cradle dipping gracefully between SEO (340,560) and Performance Marketing (810,560) -->
-        <path id="orbit-path-5" class="dr-orbit-path dr-orbit-path-cradle" d="M 340 560 C 470 630, 680 630, 810 560"
-          stroke="#00CC33" stroke-width="1.0" stroke-opacity="0.5" stroke-dasharray="6 3" />
+        <!-- ARC 5 — below IO of SOLUTION → Performance Marketing -->
+        <path id="arc-5" class="dr-orbit-path" d="
+    M 600 450
+    C 720 470, 755 510, 810 560
+  " stroke-width="0.95" fill="none" />
+
+        <!-- ARC 6 — Start 600,450 → SEO dot 340,560 -->
+        <path id="arc-6" class="dr-orbit-path" d="
+    M 600 450
+    C 555 500, 455 550, 340 560
+  " stroke-width="0.95" fill="none" />
+
+        <!-- ARC 7 — 270,566 → Influencer Marketing -->
+        <path id="arc-7" class="dr-orbit-path" d="
+    M 270 566
+    C 190 550, 125 480, 120 415 
+    C 118 390, 122 370, 130 360
+  " stroke-width="0.95" fill="none" />
+
+        <!-- ARC 8 — Influencer → flat upper sweep → top of O -->
+        <path id="arc-8" class="dr-orbit-path" d="
+   M 130 360
+C 92 325, 145 292, 230 275
+C 285 264, 345 264, 400 268
+  " stroke-width="0.95" fill="none" stroke-linecap="round" />
+
+        <!-- ARC 9 — Influencer → bottom of S -->
+        <path id="arc-9" class="dr-orbit-path" d="
+    M 130 360
+    C 165 395, 205 420, 245 430
+    C 265 435, 280 433, 320 425  " stroke-width="0.95" fill="none" stroke-linecap="round" />
 
         <!-- ══ Travelling Energy Pulses along paths (Refined, Subtle) ══ -->
-        <circle id="dr-particle-1" r="2.2" fill="#ffffff" filter="url(#dr-flare-glow)" class="dr-orbit-particle">
+        <!-- <circle id="dr-particle-1" r="2.2" fill="#ffffff" filter="url(#dr-flare-glow)" class="dr-orbit-particle">
           <animateMotion dur="14s" repeatCount="indefinite"
             path="M 180 210 C 320 115, 580 85, 830 135 C 915 155, 930 250, 875 320" />
         </circle>
@@ -335,13 +469,15 @@
         <circle id="dr-particle-3" r="1.8" fill="#ffffff" filter="url(#dr-flare-glow)" class="dr-orbit-particle">
           <animateMotion dur="12s" repeatCount="indefinite"
             path="M 340 560 C 440 495, 520 460, 580 470 C 650 480, 730 525, 810 560" />
-        </circle>
+        </circle> -->
 
         <!-- ══ Exactly 6 Service Nodes: Text + Dot Touching Path Endpoints (0px Gap) ══ -->
         <g class="dr-service-nodes-group">
           <!-- 1. Branding (Upper Left: Service Name  ●──────────────) -->
           <a href="Branding.html" class="dr-service-node dr-node-branding" aria-label="Branding">
-            <text x="160" y="216" text-anchor="end" class="dr-node-label">Branding</text>
+            <text x="160" y="216" text-anchor="end" class="dr-node-label">
+              Branding
+            </text>
             <circle cx="180" cy="210" r="4.5" class="dr-node-dot" />
           </a>
 
@@ -358,27 +494,29 @@
           <!-- 3. Social Media Management (Upper Right: ──────────────●  Service Name) -->
           <a href="Social Media Management.html" class="dr-service-node dr-node-smm"
             aria-label="Social Media Management">
-            <circle cx="830" cy="135" r="4.5" class="dr-node-dot" />
+            <circle cx="1030" cy="110" r="4.5" class="dr-node-dot" />
             <text x="852" y="128" text-anchor="start" class="dr-node-label">
-              <tspan x="852" dy="0">Social Media</tspan>
-              <tspan x="852" dy="20">Management</tspan>
+              <tspan x="1050" dy="-25">Social Media</tspan>
+              <tspan x="1050" dy="30">Management</tspan>
             </text>
           </a>
 
           <!-- 4. Web Design & Development (Right Middle: ──────────────●  Service Name) -->
           <a href="Web Design & Development.html" class="dr-service-node dr-node-web"
             aria-label="Web Design & Development">
-            <circle cx="1020" cy="380" r="4.5" class="dr-node-dot" />
+            <circle cx="1100" cy="380" r="4.5" class="dr-node-dot" />
             <text x="1042" y="372" text-anchor="start" class="dr-node-label">
-              <tspan x="1042" dy="0">Web Design &</tspan>
-              <tspan x="1042" dy="20">Development</tspan>
+              <tspan x="1120" dy="0">Web Design &</tspan>
+              <tspan x="1120" dy="20">Development</tspan>
             </text>
           </a>
 
           <!-- 5. SEO (Lower Left: ●  Service Name) -->
           <a href="SEO.html" class="dr-service-node dr-node-seo" aria-label="SEO">
-            <circle cx="340" cy="560" r="4.5" class="dr-node-dot" />
-            <text x="362" y="566" text-anchor="start" class="dr-node-label">SEO</text>
+            <circle cx="350" cy="560" r="4.5" class="dr-node-dot" />
+            <text x="290" y="566" text-anchor="start" class="dr-node-label">
+              SEO
+            </text>
           </a>
 
           <!-- 6. Performance Marketing (Lower Right: ●  Service Name) -->
@@ -389,6 +527,112 @@
               <tspan x="832" dy="20">Marketing</tspan>
             </text>
           </a>
+
+          <!-- =========================================
+     SEQUENTIAL TRAVELLING GLOW
+========================================== -->
+          <!-- =========================================
+     SEQUENTIAL TRAVELLING GLOW
+========================================== -->
+
+          <!-- ARC 1 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="0s;arc9move.end" />
+
+            <animateMotion id="arc1move" dur="3.2s" begin="0s;arc9move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-1" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 2 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc1move.end" />
+
+            <animateMotion id="arc2move" dur="3.2s" begin="arc1move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-2" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 3 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc2move.end" />
+
+            <animateMotion id="arc3move" dur="3.2s" begin="arc2move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-3" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 4 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc3move.end" />
+
+            <animateMotion id="arc4move" dur="3.2s" begin="arc3move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-4" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 5 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc4move.end" />
+
+            <animateMotion id="arc5move" dur="3.2s" begin="arc4move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-5" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 6 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc5move.end" />
+
+            <animateMotion id="arc6move" dur="3.2s" begin="arc5move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-6" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 7 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc6move.end" />
+
+            <animateMotion id="arc7move" dur="3.2s" begin="arc6move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-7" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 8 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc7move.end" />
+
+            <animateMotion id="arc8move" dur="3.2s" begin="arc7move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-8" />
+            </animateMotion>
+          </circle>
+
+          <!-- ARC 9 -->
+          <circle r="5.5" class="dr-travel-dot" opacity="0">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.94;1" dur="3.2s"
+              begin="arc8move.end" />
+
+            <animateMotion id="arc9move" dur="3.2s" begin="arc8move.end" calcMode="spline" keyTimes="0;1"
+              keySplines="0.42 0 0.58 1" fill="freeze">
+              <mpath href="#arc-9" />
+            </animateMotion>
+          </circle>
         </g>
       </svg>
 
@@ -399,30 +643,36 @@
             aria-hidden="true" preserveAspectRatio="xMidYMid meet">
             <defs>
               <!-- Organic wave paths: SOLUTION FOR is substantially wider than ONE STOP -->
-              <path id="curve-one-stop" d="M 140 105 C 340 55, 660 50, 860 95" />
-              <path id="curve-solution-for" d="M 50 195 C 280 150, 720 150, 950 195" />
+              <!-- ONE STOP -->
+              <path id="curve-one-stop" d="
+    M 150 118
+    C 280 128, 390 92, 500 88
+    C 610 84, 720 108, 850 118
+  " />
+
+              <!-- SOLUTION FOR -->
+              <path id="curve-solution-for" d="
+    M 70 198
+    C 190 218, 300 220, 405 205
+    C 505 190, 590 182, 680 190
+    C 775 198, 860 214, 930 222
+  " />
             </defs>
             <text class="dr-svg-text dr-svg-text-1" filter="url(#dr-subtle-depth)">
-              <textPath href="#curve-one-stop" startOffset="50%" text-anchor="middle">ONE STOP</textPath>
+              <textPath href="#curve-one-stop" startOffset="50%" text-anchor="middle">
+                ONE STOP
+              </textPath>
             </text>
             <text class="dr-svg-text dr-svg-text-2" filter="url(#dr-subtle-depth)">
-              <textPath href="#curve-solution-for" startOffset="50%" text-anchor="middle">SOLUTION FOR</textPath>
+              <textPath href="#curve-solution-for" startOffset="50%" text-anchor="middle">
+                SOLUTION FOR
+              </textPath>
             </text>
           </svg>
         </h1>
       </div>
-
     </div>
     <!-- /stage -->
-
-    <!-- Bottom Center Scroll Indicator -->
-    <a href="#about" class="dr-hero-scroll-btn" id="dr-hero-scroll-btn" aria-label="Scroll to next section">
-      <svg class="dr-scroll-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00CC33"
-        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <polyline points="19 12 12 19 5 12"></polyline>
-      </svg>
-    </a>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
@@ -501,7 +751,6 @@
     </div>
   </section>
 
-
   <!-- ══════════════════════════════════════════════════════════════
      BLOCK 2  WHITE COMPOSITION (TRANSITION 1: BLACK → WHITE)
      ABOUT (WHITE SECTION)
@@ -530,7 +779,9 @@
         <div class="about-col-right reveal">
           <!-- Manifesto Payoff Block (Positioned Above 3D Animation) -->
           <div class="about-manifesto-hero">
-            <p class="about-manifesto-lead">WE DON'T JUST THINK OUTSIDE THE BOX </p>
+            <p class="about-manifesto-lead">
+              WE DON'T JUST THINK OUTSIDE THE BOX
+            </p>
             <h3 class="about-manifesto-punch">WE REDESIGN IT.</h3>
           </div>
 
@@ -634,7 +885,6 @@
 
               <!-- Main Kinetic Sculpture Group -->
               <g class="dr-sb-world" id="dr-sb-world">
-
                 <!-- ═══ INTERNAL GLOWING CRACKS & PARTICLES (Shot 4 Work Interaction) ═══ -->
                 <g class="dr-sb-crack-fx" filter="url(#dr-sb-glow-filter)">
                   <!-- Lightning / Crack starting under hands on right face at (430, 270) -->
@@ -719,7 +969,6 @@
 
                   <!-- Skeleton Hierarchy with Anatomical Joint Groups -->
                   <g class="dr-sb-fig-skeleton">
-
                     <!-- REAR / FAR LEG (Behind Torso) -->
                     <g class="dr-sb-leg-rear">
                       <!-- Rear Thigh (Pivot at Hip: 0px, 322px) -->
@@ -781,10 +1030,8 @@
                         </g>
                       </g>
                     </g>
-
                   </g>
                 </g>
-
               </g>
             </svg>
           </div>
@@ -793,28 +1040,31 @@
     </div>
     <script>
       (function () {
-        const stage = document.getElementById('about-storyboard-stage');
+        const stage = document.getElementById("about-storyboard-stage");
         if (!stage) return;
 
         function runStoryboard() {
-          stage.classList.remove('is-active');
+          stage.classList.remove("is-active");
           void stage.offsetWidth; // trigger reflow
-          stage.classList.add('is-active');
+          stage.classList.add("is-active");
         }
 
-        if ('IntersectionObserver' in window) {
-          const obs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                runStoryboard();
-              } else {
-                stage.classList.remove('is-active');
-              }
-            });
-          }, { threshold: 0.2 });
+        if ("IntersectionObserver" in window) {
+          const obs = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  runStoryboard();
+                } else {
+                  stage.classList.remove("is-active");
+                }
+              });
+            },
+            { threshold: 0.2 },
+          );
           obs.observe(stage);
         } else {
-          stage.classList.add('is-active');
+          stage.classList.add("is-active");
         }
       })();
     </script>
@@ -842,7 +1092,7 @@
 
         <div class="logo-card">
           <img src="ather.png" alt="Ather" class="h-11 lg:h-14 w-auto object-contain transition-all"
-            style="filter: brightness(0) !important;" />
+            style="filter: brightness(0) !important" />
         </div>
 
         <div class="logo-card">
@@ -860,7 +1110,7 @@
 
         <div class="logo-card">
           <img src="ca-1-.png" alt="C&amp;A Infra Realty" class="h-11 lg:h-14 w-auto object-contain transition-all"
-            style="filter: brightness(0) !important;" />
+            style="filter: brightness(0) !important" />
         </div>
 
         <div class="logo-card">
@@ -894,11 +1144,10 @@
       <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
         <div>
           <!-- <div class="slabel mb-4 reveal">// Core Services</div> -->
-          <h2 class="font-display leading-[0.91] text-black reveal " style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+          <h2 class="font-display leading-[0.91] text-black reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
             EVERYTHING<br />YOU <span style="color: var(--lime)">NEED.</span>
           </h2>
         </div>
-
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -906,15 +1155,13 @@
         <a href="Social Media Management.html" id="services-social-media"
           class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
-            <div class="flex justify-between items-start mb-5">
-
-
-            </div>
+            <div class="flex justify-between items-start mb-5"></div>
             <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               SOCIAL MEDIA<br /><span style="color: var(--lime)">MANAGEMENT</span>
             </h3>
             <p class="text-black/65 text-sm leading-relaxed mb-6">
-              Scroll-stopping content calendars, multi-platform consistency, and communities that convert.
+              Scroll-stopping content calendars, multi-platform consistency,
+              and communities that convert.
             </p>
           </div>
           <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
@@ -928,15 +1175,13 @@
         <a href="Web Design & Development.html" id="services-web-design"
           class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
-            <div class="flex justify-between items-start mb-5">
-
-
-            </div>
+            <div class="flex justify-between items-start mb-5"></div>
             <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               WEB DESIGN &<br /><span style="color: var(--lime)">DEVELOPMENT</span>
             </h3>
             <p class="text-black/65 text-sm leading-relaxed mb-6">
-              Websites engineered to convert from landing pages to full e-commerce ecosystems.
+              Websites engineered to convert from landing pages to full
+              e-commerce ecosystems.
             </p>
           </div>
           <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
@@ -950,10 +1195,7 @@
         <a href="Branding.html" id="services-branding"
           class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
-            <div class="flex justify-between items-start mb-5">
-
-
-            </div>
+            <div class="flex justify-between items-start mb-5"></div>
 
             <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               BRANDING &<br /><span style="color: var(--lime)">STRATEGY</span>
@@ -974,16 +1216,14 @@
         <a href="SEO.html" id="services-seo"
           class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
-            <div class="flex justify-between items-start mb-5">
-
-
-            </div>
+            <div class="flex justify-between items-start mb-5"></div>
             <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               SEARCH ENGINE<br /><span style="color: var(--lime)">OPTIMIZATION</span>
             </h3>
             <p class="text-black/65 text-sm leading-relaxed mb-6">
-              Search engine optimization strategies that improve organic visibility, strengthen search rankings, and
-              drive qualified traffic.
+              Search engine optimization strategies that improve organic
+              visibility, strengthen search rankings, and drive qualified
+              traffic.
             </p>
           </div>
           <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
@@ -996,15 +1236,13 @@
         <a href="Performance Marketing.html" id="services-performance-marketing"
           class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
-            <div class="flex justify-between items-start mb-5">
-
-
-            </div>
+            <div class="flex justify-between items-start mb-5"></div>
             <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               PERFORMANCE<br /><span style="color: var(--lime)">MARKETING</span>
             </h3>
             <p class="text-black/65 text-sm leading-relaxed mb-6">
-              Meta Ads, Google Ads, and paid campaigns built for maximum ROAS. Every rupee tracked.
+              Meta Ads, Google Ads, and paid campaigns built for maximum ROAS.
+              Every rupee tracked.
             </p>
           </div>
           <div class="flex gap-2 flex-wrap pt-5 border-t border-black/10">
@@ -1018,22 +1256,21 @@
         <a href="Influencer Marketing.html" id="services-influencer-marketing"
           class="bcard flex flex-col justify-between rounded-xl p-8 reveal scroll-mt-24 group hover:no-underline transition-all bg-white border border-black/10 text-black">
           <div>
-            <div class="flex justify-between items-start mb-5">
-
-
-            </div>
+            <div class="flex justify-between items-start mb-5"></div>
             <h3 class="font-display text-3xl lg:text-4xl leading-tight mb-3 text-black">
               INFLUENCER<br /><span style="color: var(--lime)">MARKETING</span>
             </h3>
             <p class="text-black/65 text-sm leading-relaxed mb-6">
-              Authentic creator partnerships and targeted campaigns bridging digital and physical audiences.
+              Authentic creator partnerships and targeted campaigns bridging
+              digital and physical audiences.
             </p>
           </div>
           <div class="flex items-center gap-2 pt-5 border-t border-black/10">
             <div class="w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-orange-400"></div>
             <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 -ml-2"></div>
-            <div class="w-6 h-6 rounded-full -ml-2" style="background: linear-gradient(135deg, var(--lime), #006619);">
-            </div>
+            <div class="w-6 h-6 rounded-full -ml-2" style="
+                  background: linear-gradient(135deg, var(--lime), #006619);
+                "></div>
             <span class="text-black/50 text-xs ml-2 font-mono">Creator Network</span>
           </div>
         </a>
@@ -1090,11 +1327,10 @@
   <section id="industries" class="py-28 bg-[#ffffff] text-black border-t border-black/10" data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Industries We Cater To</div> -->
-      <h2 class="font-display leading-[0.91] mb-4 text-black reveal " style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+      <h2 class="font-display leading-[0.91] mb-4 text-black reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
         YOUR SECTOR.<br />OUR
         <span style="color: var(--lime)">EXPERTISE.</span>
       </h2>
-
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <!-- Industry cards -->
@@ -1172,7 +1408,6 @@
     </div>
   </section>
 
-
   <!-- ══════════════════════════════════════════════════════════════
      BLOCK 4  WHITE (TRANSITION 3: BLACK → WHITE)
      PORTFOLIO / CASE STUDIES / CREDENTIALS (WHITE SECTION)
@@ -1189,7 +1424,6 @@
       <div class="cred-card p-10 lg:p-16 reveal border border-black/10 bg-white rounded-2xl shadow-sm">
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div>
-
             <h3 class="font-display text-4xl lg:text-5xl mb-4 text-black">
               OUR PORTFOLIO &<br />CASE STUDIES
             </h3>
@@ -1197,7 +1431,6 @@
               Explore 50+ brand transformations across social campaigns, brand
               identities, digital experiences, and performance led growth.
             </p>
-
           </div>
           <div class="flex flex-col gap-3 flex-shrink-0">
             <button type="button" id="dr-portfolio-request-trigger" onclick="openPortfolioModal()"
@@ -1229,7 +1462,6 @@
             WHAT OUR CLIENTS<br /><span style="color: var(--lime)">SAY.</span>
           </h2>
         </div>
-
       </div>
 
       <div class="tslider reveal">
@@ -1242,9 +1474,9 @@
                 <div>
                   <p class="text-white/85 text-[0.95rem] lg:text-[1.02rem] leading-relaxed mb-8">
                     "DemuRup Media transformed our Instagram from a ghost town
-                    to our #1 lead source. The content quality, consistency, and
-                    strategy they bring is unlike any agency we've worked with
-                    before."
+                    to our #1 lead source. The content quality, consistency,
+                    and strategy they bring is unlike any agency we've worked
+                    with before."
                   </p>
                 </div>
                 <div class="flex items-center gap-3.5 pt-6 border-t border-white/10">
@@ -1253,7 +1485,9 @@
                     R
                   </div>
                   <div>
-                    <div class="font-semibold text-sm text-white tracking-wide">Rahul Mehta</div>
+                    <div class="font-semibold text-sm text-white tracking-wide">
+                      Rahul Mehta
+                    </div>
                     <div class="text-white/45 text-xs font-mono mt-0.5">
                       Founder, D2C Fashion Brand
                     </div>
@@ -1267,8 +1501,8 @@
                   <p class="text-white/85 text-[0.95rem] lg:text-[1.02rem] leading-relaxed mb-8">
                     "Our website was built in 3 weeks and it looks better than
                     brands 10x our size. The team understood our vision
-                    immediately and executed it flawlessly. ROAS on our ads went
-                    3x in month one."
+                    immediately and executed it flawlessly. ROAS on our ads
+                    went 3x in month one."
                   </p>
                 </div>
                 <div class="flex items-center gap-3.5 pt-6 border-t border-white/10">
@@ -1277,7 +1511,9 @@
                     P
                   </div>
                   <div>
-                    <div class="font-semibold text-sm text-white tracking-wide">Priya Sharma</div>
+                    <div class="font-semibold text-sm text-white tracking-wide">
+                      Priya Sharma
+                    </div>
                     <div class="text-white/45 text-xs font-mono mt-0.5">
                       CEO, Real Estate Startup
                     </div>
@@ -1301,7 +1537,9 @@
                     A
                   </div>
                   <div>
-                    <div class="font-semibold text-sm text-white tracking-wide">Arjun Kapoor</div>
+                    <div class="font-semibold text-sm text-white tracking-wide">
+                      Arjun Kapoor
+                    </div>
                     <div class="text-white/45 text-xs font-mono mt-0.5">
                       MD, Healthcare Clinic
                     </div>
@@ -1349,7 +1587,6 @@
           <div class="flex flex-col gap-3 flex-shrink-0">
             <a href="contact.html" class="btn-lime px-10 py-5 rounded-lg text-base font-bold">Get A Free Brand Audit
               →</a>
-
           </div>
         </div>
       </div>
@@ -1452,7 +1689,6 @@
                 class="text-white hover:text-lime text-sm transition-colors duration-200">Contact</a>
             </li>
           </ul>
-
         </div>
       </div>
 
@@ -1598,19 +1834,19 @@
         <!-- Bottom Copyright -->
         <div class="dr-mf-bottom">
           <p class="dr-mf-copy">© 2026 DemuRup Media. All rights reserved.</p>
-          <p class="dr-mf-credit">Designed &amp; Developed by DemuRup Media</p>
+          <p class="dr-mf-credit">
+            Designed &amp; Developed by DemuRup Media
+          </p>
         </div>
       </div>
     </div>
   </footer>
 
-
-
   <!-- ══════════════════════════════════════════════════════════════
      PORTFOLIO / CREDENTIALS REQUEST MODAL (WHITE EDITORIAL)
 ══════════════════════════════════════════════════════════════ -->
   <div id="dr-portfolio-modal-overlay" class="dr-portfolio-overlay" role="dialog" aria-modal="true"
-    aria-labelledby="dr-portfolio-modal-title" style="display: none;">
+    aria-labelledby="dr-portfolio-modal-title" style="display: none">
     <div class="dr-portfolio-modal-card">
       <!-- Close Button -->
       <button type="button" class="dr-portfolio-close-btn" onclick="closePortfolioModal()" aria-label="Close modal">
@@ -1623,15 +1859,16 @@
 
       <!-- Form Container -->
       <div id="dr-portfolio-form-wrap">
-        <div class="slabel text-[var(--lime)] mb-2 font-mono text-xs tracking-widest uppercase font-semibold">//
-          CREDENTIALS ACCESS</div>
+        <div class="slabel text-[var(--lime)] mb-2 font-mono text-xs tracking-widest uppercase font-semibold">
+          // CREDENTIALS ACCESS
+        </div>
         <h2 id="dr-portfolio-modal-title"
           class="font-display text-2xl sm:text-3xl lg:text-4xl text-black mb-3 leading-tight">
           REQUEST OUR PORTFOLIO
         </h2>
         <p class="text-black/60 text-sm leading-relaxed mb-6">
-          Tell us a little about your brand and we'll share our selected work, case studies, and credentials deck with
-          you.
+          Tell us a little about your brand and we'll share our selected work,
+          case studies, and credentials deck with you.
         </p>
 
         <form id="dr-portfolio-form" onsubmit="handlePortfolioSubmit(event)" novalidate>
@@ -1659,28 +1896,28 @@
 
             <!-- 04 Company / Brand -->
             <div>
-              <label for="dr-p-brand" class="dr-p-label">04 Company / Brand <span
-                  class="text-black/40 normal-case">(Optional)</span></label>
+              <label for="dr-p-brand" class="dr-p-label">04 Company / Brand
+                <span class="text-black/40 normal-case">(Optional)</span></label>
               <input type="text" id="dr-p-brand" name="brand" placeholder="e.g. Acme Corp" class="dr-p-input" />
             </div>
 
             <!-- 05 Message -->
             <div>
-              <label for="dr-p-message" class="dr-p-label">05 Tell us what you're looking for <span
-                  class="text-black/40 normal-case">(Optional)</span></label>
+              <label for="dr-p-message" class="dr-p-label">05 Tell us what you're looking for
+                <span class="text-black/40 normal-case">(Optional)</span></label>
               <textarea id="dr-p-message" name="message" rows="2"
                 placeholder="Briefly describe your brand goals or what you'd like to see..."
                 class="dr-p-input dr-p-textarea"></textarea>
             </div>
 
             <!-- Error message box -->
-            <div id="dr-p-error" class="dr-p-error-box" style="display: none;"></div>
+            <div id="dr-p-error" class="dr-p-error-box" style="display: none"></div>
 
             <!-- Submit Button -->
             <button type="submit" id="dr-p-submit-btn"
               class="btn-lime w-full py-4 rounded-xl text-base font-bold flex items-center justify-center gap-2 cursor-pointer mt-2">
               <span id="dr-p-btn-text">REQUEST PORTFOLIO →</span>
-              <svg id="dr-p-btn-spinner" class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" style="display: none;"
+              <svg id="dr-p-btn-spinner" class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" style="display: none"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor"
@@ -1697,19 +1934,21 @@
       </div>
 
       <!-- Success State -->
-      <div id="dr-portfolio-success" class="dr-portfolio-success-wrap" style="display: none;">
+      <div id="dr-portfolio-success" class="dr-portfolio-success-wrap" style="display: none">
         <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 bg-[rgba(0,204,51,0.12)]">
           <svg width="28" height="28" fill="none" stroke="#00cc33" stroke-width="2.5" viewBox="0 0 24 24">
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
-        <div class="slabel text-[var(--lime)] mb-2 font-mono text-xs tracking-widest uppercase font-semibold">// REQUEST
-          RECEIVED</div>
+        <div class="slabel text-[var(--lime)] mb-2 font-mono text-xs tracking-widest uppercase font-semibold">
+          // REQUEST RECEIVED
+        </div>
         <h3 class="font-display text-2xl sm:text-3xl mb-3 text-black">
           THANK YOU.
         </h3>
         <p class="text-black/70 text-sm sm:text-base leading-relaxed mb-6 max-w-sm mx-auto">
-          Thank you for your request. Our team will connect with you within 2 working days.
+          Thank you for your request. Our team will connect with you within 2
+          working days.
         </p>
         <div class="flex items-center justify-center">
           <button type="button" onclick="closePortfolioModal()"
