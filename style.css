@@ -1785,332 +1785,501 @@ body.dr-splash-active {
 /* ── Splash Screen Stage & Components ── */
 .dr-splash-stage {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    ellipse 120% 90% at 50% 45%,
-    var(--bg2) 0%,
-    #000 65%
-  );
+  background: #000000;
   z-index: 9999999;
   isolation: isolate;
+  overflow: hidden;
   opacity: 1;
   transform: scale(1);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
 }
 
-.dr-splash-stage.dr-splash-fade-out {
+.dr-splash-stage.phase-exit {
   opacity: 0;
-  transform: scale(1.05);
+  transform: scale(1.02);
   pointer-events: none;
 }
 
-/* faint architectural grid backdrop */
-.dr-splash-backdrop-grid {
+/* Subtle backdrop vignette */
+.dr-splash-backdrop {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(var(--border-faint) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-faint) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.35;
-  mask-image: radial-gradient(
-    ellipse 70% 70% at 50% 50%,
-    #000 20%,
-    transparent 75%
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    #050505 0%,
+    #000000 70%
   );
-  -webkit-mask-image: radial-gradient(
-    ellipse 70% 70% at 50% 50%,
-    #000 20%,
-    transparent 75%
-  );
-}
-
-/* grain overlay for premium texture */
-.dr-splash-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
   pointer-events: none;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.dr-splash-ambient-glow {
+/* Ambient emerald glow */
+.dr-splash-ambient {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60vmin;
-  height: 60vmin;
+  width: 50vmin;
+  height: 50vmin;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--lime-faint) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 204, 51, 0.12) 0%,
+    transparent 65%
+  );
   opacity: 0;
-  transition: opacity 1.6s ease;
+  transition: opacity 0.5s ease;
   pointer-events: none;
 }
 
-.dr-splash-stage.phase-logo .dr-splash-ambient-glow,
-.dr-splash-stage.phase-idle .dr-splash-ambient-glow {
+.dr-splash-stage.phase-dimension .dr-splash-ambient,
+.dr-splash-stage.phase-deconstruct .dr-splash-ambient,
+.dr-splash-stage.phase-redesign .dr-splash-ambient,
+.dr-splash-stage.phase-logo .dr-splash-ambient,
+.dr-splash-stage.phase-sweep .dr-splash-ambient,
+.dr-splash-stage.phase-settle .dr-splash-ambient {
   opacity: 1;
 }
 
-/* ---------- deconstruction grid ---------- */
-.dr-splash-grid-stage {
+/* ── Geometric Transformation Stage ── */
+.dr-splash-geo-stage {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(64vmin, 460px);
-  height: min(64vmin, 460px);
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  opacity: 1;
-  transition: opacity 0.6s ease;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-grid-stage,
-.dr-splash-stage.phase-idle .dr-splash-grid-stage {
-  opacity: 0;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+  transform-style: preserve-3d;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.dr-splash-cell {
-  border: 1px solid var(--border);
-  background: var(--card);
+/* Core 3D box structure */
+.dr-geo-box {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  transform-style: preserve-3d;
   opacity: 0;
-  transform: scale(0.4);
+  transform: scale(0.65);
   transition:
-    opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+/* Phase 1: Box appearance */
+.dr-splash-stage.phase-box .dr-geo-box {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Plane faces */
+.dr-geo-face {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 16px rgba(0, 204, 51, 0.15);
+  transition:
     border-color 0.35s ease,
-    border-radius 0.4s ease,
-    box-shadow 0.4s ease,
-    background 0.4s ease;
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.dr-splash-cell.in {
-  opacity: 1;
-  transform: scale(1);
+.dr-geo-front {
+  z-index: 2;
 }
 
-.dr-splash-cell.pulse {
-  border-color: var(--lime);
-  background: var(--obsidian);
-  box-shadow:
-    0 0 14px var(--lime-soft),
-    inset 0 0 8px rgba(0, 204, 51, 0.15);
-  border-radius: 50%;
-  transform: scale(0.82) rotate(90deg);
-}
-
-.dr-splash-grid-stage.collapse .dr-splash-cell {
-  transition:
-    transform 0.75s cubic-bezier(0.6, 0, 0.3, 1),
-    opacity 0.7s ease 0.15s,
-    border-radius 0.6s ease;
-  transform: scale(0) rotate(180deg);
+.dr-geo-back {
   opacity: 0;
-  border-radius: 50%;
-  border-color: var(--lime);
-  box-shadow: 0 0 10px var(--lime-soft);
+  transform: translateZ(-46px);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
-/* ---------- logo mark ---------- */
+/* Phase 2: Dimension / 3D spatial transformation */
+.dr-splash-stage.phase-dimension .dr-geo-box {
+  opacity: 1;
+  transform: perspective(800px) rotateX(24deg) rotateY(-30deg) rotateZ(5deg);
+}
+
+.dr-splash-stage.phase-dimension .dr-geo-back {
+  opacity: 0.65;
+  transform: translateZ(-46px);
+}
+
+.dr-splash-stage.phase-dimension .dr-geo-front {
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 204, 51, 0.22);
+}
+
+/* Structural edges */
+.dr-geo-edge {
+  position: absolute;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.dr-edge-t {
+  height: 1.5px;
+  top: -1px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+}
+
+.dr-edge-b {
+  height: 1.5px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+}
+
+.dr-edge-l {
+  width: 1.5px;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  background: #ffffff;
+}
+
+.dr-edge-r {
+  width: 1.5px;
+  right: -1px;
+  top: 0;
+  bottom: 0;
+  background: #00cc33;
+  box-shadow: 0 0 8px rgba(0, 204, 51, 0.4);
+}
+
+/* Corner brackets */
+.dr-geo-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease,
+    border-color 0.35s ease;
+  pointer-events: none;
+}
+
+.dr-br-tl {
+  top: -6px;
+  left: -6px;
+  border-top: 1.5px solid #ffffff;
+  border-left: 1.5px solid #ffffff;
+}
+
+.dr-br-br {
+  bottom: -6px;
+  right: -6px;
+  border-bottom: 1.5px solid #00cc33;
+  border-right: 1.5px solid #00cc33;
+}
+
+/* Phase 3: Architectural Deconstruction */
+.dr-splash-stage.phase-deconstruct .dr-geo-box {
+  opacity: 1;
+  transform: perspective(900px) rotateX(18deg) rotateY(-22deg) scale(1.06);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-geo-front {
+  opacity: 0.22;
+  transform: scale(0.92);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-geo-back {
+  opacity: 0.12;
+  transform: translateZ(-64px) scale(0.85);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-edge-t {
+  transform: translateY(-40px) translateX(24px) rotateZ(-8deg);
+  background: #00cc33;
+  box-shadow: 0 0 12px rgba(0, 204, 51, 0.6);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-edge-b {
+  transform: translateY(40px) translateX(-24px) rotateZ(8deg);
+  background: #ffffff;
+}
+
+.dr-splash-stage.phase-deconstruct .dr-edge-l {
+  transform: translateX(-48px) translateY(-8px) rotateY(32deg);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-edge-r {
+  transform: translateX(50px) translateY(10px) rotateY(-32deg);
+  background: #00cc33;
+  box-shadow: 0 0 12px rgba(0, 204, 51, 0.6);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-br-tl {
+  opacity: 1;
+  transform: translate(-28px, -28px);
+}
+
+.dr-splash-stage.phase-deconstruct .dr-br-br {
+  opacity: 1;
+  transform: translate(28px, 28px);
+}
+
+/* Phase 4: Controlled Redesign / Reorganization */
+.dr-splash-stage.phase-redesign .dr-geo-box {
+  opacity: 1;
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale(1);
+}
+
+.dr-splash-stage.phase-redesign .dr-geo-front,
+.dr-splash-stage.phase-redesign .dr-geo-back {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.dr-splash-stage.phase-redesign .dr-edge-t {
+  transform: translateY(-18px) translateX(-42px) scaleX(1.7);
+  background: #00cc33;
+  box-shadow: 0 0 10px rgba(0, 204, 51, 0.5);
+}
+
+.dr-splash-stage.phase-redesign .dr-edge-b {
+  transform: translateY(18px) translateX(42px) scaleX(1.7);
+  background: #ffffff;
+}
+
+.dr-splash-stage.phase-redesign .dr-edge-l {
+  transform: translateX(-60px) scaleY(0.65);
+  background: #ffffff;
+}
+
+.dr-splash-stage.phase-redesign .dr-edge-r {
+  transform: translateX(60px) scaleY(0.65);
+  background: #00cc33;
+  box-shadow: 0 0 10px rgba(0, 204, 51, 0.5);
+}
+
+.dr-splash-stage.phase-redesign .dr-br-tl {
+  opacity: 0.7;
+  transform: translate(-42px, 0) scale(0.85);
+  border-color: #ffffff;
+}
+
+.dr-splash-stage.phase-redesign .dr-br-br {
+  opacity: 0.7;
+  transform: translate(42px, 0) scale(0.85);
+  border-color: #00cc33;
+}
+
+/* Phase 5: Convergence toward Center Line */
+.dr-geo-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 25%,
+    #00cc33 50%,
+    rgba(255, 255, 255, 0.8) 75%,
+    transparent 100%
+  );
+  box-shadow: 0 0 14px rgba(0, 204, 51, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    width 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.25s ease;
+}
+
+.dr-splash-stage.phase-converge .dr-geo-box {
+  opacity: 0;
+  transform: scale(0.15);
+  transition:
+    transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+.dr-splash-stage.phase-converge .dr-geo-beam {
+  opacity: 1;
+  width: min(52vw, 440px);
+}
+
+/* Fade geometric stage out as logo establishes */
+.dr-splash-stage.phase-logo .dr-splash-geo-stage,
+.dr-splash-stage.phase-sweep .dr-splash-geo-stage,
+.dr-splash-stage.phase-settle .dr-splash-geo-stage,
+.dr-splash-stage.phase-exit .dr-splash-geo-stage {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Real Logo Reveal & Laser Sweep ── */
 .dr-splash-logo-wrap {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 28px;
+  justify-content: center;
   opacity: 0;
-  transform: translate(-50%, calc(-50% + 6px));
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
 .dr-splash-stage.phase-logo .dr-splash-logo-wrap,
-.dr-splash-stage.phase-idle .dr-splash-logo-wrap {
+.dr-splash-stage.phase-sweep .dr-splash-logo-wrap,
+.dr-splash-stage.phase-settle .dr-splash-logo-wrap,
+.dr-splash-stage.phase-exit .dr-splash-logo-wrap {
   opacity: 1;
-  transform: translate(-50%, -50%);
 }
 
-.dr-splash-mark-frame {
+.dr-splash-logo-frame {
   position: relative;
-  width: min(58vmin, 340px);
-  aspect-ratio: 420/125;
+  width: min(50vw, 460px);
+  max-width: 92vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   filter: drop-shadow(0 0 0 rgba(0, 204, 51, 0));
-  transition: filter 1s ease;
+  transition: filter 0.35s ease;
 }
 
-.dr-splash-stage.phase-idle .dr-splash-mark-frame {
-  animation: dr-splash-breathe 3.6s ease-in-out infinite;
-}
-
-.dr-splash-mark-frame img {
-  position: absolute;
-  inset: 0;
+.dr-splash-logo-frame img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 160px;
   object-fit: contain;
+  display: block;
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 1.05s cubic-bezier(0.3, 0.8, 0.25, 1) 0.05s;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-mark-frame img,
-.dr-splash-stage.phase-idle .dr-splash-mark-frame img {
-  clip-path: inset(0 0 0 0);
-}
-
-.dr-splash-mark-frame .dr-splash-sweep {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  left: 0;
-  background: var(--lime);
-  box-shadow:
-    0 0 16px 3px var(--lime-soft),
-    0 0 40px 6px var(--lime-soft);
   opacity: 0;
-  transform: translateX(0);
+  transform: scale(0.97);
+  transition:
+    clip-path 0.45s cubic-bezier(0.2, 0.8, 0.25, 1),
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
-.dr-splash-stage.phase-logo .dr-splash-mark-frame .dr-splash-sweep {
-  animation: dr-splash-sweep 1.05s cubic-bezier(0.3, 0.8, 0.25, 1) 0.05s
-    forwards;
+.dr-splash-stage.phase-logo .dr-splash-logo-frame img,
+.dr-splash-stage.phase-sweep .dr-splash-logo-frame img,
+.dr-splash-stage.phase-settle .dr-splash-logo-frame img,
+.dr-splash-stage.phase-exit .dr-splash-logo-frame img {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: scale(1);
 }
 
-@keyframes dr-splash-sweep {
+/* Phase 7: Green Light Sweep across Logo */
+.dr-splash-laser-sweep {
+  position: absolute;
+  top: -8%;
+  bottom: -8%;
+  left: -8%;
+  width: 2.5px;
+  background: #00cc33;
+  box-shadow:
+    0 0 14px 3px rgba(0, 204, 51, 0.7),
+    0 0 32px 6px rgba(0, 204, 51, 0.35);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dr-splash-stage.phase-sweep .dr-splash-laser-sweep {
+  animation: dr-splash-sweep-run 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes dr-splash-sweep-run {
   0% {
-    left: 0;
+    left: -8%;
+    opacity: 0;
+  }
+  12% {
     opacity: 1;
   }
-
-  92% {
+  88% {
     opacity: 1;
   }
-
   100% {
-    left: 100%;
+    left: 108%;
     opacity: 0;
   }
 }
 
-@keyframes dr-splash-breathe {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 14px rgba(0, 204, 51, 0.28));
-  }
-
-  50% {
-    filter: drop-shadow(0 0 26px rgba(0, 204, 51, 0.5));
-  }
+/* Phase 8: Settle State */
+.dr-splash-stage.phase-settle .dr-splash-logo-frame,
+.dr-splash-stage.phase-exit .dr-splash-logo-frame {
+  filter: drop-shadow(0 0 16px rgba(0, 204, 51, 0.2));
 }
 
-/* divider */
-.dr-splash-divider {
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--lime), transparent);
-  transition: width 0.9s cubic-bezier(0.3, 0.8, 0.3, 1) 1.15s;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-divider,
-.dr-splash-stage.phase-idle .dr-splash-divider {
-  width: 120px;
-}
-
-/* loading readout */
-.dr-splash-readout {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--gray);
-  opacity: 0;
-  transition: opacity 0.6s ease 1.5s;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-readout,
-.dr-splash-stage.phase-idle .dr-splash-readout {
-  opacity: 1;
-}
-
-.dr-splash-readout .dr-splash-label {
-  color: var(--white-45);
-}
-
-.dr-splash-readout .dr-splash-pct {
-  color: var(--white);
-  min-width: 34px;
-  display: inline-block;
-}
-
-.dr-splash-bar {
-  width: 120px;
-  height: 2px;
-  background: var(--border-faint);
-  position: relative;
-  overflow: hidden;
-}
-
-.dr-splash-bar-fill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0%;
-  background: var(--lime);
-  box-shadow: 0 0 8px var(--lime-soft);
-  transition: width 0.15s linear;
-}
-
-/* replay hint */
-.dr-splash-hint {
-  display: none !important;
-}
-
+/* Responsive Rules */
 @media (max-width: 520px) {
-  .dr-splash-grid-stage {
-    width: 78vmin;
-    height: 78vmin;
+  .dr-splash-geo-stage {
+    width: 260px;
+    height: 260px;
+  }
+
+  .dr-geo-box {
+    width: 72px;
+    height: 72px;
+  }
+
+  .dr-splash-logo-frame {
+    width: min(78vw, 320px);
+  }
+
+  .dr-splash-logo-frame img {
+    max-height: 120px;
   }
 }
 
+@media (min-width: 521px) and (max-width: 768px) {
+  .dr-splash-logo-frame {
+    width: min(65vw, 400px);
+  }
+}
+
+/* Reduced Motion Mode */
 @media (prefers-reduced-motion: reduce) {
-  .dr-splash-cell {
-    transition: none !important;
-  }
-
-  .dr-splash-mark-frame img {
-    clip-path: inset(0 0 0 0) !important;
-    transition: opacity 0.3s ease !important;
-  }
-
-  .dr-splash-mark-frame .dr-splash-sweep {
+  .dr-splash-geo-stage {
     display: none !important;
   }
 
-  .dr-splash-mark-frame {
-    animation: none !important;
+  .dr-splash-laser-sweep {
+    display: none !important;
   }
 
-  .dr-splash-divider,
-  .dr-splash-readout {
-    transition: opacity 0.3s ease !important;
+  .dr-splash-logo-frame img {
+    clip-path: inset(0 0 0 0) !important;
+    transition: opacity 0.4s ease !important;
+    transform: none !important;
+  }
+
+  .dr-splash-stage {
+    transition: opacity 0.4s ease !important;
   }
 }
 

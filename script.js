@@ -953,7 +953,7 @@ setInterval(nextSlide, 6000);
 })(); // end IIFE
 
 // ══════════════════════════════════════════════════════════════
-//  DEMURUP INTRO SPLASH SCREEN
+//  DEMURUP INTRO SPLASH SCREEN (Architectural Redesign Engine)
 // ══════════════════════════════════════════════════════════════
 
 (function () {
@@ -962,132 +962,121 @@ setInterval(nextSlide, 6000);
   }
 
   const stage = document.getElementById("dr-splash-stage");
-  const gridStage = document.getElementById("dr-splash-gridStage");
-  const pctEl = document.getElementById("dr-splash-pct");
-  const barFill = document.getElementById("dr-splash-barFill");
-  const COLS = 6,
-    ROWS = 6;
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!stage) return;
 
-  let cells = [];
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let timers = [];
 
   function clearTimers() {
     timers.forEach((t) => clearTimeout(t));
     timers = [];
   }
+
   function after(fn, ms) {
     const t = setTimeout(fn, ms);
     timers.push(t);
     return t;
   }
 
-  function buildGrid() {
-    if (!gridStage) return;
-    gridStage.innerHTML = "";
-    gridStage.classList.remove("collapse");
-    cells = [];
-    const cx = (COLS - 1) / 2,
-      cy = (ROWS - 1) / 2;
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const div = document.createElement("div");
-        div.className = "dr-splash-cell";
-        const dist = Math.hypot(c - cx, r - cy);
-        div.dataset.dist = dist.toFixed(2);
-        gridStage.appendChild(div);
-        cells.push(div);
-      }
-    }
-  }
-
-  function fadeOutSplash() {
+  function finishSplash() {
     if (!stage) return;
-    stage.classList.add("dr-splash-fade-out");
-    document.body.classList.remove("dr-splash-active");
+    clearTimers();
+
+    // 1. Mark session as played
     sessionStorage.setItem("splashPlayed", "true");
-    // Remove element after transition completes (0.8s transition in CSS)
+
+    // 2. Begin exit transition (smooth fade and subtle scale)
+    stage.classList.remove(
+      "phase-box",
+      "phase-dimension",
+      "phase-deconstruct",
+      "phase-redesign",
+      "phase-converge",
+      "phase-logo",
+      "phase-sweep",
+      "phase-settle"
+    );
+    stage.classList.add("phase-exit");
+
+    // 3. Unlock scroll immediately as fade starts
+    document.body.classList.remove("dr-splash-active");
+
+    // 4. Notify Hero engine to start entrance cleanly as splash dissolves
+    window.dispatchEvent(new CustomEvent("drSplashComplete"));
+
+    // 5. Clean up and remove splash element from DOM after transition finishes
     setTimeout(() => {
-      stage.remove();
-    }, 850);
+      if (stage && stage.parentNode) {
+        stage.remove();
+      }
+    }, 450);
   }
 
   function runSequence() {
-    if (!stage) return;
     clearTimers();
-    stage.classList.remove("phase-logo", "phase-idle");
-    buildGrid();
 
+    // Reset phases
+    stage.className = "dr-splash-stage";
+
+    // ── Reduced Motion Fast Path ──
     if (reduced) {
-      after(() => stage.classList.add("phase-logo"), 50);
-      after(() => stage.classList.add("phase-idle"), 400);
-      animateCounter(600, 700);
-      after(fadeOutSplash, 600 + 700 + 1200);
+      after(() => stage.classList.add("phase-logo"), 60);
+      after(() => stage.classList.add("phase-settle"), 700);
+      after(finishSplash, 1500);
       return;
     }
 
-    // Phase 1 — grid assembles, radial stagger
-    cells.forEach((cell) => {
-      const d = parseFloat(cell.dataset.dist);
-      after(() => cell.classList.add("in"), 120 + d * 90);
-    });
+    // ── Full Architectural Redesign Sequence (Target: ~3.2–3.3s) ──
 
-    const gridInEnd = 120 + 4.2 * 90 + 250; // ~ last cell + settle
+    // Phase 1: Box appearance (0.00s -> ~0.35s)
+    after(() => stage.classList.add("phase-box"), 40);
 
-    // Phase 2 — redesign pulse: shuffled cells light up in a wave
-    const order = [...cells].sort(
-      (a, b) => parseFloat(a.dataset.dist) - parseFloat(b.dataset.dist),
-    );
-    order.forEach((cell, i) => {
-      const onAt = gridInEnd + i * 26;
-      after(() => cell.classList.add("pulse"), onAt);
-      after(() => cell.classList.remove("pulse"), onAt + 260);
-    });
-    const redesignEnd = gridInEnd + order.length * 26 + 400;
-
-    // Phase 3 — collapse into center
+    // Phase 2: Dimension / 3D spatial expansion (~0.35s -> ~0.65s)
     after(() => {
-      cells.forEach((cell) => {
-        cell.style.transformOrigin = "50% 50%";
-      });
-      gridStage.classList.add("collapse");
-    }, redesignEnd);
+      stage.classList.remove("phase-box");
+      stage.classList.add("phase-dimension");
+    }, 360);
 
-    const collapseEnd = redesignEnd + 750;
+    // Phase 3: Architectural Deconstruction (~0.65s -> ~1.15s)
+    after(() => {
+      stage.classList.remove("phase-dimension");
+      stage.classList.add("phase-deconstruct");
+    }, 660);
 
-    // Phase 4 — logo draws
-    after(() => stage.classList.add("phase-logo"), collapseEnd);
+    // Phase 4: Controlled Redesign / Reorganization (~1.15s -> ~1.55s)
+    after(() => {
+      stage.classList.remove("phase-deconstruct");
+      stage.classList.add("phase-redesign");
+    }, 1160);
 
-    // Phase 5 — loading readout counts up
-    animateCounter(collapseEnd + 950, 1350);
+    // Phase 5: Convergence toward Center Line (~1.55s -> ~1.90s)
+    after(() => {
+      stage.classList.remove("phase-redesign");
+      stage.classList.add("phase-converge");
+    }, 1560);
 
-    // Phase 6 — idle breathing state
-    after(
-      () => stage.classList.add("phase-idle"),
-      collapseEnd + 950 + 1350 + 250,
-    );
+    // Phase 6: Real DemuRup Logo Reveal (~1.90s -> ~2.35s)
+    after(() => {
+      stage.classList.remove("phase-converge");
+      stage.classList.add("phase-logo");
+    }, 1900);
 
-    // Auto fade-out after idle phase settles (1.2s delay)
-    after(fadeOutSplash, collapseEnd + 950 + 1350 + 250 + 1200);
+    // Phase 7: Single Green Light Sweep across Logo (~2.35s -> ~2.65s)
+    after(() => {
+      stage.classList.add("phase-sweep");
+    }, 2350);
+
+    // Phase 8: Settle State (~2.65s -> ~2.85s)
+    after(() => {
+      stage.classList.remove("phase-sweep");
+      stage.classList.add("phase-settle");
+    }, 2660);
+
+    // Phase 9: Exit / Transition into Site (~2.85s -> ~3.30s)
+    after(finishSplash, 2850);
   }
 
-  function animateCounter(startAt, duration) {
-    after(() => {
-      const start = performance.now();
-      function tick(now) {
-        const t = Math.min(1, (now - start) / duration);
-        const val = Math.round(t * 100);
-        if (pctEl) pctEl.textContent = val + "%";
-        if (barFill) barFill.style.width = val + "%";
-        if (t < 1) {
-          requestAnimationFrame(tick);
-        }
-      }
-      requestAnimationFrame(tick);
-    }, startAt);
-  }
-
-  // Expose runSequence for debugging/replay on demand
+  // Expose replay for debugging
   window.drSplashReplay = runSequence;
 
   runSequence();
@@ -1193,18 +1182,32 @@ setInterval(nextSlide, 6000);
   }
 
   // Trigger entrance sequence
+  // Synchronize Hero entrance with Splash completion event
+  function scheduleHeroEntrance() {
+    var hasActiveSplash =
+      !sessionStorage.getItem("splashPlayed") &&
+      document.body.classList.contains("dr-splash-active");
+
+    if (!hasActiveSplash) {
+      setTimeout(startEntrance, 150);
+    } else {
+      var triggered = false;
+      function onSplashDone() {
+        if (triggered) return;
+        triggered = true;
+        window.removeEventListener("drSplashComplete", onSplashDone);
+        setTimeout(startEntrance, 60);
+      }
+      window.addEventListener("drSplashComplete", onSplashDone);
+      // Safe fallback timer in case event is somehow missed
+      setTimeout(onSplashDone, 3300);
+    }
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      var delayMs = document.body.classList.contains("dr-splash-active")
-        ? 3200
-        : 150;
-      setTimeout(startEntrance, delayMs);
-    });
+    document.addEventListener("DOMContentLoaded", scheduleHeroEntrance);
   } else {
-    var delayMs = document.body.classList.contains("dr-splash-active")
-      ? 3200
-      : 150;
-    setTimeout(startEntrance, delayMs);
+    scheduleHeroEntrance();
   }
 
   /* ── 3. Subtle Desktop Mouse Parallax ── */
