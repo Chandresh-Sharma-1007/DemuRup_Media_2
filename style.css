@@ -7092,3 +7092,218 @@ footer[data-theme] {
   }
 }
 
+
+/* ============================================================
+   FINAL MOBILE RESPONSIVENESS & CROSS-DEVICE POLISH
+   All rules below are ADDITIVE only. No existing rules changed.
+   Desktop (>=1025px) is completely unaffected.
+============================================================ */
+
+/* 1. iOS Safe Area — WhatsApp floating button */
+.wa-float {
+  bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
+  right:  max(24px, calc(env(safe-area-inset-right)  + 16px));
+}
+
+/* 2. iOS Safe Area — Fixed Navbar top padding */
+#main-nav {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* 3. Splash viewport lock — iOS Safari fix (100vh clips below browser bar) */
+body.dr-splash-active {
+  height: 100svh !important;
+}
+
+/* 4. Splash stage — prevent horizontal overflow on any screen */
+.dr-splash-stage {
+  overflow: hidden;
+}
+
+/* 5. Navbar landscape safe area (notch on left in landscape) */
+@media (max-width: 1024px) and (orientation: landscape) {
+  #main-nav > div {
+    padding-left:  max(20px, calc(env(safe-area-inset-left)  + 16px));
+    padding-right: max(20px, calc(env(safe-area-inset-right) + 16px));
+  }
+}
+
+/* 6. Hero — allow auto height in landscape so content doesn't clip */
+@media (max-width: 768px) and (orientation: landscape) {
+  .dr-hero,
+  .dr-hero-stage {
+    height: auto !important;
+    min-height: 100svh;
+  }
+}
+
+/* 7. Portfolio cred-card — reduce tight padding on mobile */
+@media (max-width: 640px) {
+  .cred-card {
+    padding: 1.5rem !important;
+  }
+
+  .cred-card h3 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+  }
+
+  #dr-portfolio-request-trigger {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 8. Service bcard — slight padding reduction on 360px and below */
+@media (max-width: 360px) {
+  .bcard {
+    padding: 1.25rem !important;
+  }
+}
+
+/* 9. Industry grid — single column on very small screens */
+@media (max-width: 360px) {
+  #industries .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 10. Testimonial slider — prevent horizontal overflow */
+.tslider {
+  overflow: hidden;
+  width: 100%;
+}
+
+.tslider-track {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.tslide {
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Testimonial cards stack on mobile */
+@media (max-width: 767px) {
+  .tslide .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 11. Marquee wrap — prevent any horizontal overflow flash */
+.mq-wrap {
+  position: relative;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* 12. Brand marquee — horizontal overflow guard */
+.dr-brand-marquee {
+  max-width: 100vw;
+}
+
+/* 13. Client logo grid — limit on very small screens */
+@media (max-width: 375px) {
+  .client-logo-container img {
+    max-height: 55px !important;
+  }
+}
+
+/* 14. Hero and About — horizontal overflow guard */
+#hero {
+  overflow-x: hidden;
+}
+
+#about {
+  overflow-x: hidden;
+}
+
+/* 15. About storyboard — max-width containment */
+#about .about-storyboard-stage {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#about .about-storyboard-svg {
+  max-width: 100%;
+}
+
+/* 16. Footer mobile safe area */
+@media (max-width: 991px) {
+  footer.border-t {
+    padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px)) !important;
+  }
+}
+
+/* 17. Tap highlight suppression on interactive card elements */
+.bcard,
+.ind-pill,
+.tcard,
+.wa-float,
+.btn-lime,
+.btn-outline,
+.logo-card,
+.dr-mf-service-item,
+.dr-mf-social-btn,
+.dr-mf-contact-card,
+.dr-mf-qlink {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 18. WhatsApp label — hidden on touch-only devices */
+@media (hover: none) and (pointer: coarse) {
+  .wa-float-label {
+    display: none;
+  }
+}
+
+/* 19. Landscape safe area for WhatsApp button */
+@media (orientation: landscape) and (max-width: 1024px) {
+  .wa-float {
+    bottom: max(16px, calc(env(safe-area-inset-bottom) + 12px));
+    right:  max(16px, calc(env(safe-area-inset-right)  + 16px));
+  }
+}
+
+/* 20. Section headings — prevent word overflow on very small screens */
+@media (max-width: 640px) {
+  section h2 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+}
+
+/* 21. About CTA — minimum tappable size on mobile */
+@media (max-width: 640px) {
+  #about .about-btn-cta {
+    min-height: 48px;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* 22. Popup modal — safe area in landscape orientation */
+@media (orientation: landscape) and (max-width: 1024px) {
+  #dr-popup-overlay {
+    padding-left:  max(16px, calc(env(safe-area-inset-left)  + 12px));
+    padding-right: max(16px, calc(env(safe-area-inset-right) + 12px));
+  }
+}
+
+/* 23. Full-screen menu overlay — safe area awareness */
+.dr-menu-overlay {
+  padding-top:    env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left:   env(safe-area-inset-left);
+  padding-right:  env(safe-area-inset-right);
+}
+
+/* 24. Marquee overflow — mobile specific clipping */
+@media (max-width: 768px) {
+  .mq-wrap {
+    overflow: hidden;
+  }
+}
