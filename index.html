@@ -6,28 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
   <meta name="description"
-    content="DemuRup Media — India's boldest creative marketing & branding agency. Social media, branding, content, web, ads & more." />
-  <meta name="keywords" content="DemuRup Media, creative marketing agency, branding agency, digital marketing India, social media management, performance marketing, web design" />
+    content="India's boldest creative marketing & branding agency. Social media, SEO, web design, performance & influencer marketing services, Vapi Gujarat." />
+  <meta name="keywords" content="creative marketing agency , branding agency india, digital marketing agency, social media management agency" />
   <meta name="author" content="DemuRup Media" />
   <meta name="publisher" content="DemuRup Media" />
-  <title>DemuRup Media — Creative Marketing & Branding Agency</title>
+  <title>Creative Marketing & Branding Agency India - DemuRup Media</title>
   <link rel="canonical" href="https://demurup.com/" />
   <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="DemuRup Media — Creative Marketing & Branding Agency" />
+  <meta property="og:title" content="Creative Marketing & Branding Agency India - DemuRup Media" />
   <meta property="og:description"
-    content="DemuRup Media — India's boldest creative marketing & branding agency. Social media, branding, content, web, ads & more." />
+    content="India's boldest creative marketing & branding agency. Social media, SEO, web design, performance & influencer marketing services, Vapi Gujarat." />
   <meta property="og:url" content="https://demurup.com/" />
   <meta property="og:site_name" content="DemuRup Media" />
   <meta property="og:image" content="https://demurup.com/Demurup%20Final%20Logo.png" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DemuRup Media — Creative Marketing & Branding Agency" />
+  <meta name="twitter:title" content="Creative Marketing & Branding Agency India - DemuRup Media" />
   <meta name="twitter:description"
-    content="DemuRup Media — India's boldest creative marketing & branding agency. Social media, branding, content, web, ads & more." />
+    content="India's boldest creative marketing & branding agency. Social media, SEO, web design, performance & influencer marketing services, Vapi Gujarat." />
   <meta name="twitter:image" content="https://demurup.com/Demurup%20Final%20Logo.png" />
 
   <!-- Structured Data: Organization & WebSite -->
@@ -92,31 +92,21 @@
 </head>
 
 <body>
-  <!-- ══ Splash Screen ══ -->
-  <div class="dr-splash-stage" id="dr-splash-stage">
-    <script>
-      if (sessionStorage.getItem("splashPlayed")) {
-        document.getElementById("dr-splash-stage").style.display = "none";
-      } else {
-        document.body.classList.add("dr-splash-active");
-      }
-    </script>
-    <div class="dr-splash-backdrop-grid"></div>
-    <div class="dr-splash-grain"></div>
-    <div class="dr-splash-ambient-glow"></div>
+ <!-- ═══════════════════════════════════════════════════════
+     DEMURUP SPLASH SCREEN
+     Black Background + Bottom-to-Top Wave Fill
+════════════════════════════════════════════════════════ -->
 
-    <div class="dr-splash-grid-stage" id="dr-splash-gridStage"></div>
+ <div class="dr-splash-stage" id="dr-splash-stage" aria-hidden="true">
 
-    <div class="dr-splash-logo-wrap">
-      <div class="dr-splash-mark-frame">
-        <img src="main logo.png" alt="DemuRup Media" draggable="false" />
-        <div class="dr-splash-sweep"></div>
-      </div>
+    <div class="dr-splash-logo">
+      <span class="dr-splash-base">DemuRup</span>
 
-      <div class="dr-splash-divider"></div>
+      <span class="dr-splash-fill" id="dr-splash-fill">
+        <b>Demu</b><i>Rup</i>
+      </span>
     </div>
 
-    <div class="dr-splash-hint">Tap to replay</div>
   </div>
 
   <!-- ══ Cursor ══ -->
@@ -1658,23 +1648,41 @@ C 285 264, 345 264, 400 268
           stage.classList.add("is-active");
         }
 
+        let isVisible = false;
+
         if ("IntersectionObserver" in window) {
           const obs = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                isVisible = entry.isIntersecting;
+                if (isVisible) {
                   runStoryboard();
                 } else {
                   stage.classList.remove("is-active");
                 }
               });
             },
-            { threshold: 0.2 },
+            { threshold: 0 } // Fix: 0 threshold ensures it triggers even on small viewports
           );
-          obs.observe(stage);
+
+          try {
+            obs.observe(stage);
+          } catch (e) {
+            stage.classList.add("is-active"); // Safe fallback
+          }
         } else {
           stage.classList.add("is-active");
         }
+
+        // Fix: Safari BFCache (Back-Forward Cache) restoration
+        window.addEventListener("pageshow", (event) => {
+          if (event.persisted) {
+            const rect = stage.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              runStoryboard();
+            }
+          }
+        });
       })();
     </script>
   </section>
@@ -1753,7 +1761,7 @@ C 285 264, 345 264, 400 268
       <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
         <div>
           <!-- <div class="slabel mb-4 reveal">// Core Services</div> -->
-          <h2 class="font-display leading-[0.91] text-black reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+          <h2 class="font-display leading-[0.91] text-black reveal" style="font-size: clamp(2.4rem, 4.8vw, 4.6rem)">
             EVERYTHING<br />YOU <span style="color: var(--lime)">NEED.</span>
           </h2>
         </div>
@@ -1936,7 +1944,7 @@ C 285 264, 345 264, 400 268
   <section id="industries" class="py-28 bg-[#ffffff] text-black border-t border-black/10" data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Industries We Cater To</div> -->
-      <h2 class="font-display leading-[0.91] mb-4 text-black reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+      <h2 class="font-display leading-[0.91] mb-4 text-black reveal" style="font-size: clamp(2.4rem, 4.8vw, 4.6rem)">
         YOUR SECTOR.<br />OUR
         <span style="color: var(--lime)">EXPERTISE.</span>
       </h2>
@@ -2026,7 +2034,7 @@ C 285 264, 345 264, 400 268
     data-theme="light">
     <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
       <!-- <div class="slabel mb-4 reveal">// Our Work</div> -->
-      <h2 class="font-display leading-[0.91] mb-12 text-black reveal" style="font-size: clamp(2.8rem, 6.5vw, 5.8rem)">
+      <h2 class="font-display leading-[0.91] mb-12 text-black reveal" style="font-size: clamp(2.4rem, 4.8vw, 4.6rem)">
         SEE WHAT<br /><span style="color: var(--lime)">WE'VE BUILT.</span>
       </h2>
 
@@ -2067,8 +2075,8 @@ C 285 264, 345 264, 400 268
             <span class="w-1.5 h-1.5 rounded-full bg-[var(--lime)] inline-block"></span>
             <span>// ENDORSEMENTS</span>
           </div> -->
-          <h2 class="font-display leading-[0.91] text-white reveal" style="font-size: clamp(2.6rem, 5.8vw, 5.2rem)">
-            WHAT OUR CLIENTS<br /><span style="color: var(--lime)">SAY.</span>
+          <h2 class="font-display leading-[0.91] text-white reveal" style="font-size: clamp(2.4rem, 4.8vw, 4.6rem)">
+            WHAT OUR <br /><span style="color: var(--lime)">CLIENT'S SAY.</span>
           </h2>
         </div>
       </div>
@@ -2568,6 +2576,8 @@ C 285 264, 345 264, 400 268
       </div>
     </div>
   </div>
+
+  
 
   <script src="script.js"></script>
 </body>

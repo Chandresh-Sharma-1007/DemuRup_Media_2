@@ -1,6 +1,6 @@
 /* ── Typography System ── */
 @font-face {
-  font-family: "The Seasons";
+  font-family: "The Seasons" !important;
   src:
     url("fonts/TheSeasons-Regular.woff2") format("woff2"),
     url("fonts/TheSeasons-Regular.woff") format("woff");
@@ -10,7 +10,7 @@
 }
 
 @font-face {
-  font-family: "The Seasons";
+  font-family: "The Seasons" !important;
   src: url("fonts/TheSeasons-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
@@ -28,8 +28,8 @@
 }
 
 :root {
-  --font-heading: "The Seasons", serif;
-  --font-body: "Beautiful Delight", serif;
+  --font-heading: "The Seasons" !important;
+  /* --font-body: "Beautiful Delight", serif; */
   --lime: #00cc33;
   --lime-dark: #009922;
   --black: #000000;
@@ -47,7 +47,7 @@ h5,
 h6,
 nav,
 button {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
 }
 
 *,
@@ -65,7 +65,7 @@ html {
 body {
   background: var(--black);
   color: var(--white);
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   overflow-x: hidden;
   cursor: none;
   -webkit-font-smoothing: antialiased;
@@ -115,11 +115,11 @@ body {
 
 /* ── Fonts ── */
 .font-display {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
 }
 
 .font-mono {
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
 }
 
 /* ── Noise grain ── */
@@ -212,7 +212,7 @@ section#clients[data-theme="light"] {
   align-items: center;
   gap: 0.75rem;
   padding: 0.9rem 1.85rem;
-  font-family: var(--font-heading, "The Seasons", serif);
+  font-family: "The Seasons" !important;
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -282,19 +282,18 @@ section#clients .client-logo-container {
 }
 
 section#clients .logo-card {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  padding: 10px 12px;
-  height: 80px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.35s ease;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    padding: 10px 12px;
+    height: 110px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 section#clients .logo-card:hover {
@@ -304,15 +303,15 @@ section#clients .logo-card:hover {
 }
 
 section#clients .logo-card img {
-  max-height: 44px !important;
-  width: auto !important;
-  max-width: 135px !important;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  opacity: 0.88;
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 70px !important;
+    width: auto !important;
+    max-width: 180px !important;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    opacity: 0.88;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 section#clients .logo-card:hover img {
@@ -561,7 +560,7 @@ body.menu-open #hamburger span {
 
 /* ── Section label ── */
 .slabel {
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   color: var(--gray);
@@ -643,7 +642,7 @@ body.menu-open #hamburger span {
   background: var(--lime);
   color: #000;
   font-weight: 700;
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   border: 2px solid var(--lime);
   transition: all 0.25s;
   letter-spacing: 0.04em;
@@ -662,7 +661,7 @@ body.menu-open #hamburger span {
   background: transparent;
   color: var(--white);
   font-weight: 600;
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   border: 2px solid #2a2a2a;
   transition: all 0.25s;
   letter-spacing: 0.04em;
@@ -728,14 +727,14 @@ body.menu-open #hamburger span {
 
 /* ── Stat num ── */
 .stat-num {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   color: var(--lime);
   line-height: 1;
 }
 
 .service-tag {
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.67rem;
   color: var(--lime);
   letter-spacing: 0.2em;
@@ -761,7 +760,7 @@ body.menu-open #hamburger span {
 }
 
 .logo-text {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 1rem;
   letter-spacing: 0.08em;
   color: #fff;
@@ -786,7 +785,7 @@ body.menu-open #hamburger span {
 }
 
 .step-num {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 5rem;
   line-height: 1;
   color: var(--lime);
@@ -828,7 +827,7 @@ body.menu-open #hamburger span {
   color: #fff;
   border-radius: 8px;
   padding: 14px 16px;
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.25s;
@@ -845,7 +844,7 @@ body.menu-open #hamburger span {
 }
 
 .form-label {
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   color: var(--gray);
@@ -980,7 +979,7 @@ select.form-input option {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
 }
 
 .wa-float:hover .wa-float-label {
@@ -1110,7 +1109,7 @@ select.form-input option {
 
 .dr-p-label {
   display: block;
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -1126,7 +1125,7 @@ select.form-input option {
   color: #000000;
   border-radius: 10px;
   padding: 12px 14px;
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.9rem;
   outline: none;
   transition:
@@ -1313,7 +1312,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 
 /* Fallback text if image 404s */
 .logo-img-item .logo-fallback {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.6);
@@ -1487,7 +1486,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 }
 
 .dr-pop-badge-text {
-  font-family: var(--font-heading, "The Seasons", serif);
+  font-family: "The Seasons" !important;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   color: #00cc33;
@@ -1498,7 +1497,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 
 /* — Main Headline — Strongest visual element — */
 .dr-pop-headline {
-  font-family: var(--font-heading, "The Seasons", serif);
+  font-family: "The Seasons" !important;
   font-size: clamp(2.1rem, 5.2vw, 2.75rem);
   line-height: 1.04;
   letter-spacing: -0.015em;
@@ -1517,7 +1516,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 
 /* — Supporting Subtitle — */
 .dr-pop-sub {
-  font-family: var(--font-body, "Beautiful Delight", serif);
+  font-family: "The Seasons" !important;
   font-size: 0.98rem;
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.55;
@@ -1549,7 +1548,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
   padding: 16px 28px;
   background: #00cc33;
   color: #050805;
-  font-family: var(--font-heading, "The Seasons", serif);
+  font-family: "The Seasons" !important;
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1603,7 +1602,7 @@ section p:not(.slabel):not(.service-tag):not(.stat-num) {
 #dr-later-btn {
   display: inline-block;
   text-align: center;
-  font-family: var(--font-body, "Beautiful Delight", serif);
+  font-family: "The Seasons" !important;
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   color: rgba(255, 255, 255, 0.42);
@@ -1776,341 +1775,88 @@ body.popup-open {
   z-index: 99999 !important;
 }
 
-/* ── Lock scroll during splash screen ── */
+/* =========================================================
+   DEMURUP SPLASH SCREEN
+   ========================================================= */
+
+/* Lock page while splash is visible */
 body.dr-splash-active {
   overflow: hidden !important;
   height: 100vh !important;
 }
 
-/* ── Splash Screen Stage & Components ── */
+/* Full screen splash */
 .dr-splash-stage {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(
-    ellipse 120% 90% at 50% 45%,
-    var(--bg2) 0%,
-    #000 65%
-  );
+  inset: 0;
   z-index: 9999999;
-  isolation: isolate;
-  opacity: 1;
-  transform: scale(1);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
 
-.dr-splash-stage.dr-splash-fade-out {
-  opacity: 0;
-  transform: scale(1.05);
-  pointer-events: none;
-}
-
-/* faint architectural grid backdrop */
-.dr-splash-backdrop-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border-faint) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-faint) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.35;
-  mask-image: radial-gradient(
-    ellipse 70% 70% at 50% 50%,
-    #000 20%,
-    transparent 75%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 70% 70% at 50% 50%,
-    #000 20%,
-    transparent 75%
-  );
-}
-
-/* grain overlay for premium texture */
-.dr-splash-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.dr-splash-ambient-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60vmin;
-  height: 60vmin;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--lime-faint) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 1.6s ease;
-  pointer-events: none;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-ambient-glow,
-.dr-splash-stage.phase-idle .dr-splash-ambient-glow {
-  opacity: 1;
-}
-
-/* ---------- deconstruction grid ---------- */
-.dr-splash-grid-stage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(64vmin, 460px);
-  height: min(64vmin, 460px);
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  opacity: 1;
-  transition: opacity 0.6s ease;
-}
+  place-items: center;
 
-.dr-splash-stage.phase-logo .dr-splash-grid-stage,
-.dr-splash-stage.phase-idle .dr-splash-grid-stage {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.dr-splash-cell {
-  border: 1px solid var(--border);
-  background: var(--card);
-  opacity: 0;
-  transform: scale(0.4);
-  transition:
-    opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.35s ease,
-    border-radius 0.4s ease,
-    box-shadow 0.4s ease,
-    background 0.4s ease;
-}
-
-.dr-splash-cell.in {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.dr-splash-cell.pulse {
-  border-color: var(--lime);
-  background: var(--obsidian);
-  box-shadow:
-    0 0 14px var(--lime-soft),
-    inset 0 0 8px rgba(0, 204, 51, 0.15);
-  border-radius: 50%;
-  transform: scale(0.82) rotate(90deg);
-}
-
-.dr-splash-grid-stage.collapse .dr-splash-cell {
-  transition:
-    transform 0.75s cubic-bezier(0.6, 0, 0.3, 1),
-    opacity 0.7s ease 0.15s,
-    border-radius 0.6s ease;
-  transform: scale(0) rotate(180deg);
-  opacity: 0;
-  border-radius: 50%;
-  border-color: var(--lime);
-  box-shadow: 0 0 10px var(--lime-soft);
-}
-
-/* ---------- logo mark ---------- */
-.dr-splash-logo-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  opacity: 0;
-  transform: translate(-50%, calc(-50% + 6px));
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-logo-wrap,
-.dr-splash-stage.phase-idle .dr-splash-logo-wrap {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-
-.dr-splash-mark-frame {
-  position: relative;
-  width: min(58vmin, 340px);
-  aspect-ratio: 420/125;
-  overflow: hidden;
-  filter: drop-shadow(0 0 0 rgba(0, 204, 51, 0));
-  transition: filter 1s ease;
-}
-
-.dr-splash-stage.phase-idle .dr-splash-mark-frame {
-  animation: dr-splash-breathe 3.6s ease-in-out infinite;
-}
-
-.dr-splash-mark-frame img {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1.05s cubic-bezier(0.3, 0.8, 0.25, 1) 0.05s;
+  height: 100vh;
+  height: 100svh;
+
+  background: #000;
+
+  transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
-.dr-splash-stage.phase-logo .dr-splash-mark-frame img,
-.dr-splash-stage.phase-idle .dr-splash-mark-frame img {
-  clip-path: inset(0 0 0 0);
+/* Splash exits upward */
+.dr-splash-stage.dr-splash-done {
+  transform: translateY(-100%);
 }
 
-.dr-splash-mark-frame .dr-splash-sweep {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  left: 0;
-  background: var(--lime);
-  box-shadow:
-    0 0 16px 3px var(--lime-soft),
-    0 0 40px 6px var(--lime-soft);
-  opacity: 0;
-  transform: translateX(0);
+/* Completely hide after animation */
+.dr-splash-stage.dr-splash-gone {
+  display: none;
 }
 
-.dr-splash-stage.phase-logo .dr-splash-mark-frame .dr-splash-sweep {
-  animation: dr-splash-sweep 1.05s cubic-bezier(0.3, 0.8, 0.25, 1) 0.05s
-    forwards;
-}
-
-@keyframes dr-splash-sweep {
-  0% {
-    left: 0;
-    opacity: 1;
-  }
-
-  92% {
-    opacity: 1;
-  }
-
-  100% {
-    left: 100%;
-    opacity: 0;
-  }
-}
-
-@keyframes dr-splash-breathe {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 14px rgba(0, 204, 51, 0.28));
-  }
-
-  50% {
-    filter: drop-shadow(0 0 26px rgba(0, 204, 51, 0.5));
-  }
-}
-
-/* divider */
-.dr-splash-divider {
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--lime), transparent);
-  transition: width 0.9s cubic-bezier(0.3, 0.8, 0.3, 1) 1.15s;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-divider,
-.dr-splash-stage.phase-idle .dr-splash-divider {
-  width: 120px;
-}
-
-/* loading readout */
-.dr-splash-readout {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--gray);
-  opacity: 0;
-  transition: opacity 0.6s ease 1.5s;
-}
-
-.dr-splash-stage.phase-logo .dr-splash-readout,
-.dr-splash-stage.phase-idle .dr-splash-readout {
-  opacity: 1;
-}
-
-.dr-splash-readout .dr-splash-label {
-  color: var(--white-45);
-}
-
-.dr-splash-readout .dr-splash-pct {
-  color: var(--white);
-  min-width: 34px;
-  display: inline-block;
-}
-
-.dr-splash-bar {
-  width: 120px;
-  height: 2px;
-  background: var(--border-faint);
+/* Logo text */
+.dr-splash-logo {
   position: relative;
-  overflow: hidden;
+
+  font-family: "The Seasons" !important;
+  font-size: clamp(2.8rem, 10vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+
+  white-space: nowrap;
 }
 
-.dr-splash-bar-fill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0%;
-  background: var(--lime);
-  box-shadow: 0 0 8px var(--lime-soft);
-  transition: width 0.15s linear;
+/* Grey logo underneath */
+.dr-splash-base {
+  color: black;
 }
 
-/* replay hint */
-.dr-splash-hint {
-  display: none !important;
+/* Animated logo layer */
+.dr-splash-fill {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+
+    clip-path: polygon(0 115%, 100% 115%, 100% 115%, 0 115%);
+    -webkit-clip-path: polygon(0 115%, 100% 115%, 100% 115%, 0 115%);
 }
 
-@media (max-width: 520px) {
-  .dr-splash-grid-stage {
-    width: 78vmin;
-    height: 78vmin;
-  }
+/* "Demu" */
+.dr-splash-fill b {
+  color: #fff;
+  font-weight: 800;
 }
 
+/* "rup" */
+.dr-splash-fill i {
+  color: #00cc33;
+  font-style: normal;
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .dr-splash-cell {
-    transition: none !important;
-  }
-
-  .dr-splash-mark-frame img {
-    clip-path: inset(0 0 0 0) !important;
-    transition: opacity 0.3s ease !important;
-  }
-
-  .dr-splash-mark-frame .dr-splash-sweep {
-    display: none !important;
-  }
-
-  .dr-splash-mark-frame {
-    animation: none !important;
-  }
-
-  .dr-splash-divider,
-  .dr-splash-readout {
-    transition: opacity 0.3s ease !important;
+  .dr-splash-stage {
+    transition-duration: 0.25s;
   }
 }
 
@@ -2289,7 +2035,7 @@ body.dr-splash-active {
   will-change: transform;
   transform-origin: center;
   color: #ffffff;
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: clamp(2.1rem, 4.2vw, 3.8rem);
   font-weight: 600;
   line-height: 1.25;
@@ -2413,7 +2159,7 @@ body.dr-splash-active {
 .dr-service-item-link {
   display: inline-block;
   color: rgba(255, 255, 255, 0.85);
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 1.2rem;
   font-weight: 500;
   text-decoration: none;
@@ -2477,7 +2223,7 @@ body.dr-splash-active {
 }
 
 .dr-menu-sublabel {
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   color: rgba(255, 255, 255, 0.45);
@@ -2489,7 +2235,7 @@ body.dr-splash-active {
 .dr-menu-contact-link,
 .dr-menu-text {
   color: #ffffff;
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 1.15rem;
   font-weight: 400;
   text-decoration: none;
@@ -2511,7 +2257,7 @@ body.dr-splash-active {
 .dr-menu-social-link {
   display: inline-block;
   color: #ffffff;
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 1.05rem;
   text-decoration: none;
   transition:
@@ -2634,7 +2380,7 @@ body.menu-open {
   }
 
   .dr-services-accordion-list .dr-service-item-link {
-    font-family: var(--font-heading);
+    font-family: "The Seasons" !important;
     font-size: clamp(1.05rem, 3.8vw, 1.22rem);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.82);
@@ -2705,7 +2451,7 @@ body.menu-open {
   }
 
   .dr-menu-sublabel {
-    font-family: var(--font-body);
+    font-family: "The Seasons" !important;
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     color: rgba(255, 255, 255, 0.42);
@@ -2717,7 +2463,7 @@ body.menu-open {
   .dr-menu-contact-link,
   .dr-menu-text {
     color: #ffffff;
-    font-family: var(--font-body);
+    font-family: "The Seasons" !important;
     font-size: 1.08rem;
     font-weight: 400;
     line-height: 1.4;
@@ -2739,7 +2485,7 @@ body.menu-open {
 
   .dr-menu-social-link {
     color: #ffffff;
-    font-family: var(--font-heading);
+    font-family: "The Seasons" !important;
     font-size: 1.05rem;
     font-weight: 500;
     text-decoration: none;
@@ -2981,16 +2727,7 @@ body.menu-open {
 }
 
 .dr-svg-text {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif,
-    "Impact";
+ font-family: "The Seasons" !important;
   font-weight: 1000;
   text-transform: uppercase;
   letter-spacing: -0.025em;
@@ -3049,15 +2786,7 @@ body.menu-open {
 
 /* Node Typography (Clean, Bold, Premium & Highly Readable matching Approved Visual) */
 .dr-node-label {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  font-family: "The Seasons" !important;
   font-size: 25px;
   font-weight: 600;
   fill: #ffffff;
@@ -3234,7 +2963,7 @@ body.menu-open {
 }
 
 .client-card-title {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 1.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -3278,13 +3007,7 @@ body.menu-open {
 .srv-body {
   background-color: #ffffff !important;
   color: #111111 !important;
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   overflow-x: hidden !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -3384,13 +3107,7 @@ body.menu-open {
 }
 
 .srv-hero-title {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: clamp(2.5rem, 5.5vw, 4.8rem);
   font-weight: 800;
   line-height: 1.08;
@@ -3441,13 +3158,7 @@ body.menu-open {
 }
 
 .srv-intro-text {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: clamp(1.15rem, 1.7vw, 1.4rem);
   line-height: 1.7;
   color: #1a1a1a;
@@ -3477,13 +3188,7 @@ body.menu-open {
 }
 
 .srv-trust-title {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -3629,13 +3334,7 @@ body.menu-open {
 }
 
 .srv-tab-num {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+font-family: "The Seasons" !important;
   font-size: 0.85rem;
   font-weight: 800;
   color: #999999;
@@ -3644,13 +3343,7 @@ body.menu-open {
 }
 
 .srv-tab-name {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: 1.15rem;
   font-weight: 800;
   color: #222222;
@@ -3726,13 +3419,7 @@ body.menu-open {
 }
 
 .srv-panel-heading {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: clamp(1.6rem, 2.2vw, 2.2rem);
   font-weight: 800;
   color: #000000;
@@ -3742,13 +3429,7 @@ body.menu-open {
 }
 
 .srv-panel-lead {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: 1.1rem;
   line-height: 1.65;
   color: #444444;
@@ -3797,13 +3478,7 @@ body.menu-open {
 .srv-point-content strong {
   display: block;
   color: #000000;
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: 1.05rem;
   font-weight: 700;
   margin-bottom: 0.35rem;
@@ -3843,13 +3518,7 @@ body.menu-open {
 }
 
 .srv-step-num {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: 0.95rem;
   font-weight: 800;
   color: #00cc33;
@@ -3863,13 +3532,7 @@ body.menu-open {
 }
 
 .srv-step-title {
-  font-family:
-    "Plus Jakarta Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
+  font-family: "The Seasons" !important;
   font-size: 1.05rem;
   font-weight: 700;
   color: #000000;
@@ -4001,7 +3664,7 @@ body.menu-open {
 }
 
 #about .about-heading {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: clamp(3.8875rem, 5.41vw, 5.5675rem);
   line-height: 0.98;
   letter-spacing: -0.025em;
@@ -4033,7 +3696,7 @@ body.menu-open {
   background-color: var(--about-text);
   color: var(--about-bg);
   border: 2px solid var(--about-text);
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: 1.375rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -4070,7 +3733,7 @@ body.menu-open {
 }
 
 #about .about-locale {
-  font-family: var(--font-body);
+  font-family: "The Seasons" !important;
   font-size: 1.275rem;
   color: var(--about-muted);
   letter-spacing: 0.04em;
@@ -4116,7 +3779,7 @@ body.menu-open {
 }
 
 #about .about-manifesto-lead {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: clamp(1.15rem, 1.55vw, 1.45rem);
   font-weight: 700;
   color: var(--about-text);
@@ -4130,7 +3793,7 @@ body.menu-open {
 }
 
 #about .about-manifesto-punch {
-  font-family: var(--font-heading);
+  font-family: "The Seasons" !important;
   font-size: clamp(1.95rem, 2.85vw, 2.95rem);
   font-weight: 900;
   color: var(--about-green);
@@ -6252,16 +5915,16 @@ body.menu-open {
 }
 
 .dr-brand-marquee__logo {
-  height: 40px;
-  width: auto;
-  max-width: 160px;
-  object-fit: contain;
-  display: block;
-  filter: none;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-  opacity: 0.88;
+    height: 50px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+    filter: none;
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    opacity: 0.88;
 }
 
 .dr-brand-marquee__item:hover .dr-brand-marquee__logo {
@@ -6452,7 +6115,7 @@ body.menu-open {
   }
 
   .dr-mf-label {
-    font-family: var(--font-heading);
+    font-family: "The Seasons" !important;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -6572,7 +6235,7 @@ body.menu-open {
   }
 
   .dr-mf-card-label {
-    font-family: monospace;
+    font-family: "The Seasons" !important;
     font-size: 0.625rem;
     font-weight: 600;
     color: var(--lime);
@@ -6614,7 +6277,7 @@ body.menu-open {
 
   .dr-mf-copy,
   .dr-mf-credit {
-    font-family: monospace;
+    font-family: "The Seasons" !important;
     font-size: 0.6875rem;
     color: rgba(255, 255, 255, 0.45);
     line-height: 1.5;
@@ -7173,12 +6836,7 @@ body.menu-open {
   .dr-mobile-label {
     fill: #ffffff;
 
-    font-family:
-      'Plus Jakarta Sans',
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      sans-serif;
+    font-family: "The Seasons" !important;
 
     font-size: 20px !important;
     font-weight: 600 !important;
@@ -7348,7 +7006,7 @@ body.menu-open {
   .dr-tablet-node text {
     fill: #ffffff;
 
-    font-family: Arial, sans-serif;
+    font-family: "The Seasons" !important;
     font-size: 23px;
     font-weight: 600;
 
@@ -7372,3 +7030,7 @@ body.menu-open {
     drop-shadow(0 0 16px rgba(0, 204, 51, 0.65));
 }
 }
+
+
+
+

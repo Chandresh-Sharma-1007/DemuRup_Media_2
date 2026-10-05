@@ -226,6 +226,8 @@ function initMenuLetterHoverAnimations() {
   });
 }
 
+// cardpos  in
+
 initMenuOverlay();
 
 // ── Scroll reveals ─────────────────────────────────────────
@@ -956,180 +958,119 @@ setInterval(nextSlide, 6000);
 //  DEMURUP INTRO SPLASH SCREEN
 // ══════════════════════════════════════════════════════════════
 
+// ══════════════════════════════════════════════════════════════
+//  DEMURUP INTRO SPLASH SCREEN
+//  Wave Fill Animation
+// ══════════════════════════════════════════════════════════════
+
 (function () {
-  if (sessionStorage.getItem("splashPlayed")) {
-    return;
-  }
-
   const stage = document.getElementById("dr-splash-stage");
-  const gridStage = document.getElementById("dr-splash-gridStage");
+  const fill = document.getElementById("dr-splash-fill");
 
-  const COLS = 6,
-    ROWS = 6;
+  if (!stage || !fill) return;
+
+  // Lock page scrolling while splash is active
+  document.body.classList.add("dr-splash-active");
+
+  const DURATION = 2300;
 
   const reduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
+    "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  let cells = [];
-  let timers = [];
+  let startTime = null;
 
-  function clearTimers() {
-    timers.forEach((t) => clearTimeout(t));
-    timers = [];
-  }
+  // ─────────────────────────────────────────────
+  // Finish splash
+  // ─────────────────────────────────────────────
 
-  function after(fn, ms) {
-    const t = setTimeout(fn, ms);
-    timers.push(t);
-    return t;
-  }
+  function finishSplash() {
+    // Make sure logo is completely filled
+    fill.style.clipPath = "none";
 
-  function buildGrid() {
-    if (!gridStage) return;
-
-    gridStage.innerHTML = "";
-    gridStage.classList.remove("collapse");
-    cells = [];
-
-    const cx = (COLS - 1) / 2,
-      cy = (ROWS - 1) / 2;
-
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const div = document.createElement("div");
-
-        div.className = "dr-splash-cell";
-
-        const dist = Math.hypot(c - cx, r - cy);
-
-        div.dataset.dist = dist.toFixed(2);
-
-        gridStage.appendChild(div);
-        cells.push(div);
-      }
-    }
-  }
-
-  function fadeOutSplash() {
-    if (!stage) return;
-
-    stage.classList.add("dr-splash-fade-out");
+    // Slide splash upward
+    stage.classList.add("dr-splash-done");
 
     // Restore page scrolling
     document.body.classList.remove("dr-splash-active");
 
-    // Splash should only play once per browser session
-    sessionStorage.setItem("splashPlayed", "true");
+    // Tell hero/website that splash has finished
+    window.dispatchEvent(new CustomEvent("drSplashComplete"));
 
-    // Remove splash after existing 0.8s CSS fade transition
+    // Hide splash after slide transition
     setTimeout(() => {
-      stage.remove();
-    }, 850);
+      stage.classList.add("dr-splash-gone");
+    }, 600);
   }
 
-  function runSequence() {
-    if (!stage || !gridStage) return;
+  // ─────────────────────────────────────────────
+  // Wave animation
+  // ─────────────────────────────────────────────
 
-    clearTimers();
-    buildGrid();
-
-    /* =========================================
-       REDUCED MOTION
-       Simple grid appearance → quick exit
-       ========================================= */
-    if (reduced) {
-      cells.forEach((cell) => {
-        cell.classList.add("in");
-      });
-
-      after(() => {
-        gridStage.classList.add("collapse");
-      }, 400);
-
-      after(fadeOutSplash, 1150);
-
-      return;
+  function wave(now) {
+    if (startTime === null) {
+      startTime = now;
     }
 
-    /* =========================================
-       STEP 1 — GRID ASSEMBLES
-       Cells appear from center outward
-       ========================================= */
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / DURATION, 1);
 
-    cells.forEach((cell) => {
-      const d = parseFloat(cell.dataset.dist);
+    // Smooth ease-in-out
+    const eased =
+      progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
 
-      after(() => {
-        cell.classList.add("in");
-      }, 120 + d * 90);
-    });
+    // Wave height
+    const amplitude = 9 * (1 - progress * 0.6);
 
-    const gridInEnd = 120 + 4.2 * 90 + 250;
+    const level =
+      100 +
+      amplitude -
+      eased * (100 + amplitude * 2);
 
+    const points = ["0% 100%"];
 
-    /* =========================================
-       STEP 2 — GREEN PULSE WAVE
-       Cells light up from center outward
-       ========================================= */
+    for (let i = 0; i <= 40; i++) {
+      const x = i * 2.5;
 
-    const order = [...cells].sort(
-      (a, b) =>
-        parseFloat(a.dataset.dist) -
-        parseFloat(b.dataset.dist),
-    );
+      const y =
+        level +
+        amplitude *
+          Math.sin(x * 0.14 + elapsed * 0.012);
 
-    order.forEach((cell, i) => {
-      const onAt = gridInEnd + i * 26;
+      points.push(
+        x + "% " + y.toFixed(2) + "%"
+      );
+    }
 
-      after(() => {
-        cell.classList.add("pulse");
-      }, onAt);
+    points.push("100% 115%");
 
-      after(() => {
-        cell.classList.remove("pulse");
-      }, onAt + 260);
-    });
+    fill.style.clipPath =
+      "polygon(" + points.join(",") + ")";
 
-    const redesignEnd =
-      gridInEnd + order.length * 26 + 400;
-
-
-    /* =========================================
-       STEP 3 — GRID COLLAPSES
-       Grid rotates, shrinks and fades
-       ========================================= */
-
-    after(() => {
-      cells.forEach((cell) => {
-        cell.style.transformOrigin = "50% 50%";
-      });
-
-      gridStage.classList.add("collapse");
-    }, redesignEnd);
-
-
-    /* =========================================
-       STEP 4 — END SPLASH
-       No logo reveal.
-       No counter.
-       No idle/breathing animation.
-       Website appears after grid collapse.
-       ========================================= */
-
-    const collapseEnd = redesignEnd + 750;
-
-    after(() => {
-      fadeOutSplash();
-    }, collapseEnd);
+    if (progress < 1) {
+      requestAnimationFrame(wave);
+    } else {
+      finishSplash();
+    }
   }
 
+  // ─────────────────────────────────────────────
+  // Start splash
+  // ─────────────────────────────────────────────
 
-  // Keep replay function available for debugging
-  window.drSplashReplay = runSequence;
+  if (reduced) {
+    fill.style.clipPath = "none";
 
-  runSequence();
+    setTimeout(() => {
+      finishSplash();
+    }, 500);
+  } else {
+    requestAnimationFrame(wave);
+  }
 })();
+
 
 /* ══════════════════════════════════════════════════════════════
    DEMURUP MEDIA — NEW HERO ANIMATION & ORBIT ENGINE
@@ -1715,9 +1656,7 @@ if (document.readyState === "loading") {
   setTimeout(initEditorialBlockTransitions, 50);
 }
 
-
 document.querySelectorAll('animateMotion[id^="arc"]').forEach((motion) => {
-
   const match = motion.id.match(/arc(\d+)move/);
   if (!match) return;
 
@@ -1726,12 +1665,14 @@ document.querySelectorAll('animateMotion[id^="arc"]').forEach((motion) => {
 
   if (!arc) return;
 
-  motion.addEventListener('beginEvent', () => {
-    arc.classList.add('is-active-glow');
+  motion.addEventListener("beginEvent", () => {
+    arc.classList.add("is-active-glow");
   });
 
-  motion.addEventListener('endEvent', () => {
-    arc.classList.remove('is-active-glow');
+  motion.addEventListener("endEvent", () => {
+    arc.classList.remove("is-active-glow");
   });
-
 });
+
+
+
