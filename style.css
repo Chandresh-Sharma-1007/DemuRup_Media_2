@@ -442,7 +442,7 @@ section#clients .logo-card:hover img {
   align-items: center;
   justify-content: center;
   height: 44px;
-  overflow: hidden;
+  /* overflow: hidden; */
   line-height: 1;
 }
 
@@ -486,27 +486,77 @@ section#clients .logo-card:hover img {
 
 /* Logo Sizing & Scaling (Desktop ~210px, Tablet ~190px, Mobile ~165px) */
 #main-nav .dr-nav-brand img {
-  width: 180px !important;
+  width: 160px !important;
   height: auto !important;
   max-height: none !important;
   display: block;
   object-fit: contain;
-  margin-top: 10px !important;
+  margin-top: 0px !important;
   transition:
     opacity 0.25s ease,
     filter 0.25s ease;
 }
 
+/* =========================================================
+   SUBTLE LOGO BACKDROP
+   No visible card — only soft blur behind navbar logo
+========================================================= */
+
+#main-nav .dr-nav-brand {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Invisible soft blur behind logo */
+#main-nav .dr-nav-brand::before {
+  content: "";
+  position: absolute;
+
+  left: -25px;
+  right: -25px;
+  top: -18px;
+  bottom: -18px;
+
+  background: rgba(0, 0, 0, 0.01);
+
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  /* fade the blur smoothly at edges */
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 35%,
+    rgba(0, 0, 0, 0.75) 55%,
+    transparent 100%
+  );
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 35%,
+    rgba(0, 0, 0, 0.75) 55%,
+    transparent 100%
+  );
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+#main-nav .dr-logo-light,
+#main-nav .dr-logo-dark {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 1023px) {
   #main-nav .dr-nav-brand img {
-    width: 190px !important;
+    width: 170px !important;
     margin-top: 9px !important;
   }
 }
 
 @media (max-width: 639px) {
   #main-nav .dr-nav-brand img {
-    width: 165px !important;
+    width: 145px !important;
     margin-top: 8px !important;
   }
 }
@@ -5961,17 +6011,19 @@ font-family: "The Seasons" !important;
 
 @media (max-width: 480px) {
   .dr-brand-marquee {
-    padding: 14px 0;
+    padding: 16px 0;
   }
 
   .dr-brand-marquee__group {
-    gap: 28px;
-    padding-right: 28px;
+    gap: 34px;
+    padding-right: 34px;
   }
 
   .dr-brand-marquee__logo {
-    height: 26px;
-    max-width: 95px;
+    height: 38px;
+    width: auto;
+    max-width: 125px;
+    object-fit: contain;
   }
 }
 

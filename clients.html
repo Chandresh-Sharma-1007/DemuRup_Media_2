@@ -308,27 +308,7 @@
 <body class="bg-black text-white selection:bg-lime selection:text-black">
 
   <!-- ══ Splash Screen ══ -->
-  <div class="dr-splash-stage" id="dr-splash-stage">
-    <script>
-      if (sessionStorage.getItem('splashPlayed')) {
-        document.getElementById('dr-splash-stage').style.display = 'none';
-      } else {
-        document.body.classList.add('dr-splash-active');
-      }
-    </script>
-    <div class="dr-splash-backdrop-grid"></div>
-    <div class="dr-splash-grain"></div>
-    <div class="dr-splash-ambient-glow"></div>
-    <div class="dr-splash-grid-stage" id="dr-splash-gridStage"></div>
-    <div class="dr-splash-logo-wrap">
-      <div class="dr-splash-mark-frame">
-        <img src="main logo.png" alt="DemuRup Media" draggable="false">
-        <div class="dr-splash-sweep"></div>
-      </div>
-      <div class="dr-splash-divider"></div>
-    </div>
-    <div class="dr-splash-hint">Tap to replay</div>
-  </div>
+  
 
   <!-- ══ Custom Cursor ══ -->
   <div class="cursor" id="cursor"></div>
