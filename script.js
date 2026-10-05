@@ -13,11 +13,14 @@ document.addEventListener("mousemove", (e) => {
   if (cur) cur.style.opacity = "1";
   if (ring) ring.style.opacity = ".45";
   gsap.set(cur, { x: mx, y: my });
-});
+}, { passive: true });
 (function animRing() {
-  rx += (mx - rx) * 0.1;
-  ry += (my - ry) * 0.1;
-  gsap.set(ring, { x: rx, y: ry });
+  // Skip cursor RAF when page is hidden to save GPU
+  if (!document.hidden) {
+    rx += (mx - rx) * 0.1;
+    ry += (my - ry) * 0.1;
+    gsap.set(ring, { x: rx, y: ry });
+  }
   requestAnimationFrame(animRing);
 })();
 document.addEventListener("mouseover", (e) => {
@@ -281,24 +284,36 @@ document.querySelectorAll("[data-count]").forEach((el) => {
   let lastScrollY = window.scrollY;
   let scrollStopTimer = null;
   const SCROLL_THRESHOLD = 5;
-  const STOP_TIMEOUT = 400; // Auto-reveal nav after 400ms pause
+  const STOP_TIMEOUT = 400;
+
+  // Cache sections list once — avoid repeated querySelectorAll on scroll
+  let cachedSections = null;
+  // Flag to avoid scheduling multiple RAFs for theme update
+  let navThemeRafPending = false;
 
   function updateNavTheme() {
+    navThemeRafPending = false;
     if (document.body.classList.contains("menu-open")) {
       mainNav.classList.remove("nav-theme-dark-foreground");
       return;
     }
 
-    const navCheckY = 40; // 40px from top of viewport (center of nav)
-    const sections = document.querySelectorAll(
-      "section[data-theme], footer[data-theme], header[data-theme], div[data-theme]",
-    );
-    let currentTheme = "dark"; // Default to dark section (Hero is dark)
+    // Lazily cache and refresh if DOM changes (e.g. after section inject)
+    if (!cachedSections) {
+      cachedSections = Array.from(
+        document.querySelectorAll(
+          "section[data-theme], footer[data-theme], header[data-theme], div[data-theme]"
+        )
+      );
+    }
 
-    for (let i = 0; i < sections.length; i++) {
-      const rect = sections[i].getBoundingClientRect();
+    const navCheckY = 40;
+    let currentTheme = "dark";
+
+    for (let i = 0; i < cachedSections.length; i++) {
+      const rect = cachedSections[i].getBoundingClientRect();
       if (rect.top <= navCheckY && rect.bottom > navCheckY) {
-        currentTheme = sections[i].getAttribute("data-theme") || "dark";
+        currentTheme = cachedSections[i].getAttribute("data-theme") || "dark";
         break;
       }
     }
@@ -310,6 +325,13 @@ document.querySelectorAll("[data-count]").forEach((el) => {
     }
   }
 
+  function scheduleNavThemeUpdate() {
+    if (!navThemeRafPending) {
+      navThemeRafPending = true;
+      requestAnimationFrame(updateNavTheme);
+    }
+  }
+
   // Initial update
   updateNavTheme();
 
@@ -318,8 +340,8 @@ document.querySelectorAll("[data-count]").forEach((el) => {
     () => {
       const currentScrollY = window.scrollY;
 
-      // Update theme contrast dynamically on scroll
-      updateNavTheme();
+      // Schedule theme contrast update via RAF — avoids layout thrash
+      scheduleNavThemeUpdate();
 
       // 1. If menu overlay is open, ALWAYS keep nav visible
       if (document.body.classList.contains("menu-open")) {
@@ -343,10 +365,8 @@ document.querySelectorAll("[data-count]").forEach((el) => {
       // 4. Check scroll direction with threshold
       if (Math.abs(deltaY) >= SCROLL_THRESHOLD) {
         if (deltaY > 0) {
-          // Scrolling DOWN -> Hide nav
           mainNav.classList.add("nav-hidden");
         } else {
-          // Scrolling UP -> Show nav immediately
           mainNav.classList.remove("nav-hidden");
         }
         lastScrollY = currentScrollY;
@@ -791,7 +811,42 @@ function nextSlide() {
 function prevSlide() {
   goSlide(curSlide - 1);
 }
-setInterval(nextSlide, 6000);
+// Pause slider interval when offscreen to avoid wasted work
+(function initSliderAutoplay() {
+  let sliderInterval = null;
+  const sliderEl = track ? track.closest(".tslider") || track.parentElement : null;
+
+  function startSlider() {
+    if (!sliderInterval) {
+      sliderInterval = setInterval(nextSlide, 6000);
+    }
+  }
+  function stopSlider() {
+    if (sliderInterval) {
+      clearInterval(sliderInterval);
+      sliderInterval = null;
+    }
+  }
+
+  if (sliderEl && "IntersectionObserver" in window) {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startSlider();
+          } else {
+            stopSlider();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(sliderEl);
+  } else {
+    // Fallback: always run
+    startSlider();
+  }
+})();
 
 // ══════════════════════════════════════════════════════════════
 //  DEMURUP SMART POPUP — Full Logic
