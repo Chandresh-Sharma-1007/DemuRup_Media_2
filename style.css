@@ -7359,3 +7359,38 @@ body.dr-splash-active {
     overflow: hidden;
   }
 }
+
+
+/* =========================================================
+   ABOUT ANIMATION — iPHONE / SAFARI FIX
+========================================================= */
+
+#about .about-storyboard-stage {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+#about .about-storyboard-svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+#about .dr-sb-world,
+#about .dr-sb-shard,
+#about .dr-sb-core-group,
+#about .dr-sb-portal-window,
+#about .dr-sb-crack-fx {
+  -webkit-transform-box: fill-box;
+  transform-box: fill-box;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  will-change: transform, opacity;
+}

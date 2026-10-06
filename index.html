@@ -1635,53 +1635,65 @@ C 285 264, 345 264, 400 268
       </div>
     </div>
     <script>
-      (function () {
-        const stage = document.getElementById("about-storyboard-stage");
-        if (!stage) return;
+  (function () {
+    const stage = document.getElementById("about-storyboard-stage");
+    if (!stage) return;
 
-        function runStoryboard() {
-          stage.classList.remove("is-active");
-          void stage.offsetWidth; // trigger reflow
+    function runStoryboard() {
+      // Reset animation
+      stage.classList.remove("is-active");
+
+      // Safari-safe reflow
+      void stage.getBoundingClientRect();
+
+      // Wait for Safari to properly register the reset
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
           stage.classList.add("is-active");
-        }
-
-        let isVisible = false;
-
-        if ("IntersectionObserver" in window) {
-          const obs = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                isVisible = entry.isIntersecting;
-                if (isVisible) {
-                  runStoryboard();
-                } else {
-                  stage.classList.remove("is-active");
-                }
-              });
-            },
-            { threshold: 0 } // Fix: 0 threshold ensures it triggers even on small viewports
-          );
-
-          try {
-            obs.observe(stage);
-          } catch (e) {
-            stage.classList.add("is-active"); // Safe fallback
-          }
-        } else {
-          stage.classList.add("is-active");
-        }
-
-        // Fix: Safari BFCache (Back-Forward Cache) restoration
-        window.addEventListener("pageshow", (event) => {
-          if (event.persisted) {
-            const rect = stage.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-              runStoryboard();
-            }
-          }
         });
-      })();
-    </script>
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              runStoryboard();
+            } else {
+              stage.classList.remove("is-active");
+            }
+          });
+        },
+        {
+          threshold: 0,
+          rootMargin: "50px 0px 50px 0px"
+        }
+      );
+
+      try {
+        obs.observe(stage);
+      } catch (e) {
+        // Safe fallback for older browsers
+        stage.classList.add("is-active");
+      }
+    } else {
+      // Fallback if IntersectionObserver isn't supported
+      stage.classList.add("is-active");
+    }
+
+    // Safari BFCache (Back-Forward Cache) restoration fix
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        const rect = stage.getBoundingClientRect();
+
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          runStoryboard();
+        }
+      }
+    });
+  })();
+</script>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
