@@ -12,7 +12,7 @@
   <meta name="publisher" content="DemuRup Media">
   <title>About DemuRup Media - Creative Marketing & Branding Agency</title>
   <link rel="canonical" href="https://demurup.com/about.html">
-  <link rel="icon" type="image/x-icon" href="Demurup Final Logo.png">
+  <link rel="icon" type="image/x-icon" href="Demurup black.png">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -21,14 +21,14 @@
     content="Know the story, team & vision behind DemuRup Media - India's creative marketing & branding agency helping brands redesign their future.">
   <meta property="og:url" content="https://demurup.com/about.html">
   <meta property="og:site_name" content="DemuRup Media">
-  <meta property="og:image" content="https://demurup.com/Demurup%20Final%20Logo.png">
+  <meta property="og:image" content="https://demurup.com/Demurup%20black.png">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="About DemuRup Media - Creative Marketing & Branding Agency">
   <meta name="twitter:description"
     content="Know the story, team & vision behind DemuRup Media - India's creative marketing & branding agency helping brands redesign their future.">
-  <meta name="twitter:image" content="https://demurup.com/Demurup%20Final%20Logo.png">
+  <meta name="twitter:image" content="https://demurup.com/Demurup%20black.png">
   <script>
     (function () {
       const _warn = console.warn;
@@ -537,6 +537,23 @@
 
     .values-media:hover img {
       transform: scale(1.05);
+    }
+
+    /* === Values Video (replaces image) === */
+    .values-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(.3) contrast(1.05) brightness(.92);
+      transition: transform 1.4s var(--ease), filter .8s var(--ease);
+      will-change: transform;
+      cursor: pointer;
+    }
+
+    .values-media:hover .values-video {
+      transform: scale(1.05);
+      filter: grayscale(0) contrast(1.08) brightness(1);
     }
 
     .values-media::after {
@@ -1118,7 +1135,7 @@
 
       <div class="hero-copy reveal reveal-delay-2">
         <h2>Welcome to <em style="color:var(--accent); font-style:normal;">DemuRup Media</em>, your ultimate destination
-          for all things digital!</h2>
+          for all things digital.</h2>
         <p class="about-intro-copy">We are a dynamic digital media house committed to bringing your brand's vision to life. Offering a diverse
           range of services, including website development, social media management, Influencer marketing, photography,
           and more all under one roof, we are here to simplify your marketing journey.</p>
@@ -1141,7 +1158,7 @@
       <!-- Main Vision Statement -->
       <div class="vision-statement-wrap reveal reveal-delay-1">
         <h3 class="vision-statement-text">
-          To be the leading <span class="accent-phrase">one-stop solution</span> for all marketing needs, empowering brands with creative, effective, and budget-friendly strategies to achieve their goals.
+          To be the leading <span class="accent-phrase"> one stop solution</span> for all marketing needs, empowering brands with creative, effective, and  strategies to achieve their goals.
         </h3>
       </div>
 
@@ -1152,10 +1169,19 @@
 
     <!-- ================= BLOCK 3: VALUES (TRANSITION 2: WHITE → BLACK) ================= -->
     <section class="values editorial-block-transition transition-to-black transition-angled" data-theme="dark">
-      <div class="values-media reveal" data-parallax>
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80"
-          alt="DemuRup Media team meeting around a table">
-      </div>
+    <div class="values-media reveal" data-parallax>
+  <video
+    class="values-video"
+    id="valuesVideo"
+    muted
+    playsinline
+    preload="metadata"
+    loop
+    controls
+  >
+    <source src="about_vid.mp4" type="video/mp4" />
+  </video>
+</div>
 
       <div class="values-title-wrap reveal">
         <h2 class="values-title">Our <span>values</span></h2>
@@ -1169,7 +1195,7 @@
       <div class="value-cards">
         <div class="value-card reveal reveal-delay-1">
           <h4>Affordable excellence</h4>
-          <p class="value-card-copy">High-quality digital services at rates built for businesses of every size.</p>
+          <p class="value-card-copy">High quality digital services at rates built for businesses of every size.</p>
         </div>
         <div class="value-card reveal reveal-delay-2">
           <h4>All under one roof</h4>
@@ -1499,6 +1525,41 @@
   </script>
 
   <script src="script.js"></script>
+
+  <!-- Values video: hover (desktop) / tap (mobile) play-pause -->
+  <script>
+    (function () {
+      const vid = document.getElementById('valuesVideo');
+      if (!vid) return;
+
+      /* ── Desktop: play on hover, pause on leave ── */
+      function isTouch() {
+        return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+      }
+
+      vid.addEventListener('mouseenter', function () {
+        if (!isTouch()) vid.play();
+      });
+
+      vid.addEventListener('mouseleave', function () {
+        if (!isTouch()) {
+          vid.pause();
+          vid.currentTime = 0;
+        }
+      });
+
+      /* ── Mobile / tablet: tap to toggle ── */
+      vid.addEventListener('click', function () {
+        if (!isTouch()) return;   /* desktop already handled above */
+        if (vid.paused) {
+          vid.play();
+        } else {
+          vid.pause();
+        }
+      });
+    })();
+  </script>
+
 </body>
 
 </html>

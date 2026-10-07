@@ -1,28 +1,20 @@
 /* ── Typography System ── */
+/* — Typography System — */
+
+/* The Seasons — Regular */
 @font-face {
-  font-family: "The Seasons" !important;
-  src:
-    url("fonts/TheSeasons-Regular.woff2") format("woff2"),
-    url("fonts/TheSeasons-Regular.woff") format("woff");
+  font-family: "The Seasons";
+  src: url("Font/Fontspring-DEMO-theseasons-reg.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+/* The Seasons — Bold */
 @font-face {
-  font-family: "The Seasons" !important;
-  src: url("fonts/TheSeasons-Bold.woff2") format("woff2");
+  font-family: "The Seasons";
+  src: url("Font/Fontspring-DEMO-theseasons-bd.otf") format("opentype");
   font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Beautiful Delight";
-  src:
-    url("fonts/BeautifulDelight-Regular.woff2") format("woff2"),
-    url("fonts/BeautifulDelight-Regular.woff") format("woff");
-  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -2094,6 +2086,9 @@ body.dr-splash-active {
   line-height: 1.25;
   text-decoration: none;
   padding-left: 18px;
+
+  white-space: nowrap; /* ADD THIS */
+
   transition:
     color 0.25s ease,
     transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2358,10 +2353,10 @@ body.menu-open {
     -webkit-overflow-scrolling: touch;
   }
 
-  .dr-menu-container {
-    padding: 0 32px;
-  }
-
+ /* Move tablet/mobile menu links below the logo */
+.dr-menu-content {
+  padding-top: 95px;
+}
   .dr-menu-content {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -2780,7 +2775,7 @@ body.menu-open {
 .dr-svg-text {
  font-family: "The Seasons" !important;
   font-weight: 1000;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: -0.025em;
   fill: #ffffff;
   text-shadow: 0px 4px 0px #00cc33;
@@ -6900,7 +6895,15 @@ font-family: "The Seasons" !important;
 
     filter:
       drop-shadow(0 2px 2px rgba(0, 0, 0, 0.90));
+
+    transform-box: fill-box;
+    transform-origin: center;
   }
+
+  .dr-mobile-orbit-svg text.dr-mobile-label:nth-of-type(1) { transform: translateX(50px); }
+  .dr-mobile-orbit-svg text.dr-mobile-label:nth-of-type(3) { transform: translateX(-40px); }
+  .dr-mobile-orbit-svg text.dr-mobile-label:nth-of-type(4) { transform: translateX(40px); }
+  .dr-mobile-orbit-svg text.dr-mobile-label:nth-of-type(6) { transform: translateX(-40px); }
 
 
   /* =================================================
@@ -6936,30 +6939,24 @@ font-family: "The Seasons" !important;
   /* =================================================
      CENTER HEADLINE
   ================================================= */
- .dr-hero-headline-wrap {
-    transform: scale(2);
-    transform-origin: center center;
+  .dr-hero-headline-wrap {
+    transform: none;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .dr-headline-curved-svg {
     position: absolute;
-
-    width: 76%;
-
+    width: clamp(280px, 85vw, 400px) !important;
     left: 50%;
     top: 49%;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1.18) !important;
-
+    transform: translate(-50%, -50%) !important;
     transform-origin: center center;
     transform-box: fill-box;
-
     z-index: 5;
-
     text-rendering: geometricPrecision;
-
     filter:
       drop-shadow(0 5px 3px rgba(0, 0, 0, 0.92))
       drop-shadow(0 8px 8px rgba(0, 204, 51, 0.14));
@@ -7394,3 +7391,4 @@ body.dr-splash-active {
 
   will-change: transform, opacity;
 }
+
