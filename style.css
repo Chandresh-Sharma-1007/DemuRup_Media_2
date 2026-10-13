@@ -19,6 +19,12 @@
   font-display: swap;
 } */
 
+*,
+html,
+body{
+  font-family: "The Seasons" !important;
+}
+
 :root {
   --font-heading: "The Seasons" !important;
   /* --font-body: "Beautiful Delight", serif; */
@@ -61,6 +67,13 @@ body {
   overflow-x: hidden;
   cursor: none;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-family: "The Seasons" !important;
+
+  }
 }
 
 /* ── Cursor ── */
@@ -334,6 +347,7 @@ section#clients .logo-card:hover img {
   section#clients {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    font-family: "The Seasons" !important;
   }
 
   section#clients .logo-card {
@@ -3885,245 +3899,362 @@ font-family: "The Seasons" !important;
 
 /* ── World & Ground Shadows ── */
 #about .dr-sb-world {
-  transform-origin: 380px 260px;
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-floor-shadow {
-  transform-origin: 380px 385px;
+  transform-origin: 375px 382px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform, opacity;
 }
 
 #about .dr-sb-floor-green {
-  transform-origin: 385px 388px;
+  transform-origin: 375px 384px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
   will-change: opacity, transform;
 }
 
-/* ── Shards Base Origins & Transforms ── */
+/* ── Solid Cube Base State (Closed State 0-30% and Reset 88.8-100%) ── */
+#about .dr-sb-cube-group {
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+/* ── Architectural Frame Group & Base Shard Origins (view-box for iOS/Safari Precision) ── */
+#about .dr-sb-frame-group {
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
 #about .dr-sb-shard {
-  transform-box: fill-box;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform, opacity;
 }
 
 #about .dr-sb-shard-apex {
-  transform-origin: 360px 165px;
+  transform-origin: 375px 175px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  opacity: 0;
 }
 
 #about .dr-sb-shard-left {
-  transform-origin: 280px 280px;
+  transform-origin: 309px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  opacity: 0;
 }
 
 #about .dr-sb-shard-right {
-  transform-origin: 440px 280px;
+  transform-origin: 441px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  opacity: 0;
 }
 
 #about .dr-sb-shard-sill {
-  transform-origin: 365px 366px;
+  transform-origin: 375px 345px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
 }
 
 #about .dr-sb-shard-brace {
-  transform-origin: 405px 342px;
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
 }
 
 #about .dr-sb-shard-accent {
-  transform-origin: 478px 148px;
+  transform-origin: 441px 189px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
 }
 
 #about .dr-sb-shard-tumble {
-  transform-origin: 270px 140px;
+  transform-origin: 309px 189px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
-}
-
-#about .dr-sb-portal-window {
-  opacity: 0;
-  will-change: opacity, transform;
 }
 
 #about .dr-sb-crack-fx {
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
   will-change: opacity;
 }
 
 #about .dr-sb-core-group {
-  transform-origin: 365px 245px;
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   opacity: 0;
   will-change: transform, opacity;
 }
 
-/* ── Articulated Silhouette Figure Rig ── */
+#about .dr-sb-octahedron {
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  will-change: transform;
+}
+
+#about .dr-sb-core-halo {
+  transform-origin: 375px 260px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  will-change: transform, opacity;
+}
+
+/* ── Articulated Stylized Figure Rig (view-box coordinate system) ── */
 #about .dr-sb-unified-figure {
   transform-origin: 0px 368px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
+  transform: translate(55px, 0);
   will-change: transform;
 }
 
 #about .dr-sb-fig-skeleton {
   transform-origin: 0px 368px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-fig-shadow {
   transform-origin: 0px 368px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform, opacity;
 }
 
 #about .dr-sb-torso-group {
-  transform-origin: 0px 323px;
+  transform-origin: 0px 322px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-thigh-front {
   transform-origin: 1px 322px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-shin-front {
   transform-origin: 2px 344px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-thigh-rear {
   transform-origin: -1px 322px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-shin-rear {
   transform-origin: -2px 344px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-bicep-front {
   transform-origin: 3px 287px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-forearm-front {
   transform-origin: 5px 303px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-bicep-rear {
   transform-origin: -2px 287px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 #about .dr-sb-forearm-rear {
   transform-origin: -4px 303px;
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
   will-change: transform;
 }
 
 /* ══════════════════════════════════════════════════
-   14.0s CONTINUOUS 7-STAGE SHORT STORY NARRATIVE
-   Stage 1 (0.0s – 2.0s | 0.0% – 14.3%): APPROACH (Walk from far left to box)
-   Stage 2 (2.0s – 2.8s | 14.3% – 20.0%): OBSERVE (Contemplative pause & head tilt)
-   Stage 3 (2.8s – 4.6s | 20.0% – 32.9%): MOVE TO RIGHT SIDE (Walk to right & face box)
-   Stage 4 (4.6s – 6.2s | 32.9% – 44.3%): WORK / INTERACT (Hands touch right face, crack splits)
-   Stage 5 (6.2s – 9.0s | 44.3% – 64.3%): TRANSFORM & DIAMOND REVEAL (Unobstructed emerald climax)
-   Stage 6 (9.0s – 10.2s | 64.3% – 72.9%): REACTION (Anticipate -> Joyful celebratory jump -> Land)
-   Stage 7 (10.2s – 14.0s | 72.9% – 100.0%): RETURN & REST (Walk back to far left, seamless loop)
+   16.0s SYNCHRONIZED MASTER TIMELINE ARCHITECTURE
+   Stage 1 (0.0s – 2.0s | 0.0% – 12.5%): APPROACH (Walk from x=55 to x=210)
+   Stage 2 (2.0s – 3.2s | 12.5% – 20.0%): OBSERVE / THINK (Contemplative pause at x=210)
+   Stage 3 (3.2s – 4.8s | 20.0% – 30.0%): MOVE TO BOX (Walk from x=210 to x=465)
+   Stage 4 (4.8s – 6.5s | 30.0% – 40.6%): WORK & INTERACT (Touch box at x=465, seam pulse)
+   Stage 5 (6.5s – 8.0s | 40.6% – 50.0%): FORMATION (Box morphs into finished frame; diamond reveals)
+   Stage 6 (8.0s – 9.8s | 50.0% – 61.2%): ADMIRE HERO (Standing at x=478 beside finished frame)
+   Stage 7 (9.8s – 11.4s | 61.2% – 71.2%): CELEBRATION (Joyful jump and cushion landing at x=478)
+   Stage 8 (11.4s – 13.8s | 71.2% – 86.2%): RETURN WALK (Walk from x=478 back to x=55; frame & gem STAY 100% VISIBLE)
+   Stage 9 (13.8s – 14.2s | 86.2% – 88.8%): SETTLE AT ORIGIN (Character at x=55; frame & gem STAY 100% VISIBLE)
+   Stage 10 (14.2s – 15.4s | 88.8% – 96.2%): DELAYED RESET (ONLY NOW box closes back to solid cube)
+   Stage 11 (15.4s – 16.0s | 96.2% – 100.0%): SEAMLESS REST (Solid cube resting, ready for next loop)
 ══════════════════════════════════════════════════ */
 
-/* ── Camera Subtle Breathing ── */
+/* ── Camera Subtle Studio Breathing ── */
 #about .about-storyboard-stage.is-active .dr-sb-world {
-  animation: dr-sb-world-anim 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+  animation: dr-sb-world-anim 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
 }
 
 @keyframes dr-sb-world-anim {
   0%,
-  44% {
+  30.0% {
     transform: scale(1) translateY(0);
   }
 
-  60% {
-    transform: scale(1.03) translateY(-5px);
+  44.0% {
+    transform: scale(1.015) translateY(-2px);
   }
 
-  65%,
+  50.0%,
+  88.8% {
+    transform: scale(1.025) translateY(-3px);
+  }
+
+  96.2%,
   100% {
-    transform: scale(1.015) translateY(-3px);
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Floor Ground Shadow */
+#about .about-storyboard-stage.is-active .dr-sb-floor-shadow {
+  animation: dr-sb-floor-shadow-anim 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-floor-shadow-anim {
+  0%,
+  30.0% {
+    opacity: 0.16;
+    transform: scale(1);
+  }
+
+  50.0%,
+  88.8% {
+    opacity: 0.22;
+    transform: scale(1.12, 1.04);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0.16;
+    transform: scale(1);
   }
 }
 
 /* Floor Emerald Light Spill */
 #about .about-storyboard-stage.is-active .dr-sb-floor-green {
-  animation: dr-sb-ground-spill 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+  animation: dr-sb-ground-spill 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
 }
 
 @keyframes dr-sb-ground-spill {
   0%,
-  37% {
+  42.0% {
     opacity: 0;
-    transform: scale(0.4);
+    transform: scale(0.3);
   }
 
-  42% {
+  48.0% {
     opacity: 0.45;
     transform: scale(0.85);
   }
 
-  55% {
-    opacity: 0.75;
-    transform: scale(1.1);
+  50.0%,
+  88.8% {
+    opacity: 0.7;
+    transform: scale(1.05);
   }
 
-  64%,
+  93.5% {
+    opacity: 0.25;
+    transform: scale(0.6);
+  }
+
+  96.2%,
   100% {
-    opacity: 0.95;
-    transform: scale(1);
+    opacity: 0;
+    transform: scale(0.3);
   }
 }
 
-/* ── STAGE 4: CRACKS & BURST PARTICLES (On Right Face at 5.2s / 37.1%) ── */
+/* ── STAGE 4: SUBTLE INTERACTION SEAM ENERGY ── */
 #about .about-storyboard-stage.is-active .dr-sb-crack-fx {
-  animation: dr-sb-crack-anim 14s ease-in-out infinite;
+  animation: dr-sb-crack-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-crack-anim {
   0%,
-  36.5% {
+  30.0% {
     opacity: 0;
   }
 
-  37.5%,
-  44.5% {
+  32.0%,
+  40.0% {
     opacity: 1;
   }
 
-  49.0%,
+  44.0%,
   100% {
     opacity: 0;
   }
 }
 
 #about .about-storyboard-stage.is-active .dr-sb-lightning-path {
-  stroke-dasharray: 140;
-  stroke-dashoffset: 140;
-  animation: dr-sb-lightning-draw 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: dr-sb-lightning-draw 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes dr-sb-lightning-draw {
   0%,
-  37.0% {
-    stroke-dashoffset: 140;
+  30.5% {
+    stroke-dashoffset: 120;
     opacity: 0;
   }
 
-  39.0% {
+  33.5% {
     stroke-dashoffset: 0;
     opacity: 1;
-    stroke-width: 3.2;
   }
 
-  43.5% {
+  40.0% {
     stroke-dashoffset: 0;
     opacity: 1;
-    stroke-width: 4.2;
   }
 
-  47.0%,
+  43.5%,
   100% {
     stroke-dashoffset: 0;
     opacity: 0;
@@ -4131,436 +4262,471 @@ font-family: "The Seasons" !important;
 }
 
 #about .about-storyboard-stage.is-active .dr-sb-particle {
-  animation: dr-sb-particle-scatter 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation: dr-sb-particle-scatter 16s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
 @keyframes dr-sb-particle-scatter {
   0%,
-  41.0% {
+  31.0% {
     opacity: 0;
     transform: translate(0, 0) scale(0);
   }
 
-  43.5% {
+  34.0% {
     opacity: 1;
-    transform: translate(0, 0) scale(1.5);
+    transform: translate(0, 0) scale(1.4);
   }
 
-  48.0% {
+  40.0% {
     opacity: 0.8;
   }
 
-  52.0%,
+  44.0%,
   100% {
     opacity: 0;
-    transform: translate(var(--tx, 25px), var(--ty, -30px)) scale(0);
+    transform: translate(var(--tx, 15px), var(--ty, -15px)) scale(0);
   }
 }
 
 #about .dr-sb-p1 {
-  --tx: 38px;
-  --ty: -35px;
+  --tx: 22px;
+  --ty: -20px;
 }
 
 #about .dr-sb-p2 {
-  --tx: -42px;
-  --ty: -38px;
+  --tx: -24px;
+  --ty: -22px;
 }
 
 #about .dr-sb-p3 {
-  --tx: 55px;
-  --ty: -18px;
+  --tx: 30px;
+  --ty: -10px;
 }
 
 #about .dr-sb-p4 {
-  --tx: -50px;
-  --ty: 20px;
+  --tx: -25px;
+  --ty: 12px;
 }
 
-#about .dr-sb-p5 {
-  --tx: 45px;
-  --ty: 25px;
+/* ══════════════════════════════════════════════════
+   ORIGINAL SOLID OFF-WHITE CUBE ANIMATION
+   Smooth dissolution into frame and delayed reformation
+══════════════════════════════════════════════════ */
+#about .about-storyboard-stage.is-active .dr-sb-cube-group {
+  animation: dr-sb-cube-anim 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
 }
 
-/* ── STAGE 5: GREEN OCTAHEDRON CRYSTAL CORE (100% COMPLETELY UNOBSTRUCTED) ── */
+@keyframes dr-sb-cube-anim {
+  0%,
+  30.0% {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  36.0% {
+    opacity: 0.85;
+    transform: scale(1.01);
+  }
+
+  42.0% {
+    opacity: 0.3;
+    transform: scale(1.03);
+  }
+
+  46.0%,
+  88.8% {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+  }
+
+  92.5% {
+    opacity: 0.45;
+    transform: scale(1.02);
+  }
+
+  96.2%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   ARCHITECTURAL OFF-WHITE FRAME FORMATION & STEADY HOLD
+   Assembles into solid clean frame, holds 48% - 88.8%, then retracts
+══════════════════════════════════════════════════ */
+
+/* Piece 1: Top Canopy Crown Beam & Top 3D Depth */
+#about .about-storyboard-stage.is-active .dr-sb-shard-apex {
+  animation: dr-sb-anim-apex 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-apex {
+  0%,
+  30.0% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  40.0% {
+    opacity: 0.7;
+    transform: translateY(-5px);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: translateY(-8px);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+}
+
+/* Piece 2: Left Vertical Frame Pillar */
+#about .about-storyboard-stage.is-active .dr-sb-shard-left {
+  animation: dr-sb-anim-left 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-left {
+  0%,
+  30.0% {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  40.0% {
+    opacity: 0.7;
+    transform: translateX(-5px);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: translateX(-8px);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+}
+
+/* Piece 3: Right Vertical Frame Pillar & Side Depth */
+#about .about-storyboard-stage.is-active .dr-sb-shard-right {
+  animation: dr-sb-anim-right 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-right {
+  0%,
+  30.0% {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  40.0% {
+    opacity: 0.7;
+    transform: translateX(5px);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: translateX(8px);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+/* Piece 4: Foundation Base Plinth / Ground Sill */
+#about .about-storyboard-stage.is-active .dr-sb-shard-sill {
+  animation: dr-sb-anim-sill 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-sill {
+  0%,
+  30.0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  40.0% {
+    opacity: 0.7;
+    transform: translateY(4px);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: translateY(7px);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* Piece 5: Inner Aperture 3D Depth Walls */
+#about .about-storyboard-stage.is-active .dr-sb-shard-brace {
+  animation: dr-sb-anim-brace 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-brace {
+  0%,
+  32.0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  42.0% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+/* Piece 6 & 7: Top Corner Structural Miters */
+#about .about-storyboard-stage.is-active .dr-sb-shard-accent {
+  animation: dr-sb-anim-accent 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-accent {
+  0%,
+  32.0% {
+    opacity: 0;
+    transform: translate(6px, -6px);
+  }
+
+  42.0% {
+    opacity: 0.7;
+    transform: translate(2px, -2px);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: translate(3px, -3px);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: translate(6px, -6px);
+  }
+}
+
+#about .about-storyboard-stage.is-active .dr-sb-shard-tumble {
+  animation: dr-sb-anim-tumble 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+}
+
+@keyframes dr-sb-anim-tumble {
+  0%,
+  32.0% {
+    opacity: 0;
+    transform: translate(-6px, -6px);
+  }
+
+  42.0% {
+    opacity: 0.7;
+    transform: translate(-2px, -2px);
+  }
+
+  48.0%,
+  88.8% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  93.5% {
+    opacity: 0.5;
+    transform: translate(-3px, -3px);
+  }
+
+  96.2%,
+  100% {
+    opacity: 0;
+    transform: translate(-6px, -6px);
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   EMERALD GREEN DIAMOND CORE (PRECISELY CENTERED HERO)
+   Full visibility maintained from 50.0% through 88.8%
+══════════════════════════════════════════════════ */
 #about .about-storyboard-stage.is-active .dr-sb-core-group {
-  animation: dr-sb-core-morph 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
+  animation: dr-sb-core-morph 16s cubic-bezier(0.25, 1, 0.35, 1) infinite;
 }
 
 @keyframes dr-sb-core-morph {
   0%,
-  41.5% {
-    /* Hidden inside cube */
+  42.0% {
     opacity: 0;
-    transform: translate(0, 30px) scale(0.15) rotate(-20deg);
+    transform: scale(0.12) rotate(-10deg);
   }
 
-  46.0% {
-    /* Floods out of fracture */
-    opacity: 0.95;
-    transform: translate(0, 10px) scale(0.7) rotate(6deg);
+  48.0% {
+    opacity: 0.85;
+    transform: scale(0.85) rotate(2deg);
   }
 
-  54.0% {
-    /* Floating in center of shards cluster */
+  50.0%,
+  88.8% {
     opacity: 1;
-    transform: translate(0, -10px) scale(0.95) rotate(18deg);
+    transform: scale(1) rotate(0deg);
   }
 
-  62.0% {
-    /* Settles into aperture */
-    opacity: 1;
-    transform: translate(0, -2px) scale(1.02) rotate(-1deg);
+  93.0% {
+    opacity: 0.5;
+    transform: scale(0.55) rotate(-5deg);
   }
 
-  64.3%,
+  96.2%,
   100% {
-    /* Fully revealed, 100% unobstructed, radiant climax */
-    opacity: 1;
-    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0;
+    transform: scale(0.12) rotate(-10deg);
   }
 }
 
-/* Crystal ambient float in climax & hold */
+/* Diamond synchronized floating hover */
 #about .about-storyboard-stage.is-active .dr-sb-octahedron {
-  animation: dr-sb-octa-idle 4.5s ease-in-out infinite alternate;
-  transform-origin: 365px 245px;
+  animation: dr-sb-octa-idle 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-octa-idle {
-  0% {
-    transform: translateY(0) rotate(0deg) scale(1);
-    filter: drop-shadow(0 0 10px #33ff66);
+  0%,
+  50.0% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 5px rgba(0, 204, 51, 0.5));
   }
 
-  50% {
-    transform: translateY(-4px) rotate(2deg) scale(1.02);
-    filter: drop-shadow(0 0 18px #33ff66);
+  62.0% {
+    transform: translateY(-3px) rotate(1deg);
+    filter: drop-shadow(0 0 10px rgba(0, 204, 51, 0.75));
   }
 
+  74.0% {
+    transform: translateY(2px) rotate(-1deg);
+    filter: drop-shadow(0 0 7px rgba(0, 204, 51, 0.6));
+  }
+
+  84.0% {
+    transform: translateY(-1px);
+    filter: drop-shadow(0 0 8px rgba(0, 204, 51, 0.65));
+  }
+
+  88.8%,
   100% {
-    transform: translateY(2px) rotate(-1.5deg) scale(0.99);
-    filter: drop-shadow(0 0 12px #33ff66);
+    transform: translateY(0);
+    filter: drop-shadow(0 0 5px rgba(0, 204, 51, 0.5));
   }
 }
 
 /* Core radiant halo pulse */
 #about .about-storyboard-stage.is-active .dr-sb-core-halo {
-  animation: dr-sb-halo-pulse 3.5s ease-in-out infinite alternate;
-  transform-origin: 365px 245px;
+  animation: dr-sb-halo-pulse 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-halo-pulse {
-  0% {
-    opacity: 0.65;
-    transform: scale(0.92);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1.18);
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   MONOLITH ARCHITECTURAL SHARDS MORPHING (14.0s)
-   Framing Around the Aperture
-══════════════════════════════════════════════════ */
-
-/* Piece 1: Canted Roof Apex Crown */
-#about .about-storyboard-stage.is-active .dr-sb-shard-apex {
-  animation: dr-sb-anim-apex 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-anim-apex {
   0%,
-  41.5% {
-    /* Cube Top Face */
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-
-  47.0% {
-    /* Fractures upward & tilts */
-    transform: translate(14px, -36px) rotate(-9deg) scale(0.97);
-  }
-
-  54.0% {
-    /* Orbiting shard */
-    transform: translate(38px, -58px) rotate(22deg) scale(0.92);
-  }
-
-  62.0% {
-    /* Converging */
-    transform: translate(0, -70px) rotate(0.5deg) scale(1.02);
-  }
-
-  64.3%,
-  100% {
-    /* Monolith apex canopy locked across pillars */
-    transform: translate(0, -68px) rotate(0deg) scale(1);
-  }
-}
-
-/* Piece 2: Left Vertical Monolith Pier */
-#about .about-storyboard-stage.is-active .dr-sb-shard-left {
-  animation: dr-sb-anim-left 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-anim-left {
-  0%,
-  41.5% {
-    /* Cube Left Face */
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-
-  47.0% {
-    transform: translate(-34px, 10px) rotate(7deg) scale(0.98);
-  }
-
-  54.0% {
-    transform: translate(-58px, -18px) rotate(16deg) scale(0.94);
-  }
-
-  62.0% {
-    transform: translate(-2px, -8px) rotate(-1deg) scale(1.02);
-  }
-
-  64.3%,
-  100% {
-    /* Left Column Monolith grounded in place */
-    transform: translate(0, -6px) rotate(0deg) scale(1);
-  }
-}
-
-/* Piece 3: Right Vertical Monolith Pier (Houses Portal Window) */
-#about .about-storyboard-stage.is-active .dr-sb-shard-right {
-  animation: dr-sb-anim-right 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-anim-right {
-  0%,
-  41.5% {
-    /* Cube Right Face */
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-
-  47.0% {
-    transform: translate(36px, 12px) rotate(-7deg) scale(0.98);
-  }
-
-  54.0% {
-    transform: translate(62px, -12px) rotate(-20deg) scale(0.94);
-  }
-
-  62.0% {
-    transform: translate(2px, -8px) rotate(1deg) scale(1.02);
-  }
-
-  64.3%,
-  100% {
-    /* Right Column & Portal locked */
-    transform: translate(0, -6px) rotate(0deg) scale(1);
-  }
-}
-
-/* Portal Window High-Contrast Negative Space */
-#about .about-storyboard-stage.is-active .dr-sb-portal-window {
-  animation: dr-sb-portal-reveal 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-portal-reveal {
-  0%,
-  58.0% {
+  44.0% {
     opacity: 0;
-    transform: scale(0.7);
+    transform: scale(0.4);
   }
 
-  63.0%,
-  100% {
-    opacity: 1;
+  50.0% {
+    opacity: 0.85;
     transform: scale(1);
   }
-}
 
-/* Piece 4: Monolith Base Ground Foundation Plinth */
-#about .about-storyboard-stage.is-active .dr-sb-shard-sill {
-  animation: dr-sb-anim-sill 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-anim-sill {
-  0%,
-  50.0% {
-    opacity: 0;
-    transform: translateY(25px) scale(0.85);
+  66.0% {
+    opacity: 1;
+    transform: scale(1.12);
   }
 
-  58.0% {
+  80.0% {
     opacity: 0.85;
-    transform: translateY(4px) scale(0.98);
+    transform: scale(1);
   }
 
-  64.0%,
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Piece 5: Lower Right Structural Brace (Frames Beneath Crystal) */
-#about .about-storyboard-stage.is-active .dr-sb-shard-brace {
-  animation: dr-sb-anim-brace 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-anim-brace {
-  0%,
-  48.0% {
-    opacity: 0;
-    transform: translate(35px, 25px) scale(0.5);
+  88.8% {
+    opacity: 0.85;
+    transform: scale(1);
   }
 
-  56.0% {
-    opacity: 0.8;
-    transform: translate(18px, -6px) rotate(-12deg) scale(0.88);
+  94.0% {
+    opacity: 0.3;
+    transform: scale(0.6);
   }
 
-  62.0% {
-    opacity: 1;
-    transform: translate(2px, 1px) scale(1.02);
-  }
-
-  64.3%,
-  100% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-/* Piece 6: Poised Asymmetric Detached Accent Shard */
-#about .about-storyboard-stage.is-active .dr-sb-shard-accent {
-  animation: dr-sb-anim-accent 14s cubic-bezier(0.25, 1, 0.35, 1) infinite;
-}
-
-@keyframes dr-sb-anim-accent {
-  0%,
-  45.0% {
-    opacity: 0;
-    transform: translate(30px, -20px) scale(0.4);
-  }
-
-  54.0% {
-    opacity: 0.9;
-    transform: translate(22px, -12px) rotate(14deg) scale(0.9);
-  }
-
-  62.0% {
-    opacity: 1;
-    transform: translate(2px, -2px) scale(1.02);
-  }
-
-  64.3%,
-  100% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-/* Piece 7: Dynamic Shard that dissolves during burst */
-#about .about-storyboard-stage.is-active .dr-sb-shard-tumble {
-  animation: dr-sb-shard-tumble-anim 14s ease-in-out infinite;
-}
-
-@keyframes dr-sb-shard-tumble-anim {
-  0%,
-  42.0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.3);
-  }
-
-  47.0% {
-    opacity: 1;
-    transform: translate(-60px, -45px) rotate(-35deg) scale(1);
-  }
-
-  54.0% {
-    opacity: 0.45;
-    transform: translate(-15px, -15px) rotate(-10deg) scale(0.7);
-  }
-
-  59.0%,
+  96.2%,
   100% {
     opacity: 0;
-    transform: translate(0, 0) scale(0);
+    transform: scale(0.4);
   }
-}
-
-/* ── Material Transitions ── */
-#about .about-storyboard-stage.is-active .dr-sb-poly-apex {
-  fill: url(#dr-sb-cube-top);
-  animation: dr-sb-mat-apex 14s ease infinite;
-}
-
-@keyframes dr-sb-mat-apex {
-  0%,
-  44.0% {
-    fill: url(#dr-sb-cube-top);
-  }
-
-  62.0%,
-  100% {
-    fill: url(#dr-sb-mono-apex);
-  }
-}
-
-#about .about-storyboard-stage.is-active .dr-sb-poly-left {
-  fill: url(#dr-sb-cube-left);
-  animation: dr-sb-mat-left 14s ease infinite;
-}
-
-@keyframes dr-sb-mat-left {
-  0%,
-  44.0% {
-    fill: url(#dr-sb-cube-left);
-  }
-
-  62.0%,
-  100% {
-    fill: url(#dr-sb-mono-left);
-  }
-}
-
-#about .about-storyboard-stage.is-active .dr-sb-poly-right {
-  fill: url(#dr-sb-cube-right);
-  animation: dr-sb-mat-right 14s ease infinite;
-}
-
-@keyframes dr-sb-mat-right {
-  0%,
-  44.0% {
-    fill: url(#dr-sb-cube-right);
-  }
-
-  62.0%,
-  100% {
-    fill: url(#dr-sb-mono-right);
-  }
-}
-
-#about .about-storyboard-stage.is-active .dr-sb-poly-sill {
-  fill: url(#dr-sb-mono-sill);
-}
-
-#about .about-storyboard-stage.is-active .dr-sb-poly-brace {
-  fill: url(#dr-sb-mono-wedge);
 }
 
 /* ══════════════════════════════════════════════════
-   ARTICULATED SILHOUETTE FIGURE RIG KINEMATICS (14.0s)
-   Natural Weight, Stride, Work Contact, Jump & Return
+   ARTICULATED SILHOUETTE FIGURE RIG KINEMATICS (16.0s)
+   Natural Weight, Stride, Work Contact, Jump & Delayed Return
 ══════════════════════════════════════════════════ */
 
 /* 1. Figure Root: Global Position & Jump Apex */
 #about .about-storyboard-stage.is-active .dr-sb-unified-figure {
-  animation: dr-sb-fig-root 14s linear infinite;
+  animation: dr-sb-fig-root 16s linear infinite;
 }
 
 @keyframes dr-sb-fig-root {
@@ -4569,19 +4735,19 @@ font-family: "The Seasons" !important;
     transform: translate(55px, 0);
   }
 
-  3.5% {
+  3.1% {
     transform: translate(94px, 0);
   }
 
-  7.0% {
+  6.2% {
     transform: translate(133px, 0);
   }
 
-  10.5% {
+  9.3% {
     transform: translate(172px, 0);
   }
 
-  14.3% {
+  12.5% {
     transform: translate(210px, 0);
   }
 
@@ -4590,87 +4756,76 @@ font-family: "The Seasons" !important;
     transform: translate(210px, 0);
   }
 
-  /* Stage 3: MOVE TO RIGHT SIDE (Walk from x=210 to x=465) */
-  23.2% {
+  /* Stage 3: MOVE TO RIGHT OF BOX (Walk from x=210 to x=465) */
+  22.5% {
     transform: translate(274px, 0);
   }
 
-  26.4% {
+  25.0% {
     transform: translate(338px, 0);
   }
 
-  29.6% {
+  27.5% {
     transform: translate(402px, 0);
   }
 
-  32.9% {
+  30.0% {
     transform: translate(465px, 0);
   }
 
-  /* Stage 4: WORK / INTERACT (Hands contact box at x=430) */
-  44.3% {
+  /* Stage 4: WORK / INTERACT (Hands contact box at x=465) */
+  40.6% {
     transform: translate(465px, 0);
   }
 
   /* Stage 5: TRANSFORM & DIAMOND REVEAL (Steps back to x=478, holds) */
-  48.0% {
+  44.0% {
     transform: translate(478px, 0);
   }
 
-  64.3% {
+  61.2% {
     transform: translate(478px, 0);
   }
 
-  /* Stage 6: REACTION (Joyful Jump!) */
-  65.7% {
+  /* Stage 6: CELEBRATION (Joyful Jump beside completed frame!) */
+  63.0% {
     transform: translate(478px, 5px);
   }
 
-  /* Crouch anticipation */
-  67.9% {
-    transform: translate(478px, -22px);
+  66.0% {
+    transform: translate(478px, -24px);
   }
 
-  /* Jump Apex: feet off ground! */
-  70.0% {
+  69.0% {
     transform: translate(478px, 4px);
   }
 
-  /* Landing impact cushion */
-  72.0% {
+  71.2% {
     transform: translate(478px, 0);
   }
 
-  72.9% {
-    transform: translate(478px, 0);
+  /* Stage 7: RETURN JOURNEY (Walk from x=478 back to x=55 while frame & diamond stay 100% visible) */
+  74.2% {
+    transform: translate(393px, 0);
   }
 
-  /* Stage 7: RETURN (Walk all the way back from x=478 to x=55) */
-  76.8% {
-    transform: translate(408px, 0);
+  77.2% {
+    transform: translate(309px, 0);
   }
 
-  80.7% {
-    transform: translate(338px, 0);
+  80.2% {
+    transform: translate(224px, 0);
   }
 
-  84.6% {
-    transform: translate(268px, 0);
+  83.2% {
+    transform: translate(140px, 0);
   }
 
-  88.5% {
-    transform: translate(198px, 0);
-  }
-
-  92.4% {
-    transform: translate(128px, 0);
-  }
-
-  96.4% {
+  86.2% {
     transform: translate(55px, 0);
   }
 
-  /* Stage 7b: REST & SEAMLESS LOOP */
+  /* Stage 8 & 9: SETTLE & SOLID CUBE RESET (Character rests at exact initial position x=55 while box resets) */
   100% {
     transform: translate(55px, 0);
   }
@@ -4678,26 +4833,21 @@ font-family: "The Seasons" !important;
 
 /* 2. Skeleton Orientation Flip (Facing Right vs Left) */
 #about .about-storyboard-stage.is-active .dr-sb-fig-skeleton {
-  animation: dr-sb-fig-skel-dir 14s linear infinite;
+  animation: dr-sb-fig-skel-dir 16s linear infinite;
 }
 
 @keyframes dr-sb-fig-skel-dir {
   0%,
-  32.8% {
+  29.9% {
     transform: scaleX(1);
   }
 
-  32.9%,
-  72.8% {
+  30.0%,
+  87.9% {
     transform: scaleX(-1);
   }
 
-  72.9%,
-  96.4% {
-    transform: scaleX(-1);
-  }
-
-  96.5%,
+  88.0%,
   100% {
     transform: scaleX(1);
   }
@@ -4705,33 +4855,32 @@ font-family: "The Seasons" !important;
 
 /* 3. Tracking Foot Shadow */
 #about .about-storyboard-stage.is-active .dr-sb-fig-shadow {
-  animation: dr-sb-fig-shadow-anim 14s ease-in-out infinite;
+  animation: dr-sb-fig-shadow-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-fig-shadow-anim {
   0%,
-  65.0% {
+  62.0% {
     transform: scale(1);
     opacity: 0.2;
   }
 
-  65.7% {
+  63.0% {
     transform: scale(1.15);
     opacity: 0.25;
   }
 
-  67.9% {
-    transform: scale(0.45);
+  66.0% {
+    transform: scale(0.42);
     opacity: 0.08;
   }
 
-  /* Shrinks/fades during jump apex */
-  70.0% {
-    transform: scale(1.12);
-    opacity: 0.24;
+  69.0% {
+    transform: scale(1.15);
+    opacity: 0.25;
   }
 
-  72.0%,
+  71.2%,
   100% {
     transform: scale(1);
     opacity: 0.2;
@@ -4740,7 +4889,7 @@ font-family: "The Seasons" !important;
 
 /* 4. Torso & Spine (Pitch, Weight, Bob) */
 #about .about-storyboard-stage.is-active .dr-sb-torso-group {
-  animation: dr-sb-fig-torso-anim 14s ease-in-out infinite;
+  animation: dr-sb-fig-torso-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-fig-torso-anim {
@@ -4749,106 +4898,100 @@ font-family: "The Seasons" !important;
     transform: translateY(0) rotate(2deg);
   }
 
-  1.8% {
+  1.5% {
     transform: translateY(-2px) rotate(4deg);
   }
 
-  3.5% {
+  3.1% {
     transform: translateY(0) rotate(2deg);
   }
 
-  7.0% {
+  6.2% {
     transform: translateY(-2px) rotate(4deg);
   }
 
-  10.5% {
+  9.3% {
     transform: translateY(0) rotate(2deg);
   }
 
-  14.3% {
+  12.5% {
     transform: translateY(0) rotate(0deg);
   }
 
   /* Stage 2: Observe - Head/Torso tilt toward box */
-  17.0%,
+  16.0%,
   20.0% {
     transform: translateY(0) rotate(8deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2% {
+  /* Stage 3: Walk to right of box */
+  22.5% {
     transform: translateY(-2px) rotate(4deg);
   }
 
-  26.4% {
+  25.0% {
     transform: translateY(0) rotate(2deg);
   }
 
-  29.6% {
+  27.5% {
     transform: translateY(-2px) rotate(4deg);
   }
 
-  32.9% {
+  30.0% {
     transform: translateY(0) rotate(0deg);
   }
 
-  /* Stage 4: Work - Deep athletic forward pitch */
-  34.5%,
-  44.3% {
+  /* Stage 4: Work - Forward pitch touching box */
+  32.0%,
+  40.6% {
     transform: translateY(0) rotate(16deg);
   }
 
   /* Stage 5: Transform - Receptive awe */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: translateY(0) rotate(-4deg);
   }
 
   /* Stage 6: Joyful Jump */
-  65.7% {
+  63.0% {
     transform: translateY(4px) rotate(12deg);
   }
 
-  /* Crouch */
-  67.9% {
+  66.0% {
     transform: translateY(0) rotate(-6deg);
   }
 
-  /* Jump apex proud arch */
-  70.0% {
+  69.0% {
     transform: translateY(3px) rotate(10deg);
   }
 
-  /* Landing cushion */
-  72.0% {
+  71.2% {
     transform: translateY(0) rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8% {
+  /* Stage 7: Return Walk (71.2% - 86.2%) */
+  74.2% {
     transform: translateY(-2px) rotate(4deg);
   }
 
-  80.7% {
+  77.2% {
     transform: translateY(0) rotate(2deg);
   }
 
-  84.6% {
+  80.2% {
     transform: translateY(-2px) rotate(4deg);
   }
 
-  88.5% {
+  83.2% {
     transform: translateY(0) rotate(2deg);
   }
 
-  92.4% {
-    transform: translateY(-2px) rotate(4deg);
-  }
-
-  96.4% {
+  86.2% {
     transform: translateY(0) rotate(0deg);
   }
 
+  /* Stage 8: Rest stance at initial position */
   100% {
     transform: translateY(0) rotate(0deg);
   }
@@ -4856,7 +4999,7 @@ font-family: "The Seasons" !important;
 
 /* 5. Front Thigh (Hip Pivot: 1px, 322px) */
 #about .about-storyboard-stage.is-active .dr-sb-thigh-front {
-  animation: dr-sb-thigh-front-anim 14s ease-in-out infinite;
+  animation: dr-sb-thigh-front-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-thigh-front-anim {
@@ -4865,138 +5008,19 @@ font-family: "The Seasons" !important;
     transform: rotate(-22deg);
   }
 
-  3.5% {
+  3.1% {
     transform: rotate(22deg);
   }
 
-  7.0% {
+  6.2% {
     transform: rotate(-22deg);
   }
 
-  10.5% {
+  9.3% {
     transform: rotate(22deg);
   }
 
-  14.3% {
-    transform: rotate(0deg);
-  }
-
-  /* Stage 2: Observe - Rest stance */
-  20.0% {
-    transform: rotate(0deg);
-  }
-
-  /* Stage 3: Walk to right */
-  23.2% {
-    transform: rotate(-22deg);
-  }
-
-  26.4% {
-    transform: rotate(22deg);
-  }
-
-  29.6% {
-    transform: rotate(-22deg);
-  }
-
-  32.9% {
-    transform: rotate(0deg);
-  }
-
-  /* Stage 4: Work - Braced rear leg extension */
-  34.5%,
-  44.3% {
-    transform: rotate(18deg);
-  }
-
-  /* Stage 5: Transform */
-  48.0%,
-  64.3% {
-    transform: rotate(4deg);
-  }
-
-  /* Stage 6: Joyful Jump */
-  65.7% {
-    transform: rotate(24deg);
-  }
-
-  /* Crouch */
-  67.9% {
-    transform: rotate(-14deg);
-  }
-
-  /* Jump apex tuck */
-  70.0% {
-    transform: rotate(20deg);
-  }
-
-  /* Cushion */
-  72.0% {
-    transform: rotate(0deg);
-  }
-
-  /* Stage 7: Return Walk */
-  76.8% {
-    transform: rotate(-22deg);
-  }
-
-  80.7% {
-    transform: rotate(22deg);
-  }
-
-  84.6% {
-    transform: rotate(-22deg);
-  }
-
-  88.5% {
-    transform: rotate(22deg);
-  }
-
-  92.4% {
-    transform: rotate(-22deg);
-  }
-
-  96.4% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-/* 6. Front Shin & Foot (Knee Pivot: 2px, 344px) */
-#about .about-storyboard-stage.is-active .dr-sb-shin-front {
-  animation: dr-sb-shin-front-anim 14s ease-in-out infinite;
-}
-
-@keyframes dr-sb-shin-front-anim {
-  /* Stage 1: Walk Strides */
-  0% {
-    transform: rotate(0deg);
-  }
-
-  1.8% {
-    transform: rotate(38deg);
-  }
-
-  3.5% {
-    transform: rotate(0deg);
-  }
-
-  5.2% {
-    transform: rotate(38deg);
-  }
-
-  7.0% {
-    transform: rotate(0deg);
-  }
-
-  10.5% {
-    transform: rotate(0deg);
-  }
-
-  14.3% {
+  12.5% {
     transform: rotate(0deg);
   }
 
@@ -5006,84 +5030,183 @@ font-family: "The Seasons" !important;
   }
 
   /* Stage 3: Walk to right */
-  23.2% {
-    transform: rotate(0deg);
+  22.5% {
+    transform: rotate(-22deg);
   }
 
-  24.8% {
-    transform: rotate(38deg);
+  25.0% {
+    transform: rotate(22deg);
   }
 
-  26.4% {
-    transform: rotate(0deg);
+  27.5% {
+    transform: rotate(-22deg);
   }
 
-  29.6% {
-    transform: rotate(0deg);
-  }
-
-  32.9% {
+  30.0% {
     transform: rotate(0deg);
   }
 
   /* Stage 4: Work */
-  34.5%,
-  44.3% {
-    transform: rotate(0deg);
+  32.0%,
+  40.6% {
+    transform: rotate(18deg);
   }
 
   /* Stage 5: Transform */
-  48.0%,
-  64.3% {
-    transform: rotate(0deg);
+  44.0%,
+  61.2% {
+    transform: rotate(4deg);
   }
 
-  /* Stage 6: Joyful Jump */
-  65.7% {
-    transform: rotate(42deg);
+  /* Stage 6: Jump */
+  63.0% {
+    transform: rotate(24deg);
   }
 
-  /* Crouch */
-  67.9% {
-    transform: rotate(26deg);
+  66.0% {
+    transform: rotate(-14deg);
   }
 
-  /* Apex tuck */
-  70.0% {
-    transform: rotate(36deg);
+  69.0% {
+    transform: rotate(20deg);
   }
 
-  /* Cushion */
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
   /* Stage 7: Return Walk */
-  76.8% {
+  74.2% {
+    transform: rotate(-22deg);
+  }
+
+  77.2% {
+    transform: rotate(22deg);
+  }
+
+  80.2% {
+    transform: rotate(-22deg);
+  }
+
+  83.2% {
+    transform: rotate(22deg);
+  }
+
+  86.2% {
     transform: rotate(0deg);
   }
 
-  78.8% {
+  /* Stage 8: Rest */
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 6. Front Shin & Foot (Knee Pivot: 2px, 344px) */
+#about .about-storyboard-stage.is-active .dr-sb-shin-front {
+  animation: dr-sb-shin-front-anim 16s ease-in-out infinite;
+}
+
+@keyframes dr-sb-shin-front-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  1.5% {
     transform: rotate(38deg);
   }
 
-  80.7% {
+  3.1% {
     transform: rotate(0deg);
   }
 
-  84.6% {
+  4.7% {
+    transform: rotate(38deg);
+  }
+
+  6.2% {
     transform: rotate(0deg);
   }
 
-  88.5% {
+  9.3% {
     transform: rotate(0deg);
   }
 
-  92.4% {
+  12.5% {
     transform: rotate(0deg);
   }
 
-  96.4% {
+  20.0% {
+    transform: rotate(0deg);
+  }
+
+  22.5% {
+    transform: rotate(0deg);
+  }
+
+  23.8% {
+    transform: rotate(38deg);
+  }
+
+  25.0% {
+    transform: rotate(0deg);
+  }
+
+  27.5% {
+    transform: rotate(0deg);
+  }
+
+  30.0% {
+    transform: rotate(0deg);
+  }
+
+  32.0%,
+  40.6% {
+    transform: rotate(0deg);
+  }
+
+  44.0%,
+  61.2% {
+    transform: rotate(0deg);
+  }
+
+  63.0% {
+    transform: rotate(42deg);
+  }
+
+  66.0% {
+    transform: rotate(26deg);
+  }
+
+  69.0% {
+    transform: rotate(36deg);
+  }
+
+  71.2% {
+    transform: rotate(0deg);
+  }
+
+  74.2% {
+    transform: rotate(0deg);
+  }
+
+  75.7% {
+    transform: rotate(38deg);
+  }
+
+  77.2% {
+    transform: rotate(0deg);
+  }
+
+  80.2% {
+    transform: rotate(0deg);
+  }
+
+  83.2% {
+    transform: rotate(0deg);
+  }
+
+  86.2% {
     transform: rotate(0deg);
   }
 
@@ -5094,107 +5217,93 @@ font-family: "The Seasons" !important;
 
 /* 7. Rear Thigh (Hip Pivot: -1px, 322px) */
 #about .about-storyboard-stage.is-active .dr-sb-thigh-rear {
-  animation: dr-sb-thigh-rear-anim 14s ease-in-out infinite;
+  animation: dr-sb-thigh-rear-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-thigh-rear-anim {
-  /* Stage 1: Walk Strides (Opposite phase) */
   0% {
     transform: rotate(22deg);
   }
 
-  3.5% {
+  3.1% {
     transform: rotate(-22deg);
   }
 
-  7.0% {
+  6.2% {
     transform: rotate(22deg);
   }
 
-  10.5% {
+  9.3% {
     transform: rotate(-22deg);
   }
 
-  14.3% {
+  12.5% {
     transform: rotate(0deg);
   }
 
-  /* Stage 2: Observe */
   20.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2% {
+  22.5% {
     transform: rotate(22deg);
   }
 
-  26.4% {
+  25.0% {
     transform: rotate(-22deg);
   }
 
-  29.6% {
+  27.5% {
     transform: rotate(22deg);
   }
 
-  32.9% {
+  30.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 4: Work - Forward knee bend */
-  34.5%,
-  44.3% {
+  32.0%,
+  40.6% {
     transform: rotate(-14deg);
   }
 
-  /* Stage 5: Transform */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: rotate(-4deg);
   }
 
-  /* Stage 6: Joyful Jump */
-  65.7% {
+  63.0% {
     transform: rotate(-20deg);
   }
 
-  /* Crouch */
-  67.9% {
+  66.0% {
     transform: rotate(14deg);
   }
 
-  /* Apex tuck */
-  70.0% {
+  69.0% {
     transform: rotate(-18deg);
   }
 
-  /* Cushion */
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8% {
+  74.2% {
     transform: rotate(22deg);
   }
 
-  80.7% {
+  77.2% {
     transform: rotate(-22deg);
   }
 
-  84.6% {
+  80.2% {
     transform: rotate(22deg);
   }
 
-  88.5% {
+  83.2% {
     transform: rotate(-22deg);
   }
 
-  92.4% {
-    transform: rotate(22deg);
-  }
-
-  96.4% {
+  86.2% {
     transform: rotate(0deg);
   }
 
@@ -5205,119 +5314,105 @@ font-family: "The Seasons" !important;
 
 /* 8. Rear Shin & Foot (Knee Pivot: -2px, 344px) */
 #about .about-storyboard-stage.is-active .dr-sb-shin-rear {
-  animation: dr-sb-shin-rear-anim 14s ease-in-out infinite;
+  animation: dr-sb-shin-rear-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-shin-rear-anim {
-  /* Stage 1: Walk Strides */
   0% {
     transform: rotate(0deg);
   }
 
-  3.5% {
+  3.1% {
     transform: rotate(0deg);
   }
 
-  5.2% {
+  4.7% {
     transform: rotate(38deg);
   }
 
-  7.0% {
+  6.2% {
     transform: rotate(0deg);
   }
 
-  10.5% {
+  9.3% {
     transform: rotate(0deg);
   }
 
-  14.3% {
+  12.5% {
     transform: rotate(0deg);
   }
 
-  /* Stage 2: Observe */
   20.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2% {
+  22.5% {
     transform: rotate(0deg);
   }
 
-  26.4% {
+  25.0% {
     transform: rotate(0deg);
   }
 
-  28.0% {
+  26.3% {
     transform: rotate(38deg);
   }
 
-  29.6% {
+  27.5% {
     transform: rotate(0deg);
   }
 
-  32.9% {
+  30.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 4: Work */
-  34.5%,
-  44.3% {
+  32.0%,
+  40.6% {
     transform: rotate(14deg);
   }
 
-  /* Stage 5: Transform */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 6: Joyful Jump */
-  65.7% {
+  63.0% {
     transform: rotate(38deg);
   }
 
-  /* Crouch */
-  67.9% {
+  66.0% {
     transform: rotate(24deg);
   }
 
-  /* Apex tuck */
-  70.0% {
+  69.0% {
     transform: rotate(34deg);
   }
 
-  /* Cushion */
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8% {
+  74.2% {
     transform: rotate(0deg);
   }
 
-  80.7% {
+  77.2% {
     transform: rotate(0deg);
   }
 
-  82.7% {
+  78.7% {
     transform: rotate(38deg);
   }
 
-  84.6% {
+  80.2% {
     transform: rotate(0deg);
   }
 
-  88.5% {
+  83.2% {
     transform: rotate(0deg);
   }
 
-  92.4% {
-    transform: rotate(0deg);
-  }
-
-  96.4% {
+  86.2% {
     transform: rotate(0deg);
   }
 
@@ -5328,108 +5423,94 @@ font-family: "The Seasons" !important;
 
 /* 9. Front Bicep & Arm Swing (Shoulder Pivot: 3px, 287px) */
 #about .about-storyboard-stage.is-active .dr-sb-bicep-front {
-  animation: dr-sb-bicep-front-anim 14s ease-in-out infinite;
+  animation: dr-sb-bicep-front-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-bicep-front-anim {
-  /* Stage 1: Walk Counter-Swing */
   0% {
     transform: rotate(18deg);
   }
 
-  3.5% {
+  3.1% {
     transform: rotate(-18deg);
   }
 
-  7.0% {
+  6.2% {
     transform: rotate(18deg);
   }
 
-  10.5% {
+  9.3% {
     transform: rotate(-18deg);
   }
 
-  14.3% {
+  12.5% {
     transform: rotate(0deg);
   }
 
-  /* Stage 2: Observe - Thoughtful hand-to-chin */
-  17.0%,
+  16.0%,
   20.0% {
     transform: rotate(-42deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2% {
+  22.5% {
     transform: rotate(18deg);
   }
 
-  26.4% {
+  25.0% {
     transform: rotate(-18deg);
   }
 
-  29.6% {
+  27.5% {
     transform: rotate(18deg);
   }
 
-  32.9% {
+  30.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 4: Work - Hands firmly contacting right box face at (430, 270) */
-  34.5%,
-  44.3% {
+  32.0%,
+  40.6% {
     transform: rotate(-66deg);
   }
 
-  /* Stage 5: Transform - Open arms in awe */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: rotate(-35deg);
   }
 
-  /* Stage 6: Joyful Jump - Celebratory high reach */
-  65.7% {
+  63.0% {
     transform: rotate(28deg);
   }
 
-  /* Pull back */
-  67.9% {
+  66.0% {
     transform: rotate(-142deg);
   }
 
-  /* Jump Apex Victory! */
-  70.0% {
+  69.0% {
     transform: rotate(-30deg);
   }
 
-  /* Cushion */
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8% {
+  74.2% {
     transform: rotate(18deg);
   }
 
-  80.7% {
+  77.2% {
     transform: rotate(-18deg);
   }
 
-  84.6% {
+  80.2% {
     transform: rotate(18deg);
   }
 
-  88.5% {
+  83.2% {
     transform: rotate(-18deg);
   }
 
-  92.4% {
-    transform: rotate(18deg);
-  }
-
-  96.4% {
+  86.2% {
     transform: rotate(0deg);
   }
 
@@ -5440,61 +5521,53 @@ font-family: "The Seasons" !important;
 
 /* 10. Front Forearm (Elbow Pivot: 5px, 303px) */
 #about .about-storyboard-stage.is-active .dr-sb-forearm-front {
-  animation: dr-sb-forearm-front-anim 14s ease-in-out infinite;
+  animation: dr-sb-forearm-front-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-forearm-front-anim {
-  /* Stage 1: Walk */
   0%,
-  14.3% {
+  12.5% {
     transform: rotate(-12deg);
   }
 
-  /* Stage 2: Observe - Hand touches chin */
-  17.0%,
+  16.0%,
   20.0% {
     transform: rotate(-48deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2%,
-  32.9% {
+  22.5%,
+  30.0% {
     transform: rotate(-12deg);
   }
 
-  /* Stage 4: Work - Extended to box surface with zero gap */
-  34.5%,
-  44.3% {
+  32.0%,
+  40.6% {
     transform: rotate(-20deg);
   }
 
-  /* Stage 5: Transform */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: rotate(-25deg);
   }
 
-  /* Stage 6: Joyful Jump */
-  65.7% {
+  63.0% {
     transform: rotate(-10deg);
   }
 
-  67.9% {
+  66.0% {
     transform: rotate(-25deg);
   }
 
-  /* Apex celebration */
-  70.0% {
+  69.0% {
     transform: rotate(-15deg);
   }
 
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8%,
-  96.4% {
+  74.2%,
+  86.2% {
     transform: rotate(-12deg);
   }
 
@@ -5505,106 +5578,94 @@ font-family: "The Seasons" !important;
 
 /* 11. Rear Bicep & Arm Swing (Shoulder Pivot: -2px, 287px) */
 #about .about-storyboard-stage.is-active .dr-sb-bicep-rear {
-  animation: dr-sb-bicep-rear-anim 14s ease-in-out infinite;
+  animation: dr-sb-bicep-rear-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-bicep-rear-anim {
-  /* Stage 1: Walk */
   0% {
     transform: rotate(-18deg);
   }
 
-  3.5% {
+  3.1% {
     transform: rotate(18deg);
   }
 
-  7.0% {
+  6.2% {
     transform: rotate(-18deg);
   }
 
-  10.5% {
+  9.3% {
     transform: rotate(18deg);
   }
 
-  14.3% {
+  12.5% {
     transform: rotate(0deg);
   }
 
-  /* Stage 2: Observe - Relaxed */
-  17.0%,
+  16.0%,
   20.0% {
     transform: rotate(5deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2% {
+  22.5% {
     transform: rotate(-18deg);
   }
 
-  26.4% {
+  25.0% {
     transform: rotate(18deg);
   }
 
-  29.6% {
+  27.5% {
     transform: rotate(-18deg);
   }
 
-  32.9% {
+  30.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 4: Work - Supporting push contact at (432, 273) */
-  34.5%,
-  44.3% {
+  32.0%,
+  40.6% {
     transform: rotate(-58deg);
   }
 
-  /* Stage 5: Transform */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: rotate(-25deg);
   }
 
-  /* Stage 6: Joyful Jump */
-  65.7% {
+  63.0% {
     transform: rotate(24deg);
   }
 
-  67.9% {
+  66.0% {
     transform: rotate(-130deg);
   }
 
-  /* Apex Victory! */
-  70.0% {
+  69.0% {
     transform: rotate(-25deg);
   }
 
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8% {
+  74.2% {
     transform: rotate(-18deg);
   }
 
-  80.7% {
+  77.2% {
     transform: rotate(18deg);
   }
 
-  84.6% {
+  80.2% {
     transform: rotate(-18deg);
   }
 
-  88.5% {
+  83.2% {
     transform: rotate(18deg);
   }
 
-  92.4% {
-    transform: rotate(-18deg);
-  }
-
-  96.4% {
+  86.2% {
     transform: rotate(0deg);
   }
 
@@ -5615,65 +5676,95 @@ font-family: "The Seasons" !important;
 
 /* 12. Rear Forearm (Elbow Pivot: -4px, 303px) */
 #about .about-storyboard-stage.is-active .dr-sb-forearm-rear {
-  animation: dr-sb-forearm-rear-anim 14s ease-in-out infinite;
+  animation: dr-sb-forearm-rear-anim 16s ease-in-out infinite;
 }
 
 @keyframes dr-sb-forearm-rear-anim {
-  /* Stage 1: Walk */
   0%,
-  14.3% {
+  12.5% {
     transform: rotate(-10deg);
   }
 
-  /* Stage 2: Observe */
-  17.0%,
+  16.0%,
   20.0% {
     transform: rotate(0deg);
   }
 
-  /* Stage 3: Walk to right */
-  23.2%,
-  32.9% {
+  22.5%,
+  30.0% {
     transform: rotate(-10deg);
   }
 
-  /* Stage 4: Work - Zero gap contact */
-  34.5%,
-  44.3% {
+  32.0%,
+  40.6% {
     transform: rotate(-24deg);
   }
 
-  /* Stage 5: Transform */
-  48.0%,
-  64.3% {
+  44.0%,
+  61.2% {
     transform: rotate(-20deg);
   }
 
-  /* Stage 6: Joyful Jump */
-  65.7% {
+  63.0% {
     transform: rotate(-10deg);
   }
 
-  67.9% {
+  66.0% {
     transform: rotate(-20deg);
   }
 
-  70.0% {
+  69.0% {
     transform: rotate(-10deg);
   }
 
-  72.0% {
+  71.2% {
     transform: rotate(0deg);
   }
 
-  /* Stage 7: Return Walk */
-  76.8%,
-  96.4% {
+  74.2%,
+  86.2% {
     transform: rotate(-10deg);
   }
 
   100% {
     transform: rotate(0deg);
+  }
+}
+
+/* ── Material Polish & Reduced Motion Accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  #about .about-storyboard-stage.is-active * {
+    animation: none !important;
+  }
+
+  #about .dr-sb-cube-group {
+    opacity: 0 !important;
+    display: none !important;
+  }
+
+  #about .dr-sb-frame-group,
+  #about .dr-sb-shard-apex,
+  #about .dr-sb-shard-left,
+  #about .dr-sb-shard-right,
+  #about .dr-sb-shard-sill,
+  #about .dr-sb-shard-brace,
+  #about .dr-sb-shard-accent,
+  #about .dr-sb-shard-tumble {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  #about .dr-sb-core-group {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  #about .dr-sb-unified-figure {
+    transform: translate(478px, 0) !important;
+  }
+
+  #about .dr-sb-fig-skeleton {
+    transform: scaleX(-1) !important;
   }
 }
 
@@ -5804,7 +5895,6 @@ font-family: "The Seasons" !important;
   #about .dr-sb-octahedron,
   #about .dr-sb-core-halo,
   #about .dr-sb-shard,
-  #about .dr-sb-portal-window,
   #about .dr-sb-poly,
   #about .dr-sb-unified-figure,
   #about .dr-sb-fig-skeleton,
@@ -5826,15 +5916,15 @@ font-family: "The Seasons" !important;
 
   /* Show final settled structure with completely unobstructed diamond */
   #about .dr-sb-shard-apex {
-    transform: translate(0, -68px) rotate(0deg) scale(1) !important;
+    transform: translate(0, -28px) rotate(0deg) scale(1.02) !important;
   }
 
   #about .dr-sb-shard-left {
-    transform: translate(0, -6px) rotate(0deg) scale(1) !important;
+    transform: translate(-28px, 0) rotate(0deg) scale(1) !important;
   }
 
   #about .dr-sb-shard-right {
-    transform: translate(0, -6px) rotate(0deg) scale(1) !important;
+    transform: translate(28px, 0) rotate(0deg) scale(1) !important;
   }
 
   #about .dr-sb-shard-sill {
@@ -5844,7 +5934,7 @@ font-family: "The Seasons" !important;
 
   #about .dr-sb-shard-brace {
     opacity: 1 !important;
-    transform: translate(0, 0) scale(1) !important;
+    transform: translateY(0) scale(1) !important;
   }
 
   #about .dr-sb-shard-accent {
@@ -5852,28 +5942,37 @@ font-family: "The Seasons" !important;
     transform: translate(0, 0) scale(1) !important;
   }
 
-  #about .dr-sb-portal-window {
+  #about .dr-sb-shard-tumble {
     opacity: 1 !important;
+    transform: translate(0, 0) scale(1) !important;
   }
 
   #about .dr-sb-poly-apex {
-    fill: url(#dr-sb-mono-apex) !important;
+    fill: url(#dr-sb-frame-apex) !important;
   }
 
   #about .dr-sb-poly-left {
-    fill: url(#dr-sb-mono-left) !important;
+    fill: url(#dr-sb-frame-left) !important;
   }
 
   #about .dr-sb-poly-right {
-    fill: url(#dr-sb-mono-right) !important;
+    fill: url(#dr-sb-frame-right) !important;
   }
 
   #about .dr-sb-poly-sill {
-    fill: url(#dr-sb-mono-sill) !important;
+    fill: url(#dr-sb-frame-sill) !important;
   }
 
   #about .dr-sb-poly-brace {
-    fill: url(#dr-sb-mono-wedge) !important;
+    fill: url(#dr-sb-frame-inner) !important;
+  }
+
+  #about .dr-sb-poly-accent {
+    fill: url(#dr-sb-frame-bevel) !important;
+  }
+
+  #about .dr-sb-poly-tumble {
+    fill: url(#dr-sb-frame-bevel) !important;
   }
 
   #about .dr-sb-core-group {
@@ -5882,20 +5981,16 @@ font-family: "The Seasons" !important;
   }
 
   #about .dr-sb-floor-green {
-    opacity: 0.95 !important;
-    transform: scale(1) !important;
+    opacity: 0.85 !important;
+    transform: scale(1.05) !important;
   }
 
   #about .dr-sb-unified-figure {
-    transform: translate(55px, 0px) !important;
+    transform: translate(475px, 0px) !important;
   }
 
   #about .dr-sb-fig-skeleton {
-    transform: scaleX(1) !important;
-  }
-
-  #about .about-timeline-bar {
-    width: 100% !important;
+    transform: scaleX(-1) !important;
   }
 }
 
@@ -7382,10 +7477,10 @@ body.dr-splash-active {
 #about .dr-sb-world,
 #about .dr-sb-shard,
 #about .dr-sb-core-group,
-#about .dr-sb-portal-window,
-#about .dr-sb-crack-fx {
-  -webkit-transform-box: fill-box;
-  transform-box: fill-box;
+#about .dr-sb-crack-fx,
+#about .dr-sb-unified-figure {
+  -webkit-transform-box: view-box;
+  transform-box: view-box;
 
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

@@ -524,7 +524,7 @@ C 285 264, 345 264, 400 268
             aria-label="Influencer Marketing">
             <text x="110" y="352" text-anchor="end" class="dr-node-label">
               <tspan x="110" dy="0">Influencer</tspan>
-<tspan x="110" dy="24">Marketing</tspan>
+              <tspan x="110" dy="24">Marketing</tspan>
 
             </text>
             <circle cx="130" cy="360" r="4.5" class="dr-node-dot" />
@@ -536,7 +536,7 @@ C 285 264, 345 264, 400 268
             <circle cx="1030" cy="110" r="4.5" class="dr-node-dot" />
             <text x="852" y="128" text-anchor="start" class="dr-node-label">
               <tspan x="1050" dy="-25">Social Media</tspan>
-<tspan x="1050" dy="24">Management</tspan>
+              <tspan x="1050" dy="24">Management</tspan>
             </text>
           </a>
 
@@ -545,8 +545,8 @@ C 285 264, 345 264, 400 268
             aria-label="Web Design & Development">
             <circle cx="1100" cy="380" r="4.5" class="dr-node-dot" />
             <text x="1042" y="372" text-anchor="start" class="dr-node-label">
-             <tspan x="1120" dy="0">Web Design &amp;</tspan>
-<tspan x="1120" dy="24">Development</tspan>
+              <tspan x="1120" dy="0">Web Design &amp;</tspan>
+              <tspan x="1120" dy="24">Development</tspan>
             </text>
           </a>
 
@@ -563,7 +563,7 @@ C 285 264, 345 264, 400 268
             <circle cx="810" cy="560" r="4.5" class="dr-node-dot" />
             <text x="832" y="552" text-anchor="start" class="dr-node-label">
               <tspan x="832" dy="0">Performance</tspan>
-<tspan x="832" dy="24">Marketing</tspan>
+              <tspan x="832" dy="24">Marketing</tspan>
             </text>
           </a>
 
@@ -1191,256 +1191,334 @@ C 285 264, 345 264, 400 268
             <h3 class="about-manifesto-punch">We Redesign It.</h3>
           </div>
 
-          <!-- Storyboard 7-Stage Narrative Canvas -->
-          <div class="about-storyboard-stage" id="about-storyboard-stage" role="img"
-            aria-label="Storyboard continuous morph: A white cube fractures under designer interaction and reconstructs into a tall black faceted architectural monolith with an open portal and glowing green octahedron crystal core">
-            <svg class="about-storyboard-svg" viewBox="0 0 680 460" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <defs>
-                <!-- Photoreal Studio Lighting Gradients -->
-                <!-- White Studio Cube Face Gradients -->
-                <linearGradient id="dr-sb-cube-top" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#ececec" />
-                </linearGradient>
-                <linearGradient id="dr-sb-cube-left" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#e0e0e0" />
-                  <stop offset="100%" stop-color="#c4c4c4" />
-                </linearGradient>
-                <linearGradient id="dr-sb-cube-right" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#b6b6b6" />
-                  <stop offset="100%" stop-color="#949494" />
-                </linearGradient>
+          <!-- ===== DemuRup hero animation: paste this whole block where the hero should sit (no other files needed) ===== -->
+          <style>
+            .dm-hero {
+              position: relative;
+              width: 100%;
+              aspect-ratio: 1000/560;
+              overflow: hidden;
+              background: transparent;
+              contain: layout paint
+            }
 
-                <!-- Black Faceted Monolith Gradients (Deep charcoal / matte black with studio sheen) -->
-                <linearGradient id="dr-sb-mono-apex" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#3c3c3c" />
-                  <stop offset="50%" stop-color="#242424" />
-                  <stop offset="100%" stop-color="#121212" />
-                </linearGradient>
-                <linearGradient id="dr-sb-mono-left" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#2c2c2c" />
-                  <stop offset="100%" stop-color="#141414" />
-                </linearGradient>
-                <linearGradient id="dr-sb-mono-right" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#202020" />
-                  <stop offset="100%" stop-color="#0a0a0a" />
-                </linearGradient>
-                <linearGradient id="dr-sb-mono-wedge" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#444444" />
-                  <stop offset="100%" stop-color="#1a1a1a" />
-                </linearGradient>
-                <linearGradient id="dr-sb-mono-sill" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#1e1e1e" />
-                  <stop offset="100%" stop-color="#080808" />
-                </linearGradient>
+            .dm-ns {
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center
+            }
 
-                <!-- Glowing Emerald Green Octahedron Crystal Facet Gradients -->
-                <linearGradient id="dr-sb-gem-top-l" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#4dff79" />
-                  <stop offset="100%" stop-color="#00cc33" />
-                </linearGradient>
-                <linearGradient id="dr-sb-gem-top-r" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#00e639" />
-                  <stop offset="100%" stop-color="#009926" />
-                </linearGradient>
-                <linearGradient id="dr-sb-gem-bot-l" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#00b32c" />
-                  <stop offset="100%" stop-color="#005917" />
-                </linearGradient>
-                <linearGradient id="dr-sb-gem-bot-r" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#009926" />
-                  <stop offset="100%" stop-color="#004010" />
-                </linearGradient>
+            .dm-nsf {
+              width: 30%;
+              aspect-ratio: 1;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: clamp(16px, 3.4vw, 40px) solid #F1EBDD;
+              box-shadow: 0 14px 30px rgba(0, 0, 0, .18);
+              box-sizing: content-box
+            }
 
-                <!-- Radiant Internal Light Core -->
-                <radialGradient id="dr-sb-core-radiance" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(51, 255, 102, 0.95)" />
-                  <stop offset="35%" stop-color="rgba(0, 204, 51, 0.65)" />
-                  <stop offset="70%" stop-color="rgba(0, 204, 51, 0.18)" />
-                  <stop offset="100%" stop-color="rgba(0, 204, 51, 0)" />
-                </radialGradient>
+            #dm-stage {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              width: 1000px;
+              height: 560px;
+              transform-origin: center
+            }
 
-                <!-- Floor Reflection / Green Ground Spill -->
-                <radialGradient id="dr-sb-ground-green" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(0, 204, 51, 0.55)" />
-                  <stop offset="55%" stop-color="rgba(0, 204, 51, 0.15)" />
-                  <stop offset="100%" stop-color="rgba(0, 204, 51, 0)" />
-                </radialGradient>
+            #dm-glow {
+              position: absolute;
+              left: 410px;
+              top: 20px;
+              width: 500px;
+              height: 500px;
+              border-radius: 50%;
+              background: radial-gradient(circle, rgba(0, 204, 51, .55), rgba(0, 204, 51, 0) 65%);
+              opacity: 0
+            }
 
-                <!-- Studio Soft Shadow Filter -->
-                <filter id="dr-sb-shadow-blur" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="12" />
-                </filter>
-                <filter id="dr-sb-glow-filter" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="5" result="blur1" />
-                  <feGaussianBlur stdDeviation="14" result="blur2" />
-                  <feMerge>
-                    <feMergeNode in="blur2" />
-                    <feMergeNode in="blur1" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
+            #dm-shadow {
+              position: absolute;
+              left: 510px;
+              top: 378px;
+              width: 300px;
+              height: 40px;
+              border-radius: 50%;
+              background: radial-gradient(ellipse, rgba(0, 0, 0, .28), rgba(0, 0, 0, 0) 70%)
+            }
 
-              <!-- Floor Ground Shadow & Emerald Reflection Spill -->
-              <ellipse cx="365" cy="382" rx="170" ry="24" fill="rgba(10, 10, 10, 0.16)" filter="url(#dr-sb-shadow-blur)"
-                class="dr-sb-floor-shadow" />
-              <ellipse cx="370" cy="385" rx="120" ry="20" fill="url(#dr-sb-ground-green)"
-                filter="url(#dr-sb-shadow-blur)" class="dr-sb-floor-green" />
+            #dm-p3 {
+              position: absolute;
+              inset: 0;
+              perspective: 1500px;
+              z-index: 2
+            }
 
-              <!-- Main Kinetic Sculpture Group -->
-              <g class="dr-sb-world" id="dr-sb-world">
-                <!-- ═══ INTERNAL GLOWING CRACKS & PARTICLES (Shot 4 Work Interaction) ═══ -->
-                <g class="dr-sb-crack-fx" filter="url(#dr-sb-glow-filter)">
-                  <!-- Lightning / Crack starting under hands on right face at (430, 270) -->
-                  <path d="M430,270 L395,240 L360,265 M395,240 L410,210" fill="none" stroke="#33ff66" stroke-width="3.2"
-                    stroke-linecap="round" stroke-linejoin="round" class="dr-sb-lightning-path" />
-                  <!-- Debris particles burst -->
-                  <circle cx="430" cy="270" r="2.5" fill="#33ff66" class="dr-sb-particle dr-sb-p1" />
-                  <circle cx="395" cy="240" r="2.2" fill="#33ff66" class="dr-sb-particle dr-sb-p2" />
-                  <circle cx="410" cy="210" r="2.5" fill="#33ff66" class="dr-sb-particle dr-sb-p3" />
-                  <circle cx="360" cy="265" r="2.0" fill="#33ff66" class="dr-sb-particle dr-sb-p4" />
-                  <circle cx="445" cy="235" r="2.2" fill="#33ff66" class="dr-sb-particle dr-sb-p5" />
-                </g>
+            #dm-obj {
+              position: absolute;
+              left: 555px;
+              top: 165px;
+              width: 210px;
+              height: 210px;
+              transform-style: preserve-3d
+            }
 
-                <!-- ═══ MONOLITH ARCHITECTURAL SHARDS (Framing Around Core Aperture) ═══ -->
+            .dm-f {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 210px;
+              height: 210px;
+              box-shadow: inset 0 0 0 2px rgba(0, 204, 51, var(--g, 0))
+            }
 
-                <!-- Piece 4: Monolith Base Foundation Plinth / Ground Sill -->
-                <g class="dr-sb-shard dr-sb-shard-sill">
-                  <polygon points="265,355 465,355 450,378 280,378" class="dr-sb-poly dr-sb-poly-sill" />
-                </g>
+            .dm-front {
+              background: #F4EEE0
+            }
 
-                <!-- Piece 1: Canted Roof Apex Crown (Top Face of Cube -> Monolith Apex Canopy) -->
-                <g class="dr-sb-shard dr-sb-shard-apex">
-                  <polygon points="360,165 440,210 360,255 280,210" class="dr-sb-poly dr-sb-poly-apex" />
-                </g>
+            .dm-back {
+              background: #E6DFCC
+            }
 
-                <!-- Piece 2: Left Vertical Pillar (Left Face of Cube -> Left Portal Frame) -->
-                <g class="dr-sb-shard dr-sb-shard-left">
-                  <polygon points="280,210 360,255 360,355 280,310" class="dr-sb-poly dr-sb-poly-left" />
-                </g>
+            .dm-panel {
+              background: #d8d0bb
+            }
 
-                <!-- Piece 3: Right Vertical Pillar (Right Face of Cube -> Right Portal Frame with Window Cutout) -->
-                <g class="dr-sb-shard dr-sb-shard-right">
-                  <polygon points="360,255 440,210 440,310 360,355" class="dr-sb-poly dr-sb-poly-right" />
-                  <!-- High-Contrast Negative Space Asymmetric Portal Window Cutout -->
-                  <polygon points="415,200 445,212 440,325 415,305" fill="#ffffff" class="dr-sb-portal-window" />
-                </g>
+            .dm-right {
+              background: #DCD4BF
+            }
 
-                <!-- Piece 5: Lower Right Angular Structural Brace (Frames Beneath Core) -->
-                <g class="dr-sb-shard dr-sb-shard-brace">
-                  <polygon points="380,335 440,325 425,360 375,360" class="dr-sb-poly dr-sb-poly-brace" />
-                </g>
+            .dm-left {
+              background: #CFC7B1
+            }
 
-                <!-- Piece 6: Poised Asymmetric Detached Accent Shard (Upper-Right Crown) -->
-                <g class="dr-sb-shard dr-sb-shard-accent">
-                  <polygon points="460,125 495,148 470,172" fill="url(#dr-sb-mono-right)" />
-                </g>
+            .dm-top {
+              background: #FBF8F0
+            }
 
-                <!-- Piece 7: Dynamic Shard that tumbles during burst then dissolves -->
-                <g class="dr-sb-shard dr-sb-shard-tumble">
-                  <polygon points="250,140 290,110 270,170" fill="url(#dr-sb-mono-apex)" />
-                </g>
+            .dm-bottom {
+              background: #BDB49C
+            }
 
-                <!-- ═══ GLOWING GREEN OCTAHEDRON CRYSTAL CORE (COMPLETELY UNOBSTRUCTED) ═══ -->
-                <!-- Positioned centered in the open portal aperture with ZERO overlapping facets -->
-                <g class="dr-sb-core-group" id="dr-sb-core-group" filter="url(#dr-sb-glow-filter)">
-                  <!-- Radiant Ambient Halo -->
-                  <ellipse cx="365" cy="245" rx="58" ry="58" fill="url(#dr-sb-core-radiance)" class="dr-sb-core-halo" />
+            .dm-iR {
+              background: #E2DAC5
+            }
 
-                  <!-- Octahedron Diamond Crystal Facets -->
-                  <g class="dr-sb-octahedron">
-                    <!-- Top-Left Facet -->
-                    <polygon points="365,175 325,245 365,255" fill="url(#dr-sb-gem-top-l)" stroke="#5cff8a"
-                      stroke-width="0.8" />
-                    <!-- Top-Right Facet -->
-                    <polygon points="365,175 405,245 365,255" fill="url(#dr-sb-gem-top-r)" stroke="#5cff8a"
-                      stroke-width="0.8" />
-                    <!-- Bottom-Left Facet -->
-                    <polygon points="365,315 325,245 365,255" fill="url(#dr-sb-gem-bot-l)" stroke="#33ff66"
-                      stroke-width="0.8" />
-                    <!-- Bottom-Right Facet -->
-                    <polygon points="365,315 405,245 365,255" fill="url(#dr-sb-gem-bot-r)" stroke="#33ff66"
-                      stroke-width="0.8" />
-                    <!-- Central Inner Facet Ridge Light Line -->
-                    <line x1="365" y1="175" x2="365" y2="315" stroke="#ffffff" stroke-width="1.4" opacity="0.95" />
+            .dm-iL {
+              background: #D2CAB4
+            }
+
+            .dm-iT {
+              background: #C9C0AA
+            }
+
+            .dm-iB {
+              background: #F3EEDF
+            }
+
+            #dm-gem {
+              position: absolute;
+              left: 40px;
+              top: 46px;
+              width: 130px;
+              height: 117px;
+              opacity: 0;
+              filter: drop-shadow(0 0 16px #00CC33)
+            }
+
+            #dm-ch {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              overflow: visible;
+              z-index: 3
+            }
+          </style>
+          <section id="dm-wrap" class="dm-hero"
+            aria-label="DemuRup Media: a box redesigned into a frame holding an emerald">
+            <div id="dm-stage">
+              <div id="dm-glow"></div>
+              <div id="dm-shadow"></div>
+              <div id="dm-p3">
+                <div id="dm-obj"><svg id="dm-gem" viewBox="0 0 100 90">
+                    <polygon points="4,34 28,8 38,34" fill="#3FE068" />
+                    <polygon points="28,8 72,8 62,34" fill="#9BF7B0" />
+                    <polygon points="72,8 96,34 62,34" fill="#00B82E" />
+                    <polygon points="4,34 38,34 50,86" fill="#00A82B" />
+                    <polygon points="38,34 62,34 50,86" fill="#00CC33" />
+                    <polygon points="62,34 96,34 50,86" fill="#008F23" />
+                    <polygon points="30,12 44,12 38,22" fill="#fff" opacity=".55" />
+                    <polygon points="28,8 72,8 96,34 50,86 4,34" fill="none" stroke="rgba(255,255,255,.4)"
+                      stroke-width="1" />
+                  </svg></div>
+              </div>
+              <svg id="dm-ch" viewBox="0 0 1000 560">
+                <defs>
+                  <linearGradient id="dm-tg" x1="0" x2="1">
+                    <stop offset="0" stop-color="#F9AA58" />
+                    <stop offset="1" stop-color="#E5742A" />
+                  </linearGradient>
+                  <radialGradient id="dm-hg" cx=".35" cy=".3">
+                    <stop offset="0" stop-color="#FAD2B0" />
+                    <stop offset="1" stop-color="#EDB88D" />
+                  </radialGradient>
+                </defs>
+                <ellipse id="dm-cs" rx="38" ry="8" fill="rgba(0,0,0,.25)" />
+                <g id="dm-c">
+                  <g id="dm-lB" transform="translate(-7,-86)">
+                    <rect x="-7" y="0" width="14" height="76" rx="7" fill="#2c3046" />
+                    <ellipse cx="5" cy="80" rx="13" ry="7" fill="#111111" />
                   </g>
-                </g>
-
-                <!-- ═══ ARTICULATED SILHOUETTE FIGURE RIG (7-STAGE CONTINUOUS SHORT STORY) ═══ -->
-                <g class="dr-sb-unified-figure" id="dr-sb-unified-figure">
-                  <!-- Dynamic Tracking Ground Shadow -->
-                  <ellipse cx="0" cy="368" rx="13" ry="3.2" fill="rgba(10, 10, 10, 0.2)" class="dr-sb-fig-shadow" />
-
-                  <!-- Skeleton Hierarchy with Anatomical Joint Groups -->
-                  <g class="dr-sb-fig-skeleton">
-                    <!-- REAR / FAR LEG (Behind Torso) -->
-                    <g class="dr-sb-leg-rear">
-                      <!-- Rear Thigh (Pivot at Hip: 0px, 322px) -->
-                      <g class="dr-sb-thigh-rear">
-                        <path d="M-1,322 L-2,344" stroke="#111111" stroke-width="4.8" stroke-linecap="round" />
-                        <!-- Rear Shin & Foot (Pivot at Knee: -2px, 344px) -->
-                        <g class="dr-sb-shin-rear">
-                          <path d="M-2,344 L-1,366 L4,367" stroke="#111111" stroke-width="4.0" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </g>
+                  <g id="dm-lF" transform="translate(7,-86)">
+                    <rect x="-7" y="0" width="14" height="76" rx="7" fill="#353a52" />
+                    <ellipse cx="5" cy="80" rx="13" ry="7" fill="#1f1f1f" />
+                  </g>
+                  <g id="dm-up">
+                    <g id="dm-aL">
+                      <line x1="0" y1="0" x2="0" y2="34" stroke="#D9692A" stroke-width="15" stroke-linecap="round" />
+                      <g id="dm-bL" transform="translate(0,34)">
+                        <line x1="0" y1="0" x2="0" y2="32" stroke="#E2A57C" stroke-width="12" stroke-linecap="round" />
+                        <circle cy="34" r="7.5" fill="#E8AE85" />
                       </g>
                     </g>
-
-                    <!-- REAR / FAR ARM (Behind Torso) -->
-                    <g class="dr-sb-arm-rear">
-                      <!-- Rear Bicep (Pivot at Shoulder: -2px, 287px) -->
-                      <g class="dr-sb-bicep-rear">
-                        <path d="M-2,287 L-4,303" stroke="#111111" stroke-width="3.4" stroke-linecap="round" />
-                        <!-- Rear Forearm & Hand (Pivot at Elbow: -4px, 303px) -->
-                        <g class="dr-sb-forearm-rear">
-                          <path d="M-4,303 L-3,319" stroke="#111111" stroke-width="2.9" stroke-linecap="round" />
-                        </g>
+                    <rect x="-5" y="-162" width="12" height="20" rx="5" fill="#E2A57C" />
+                    <rect x="-23" y="-148" width="46" height="66" rx="17" fill="url(#dm-tg)" />
+                    <g id="dm-aR">
+                      <line x1="0" y1="0" x2="0" y2="34" stroke="#F28C3A" stroke-width="15" stroke-linecap="round" />
+                      <g id="dm-bR" transform="translate(0,34)">
+                        <line x1="0" y1="0" x2="0" y2="32" stroke="#EDB88D" stroke-width="12" stroke-linecap="round" />
+                        <circle cy="34" r="7.5" fill="#F4C7A1" />
                       </g>
                     </g>
-
-                    <!-- TORSO & HEAD (Core Anatomic Silhouette) -->
-                    <g class="dr-sb-torso-group">
-                      <!-- Contoured Athletic Torso -->
-                      <path
-                        d="M0,282 C3,282 4,286 3,302 C2,314 2,322 0,323 C-2,322 -2,314 -3,302 C-4,286 -3,282 0,282 Z"
-                        fill="#111111" />
-                      <path d="M0,282 L0,323" stroke="#111111" stroke-width="5.2" stroke-linecap="round" />
-                      <!-- Neck & Head -->
-                      <path d="M0,282 L0,277" stroke="#111111" stroke-width="3.6" stroke-linecap="round" />
-                      <ellipse cx="0" cy="272" rx="5.8" ry="6.4" fill="#111111" class="dr-sb-fig-head" />
-                    </g>
-
-                    <!-- FRONT / NEAR LEG (In Front of Torso) -->
-                    <g class="dr-sb-leg-front">
-                      <!-- Front Thigh (Pivot at Hip: 1px, 322px) -->
-                      <g class="dr-sb-thigh-front">
-                        <path d="M1,322 L2,344" stroke="#111111" stroke-width="5.2" stroke-linecap="round" />
-                        <!-- Front Shin & Foot (Pivot at Knee: 2px, 344px) -->
-                        <g class="dr-sb-shin-front">
-                          <path d="M2,344 L2,366 L7,367" stroke="#111111" stroke-width="4.4" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        </g>
-                      </g>
-                    </g>
-
-                    <!-- FRONT / NEAR ARM (In Front of Torso) -->
-                    <g class="dr-sb-arm-front">
-                      <!-- Front Bicep (Pivot at Shoulder: 3px, 287px) -->
-                      <g class="dr-sb-bicep-front">
-                        <path d="M3,287 L5,303" stroke="#111111" stroke-width="3.8" stroke-linecap="round" />
-                        <!-- Front Forearm & Hand (Pivot at Elbow: 5px, 303px) -->
-                        <g class="dr-sb-forearm-front">
-                          <path d="M5,303 L6,319" stroke="#111111" stroke-width="3.2" stroke-linecap="round" />
-                        </g>
-                      </g>
+                    <g id="dm-hd">
+                      <circle r="27" fill="url(#dm-hg)" />
+                      <path d="M-27 -2A27 27 0 0 1 27 -2Q16 -15 2 -12Q-14 -10 -27 -2Z" fill="#5a3825" />
+                      <circle cx="12" cy="3" r="3" fill="#2a1f1a" />
+                      <circle cx="19" cy="9" r="4" fill="#F2A08A" opacity=".5" />
+                      <path d="M8 13q6 5 12 0" stroke="#7a4a36" stroke-width="2" fill="none" stroke-linecap="round" />
                     </g>
                   </g>
                 </g>
-              </g>
-            </svg>
-          </div>
+              </svg>
+            </div>
+            <noscript>
+              <div class="dm-ns">
+                <div class="dm-nsf"><svg viewBox="0 0 100 90" width="46%" aria-hidden="true">
+                    <polygon points="4,34 28,8 38,34" fill="#3FE068" />
+                    <polygon points="28,8 72,8 62,34" fill="#9BF7B0" />
+                    <polygon points="72,8 96,34 62,34" fill="#00B82E" />
+                    <polygon points="4,34 38,34 50,86" fill="#00A82B" />
+                    <polygon points="38,34 62,34 50,86" fill="#00CC33" />
+                    <polygon points="62,34 96,34 50,86" fill="#008F23" />
+                  </svg></div>
+              </div>
+            </noscript>
+          </section>
+          <script>
+            (function () {
+              'use strict';
+              const S = 210, $ = id => document.getElementById('dm-' + id), DUR = 22.9;
+              const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v)), lerp = (a, b, u) => a + (b - a) * u;
+              const ease = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+              const seg = (t, a, b) => ease(clamp((t - a) / (b - a)));
+              const stage = $('stage'), wrap = $('wrap'), obj = $('obj');
+              function fit() { const k = Math.min(wrap.clientWidth / 1000, wrap.clientHeight / 560); stage.style.transform = `translate(-50%,-50%) scale(${k})` }
+              if ('ResizeObserver' in window) new ResizeObserver(fit).observe(wrap); else addEventListener('resize', fit); fit();
+
+              // build the 3D box (6 outer faces, 4 inner walls, hollow panel)
+              const F = {};
+              ['front', 'back', 'panel', 'right', 'left', 'top', 'bottom', 'iR', 'iL', 'iT', 'iB'].forEach(n => { const d = document.createElement('div'); d.className = 'dm-f dm-' + n; obj.insertBefore(d, $('gem')); F[n] = d });
+              function clip(I) { const i = I * 100, o = 100 - i; return I >= .499 ? 'none' : `polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,${i}% ${i}%,${i}% ${o}%,${o}% ${o}%,${o}% ${i}%,${i}% ${i}%)` }
+              function layout(d, I, p) {
+                const hs = Math.max(0, S * (.5 - I)), c = clip(p < .01 ? .5 : I), st = (e, w, h, l, t, tr) => { e.style.width = w + 'px'; e.style.height = h + 'px'; e.style.left = l + 'px'; e.style.top = t + 'px'; e.style.transform = tr };
+                st(F.front, S, S, 0, 0, `translateZ(${d / 2}px)`); F.front.style.clipPath = c;
+                st(F.back, S, S, 0, 0, `translateZ(${-d / 2}px) rotateY(180deg)`); F.back.style.clipPath = c;
+                st(F.panel, S, S, 0, 0, `translateZ(${-d / 2 + 2}px)`); F.panel.style.opacity = 1 - seg(p, .35, .8);
+                st(F.right, d, S, (S - d) / 2, 0, `rotateY(90deg) translateZ(${S / 2}px)`);
+                st(F.left, d, S, (S - d) / 2, 0, `rotateY(-90deg) translateZ(${S / 2}px)`);
+                st(F.top, S, d, 0, (S - d) / 2, `rotateX(90deg) translateZ(${S / 2}px)`);
+                st(F.bottom, S, d, 0, (S - d) / 2, `rotateX(-90deg) translateZ(${S / 2}px)`);
+                st(F.iR, d, 2 * hs, (S - d) / 2, S / 2 - hs, `rotateY(90deg) translateZ(${hs}px)`);
+                st(F.iL, d, 2 * hs, (S - d) / 2, S / 2 - hs, `rotateY(-90deg) translateZ(${hs}px)`);
+                st(F.iT, 2 * hs, d, S / 2 - hs, (S - d) / 2, `rotateX(90deg) translateZ(${hs}px)`);
+                st(F.iB, 2 * hs, d, S / 2 - hs, (S - d) / 2, `rotateX(-90deg) translateZ(${hs}px)`);
+              }
+
+              // character poses & keyframes
+              const P = {
+                walk: { aL: 0, bL: -10, aR: 0, bR: -10, tilt: 0, lean: 3 },
+                think: { aL: -15, bL: -95, aR: -50, bR: 190, tilt: 9, lean: 2 },
+                reach: { aL: -75, bL: -8, aR: -80, bR: -8, tilt: 0, lean: 10 },
+                push: { aL: -85, bL: 0, aR: -90, bR: 0, tilt: 0, lean: 12 },
+                watch: { aL: 4, bL: -10, aR: 8, bR: -14, tilt: -4, lean: 0 },
+                cheer: { aL: 150, bL: 12, aR: -150, bR: -12, tilt: -6, lean: -2 }
+              };
+              const K = [{ t: 0, x: 100, p: 'walk' }, { t: 1.5, x: 330, p: 'walk' }, { t: 2, x: 330, p: 'think' }, { t: 2.8, x: 330, p: 'think' }, { t: 4, x: 440, p: 'reach' }, { t: 4.4, x: 440, p: 'push' }, { t: 5.5, x: 440, p: 'push' }, { t: 6.5, x: 370, p: 'watch' }, { t: 7.5, x: 370, p: 'watch' }, { t: 8.5, x: 370, p: 'cheer' }, { t: 11.3, x: 370, p: 'cheer' }, { t: 11.8, x: 370, p: 'watch' }, { t: 13, x: 100, p: 'walk' }];
+              function keyAtOld(t) {
+                let a = K[0], b = K[K.length - 1]; for (let i = 0; i < K.length - 1; i++)if (t >= K[i].t && t <= K[i + 1].t) { a = K[i]; b = K[i + 1]; break }
+                const u = ease(clamp((t - a.t) / ((b.t - a.t) || 1))), o = { x: lerp(a.x, b.x, u) }; for (const k in P.walk) o[k] = lerp(P[a.p][k], P[b.p][k], u); return o
+              }
+
+              const PI = Math.PI, SH = 9.5, m = t => t < 12.3 ? Math.min(t, 2.8) : Math.min(t - SH, 11.5), CH = $('ch'); let PH = 0, LR = 0;
+              const PK = [{ t: 0, p: 'walk' }, { t: 1.8, p: 'walk' }, { t: 2.3, p: 'think' }, { t: 3.8, p: 'think' }, { t: 4.2, p: 'walk' }, { t: 8.8, p: 'walk' }, { t: 9.2, p: 'think' }, { t: 9.7, p: 'think' }, { t: 10.1, p: 'walk' }, { t: 13.2, p: 'walk' }, { t: 13.5, p: 'reach' }, { t: 13.9, p: 'push' }, { t: 15, p: 'push' }, { t: 16, p: 'watch' }, { t: 17, p: 'watch' }, { t: 18, p: 'cheer' }, { t: 20.8, p: 'cheer' }, { t: 21.3, p: 'watch' }, { t: 22.9, p: 'walk' }];
+              const XK = [{ t: 0, x: 160, y: 405 }, { t: 1.8, x: 400, y: 405 }, { t: 3.8, x: 400, y: 405 }, { t: 13.5, x: 440, y: 426 }, { t: 15, x: 440, y: 426 }, { t: 16, x: 370, y: 426 }, { t: 21.3, x: 370, y: 426 }, { t: 22.9, x: 160, y: 405 }];
+              const SK = [{ t: 0, sc: 1 }, { t: 3.8, sc: 1 }, { t: 13.5, sc: 1.043 }, { t: 21.3, sc: 1.043 }, { t: 22.9, sc: 1 }];
+              const AK = [{ t: 3.8, a: PI }, { t: 8.8, a: 2.1 * PI }, { t: 9.8, a: 2.1 * PI }, { t: 13.5, a: 2.821 * PI }];
+              const FK = [{ t: 0, v: 1 }, { t: 8.9, v: 1 }, { t: 9.3, v: -1 }, { t: 13.2, v: -1 }, { t: 13.5, v: 1 }, { t: 21.3, v: 1 }, { t: 21.7, v: -1 }, { t: 22.9, v: -1 }];
+              function seq(A, t, key) { let a = A[0], b = A[A.length - 1]; if (t <= a.t) return a[key]; if (t >= b.t) return b[key]; for (let i = 0; i < A.length - 1; i++)if (t <= A[i + 1].t) { a = A[i]; b = A[i + 1]; break } const f = (t - a.t) / (b.t - a.t); return lerp(a[key], b[key], .5 - .5 * Math.cos(Math.PI * f)) }
+              function keyAt(t) {
+                const o = { x: seq(XK, t, 'x'), y: seq(XK, t, 'y'), sc: seq(SK, t, 'sc'), f: seq(FK, t, 'v'), beh: false };
+                if (t >= 3.8 && t <= 13.5) { const ag = seq(AK, t, 'a'), s = Math.sin(ag); o.x = 660 + 260 * Math.cos(ag); o.y = 405 + 40 * s; o.sc = 1 + .08 * s; o.beh = ag < 2 * PI }
+                let a = PK[0], b = PK[PK.length - 1]; for (let i = 0; i < PK.length - 1; i++)if (t >= PK[i].t && t <= PK[i + 1].t) { a = PK[i]; b = PK[i + 1]; break }
+                const u = ease(clamp((t - a.t) / ((b.t - a.t) || 1))); for (const q in P.walk) o[q] = lerp(P[a.p][q], P[b.p][q], u); return o
+              }
+              const SC = [[0, 'Scene 1 · A small, friendly 3D character beside a simple solid box'], [1.5, 'Scene 2 · The person stops, looking thoughtful'], [2.8, 'Scene 3 · The character steps closer and starts working'], [4, 'Scene 4 · The solid box begins transforming — faces retract, the frame expands'], [5.5, 'Scene 5 · The transformation completes, showing a bordered frame'], [6.5, 'Scene 6 · Emerald materializes in the empty center of the frame'], [7.5, 'Scene 7 · The final hero design reveal'], [8.5, 'Scene 8 · The person celebrates'], [9.7, 'Scene 9 · The person celebrates, jumping'], [11.5, 'Scene 10 · The scene resets — diamond shrinks, frame closes']];
+              const el = { c: $('c'), cs: $('cs'), lB: $('lB'), lF: $('lF'), up: $('up'), aL: $('aL'), bL: $('bL'), aR: $('aR'), bR: $('bR'), hd: $('hd'), gem: $('gem'), glow: $('glow'), sh: $('shadow') };
+              let lastScene = -1;
+
+              function render(rt) {
+                const t = m(rt);
+                const rev = seg(t, 7.3, 8.6) - seg(t, 11.5, 13);
+                const p = seg(t, 4, 6.5) - seg(t, 11.5, 13), d = seg(t, 6.5, 7.5) - seg(t, 11.5, 12.3);
+                layout(lerp(S, 34, p), lerp(.5, .15, p), p);
+                const yaw = -34 + 13 * rev, shake = (t > 4 && t < 5.5) ? Math.sin(t * 60) * 2 * (1 - p) : 0;
+                obj.style.setProperty('--g', (.8 * Math.sin(Math.PI * clamp(p))).toFixed(3));
+                obj.style.transform = `translateX(${shake}px) scale(${1 + .1 * rev}) rotateX(-14deg) rotateY(${yaw}deg)`;
+                const bob = Math.sin(rt * 2.2) * 4 * d, pop = d * (1 + .12 * Math.sin(Math.PI * clamp((t - 6.5) / 1.2)));
+                el.gem.style.opacity = clamp(d * 1.4);
+                el.gem.style.transform = `translateY(${bob}px) rotateY(${-yaw * .7}deg) rotateX(10deg) scale(${pop})`;
+                el.glow.style.opacity = clamp(d * (.7 + .2 * Math.sin(rt * 3)));
+                el.sh.style.transform = `scaleX(${1 + .12 * rev + .08 * p})`;
+                // character
+                const k = keyAt(rt), k2 = keyAt(rt + .03), k1 = keyAt(rt - .03), sp = Math.hypot(k2.x - k1.x, (k2.y - k1.y) * 1.5) / .06, w = clamp(sp / 60), dr = rt - LR; LR = rt; if (dr > 0 && dr < .2) PH += sp * dr * .042; const sw = Math.sin(PH) * w; CH.style.zIndex = k.beh ? 1 : 3; CH.style.opacity = Math.min(seg(rt, 0, .6), 1 - seg(rt, 22.2, 22.9));
+                let j = 0; if (t >= 8.5 && t < 9.7) j = Math.abs(Math.sin((t - 8.5) * Math.PI / .6)) * 14; else if (t >= 9.7 && t < 11.3) j = Math.abs(Math.sin((t - 9.7) * Math.PI / .8)) * 46;
+                const y = k.y - j - Math.abs(sw) * 3, flip = k.f;
+                el.c.setAttribute('transform', `translate(${k.x},${y}) scale(${flip * k.sc},${k.sc})`);
+                el.cs.setAttribute('transform', `translate(${k.x},${k.y + 3}) scale(${(1 - j / 110) * k.sc},${k.sc})`);
+                el.lF.setAttribute('transform', `translate(7,-86) rotate(${24 * sw})`);
+                el.lB.setAttribute('transform', `translate(-7,-86) rotate(${-24 * sw})`);
+                const push = (t > 4.4 && t < 5.5) ? Math.sin(t * 14) * 5 : 0;
+                el.up.setAttribute('transform', `rotate(${k.lean + push * .5},0,-86)`);
+                el.aL.setAttribute('transform', `translate(-20,-138) rotate(${k.aL + 18 * sw})`);
+                el.aR.setAttribute('transform', `translate(20,-138) rotate(${k.aR - 18 * sw + push})`);
+                el.bL.setAttribute('transform', `translate(0,34) rotate(${k.bL})`);
+                el.bR.setAttribute('transform', `translate(0,34) rotate(${k.bR})`);
+                el.hd.setAttribute('transform', `translate(4,-182) rotate(${k.tilt})`);
+              }
+
+              // playback
+              let T = 0, play = !matchMedia('(prefers-reduced-motion: reduce)').matches, last = performance.now();
+              if (!play) T = 17.3;
+              let vis = true; if ('IntersectionObserver' in window) new IntersectionObserver(e => { vis = e[0].isIntersecting }).observe(wrap);
+              function loop(n) { const dt = Math.min((n - last) / 1000, .1); last = n; if (vis) { if (play) T = (T + dt) % DUR; render(T) } requestAnimationFrame(loop) }
+              requestAnimationFrame(n => { last = n; loop(n) });
+            })();
+          </script>
         </div>
       </div>
     </div>
@@ -1449,18 +1527,16 @@ C 285 264, 345 264, 400 268
         const stage = document.getElementById("about-storyboard-stage");
         if (!stage) return;
 
+        let activeTimer = null;
+
         function runStoryboard() {
-          // Reset animation
+          // Deterministic reset across WebKit / Safari and Chromium
           stage.classList.remove("is-active");
+          void stage.offsetWidth; // reliable reflow trigger
 
-          // Safari-safe reflow
-          void stage.getBoundingClientRect();
-
-          // Wait for Safari to properly register the reset
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              stage.classList.add("is-active");
-            });
+          if (activeTimer) cancelAnimationFrame(activeTimer);
+          activeTimer = requestAnimationFrame(() => {
+            stage.classList.add("is-active");
           });
         }
 
@@ -1476,27 +1552,24 @@ C 285 264, 345 264, 400 268
               });
             },
             {
-              threshold: 0,
-              rootMargin: "50px 0px 50px 0px"
+              threshold: 0.1,
+              rootMargin: "30px 0px 30px 0px"
             }
           );
 
           try {
             obs.observe(stage);
           } catch (e) {
-            // Safe fallback for older browsers
             stage.classList.add("is-active");
           }
         } else {
-          // Fallback if IntersectionObserver isn't supported
           stage.classList.add("is-active");
         }
 
-        // Safari BFCache (Back-Forward Cache) restoration fix
+        // Cross-browser & Safari BFCache (Back-Forward Cache) restoration
         window.addEventListener("pageshow", (event) => {
           if (event.persisted) {
             const rect = stage.getBoundingClientRect();
-
             if (rect.top < window.innerHeight && rect.bottom > 0) {
               runStoryboard();
             }
@@ -1889,142 +1962,94 @@ C 285 264, 345 264, 400 268
     </div>
   </section>
 
- <!-- ══════════════════════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════════════════
      BLOCK 5 — DEMURUP TESTIMONIALS
      Unique prefix: drt-
 ══════════════════════════════════════════════════════════════ -->
 
-<section
-  class="drt-testimonials editorial-block-transition transition-to-black transition-angled"
-  id="drt-testimonials"
-  data-theme="dark"
-  aria-labelledby="drt-title"
->
-  <h2 class="drt-title reveal" id="drt-title">
-    What Our<br /><span style="color: var(--lime)">Clients Say.</span>
-  </h2>
+  <section class="drt-testimonials editorial-block-transition transition-to-black transition-angled"
+    id="drt-testimonials" data-theme="dark" aria-labelledby="drt-title">
+    <h2 class="drt-title reveal" id="drt-title">
+      What Our<br /><span style="color: var(--lime)">Clients Say.</span>
+    </h2>
 
-  <div class="drt-wrap reveal">
+    <div class="drt-wrap reveal">
 
-    <!-- Previous -->
-    <button
-      class="drt-arrow drt-arrow-left"
-      id="drt-prev"
-      type="button"
-      aria-label="Previous testimonial"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="3.5"
-        stroke-linecap="square"
-        aria-hidden="true"
-      >
-        <path d="M15 4 7 12l8 8" />
-      </svg>
-    </button>
+      <!-- Previous -->
+      <button class="drt-arrow drt-arrow-left" id="drt-prev" type="button" aria-label="Previous testimonial">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"
+          aria-hidden="true">
+          <path d="M15 4 7 12l8 8" />
+        </svg>
+      </button>
 
-    <!-- Next -->
-    <button
-      class="drt-arrow drt-arrow-right"
-      id="drt-next"
-      type="button"
-      aria-label="Next testimonial"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="3.5"
-        stroke-linecap="square"
-        aria-hidden="true"
-      >
-        <path d="m9 4 8 8-8 8" />
-      </svg>
-    </button>
+      <!-- Next -->
+      <button class="drt-arrow drt-arrow-right" id="drt-next" type="button" aria-label="Next testimonial">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"
+          aria-hidden="true">
+          <path d="m9 4 8 8-8 8" />
+        </svg>
+      </button>
 
-    <!-- Slides -->
-    <div class="drt-container" id="drt-container" aria-live="polite">
+      <!-- Slides -->
+      <div class="drt-container" id="drt-container" aria-live="polite">
 
-      <!-- Testimonial 1 -->
-      <div class="drt-slide drt-is-active">
-        <h3>
-          Rahul Mehta
-          <span class="drt-role">Founder, D2C Fashion Brand</span>
-        </h3>
+        <!-- Testimonial 1 -->
+        <div class="drt-slide drt-is-active">
+          <h3>
+            Rahul Mehta
+            <span class="drt-role">Founder, D2C Fashion Brand</span>
+          </h3>
 
-        <p>
-          “DemuRup Media transformed our Instagram from a ghost town to our
-          #1 lead source. The content quality, consistency, and strategy they
-          bring is unlike any agency we've worked with before.”
-        </p>
+          <p>
+            “DemuRup Media transformed our Instagram from a ghost town to our
+            #1 lead source. The content quality, consistency, and strategy they
+            bring is unlike any agency we've worked with before.”
+          </p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="drt-slide">
+          <h3>
+            Priya Sharma
+            <span class="drt-role">CEO, Real Estate Startup</span>
+          </h3>
+
+          <p>
+            “Our website was built in 3 weeks and it looks better than brands
+            10x our size. The team understood our vision immediately and
+            executed it flawlessly. ROAS on our ads went 3x in month one.”
+          </p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="drt-slide">
+          <h3>
+            Arjun Kapoor
+            <span class="drt-role">MD, Healthcare Clinic</span>
+          </h3>
+
+          <p>
+            “Shailesh and the DemuRup team are partners, not vendors. They
+            proactively share ideas, stay ahead of trends, and genuinely care
+            about our growth. Best marketing decision we've made.”
+          </p>
+        </div>
+
       </div>
 
-      <!-- Testimonial 2 -->
-      <div class="drt-slide">
-        <h3>
-          Priya Sharma
-          <span class="drt-role">CEO, Real Estate Startup</span>
-        </h3>
+      <!-- Navigation dots -->
+      <div class="drt-dots" id="drt-dots" role="tablist" aria-label="Choose a testimonial">
+        <button class="drt-dot drt-is-active" type="button" role="tab" aria-selected="true"
+          aria-label="Testimonial 1"></button>
 
-        <p>
-          “Our website was built in 3 weeks and it looks better than brands
-          10x our size. The team understood our vision immediately and
-          executed it flawlessly. ROAS on our ads went 3x in month one.”
-        </p>
-      </div>
+        <button class="drt-dot" type="button" role="tab" aria-selected="false" aria-label="Testimonial 2"></button>
 
-      <!-- Testimonial 3 -->
-      <div class="drt-slide">
-        <h3>
-          Arjun Kapoor
-          <span class="drt-role">MD, Healthcare Clinic</span>
-        </h3>
-
-        <p>
-          “Shailesh and the DemuRup team are partners, not vendors. They
-          proactively share ideas, stay ahead of trends, and genuinely care
-          about our growth. Best marketing decision we've made.”
-        </p>
+        <button class="drt-dot" type="button" role="tab" aria-selected="false" aria-label="Testimonial 3"></button>
       </div>
 
     </div>
-
-    <!-- Navigation dots -->
-    <div
-      class="drt-dots"
-      id="drt-dots"
-      role="tablist"
-      aria-label="Choose a testimonial"
-    >
-      <button
-        class="drt-dot drt-is-active"
-        type="button"
-        role="tab"
-        aria-selected="true"
-        aria-label="Testimonial 1"
-      ></button>
-
-      <button
-        class="drt-dot"
-        type="button"
-        role="tab"
-        aria-selected="false"
-        aria-label="Testimonial 2"
-      ></button>
-
-      <button
-        class="drt-dot"
-        type="button"
-        role="tab"
-        aria-selected="false"
-        aria-label="Testimonial 3"
-      ></button>
-    </div>
-
-  </div>
-</section>
+  </section>
 
   <!-- ══════════════════════════════════════════════════════════════
      LEAD MAGNET (BLACK SECTION)
@@ -2144,7 +2169,8 @@ C 285 264, 345 264, 400 268
           <div class="slabel mb-5 text-white">Quick Links</div>
           <ul class="space-y-3">
             <li>
-              <a href="about.html" class="text-white hover:text-lime text-base  transition-colors duration-200">About</a>
+              <a href="about.html"
+                class="text-white hover:text-lime text-base  transition-colors duration-200">About</a>
             </li>
             <li>
               <a href="clients.html"
@@ -2437,157 +2463,157 @@ C 285 264, 345 264, 400 268
 
   <script src="script.js"></script>
   <script>
-(function () {
+    (function () {
 
-  const root = document.getElementById("drt-testimonials");
+      const root = document.getElementById("drt-testimonials");
 
-  if (!root) return;
+      if (!root) return;
 
-  const slides = root.querySelectorAll(".drt-slide");
-  const dots = root.querySelectorAll(".drt-dot");
-  const prev = root.querySelector("#drt-prev");
-  const next = root.querySelector("#drt-next");
+      const slides = root.querySelectorAll(".drt-slide");
+      const dots = root.querySelectorAll(".drt-dot");
+      const prev = root.querySelector("#drt-prev");
+      const next = root.querySelector("#drt-next");
 
-  const delay = 3000;
+      const delay = 3000;
 
-  let current = 0;
-  let timer;
+      let current = 0;
+      let timer;
 
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-
-  function showSlide(index) {
-
-    current = (index + slides.length) % slides.length;
-
-    slides.forEach(function (slide, i) {
-      slide.classList.toggle("drt-is-active", i === current);
-    });
-
-    dots.forEach(function (dot, i) {
-
-      const active = i === current;
-
-      dot.classList.toggle("drt-is-active", active);
-
-      dot.setAttribute(
-        "aria-selected",
-        active ? "true" : "false"
-      );
-
-    });
-
-    restartAutoSlide();
-  }
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
 
-  function restartAutoSlide() {
+      function showSlide(index) {
 
-    clearTimeout(timer);
+        current = (index + slides.length) % slides.length;
 
-    if (!reduceMotion) {
-      timer = setTimeout(function () {
-        showSlide(current + 1);
-      }, delay);
-    }
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle("drt-is-active", i === current);
+        });
 
-  }
+        dots.forEach(function (dot, i) {
 
+          const active = i === current;
 
-  /* Previous */
+          dot.classList.toggle("drt-is-active", active);
 
-  prev.addEventListener("click", function () {
-    showSlide(current - 1);
-  });
+          dot.setAttribute(
+            "aria-selected",
+            active ? "true" : "false"
+          );
 
+        });
 
-  /* Next */
-
-  next.addEventListener("click", function () {
-    showSlide(current + 1);
-  });
+        restartAutoSlide();
+      }
 
 
-  /* Dots */
+      function restartAutoSlide() {
 
-  dots.forEach(function (dot, index) {
+        clearTimeout(timer);
 
-    dot.addEventListener("click", function () {
-      showSlide(index);
-    });
-
-  });
-
-
-  /* Pause while hovering */
-
-  root.addEventListener("mouseenter", function () {
-    clearTimeout(timer);
-  });
-
-  root.addEventListener("mouseleave", function () {
-    restartAutoSlide();
-  });
-
-
-  /* Keyboard arrows */
-
-  root.addEventListener("keydown", function (event) {
-
-    if (event.key === "ArrowLeft") {
-      showSlide(current - 1);
-    }
-
-    if (event.key === "ArrowRight") {
-      showSlide(current + 1);
-    }
-
-  });
-
-
-  /* Mobile swipe */
-
-  let startX = 0;
-
-  root.addEventListener(
-    "touchstart",
-    function (event) {
-      startX = event.changedTouches[0].clientX;
-    },
-    { passive: true }
-  );
-
-  root.addEventListener(
-    "touchend",
-    function (event) {
-
-      const endX = event.changedTouches[0].clientX;
-
-      const difference = startX - endX;
-
-      if (Math.abs(difference) > 40) {
-
-        if (difference > 0) {
-          showSlide(current + 1);
-        } else {
-          showSlide(current - 1);
+        if (!reduceMotion) {
+          timer = setTimeout(function () {
+            showSlide(current + 1);
+          }, delay);
         }
 
       }
 
-    },
-    { passive: true }
-  );
+
+      /* Previous */
+
+      prev.addEventListener("click", function () {
+        showSlide(current - 1);
+      });
 
 
-  /* Start automatic slider */
+      /* Next */
 
-  restartAutoSlide();
+      next.addEventListener("click", function () {
+        showSlide(current + 1);
+      });
 
-})();
-</script>
+
+      /* Dots */
+
+      dots.forEach(function (dot, index) {
+
+        dot.addEventListener("click", function () {
+          showSlide(index);
+        });
+
+      });
+
+
+      /* Pause while hovering */
+
+      root.addEventListener("mouseenter", function () {
+        clearTimeout(timer);
+      });
+
+      root.addEventListener("mouseleave", function () {
+        restartAutoSlide();
+      });
+
+
+      /* Keyboard arrows */
+
+      root.addEventListener("keydown", function (event) {
+
+        if (event.key === "ArrowLeft") {
+          showSlide(current - 1);
+        }
+
+        if (event.key === "ArrowRight") {
+          showSlide(current + 1);
+        }
+
+      });
+
+
+      /* Mobile swipe */
+
+      let startX = 0;
+
+      root.addEventListener(
+        "touchstart",
+        function (event) {
+          startX = event.changedTouches[0].clientX;
+        },
+        { passive: true }
+      );
+
+      root.addEventListener(
+        "touchend",
+        function (event) {
+
+          const endX = event.changedTouches[0].clientX;
+
+          const difference = startX - endX;
+
+          if (Math.abs(difference) > 40) {
+
+            if (difference > 0) {
+              showSlide(current + 1);
+            } else {
+              showSlide(current - 1);
+            }
+
+          }
+
+        },
+        { passive: true }
+      );
+
+
+      /* Start automatic slider */
+
+      restartAutoSlide();
+
+    })();
+  </script>
 </body>
 
 </html>
