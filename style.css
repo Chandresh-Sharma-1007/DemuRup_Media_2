@@ -2,22 +2,22 @@
 /* — Typography System — */
 
 /* The Seasons — Regular */
-/* @font-face {
+@font-face {
   font-family: "The Seasons";
-  src: url("Font/Fontspring-DEMO-theseasons-reg.otf") format("opentype");
+  src: url("Font/The Seasons.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-} */
+}
 
 /* The Seasons — Bold */
-/* @font-face {
+@font-face {
   font-family: "The Seasons";
-  src: url("Font/Fontspring-DEMO-theseasons-bd.otf") format("opentype");
+  src: url("Font/The Seasons.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-} */
+}
 
 *,
 html,
@@ -1331,6 +1331,31 @@ section#about[data-theme="light"] .ind-pill p {
 section p:not(.slabel):not(.service-tag):not(.stat-num) {
   font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
+
+@media (max-width: 768px) {
+  #services .bcard p {
+    font-size: 18px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #services .bcard {
+    font-size: 17px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #industries .ind-pill p {
+    font-size: 14.5px !important;
+  }
+}
+@media (max-width: 768px) {
+  #portfolio .cred-card p {
+    font-size: 15px !important;
+  }
+}
+
+
 
 /* ════════════════════════════════════════════════
        LOGO GRID — full colour, no filter
@@ -2792,7 +2817,8 @@ body.menu-open {
   /* text-transform: uppercase; */
   letter-spacing: -0.025em;
   fill: #ffffff;
-  text-shadow: 0px 4px 0px #00cc33;
+  text-shadow: 2px 2px 2px #00cc33;
+  
 }
 
 .dr-svg-text-1 {
@@ -2801,6 +2827,7 @@ body.menu-open {
 
 .dr-svg-text-2 {
   font-size: 100px;
+  transform: translateY(20px);
 }
 
 /* Service Nodes (Integrated Directly into SVG Vector Geometry with 0px Gap) */
@@ -5834,6 +5861,7 @@ font-family: "The Seasons" !important;
   #about .about-container {
     padding: 0 1.25rem;
   }
+  
 
   #about .about-col-left {
     max-width: 100%;
@@ -5863,6 +5891,7 @@ font-family: "The Seasons" !important;
     align-items: center;
   }
 
+
   #about .about-btn-cta {
     width: 100%;
     justify-content: center;
@@ -5876,6 +5905,10 @@ font-family: "The Seasons" !important;
 
   #about .about-storyboard-stage {
     min-height: auto;
+  }
+
+  #about .about-manifesto-lead {
+    font-size: 19px;
   }
 
   #about .about-manifesto-punch {
@@ -6928,11 +6961,14 @@ font-family: "The Seasons" !important;
   .dr-mobile-arc {
     fill: none;
 
+    
+
     stroke: url(#mobileArcGradient);
     stroke-width: 2px;
 
     stroke-linecap: round;
     stroke-linejoin: round;
+
 
     vector-effect: non-scaling-stroke;
 
@@ -6943,6 +6979,8 @@ font-family: "The Seasons" !important;
     transition:
       filter 0.75s ease,
       stroke-width 0.75s ease;
+      
+      
   }
 
 
@@ -6982,7 +7020,7 @@ font-family: "The Seasons" !important;
 
     font-family: "The Seasons" !important;
 
-    font-size: 20px !important;
+    font-size: 22px !important;
     font-weight: 600 !important;
 
     letter-spacing: 0;
